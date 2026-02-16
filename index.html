@@ -8,7 +8,7 @@
     <style>
 /* ========================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
-   Stylesheet intégré
+   Version complète intégrée
    ======================================== */
 
 /* === Variables CSS === */
@@ -55,6 +55,12 @@ body {
     padding: 0 20px;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.3;
@@ -90,6 +96,7 @@ li {
     margin-bottom: 0.5rem;
 }
 
+/* === Header === */
 .header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
@@ -126,6 +133,7 @@ li {
     font-weight: 600;
 }
 
+/* === Navigation === */
 .nav {
     background-color: var(--bg-white);
     box-shadow: var(--shadow-sm);
@@ -167,38 +175,49 @@ li {
     color: var(--primary-color);
 }
 
+/* === Hero === */
 .hero {
-    background: linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(0, 137, 123, 0.05) 100%);
-    padding: 3rem 0;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
     text-align: center;
-    border-bottom: 3px solid var(--primary-color);
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
 }
 
 .hero h2 {
-    color: var(--primary-color);
-    margin-bottom: 1.5rem;
-    font-size: 2.25rem;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
 }
 
 .hero-text {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    max-width: 900px;
-    margin: 0 auto 1.5rem;
-    color: var(--text-medium);
-    font-style: italic;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 1rem auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-.hero-signature {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    margin-top: 2rem;
-}
-
-.hero-signature strong {
-    color: var(--text-dark);
-}
-
+/* === Sections === */
 .section {
     padding: 3rem 0;
     background-color: var(--bg-white);
@@ -206,6 +225,21 @@ li {
 
 .section-alt {
     background-color: var(--bg-lighter);
+}
+
+.section-header {
+    position: relative;
+    height: 300px;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+}
+
+.section-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .section-title {
@@ -218,28 +252,24 @@ li {
 }
 
 .content-box {
-    background-color: var(--bg-white);
+    background: white;
     padding: 2rem;
     border-radius: 8px;
+    margin: 2rem 0;
     box-shadow: var(--shadow-sm);
 }
 
-.section-alt .content-box {
-    background-color: var(--bg-lighter);
-}
-
 .quote {
-    font-size: 1.2rem;
     font-style: italic;
-    color: var(--primary-dark);
+    color: var(--text-light);
+    padding: 1rem;
     border-left: 4px solid var(--primary-color);
-    padding-left: 1.5rem;
-    margin: 1.5rem 0 2rem;
-    background-color: rgba(46, 125, 50, 0.05);
-    padding: 1.5rem;
+    background: var(--bg-light);
+    margin-bottom: 2rem;
     border-radius: 4px;
 }
 
+/* === Cards === */
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -248,16 +278,12 @@ li {
 }
 
 .card {
-    background-color: var(--bg-white);
+    background: white;
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    transition: transform 0.3s, box-shadow 0.3s;
     border-top: 4px solid var(--primary-color);
-}
-
-.section-alt .card {
-    background-color: var(--bg-lighter);
 }
 
 .card:hover {
@@ -265,63 +291,76 @@ li {
     box-shadow: var(--shadow-md);
 }
 
-.card h3, .card h4 {
+.card img {
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* === Logos Grid === */
+.logos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.logo-item {
+    text-align: center;
+}
+
+.logo-item img {
+    max-height: 80px;
+    width: auto;
+    margin: 0 auto;
+}
+
+/* === Photo Gallery === */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.photo-gallery img {
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* === Subsections === */
+.subsections {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.subsection {
+    background: var(--bg-lighter);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-color);
+}
+
+.subsection h3 {
     color: var(--primary-color);
     margin-bottom: 1rem;
     font-size: 1.25rem;
 }
 
-.card p {
-    color: var(--text-medium);
-    margin-bottom: 1rem;
-    line-height: 1.8;
-}
-
-.subsections {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.subsection {
-    background-color: rgba(0, 137, 123, 0.03);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border-left: 4px solid var(--secondary-color);
-}
-
-.subsection h3 {
-    color: var(--secondary-color);
-    margin-bottom: 1rem;
-}
-
-.subsection ul {
-    margin-top: 1rem;
-}
-
-.btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    border-radius: 4px;
-    font-weight: 500;
-    text-align: center;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-    margin-top: 0.5rem;
-}
-
-.btn:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    color: white;
-}
-
+/* === Footer === */
 .footer {
-    background: linear-gradient(135deg, var(--text-dark) 0%, var(--text-medium) 100%);
+    background: linear-gradient(135deg, #212121 0%, #424242 100%);
     color: white;
     padding: 3rem 0 1rem;
     margin-top: 3rem;
@@ -334,54 +373,42 @@ li {
     margin-bottom: 2rem;
 }
 
-.footer-section h3 {
-    color: white;
+.footer h3 {
     margin-bottom: 1rem;
-    font-size: 1.25rem;
+    color: white;
 }
 
-.footer-section p {
+.footer a {
     color: rgba(255,255,255,0.9);
-    line-height: 1.8;
+    text-decoration: none;
 }
 
-.footer-section ul {
-    list-style: none;
-    margin: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 0.5rem;
-}
-
-.footer-section a {
-    color: rgba(255,255,255,0.9);
-    transition: var(--transition);
-}
-
-.footer-section a:hover {
+.footer a:hover {
     color: var(--primary-light);
-    padding-left: 5px;
+}
+
+.footer ul {
+    list-style: none;
+    margin-left: 0;
 }
 
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.2);
     padding-top: 1.5rem;
     text-align: center;
-    color: rgba(255,255,255,0.8);
-    font-size: 0.9rem;
 }
 
+/* === Scroll to Top Button === */
 .scroll-top {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 50px;
-    height: 50px;
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 50%;
+    width: 50px;
+    height: 50px;
     font-size: 1.5rem;
     cursor: pointer;
     box-shadow: var(--shadow-md);
@@ -397,22 +424,22 @@ li {
 }
 
 .scroll-top:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-4px);
+    background: var(--primary-dark);
+    transform: translateY(-3px);
 }
 
+/* === Responsive === */
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.35rem; }
-    
-    .header-content {
-        text-align: center;
-        flex-direction: column;
+    .header h1 {
+        font-size: 1.5rem;
     }
     
-    .header-info {
-        text-align: center;
+    .hero h2 {
+        font-size: 1.75rem;
+    }
+    
+    .hero-text {
+        font-size: 1rem;
     }
     
     .nav-list {
@@ -424,558 +451,706 @@ li {
         border-bottom: 1px solid var(--border-color);
     }
     
-    .hero-text {
-        font-size: 1rem;
-    }
-    
-    .section {
-        padding: 2rem 0;
+    .section-header {
+        height: 200px;
     }
     
     .cards-grid {
         grid-template-columns: 1fr;
     }
     
-    .content-box {
-        padding: 1.5rem;
+    .header-content {
+        flex-direction: column;
+        text-align: center;
     }
     
-    .footer-content {
-        grid-template-columns: 1fr;
+    .header-info {
         text-align: center;
     }
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
-    
-    .logo h1 {
-        font-size: 1.5rem;
-    }
-    
-    .subtitle {
-        font-size: 0.9rem;
-    }
-    
-    .hero h2 {
-        font-size: 1.75rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .nav-list a {
-        padding: 0.75rem;
-        font-size: 0.95rem;
-    }
-    
-    .card {
-        padding: 1rem;
-    }
-    
-    .content-box {
-        padding: 1rem;
-    }
-    
-    .quote {
-        font-size: 1rem;
-        padding: 1rem;
-    }
-    
+@media print {
+    .nav,
     .scroll-top {
-        width: 45px;
-        height: 45px;
-        bottom: 1rem;
-        right: 1rem;
-        font-size: 1.25rem;
+        display: none;
+    }
+    
+    .section {
+        page-break-inside: avoid;
     }
 }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>Guide des Familles</h1>
-                    <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
+
+<!-- Header -->
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <h1>Guide des Familles</h1>
+                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
+            </div>
+            <div class="header-info">
+                <p><strong>Dernière mise à jour :</strong> 13 février 2026</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="nav" id="mainNav">
+    <ul class="nav-list">
+        <li><a href="#interlocuteurs">Interlocuteurs</a></li>
+        <li><a href="#arrivee-enfant">Arrivée d'un enfant</a></li>
+        <li><a href="#petite-enfance">Petite enfance</a></li>
+        <li><a href="#enfance">Enfance</a></li>
+        <li><a href="#jeunesse">Jeunesse</a></li>
+        <li><a href="#parentalite">Parentalité</a></li>
+        <li><a href="#loisirs">Loisirs</a></li>
+        <li><a href="#vivre-ensemble">Vivre ensemble</a></li>
+        <li><a href="#acces-droits">Accès aux droits</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <img src="couverture_page-000.png" alt="Famille" class="hero-bg">
+    <div class="hero-content">
+        <h2>Bienvenue dans votre Guide des Familles</h2>
+        <p class="hero-text">"Chères familles, nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie."</p>
+    </div>
+</section>
+
+<main>
+<!-- Interlocuteurs clés -->
+<section id="interlocuteurs" class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
+        </div>
+        <h2 class="section-title">Des interlocuteurs clés</h2>
+        
+        <div class="logos-grid">
+            <div class="logo-item"><img src="interlocuteurs_page-047.png" alt="Carte territoire"></div>
+            <div class="logo-item"><img src="interlocuteurs_page-050.png" alt="CAF"></div>
+            <div class="logo-item"><img src="interlocuteurs_page-051.png" alt="MSA"></div>
+        </div>
+
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Mairies</h3>
+                <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
+            </div>
+            <div class="card">
+                <h3>Communauté de communes</h3>
+                <p>42 rue des Prés Gris, 45250 BRIARE<br>📞 02 38 37 03 84<br>📧 enfancejeunesse@cc-berryloirepuisaye.fr</p>
+            </div>
+            <div class="card">
+                <h3>CAF du Loiret</h3>
+                <p>2 place Saint Charles, 45946 ORLÉANS Cedex 9<br>📞 3230</p>
+            </div>
+            <div class="card">
+                <h3>MSA Beauce Cœur de Loire</h3>
+                <p>5 rue Chanzy, 28037 CHARTRES Cedex<br>📞 02 37 99 99 99</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Arrivée d'un enfant -->
+<section id="arrivee-enfant" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <img src="arrivee_enfant_page-000.png" alt="Grossesse">
+        </div>
+        <h2 class="section-title">L'arrivée d'un enfant</h2>
+        
+        <div class="content-box">
+            <h3 style="color:var(--primary-color); margin-bottom:1.5rem;">Accompagnement périnatal</h3>
+            
+            <div class="logos-grid" style="margin:2rem 0;">
+                <div class="logo-item"><img src="arrivee_enfant_page-004.png" alt="MVB Doula"></div>
+                <div class="logo-item"><img src="arrivee_enfant_page-005.png" alt="Hera Doula"></div>
+                <div class="logo-item"><img src="arrivee_enfant_page-006.png" alt="Le cabinet"></div>
+            </div>
+
+            <div class="subsections">
+                <div class="subsection">
+                    <h3>Maternité la plus proche</h3>
+                    <p><strong>Hôpital de Gien</strong><br>
+                    Centre Hospitalier du Giennois<br>
+                    Rue Wiltzer, 45500 GIEN<br>
+                    📞 02 38 67 61 00</p>
                 </div>
-                <div class="header-info">
-                    <p>Dernière mise à jour : <strong>13 février 2026</strong></p>
+                
+                <div class="subsection">
+                    <h3>Centre de Planification et d'Éducation Familiale</h3>
+                    <p>Accueil, information, consultations médicales gratuites<br>
+                    📞 02 38 05 61 61 (secrétariat médical)</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Protection Maternelle et Infantile (PMI)</h3>
+                    <p>Accompagnement médico-social, consultations gratuites<br>
+                    10 rue Jean Mermoz, 45500 GIEN<br>
+                    📞 02 38 05 61 61</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Doulas locales</h3>
+                    <p><strong>Marie-Virginie Bordet</strong><br>
+                    Doula traditionnelle et instructrice massage bébé<br>
+                    📞 06 98 08 37 26</p>
+                    <p><strong>Sophie Héra</strong><br>
+                    Accompagnement périnatal et post-partum<br>
+                    📞 06 02 56 21 56<br>
+                    📧 sophiehera@hotmail.fr</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Le cabinet, espace Ressources</h3>
+                    <p>Briare<br>
+                    Activités parents-enfants, ateliers bien-être</p>
                 </div>
             </div>
         </div>
-    </header>
 
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="container">
-            <ul class="nav-list">
-                <li><a href="#interlocuteurs">Interlocuteurs clés</a></li>
-                <li><a href="#arrivee-enfant">Arrivée d'un enfant</a></li>
-                <li><a href="#petite-enfance">Petite enfance</a></li>
-                <li><a href="#enfance">Enfance</a></li>
-                <li><a href="#jeunesse">Jeunesse</a></li>
-                <li><a href="#parentalite">Parentalité</a></li>
-                <li><a href="#loisirs">Loisirs & Culture</a></li>
-                <li><a href="#vivre-ensemble">Vivre ensemble</a></li>
-                <li><a href="#acces-droits">Accès aux droits</a></li>
+        <img src="arrivee_enfant_page-011.png" alt="Préparation naissance" style="margin:2rem 0; border-radius:8px; box-shadow:var(--shadow-md);">
+    </div>
+</section>
+
+<!-- Petite enfance -->
+<section id="petite-enfance" class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="petite_enfance_page-000.png" alt="Petite enfance">
+        </div>
+        <h2 class="section-title">Petite enfance (0-5 ans)</h2>
+        
+        <div class="content-box">
+            <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
+
+            <div class="subsections">
+                <div class="subsection">
+                    <h3>Multi-accueil Briare "La Ribambelle"</h3>
+                    <p>3 mois - 4 ans, 18 places<br>
+                    6 rue Michel Jacquet, Briare<br>
+                    📞 02 38 05 18 02<br>
+                    Lun-Ven : 7h30-18h30<br>
+                    📧 multiaccueilbriare@cc-berryloirepuisaye.fr</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Multi-accueil Châtillon-sur-Loire "L'Arc-en-Ciel"</h3>
+                    <p>3 mois - 4 ans, 12 places<br>
+                    Cour de la Mairie, Châtillon-sur-Loire<br>
+                    📞 02 38 05 18 06<br>
+                    Lun-Ven : 7h30-18h30<br>
+                    📧 multiaccueilchatillon@cc-berryloirepuisaye.fr</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Micro-crèche "Bouts d'chou"</h3>
+                    <p>Beaulieu-sur-Loire<br>
+                    📞 02 38 35 12 16<br>
+                    Structure municipale</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Micro-crèche "La Cabane de Suzon"</h3>
+                    <p>8 mois - 4 ans, 12 places<br>
+                    4 bis rue du Commerce, Bonny-sur-Loire<br>
+                    📞 02 38 05 09 10<br>
+                    Lun-Ven : 7h30-18h30</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Lieu d'Accueil Enfants Parents (LAEP)</h3>
+                    <p>0-6 ans avec leurs parents<br>
+                    Mercredi 9h-11h30 (hors vacances scolaires)<br>
+                    Multi-accueil de Châtillon-sur-Loire<br>
+                    📞 02 38 05 18 06<br>
+                    Gratuit, sans inscription</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem; color:var(--primary-color);">Modes de garde individuels</h3>
+            
+            <div class="cards-grid" style="margin-top:1rem;">
+                <div class="card">
+                    <h4>Assistantes maternelles agréées</h4>
+                    <p>Liste disponible :<br>
+                    • Relais Petite Enfance (02 38 05 18 04)<br>
+                    • CAF du Loiret (3230)<br>
+                    • Site monenfant.fr</p>
+                </div>
+                <div class="card">
+                    <h4>Relais Petite Enfance</h4>
+                    <p>Information, accompagnement, ateliers d'éveil<br>
+                    📞 02 38 05 18 04<br>
+                    📧 rpe@cc-berryloirepuisaye.fr</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-gallery" style="margin-top:2rem;">
+            <img src="petite_enfance_page-020.png" alt="Multi-accueil Briare">
+            <img src="petite_enfance_page-021.png" alt="Multi-accueil Châtillon">
+            <img src="petite_enfance_page-029.png" alt="Activités enfants">
+        </div>
+    </div>
+</section>
+
+<!-- Enfance -->
+<section id="enfance" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <img src="enfance_page-000.png" alt="Enfance">
+        </div>
+        <h2 class="section-title">Enfance (3-11 ans)</h2>
+        
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Scolarité</h3>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <h4>Écoles maternelles et élémentaires</h4>
+                    <p>Sur l'ensemble des communes du territoire<br>
+                    Inscriptions : se rapprocher de votre mairie</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Restauration scolaire</h4>
+                    <p>Service proposé dans plusieurs communes<br>
+                    Renseignements : mairie de votre commune</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem; color:var(--primary-color);">Accueils de loisirs</h3>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Accueil de loisirs Briare</h4>
+                    <p>3-11 ans<br>
+                    École Jean Bégault, Briare<br>
+                    📞 02 38 31 24 88 / 07 57 40 10 20<br>
+                    Mercredis + vacances : 7h30-18h30<br>
+                    📧 alshbriare@cc-berryloirepuisaye.fr</p>
+                </div>
+                <div class="card">
+                    <h4>Accueil de loisirs Châtillon-sur-Loire</h4>
+                    <p>3-11 ans<br>
+                    École des Marguerites<br>
+                    📞 02 38 31 43 53 / 07 57 40 10 21<br>
+                    Mercredis + vacances : 7h30-18h30<br>
+                    📧 alshchatillon@cc-berryloirepuisaye.fr</p>
+                </div>
+                <div class="card">
+                    <h4>Centre social Saint-Martin</h4>
+                    <p>Briare<br>
+                    📞 02 38 38 50 47<br>
+                    Mercredis et vacances scolaires</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem; color:var(--primary-color);">Autres services</h3>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <h4>Accueils périscolaires</h4>
+                    <p>Matin et soir (écoles)<br>
+                    Informations : mairie de votre commune</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Étude surveillée</h4>
+                    <p>École Jean Bégault - Briare<br>
+                    Lun-Mar-Jeu-Ven : 16h30-17h30<br>
+                    📞 02 38 37 03 84</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Transports scolaires</h4>
+                    <p>Regie.transports@loiret.fr<br>
+                    📞 02 38 25 48 26</p>
+                </div>
+            </div>
+        </div>
+
+        <img src="enfance_page-086.png" alt="Collège" style="margin:2rem 0; border-radius:8px; box-shadow:var(--shadow-md);">
+    </div>
+</section>
+
+<!-- Jeunesse -->
+<section id="jeunesse" class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="jeunesse_page-000.png" alt="Jeunesse">
+        </div>
+        <h2 class="section-title">Adolescence & Jeunesse (11-25 ans)</h2>
+        
+        <div class="photo-gallery">
+            <img src="jeunesse_page-009.png" alt="Culture Ados">
+            <img src="jeunesse_page-010.png" alt="Maison Saint-Jean">
+            <img src="jeunesse_page-012.png" alt="Mission locale">
+            <img src="jeunesse_page-013.png" alt="Collège Briare">
+            <img src="jeunesse_page-023.png" alt="Collège Châtillon">
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Structures d'accueil</h3>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Culture Ados (Bee'Mobile)</h4>
+                    <p>10-18 ans, itinérant<br>
+                    📞 07 57 40 10 28<br>
+                    Mer 14h-18h, Sam (2/mois), vacances 10h-18h<br>
+                    Adhésion : 15€/an</p>
+                </div>
+                <div class="card">
+                    <h4>Maison Saint-Jean (Briare)</h4>
+                    <p>6e-17 ans<br>
+                    49 Boulevard Buyser<br>
+                    📞 02 38 37 16 64 / 07 64 75 48 98<br>
+                    Mercredis + vacances</p>
+                </div>
+                <div class="card">
+                    <h4>Maison des Adolescents (AMARA 45)</h4>
+                    <p>11-25 ans - Soutien santé mentale<br>
+                    📞 07 85 76 64 75<br>
+                    📧 mdaloiret@gmail.com<br>
+                    Gratuit, confidentiel, anonyme</p>
+                </div>
+                <div class="card">
+                    <h4>Mission Locale de Gien</h4>
+                    <p>16-25 ans : emploi, formation, orientation<br>
+                    30 rue Paul Bert, Gien<br>
+                    📞 02 38 67 25 62<br>
+                    📧 contact@missionlocale-gien.fr</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem; color:var(--primary-color);">Scolarité secondaire</h3>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Collège Auguste-Birot (Briare)</h4>
+                    <p>Rue du Château d'Eau<br>
+                    📞 02 38 31 20 09</p>
+                </div>
+                <div class="card">
+                    <h4>Collège Bernard-Giraudeau (Châtillon-sur-Loire)</h4>
+                    <p>Route d'Assay<br>
+                    📞 02 38 31 42 49</p>
+                </div>
+                <div class="card">
+                    <h4>Collège Pierre-de-Coubertin (Beaulieu)</h4>
+                    <p>📞 02 38 05 03 84</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem; color:var(--primary-color);">City stades et skate-parks</h3>
+            <p>Équipements sportifs disponibles à Briare, Châtillon-sur-Loire, Bonny-sur-Loire, Ousson-sur-Loire</p>
+        </div>
+    </div>
+</section>
+
+<!-- Parentalité -->
+<section id="parentalite" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <img src="parentalite_page-000.png" alt="Parentalité">
+        </div>
+        <h2 class="section-title">Parentalité</h2>
+        
+        <div class="logos-grid">
+            <div class="logo-item"><img src="parentalite_page-007.png" alt="Aidaphi"></div>
+            <div class="logo-item"><img src="parentalite_page-008.png" alt="AEP"></div>
+            <div class="logo-item"><img src="parentalite_page-009.png" alt="Loiret"></div>
+            <div class="logo-item"><img src="parentalite_page-010.png" alt="CAF missions"></div>
+        </div>
+
+        <div class="photo-gallery" style="margin:2rem 0;">
+            <img src="parentalite_page-011.png" alt="Accompagnement">
+            <img src="parentalite_page-013.png" alt="Ligue enseignement">
+            <img src="parentalite_page-017.png" alt="Guid'asso">
+        </div>
+
+        <div class="content-box">
+            <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <h3>Aide Éducative à Domicile (AED)</h3>
+                    <p>Accompagnement des parents et/ou enfants par des travailleurs sociaux<br>
+                    Contact ADS Gien : 02 38 05 23 49</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
+                    <p>Accompagnement personnalisé pour les parents<br>
+                    📞 02 38 55 50 10<br>
+                    📧 sedsaep-siege@aidaphi.asso.fr</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Espace de vie sociale Bee'Mobile</h3>
+                    <p>Ateliers parents-enfants, cafés des parents, sorties familiales<br>
+                    📞 07 57 40 10 28<br>
+                    Mercredis, jeudis, vendredis</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Programme d'Animations Familiales (PAF)</h3>
+                    <p>Ateliers gratuits mensuels parents-enfants<br>
+                    📧 enfancejeunesse@cc-berryloirepuisaye.fr<br>
+                    📞 02 38 05 18 07</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Groupe d'échanges entre parents</h3>
+                    <p>Temps d'échanges conviviaux (4 fois par an)<br>
+                    Multi-accueil de Briare et Châtillon-sur-Loire</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Service d'Intervention Sociale CAF</h3>
+                    <p>Accompagnement lors d'événements familiaux<br>
+                    📞 02 38 51 50 42 / 02 38 51 77 42<br>
+                    📧 cafloiret.tisf@caf45.caf.fr</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Loisirs et Culture -->
+<section id="loisirs" class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="presentation_page-000.png" alt="Loisirs">
+        </div>
+        <h2 class="section-title">Loisirs & Culture</h2>
+        
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Bibliothèques</h3>
+                <p>Réseau de bibliothèques sur le territoire<br>
+                Programmation culturelle régulière</p>
+            </div>
+            <div class="card">
+                <h3>Office de Tourisme</h3>
+                <p>Informations touristiques et animations<br>
+                Briare, Châtillon-sur-Loire</p>
+            </div>
+            <div class="card">
+                <h3>Ludothèques</h3>
+                <p>Ludotm'obile : ludothèque itinérante<br>
+                Jeux et animations pour tous âges</p>
+            </div>
+            <div class="card">
+                <h3>Micro-Folie Briare</h3>
+                <p>Musée numérique et espace culturel<br>
+                Collections des plus grands musées</p>
+            </div>
+            <div class="card">
+                <h3>Maison des Pays</h3>
+                <p>Patrimoine et histoire locale<br>
+                Expositions et visites</p>
+            </div>
+            <div class="card">
+                <h3>Clubs sportifs</h3>
+                <p>Football, tennis, judo, danse, gymnastique...<br>
+                Nombreuses associations sportives</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Vivre ensemble -->
+<section id="vivre-ensemble" class="section section-alt">
+    <div class="container">
+        <div class="section-header">
+            <img src="presentation_page-001.png" alt="Vivre ensemble">
+        </div>
+        <h2 class="section-title">Vivre ensemble</h2>
+        
+        <div style="text-align:center; margin:2rem 0;">
+            <img src="vivre_page-001.png" alt="Guid'asso" style="max-width:400px; margin:0 auto; border-radius:8px; box-shadow:var(--shadow-md);">
+        </div>
+
+        <div class="content-box">
+            <div class="subsections">
+                <div class="subsection">
+                    <h3>Guid'asso</h3>
+                    <p>Dispositif de l'État géré par la Ligue de l'enseignement pour accompagner les associations<br>
+                    Formations gratuites tout au long de l'année</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Espace Initiatives Habitants</h3>
+                    <p>Proposez et mettez en œuvre des projets collectifs<br>
+                    Projet en cours : jardin partagé à Bonny-sur-Loire</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Permanence numérique</h3>
+                    <img src="vivre_page-004.png" alt="Permanence numérique" style="margin-bottom:1rem;">
+                    <p>Aide à l'utilisation d'un ordinateur, réseaux sociaux, démarches administratives<br>
+                    Service itinérant sur l'ensemble des communes<br>
+                    📞 07 57 40 10 28</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Accès aux droits -->
+<section id="acces-droits" class="section">
+    <div class="container">
+        <h2 class="section-title">Accès aux droits & Accompagnement</h2>
+        
+        <div class="content-box">
+            <p class="quote">"La liberté c'est le respect des droits de chacun ; l'ordre c'est le respect des droits de tous." - Mirabeau</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Réseau France Services</h3>
+                    <h4>Maison France Services - Bonny-sur-Loire</h4>
+                    <p>1 Place Beaupin Lagier<br>
+                    📞 02 38 05 18 74<br>
+                    Mar-Ven : 9h-12h30 / 14h-17h30</p>
+                    <h4>Espace Service Public (itinérant)</h4>
+                    <p>📞 02 38 05 18 03<br>
+                    Rendez-vous au siège de la CC ou dans votre commune</p>
+                </div>
+
+                <div class="card">
+                    <h3>Agence Départementale des Solidarités</h3>
+                    <p>Travailleurs sociaux sur rendez-vous<br>
+                    10 rue Jean Mermoz, 45500 GIEN<br>
+                    📞 02 38 05 23 49<br>
+                    Permanences dans plusieurs communes</p>
+                </div>
+
+                <div class="card">
+                    <h3>CIDFF (Centre d'Information sur les Droits des Femmes et des Familles)</h3>
+                    <p>31 avenue Louis-Maurice-Chautemps, 45200 MONTARGIS<br>
+                    📞 02 38 77 02 33<br>
+                    Permanences à Gien<br>
+                    Droit, lutte contre les violences, parentalité</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pôle Ressources Handicap 45</h3>
+                    <p>Accompagnement inclusion des enfants à besoins particuliers<br>
+                    📞 06 31 54 70 00<br>
+                    📧 pole-ressources-handicap45@lespep45.org<br>
+                    Service gratuit</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top:2rem;">Autres ressources</h3>
+            <ul>
+                <li><strong>MSA</strong> : Prestations d'action sociale, accompagnement familial (📞 02 37 99 99 99)</li>
+                <li><strong>CAF</strong> : Allocations familiales, aides au logement, accompagnement (📞 3230)</li>
+                <li><strong>URSSAF Pajemploi</strong> : Pour les parents employeurs (📞 0 806 807 253)</li>
             </ul>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Bienvenue dans votre Guide des Familles</h2>
-            <p class="hero-text">
-                "Chères familles, nous savons combien il est parfois difficile de concilier vie personnelle, 
-                professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye 
-                souhaite être à vos côtés, à chaque étape de la vie."
-            </p>
-            <p class="hero-signature">
-                <strong>M. LECHAUVE Michel</strong>, Président de la Communauté de Communes<br>
-                <strong>Mme BOURGOIN Catherine</strong>, Vice-présidente en charge des affaires sociales
-            </p>
-        </div>
-    </section>
+</main>
 
-    <!-- Main Content -->
-    <main class="main">
-        <div class="container">
-
-            <!-- Des interlocuteurs clés -->
-            <section id="interlocuteurs" class="section">
-                <h2 class="section-title">Des interlocuteurs clés</h2>
-                <div class="cards-grid">
-                    <div class="card">
-                        <h3>Mairies</h3>
-                        <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
-                        <a href="interlocuteurs_texte.txt" class="btn" target="_blank">Voir les coordonnées</a>
-                    </div>
-                    <div class="card">
-                        <h3>Communauté de communes</h3>
-                        <p>42 rue des Prés Gris, 45250 BRIARE<br>
-                        📞 02 38 37 03 84<br>
-                        📧 contact@cc-berryloirepuisaye.fr</p>
-                        <a href="https://www.cc-berryloirepuisaye.fr" class="btn" target="_blank">Site web</a>
-                    </div>
-                    <div class="card">
-                        <h3>CAF du Loiret</h3>
-                        <p>2 place Saint Charles, 45946 ORLÉANS Cedex 9<br>
-                        📞 3230</p>
-                        <a href="https://www.caf.fr" class="btn" target="_blank">Site web</a>
-                    </div>
-                    <div class="card">
-                        <h3>MSA Beauce Cœur de Loire</h3>
-                        <p>5 rue Chanzy, 28037 CHARTRES Cedex<br>
-                        📞 02 37 99 99 99</p>
-                        <a href="https://bcl.msa.fr" class="btn" target="_blank">Site web</a>
-                    </div>
-                    <div class="card">
-                        <h3>Agence Départementale des Solidarités</h3>
-                        <p>10 rue Jean Mermoz, 45500 GIEN<br>
-                        📞 02 38 05 23 49</p>
-                        <a href="https://www.loiret.fr" class="btn" target="_blank">Site web</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- L'arrivée d'un enfant -->
-            <section id="arrivee-enfant" class="section section-alt">
-                <h2 class="section-title">L'arrivée d'un enfant</h2>
-                <div class="content-box">
-                    <p class="quote">"Chaque parent vient au monde en même temps que son premier enfant." - Ernst Kramer</p>
-                    <div class="subsections">
-                        <div class="subsection">
-                            <h3>Démarches avant l'arrivée</h3>
-                            <ul>
-                                <li><strong>État civil :</strong> Reconnaissance de l'enfant, choix du nom de famille</li>
-                                <li><strong>Droits :</strong> Se renseigner auprès de la CAF et MSA</li>
-                                <li><strong>Santé :</strong> S'inscrire à la maternité, déclaration de grossesse</li>
-                                <li><strong>Emploi :</strong> Déclarer sa grossesse, s'informer sur les congés</li>
-                            </ul>
-                        </div>
-                        <div class="subsection">
-                            <h3>Accompagnement périnatal</h3>
-                            <ul>
-                                <li><strong>PMI :</strong> Sage-femme de Protection Maternelle et Infantile (02 38 05 23 61)</li>
-                                <li><strong>Sage-femme libérale :</strong> Patricia Philippart (02 38 31 25 85)</li>
-                                <li><strong>Doulas :</strong> MVB Doula (06 42 21 42 28), Hera Doula (06 26 07 54 63)</li>
-                            </ul>
-                        </div>
-                        <div class="subsection">
-                            <h3>Moyens de garde</h3>
-                            <p><strong>Guichet Unique Petite Enfance</strong><br>
-                            Accompagnement personnalisé pour votre recherche de mode d'accueil<br>
-                            📧 guichetunique.pe@cc-berryloirepuisaye.fr</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Petite enfance -->
-            <section id="petite-enfance" class="section">
-                <h2 class="section-title">Petite enfance (0-3 ans)</h2>
-                <div class="content-box">
-                    <p class="quote">"J'avance à mon propre rythme et je développe toutes mes facultés en même temps : pour moi, tout est langage, corps, jeu, expérience."</p>
-                    
-                    <h3>Accueil collectif</h3>
-                    <div class="cards-grid">
-                        <div class="card">
-                            <h4>Multi-accueil de Briare</h4>
-                            <p>30 places (2 sections)<br>
-                            39 avenue Yver Bapterosses<br>
-                            📞 02 38 31 38 62<br>
-                            Lun-Ven : 7h30-18h30</p>
-                        </div>
-                        <div class="card">
-                            <h4>Multi-accueil de Châtillon-sur-Loire</h4>
-                            <p>16 places<br>
-                            1 rue de la Boyaudière<br>
-                            📞 02 38 31 15 25<br>
-                            Lun-Ven : 7h00-18h00</p>
-                        </div>
-                    </div>
-
-                    <h3>Accueil individualisé</h3>
-                    <p>Environ 60 assistants maternels agréés sur le territoire. Liste disponible au Relais Petite Enfance.</p>
-
-                    <h3>Services</h3>
-                    <ul>
-                        <li><strong>Relais Petite Enfance :</strong> Information, orientation et animation (02 38 36 78 73)</li>
-                        <li><strong>La Marelle (LAEP) :</strong> Lieu d'accueil enfants-parents gratuit
-                            <ul>
-                                <li>Briare : Mercredis 9h15-11h45</li>
-                                <li>Ouzouër-sur-Trézée : Mercredis 15h00-17h30</li>
-                                <li>Châtillon-sur-Loire : Jeudis 15h00-17h30</li>
-                            </ul>
-                        </li>
-                        <li><strong>La Bulle Musicale :</strong> Espace sensoriel musical (Briare, mercredis 9h15-11h45)</li>
-                        <li><strong>PMI :</strong> Consultations gratuites médicales et de puériculture</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Enfance -->
-            <section id="enfance" class="section section-alt">
-                <h2 class="section-title">Enfance (3-11 ans)</h2>
-                <div class="content-box">
-                    <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto</p>
-                    
-                    <h3>Les écoles</h3>
-                    <p>Le territoire compte 2 collèges, 13 écoles publiques et 1 école privée.</p>
-                    <ul>
-                        <li><strong>Collège Albert Camus</strong> (Briare) : 02 38 37 02 83</li>
-                        <li><strong>Collège Pierre Dézarnaulds</strong> (Châtillon-sur-Loire) : 02 38 31 42 49</li>
-                    </ul>
-                    <p><strong>Territoire Éducatif Rural :</strong> Depuis septembre 2024, renforcement de l'offre éducative dans le secteur du collège de Briare.</p>
-
-                    <h3>Accueils périscolaires</h3>
-                    <p>9 accueils périscolaires sur le territoire (matin et soir, mercredis)</p>
-
-                    <h3>Accueils de loisirs</h3>
-                    <ul>
-                        <li><strong>Briare</strong> : 02 38 31 67 55</li>
-                        <li><strong>Châtillon-sur-Loire</strong> : 06 32 08 54 79</li>
-                        <li><strong>Beaulieu-sur-Loire</strong> : 02 38 05 03 84</li>
-                        <li><strong>Autry-le-Châtel</strong> : 02 38 36 80 59</li>
-                        <li><strong>Bonny-sur-Loire</strong> : 02 38 29 59 00</li>
-                        <li><strong>La Bussière</strong> : 02 38 35 90 68</li>
-                    </ul>
-
-                    <h3>CLAS (Contrat Local d'Accompagnement à la Scolarité)</h3>
-                    <p>Soutien scolaire gratuit à Bonny-sur-Loire : 02 38 31 63 57</p>
-                </div>
-            </section>
-
-            <!-- Adolescence et Jeunesse -->
-            <section id="jeunesse" class="section">
-                <h2 class="section-title">Adolescence & Jeunesse (11-25 ans)</h2>
-                <div class="content-box">
-                    <p class="quote">"La jeunesse est plus apte à inventer qu'à juger, à exécuter qu'à conseiller." - Francis Bacon</p>
-                    
-                    <div class="cards-grid">
-                        <div class="card">
-                            <h3>Culture Ados (Bee'Mobile)</h3>
-                            <p>10-18 ans, itinérant sur le territoire<br>
-                            📞 07 57 40 10 28<br>
-                            Mercredis 14h-18h, samedis (2/mois), vacances 10h-18h<br>
-                            Adhésion : 15€/an</p>
-                        </div>
-                        <div class="card">
-                            <h3>Maison Saint-Jean (Briare)</h3>
-                            <p>6e-17 ans<br>
-                            49 Boulevard Buyser<br>
-                            📞 02 38 37 16 64 / 07 64 75 48 98<br>
-                            Mercredis + vacances</p>
-                        </div>
-                        <div class="card">
-                            <h3>Maison des Adolescents (AMARA 45)</h3>
-                            <p>11-25 ans - Soutien santé mentale<br>
-                            📞 07 85 76 64 75<br>
-                            📧 mda45@amara45.fr<br>
-                            Gratuit, confidentiel, anonyme</p>
-                        </div>
-                        <div class="card">
-                            <h3>Mission Locale de Gien</h3>
-                            <p>16-25 ans : emploi, formation, orientation<br>
-                            30 rue Paul Bert, Gien<br>
-                            📞 02 38 67 25 62<br>
-                            📧 mlgien@aijam.com</p>
-                        </div>
-                    </div>
-
-                    <h3>City stades et skate-parks</h3>
-                    <p>Équipements sportifs disponibles à Briare, Châtillon-sur-Loire, Bonny-sur-Loire, Ousson-sur-Loire</p>
-                </div>
-            </section>
-
-            <!-- Parentalité -->
-            <section id="parentalite" class="section section-alt">
-                <h2 class="section-title">Parentalité</h2>
-                <div class="content-box">
-                    <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
-                    
-                    <div class="subsections">
-                        <div class="subsection">
-                            <h3>Aide Éducative à Domicile (AED)</h3>
-                            <p>Accompagnement des parents et/ou enfants par des travailleurs sociaux<br>
-                            Contact ADS Gien : 02 38 05 23 49</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
-                            <p>Accompagnement personnalisé pour les parents<br>
-                            📞 02 38 55 50 10<br>
-                            📧 aep45@aidaphi.asso.fr</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Espace de vie sociale Bee'Mobile</h3>
-                            <p>Ateliers parents-enfants, cafés des parents, sorties familiales<br>
-                            📞 07 57 40 10 28<br>
-                            Mercredis, jeudis, vendredis</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Programme d'Animations Familiales (PAF)</h3>
-                            <p>Ateliers gratuits mensuels parents-enfants<br>
-                            📧 communication.parentalite@cc-berryloirepuisaye.fr<br>
-                            📞 02 38 05 18 07</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Groupe d'échanges entre parents</h3>
-                            <p>Temps d'échanges conviviaux (4x/an)<br>
-                            Multi-accueil de Briare et Châtillon-sur-Loire</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Service d'Intervention Sociale CAF</h3>
-                            <p>Accompagnement lors d'événements familiaux<br>
-                            📞 02 38 51 50 42 / 02 38 51 77 42<br>
-                            📧 interventionsociale-caf45@caf45.caf.fr</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Loisirs et Culture -->
-            <section id="loisirs" class="section">
-                <h2 class="section-title">Loisirs & Culture</h2>
-                <div class="content-box">
-                    <div class="cards-grid">
-                        <div class="card">
-                            <h3>Bibliothèques</h3>
-                            <p>Réseau de bibliothèques sur le territoire<br>
-                            Programmation culturelle régulière</p>
-                        </div>
-                        <div class="card">
-                            <h3>Office de Tourisme</h3>
-                            <p>Informations touristiques et animations<br>
-                            Briare, Châtillon-sur-Loire</p>
-                        </div>
-                        <div class="card">
-                            <h3>Ludothèques</h3>
-                            <p>Ludotm'obile : ludothèque itinérante<br>
-                            Jeux et animations pour tous âges</p>
-                        </div>
-                        <div class="card">
-                            <h3>Micro-Folie Briare</h3>
-                            <p>Musée numérique et espace culturel<br>
-                            Collections des plus grands musées</p>
-                        </div>
-                        <div class="card">
-                            <h3>Maison des Pays</h3>
-                            <p>Patrimoine et histoire locale<br>
-                            Expositions et visites</p>
-                        </div>
-                        <div class="card">
-                            <h3>Clubs sportifs</h3>
-                            <p>Football, tennis, judo, danse, gymnastique...<br>
-                            Nombreuses associations sportives</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Vivre ensemble -->
-            <section id="vivre-ensemble" class="section section-alt">
-                <h2 class="section-title">Vivre ensemble</h2>
-                <div class="content-box">
-                    <div class="subsections">
-                        <div class="subsection">
-                            <h3>Guid'asso</h3>
-                            <p>Dispositif de l'État géré par la Ligue de l'enseignement pour accompagner les associations<br>
-                            Formations gratuites tout au long de l'année</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Espace Initiatives Habitants</h3>
-                            <p>Proposez et mettez en œuvre des projets collectifs<br>
-                            Projet en cours : jardin partagé à Bonny-sur-Loire</p>
-                        </div>
-                        <div class="subsection">
-                            <h3>Permanence numérique</h3>
-                            <p>Aide à l'utilisation d'un ordinateur, réseaux sociaux, démarches administratives<br>
-                            Service itinérant sur l'ensemble des communes<br>
-                            📞 07 57 40 10 28</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Accès aux droits -->
-            <section id="acces-droits" class="section">
-                <h2 class="section-title">Accès aux droits & Accompagnement</h2>
-                <div class="content-box">
-                    <p class="quote">"La liberté c'est le respect des droits de chacun ; l'ordre c'est le respect des droits de tous." - Mirabeau</p>
-                    
-                    <div class="cards-grid">
-                        <div class="card">
-                            <h3>Réseau France Services</h3>
-                            <p><strong>Maison France Services - Bonny-sur-Loire</strong><br>
-                            1 Place Beaupin Lagier<br>
-                            📞 02 38 05 18 74<br>
-                            Mar-Ven : 9h-12h30 / 14h-17h30</p>
-                            <p><strong>Espace Service Public (itinérant)</strong><br>
-                            📞 02 38 05 18 03<br>
-                            RDV au siège CC ou dans votre commune</p>
-                        </div>
-                        <div class="card">
-                            <h3>Agence Départementale des Solidarités</h3>
-                            <p>Travailleurs sociaux sur RDV<br>
-                            10 rue Jean Mermoz, Gien<br>
-                            📞 02 38 05 23 49<br>
-                            Permanences dans plusieurs communes</p>
-                        </div>
-                        <div class="card">
-                            <h3>CIDFF (Centre d'Information sur les Droits des Femmes et des Familles)</h3>
-                            <p>31 avenue Louis-Maurice-Chautemps, Montargis<br>
-                            📞 02 38 77 02 33<br>
-                            Permanences à Gien<br>
-                            Droit, lutte contre les violences, parentalité</p>
-                        </div>
-                        <div class="card">
-                            <h3>Pôle Ressources Handicap 45</h3>
-                            <p>Accompagnement inclusion des enfants à besoins particuliers<br>
-                            📞 06 31 54 70 00<br>
-                            📧 contact@prh45.fr<br>
-                            Service gratuit</p>
-                        </div>
-                    </div>
-
-                    <h3>Autres ressources</h3>
-                    <ul>
-                        <li><strong>MSA</strong> : Prestations d'action sociale, accompagnement (02 37 99 99 99)</li>
-                        <li><strong>CAF</strong> : Allocations familiales, aides au logement (3230)</li>
-                        <li><strong>URSSAF Pajemploi</strong> : Pour les parents employeurs (0 806 807 253)</li>
-                    </ul>
-                </div>
-            </section>
-
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Communauté de Communes Berry Loire Puisaye</h3>
-                    <p>42 rue des Prés Gris<br>
-                    45250 BRIARE</p>
-                    <p>📞 02 38 37 03 84<br>
-                    📧 contact@cc-berryloirepuisaye.fr</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Liens utiles</h3>
-                    <ul>
-                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                        <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                        <li><a href="https://bcl.msa.fr" target="_blank">MSA Beauce Cœur de Loire</a></li>
-                        <li><a href="https://www.loiret.fr" target="_blank">Département du Loiret</a></li>
-                        <li><a href="https://www.monenfant.fr" target="_blank">Mon Enfant.fr</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Téléchargements</h3>
-                    <ul>
-                        <li><a href="https://github.com/communicationparentalite/guide-des-familles" target="_blank">Voir tous les fichiers</a></li>
-                    </ul>
-                </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                <p>42 rue des Prés Gris<br>
+                45250 BRIARE</p>
+                <p>📞 02 38 37 03 84<br>
+                📧 enfancejeunesse@cc-berryloirepuisaye.fr</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
-                <p>Dernière mise à jour : 13 février 2026</p>
+            <div class="footer-section">
+                <h3>Liens utiles</h3>
+                <ul>
+                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
+                    <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
+                    <li><a href="https://bcl.msa.fr" target="_blank">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="https://www.loiret.fr" target="_blank">Département du Loiret</a></li>
+                    <li><a href="https://www.monenfant.fr" target="_blank">Mon Enfant.fr</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Téléchargements</h3>
+                <ul>
+                    <li><a href="https://github.com/communicationparentalite/guide-des-familles" target="_blank">Voir tous les fichiers</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+            <p>Dernière mise à jour : 13 février 2026</p>
+        </div>
+    </div>
+</footer>
 
-    <!-- Bouton retour en haut -->
-    <button id="scrollTop" class="scroll-top" aria-label="Retour en haut">↑</button>
+<!-- Bouton retour en haut -->
+<button id="scrollTop" class="scroll-top" aria-label="Retour en haut">↑</button>
 
-    <script>
-        // Smooth scroll pour les liens d'ancrage
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+<script>
+// Smooth scroll pour les liens d'ancrage
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-        });
+        }
+    });
+});
 
-        // Bouton retour en haut
-        const scrollTopBtn = document.getElementById('scrollTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                scrollTopBtn.classList.add('visible');
-            } else {
-                scrollTopBtn.classList.remove('visible');
-            }
-        });
+// Bouton retour en haut
+const scrollTopBtn = document.getElementById('scrollTop');
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+    } else {
+        scrollTopBtn.classList.remove('visible');
+    }
+});
 
-        // Navigation sticky
-        const nav = document.querySelector('.nav');
-        const navOffset = nav.offsetTop;
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset >= navOffset) {
-                nav.classList.add('sticky');
-            } else {
-                nav.classList.remove('sticky');
-            }
-        });
-    </script>
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Navigation sticky effect
+const nav = document.getElementById('mainNav');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+        nav.classList.add('sticky');
+    } else {
+        nav.classList.remove('sticky');
+    }
+    
+    lastScroll = currentScroll;
+});
+</script>
+
 </body>
 </html>
