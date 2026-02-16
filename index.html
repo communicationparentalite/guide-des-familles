@@ -8,7 +8,7 @@
     <style>
 /* ========================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
-   Version complète intégrée
+   Version complète corrigée
    ======================================== */
 
 /* === Variables CSS === */
@@ -175,6 +175,11 @@ li {
     color: var(--primary-color);
 }
 
+/* Ajustement du scroll pour compenser la navigation fixe */
+section {
+    scroll-margin-top: 120px;
+}
+
 /* === Hero === */
 .hero {
     position: relative;
@@ -301,6 +306,12 @@ li {
     margin-bottom: 1rem;
 }
 
+.card h4 {
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
 /* === Logos Grid === */
 .logos-grid {
     display: grid;
@@ -312,10 +323,14 @@ li {
 
 .logo-item {
     text-align: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
 }
 
 .logo-item img {
-    max-height: 80px;
+    max-height: 100px;
     width: auto;
     margin: 0 auto;
 }
@@ -332,6 +347,9 @@ li {
     border-radius: 8px;
     box-shadow: var(--shadow-sm);
     transition: transform 0.3s;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
 }
 
 .photo-gallery img:hover {
@@ -356,6 +374,68 @@ li {
     color: var(--primary-color);
     margin-bottom: 1rem;
     font-size: 1.25rem;
+}
+
+.subsection h4 {
+    color: var(--primary-dark);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+/* === Ecoles Layout === */
+.ecoles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.ecole-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s;
+}
+
+.ecole-card:hover {
+    transform: translateY(-4px);
+}
+
+.ecole-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.ecole-card-content {
+    padding: 1.5rem;
+}
+
+.ecole-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.ecole-card h4 {
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+/* === Image avec texte === */
+.image-text-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.image-text-row img {
+    border-radius: 8px;
+    box-shadow: var(--shadow-md);
+    width: 100%;
 }
 
 /* === Footer === */
@@ -428,6 +508,11 @@ li {
     transform: translateY(-3px);
 }
 
+/* Menu toggle button - caché par défaut sur desktop */
+.menu-toggle {
+    display: none;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
     .header h1 {
@@ -442,13 +527,44 @@ li {
         font-size: 1rem;
     }
     
+    /* Navigation mobile */
+    .nav {
+        position: relative; /* Enlever sticky sur mobile */
+    }
+    
     .nav-list {
         flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .nav-list.active {
+        max-height: 600px;
     }
     
     .nav-list a {
         text-align: center;
         border-bottom: 1px solid var(--border-color);
+        padding: 0.75rem 1rem;
+    }
+    
+    /* Bouton menu hamburger */
+    .menu-toggle {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        padding: 1rem;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        color: var(--text-dark);
+        background: var(--bg-light);
+    }
+    
+    .menu-toggle:hover {
+        background: var(--border-color);
     }
     
     .section-header {
@@ -467,11 +583,28 @@ li {
     .header-info {
         text-align: center;
     }
+    
+    section {
+        scroll-margin-top: 20px; /* Réduire sur mobile */
+    }
+    
+    .image-text-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .ecoles-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .logos-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
 }
 
 @media print {
     .nav,
-    .scroll-top {
+    .scroll-top,
+    .menu-toggle {
         display: none;
     }
     
@@ -500,7 +633,8 @@ li {
 
 <!-- Navigation -->
 <nav class="nav" id="mainNav">
-    <ul class="nav-list">
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+    <ul class="nav-list" id="navList">
         <li><a href="#interlocuteurs">Interlocuteurs</a></li>
         <li><a href="#arrivee-enfant">Arrivée d'un enfant</a></li>
         <li><a href="#petite-enfance">Petite enfance</a></li>
@@ -531,28 +665,54 @@ li {
         </div>
         <h2 class="section-title">Des interlocuteurs clés</h2>
         
-        <div class="logos-grid">
-            <div class="logo-item"><img src="interlocuteurs_page-047.png" alt="Carte territoire"></div>
-            <div class="logo-item"><img src="interlocuteurs_page-050.png" alt="CAF"></div>
-            <div class="logo-item"><img src="interlocuteurs_page-051.png" alt="MSA"></div>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Mairies</h3>
+            <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
+            
+            <h3 style="color:var(--primary-color); margin-top:2rem;">Communauté de communes Berry Loire Puisaye</h3>
+            <p>42 rue des Prés Gris, 45250 BRIARE<br>
+            📞 02 38 37 03 84<br>
+            📧 contact@cc-berryloirepuisaye.fr<br>
+            🌐 www.cc-berryloirepuisaye.fr</p>
+            
+            <div style="text-align:center; margin:3rem 0;">
+                <img src="interlocuteurs_page-047.png" alt="Carte du territoire" style="max-width:800px; margin:0 auto; border-radius:8px; box-shadow:var(--shadow-md);">
+            </div>
+            
+            <h3 style="color:var(--primary-color); margin-top:3rem;">Partenaires institutionnels</h3>
         </div>
-
+            
         <div class="cards-grid">
             <div class="card">
-                <h3>Mairies</h3>
-                <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
-            </div>
-            <div class="card">
-                <h3>Communauté de communes</h3>
-                <p>42 rue des Prés Gris, 45250 BRIARE<br>📞 02 38 37 03 84<br>📧 enfancejeunesse@cc-berryloirepuisaye.fr</p>
-            </div>
-            <div class="card">
+                <div style="text-align:center; margin-bottom:1rem;">
+                    <img src="interlocuteurs_page-050.png" alt="Logo CAF" style="max-height:80px; margin:0 auto;">
+                </div>
                 <h3>CAF du Loiret</h3>
-                <p>2 place Saint Charles, 45946 ORLÉANS Cedex 9<br>📞 3230</p>
+                <p>Caisse d'Allocations Familiales du Loiret<br>
+                2 place Saint Charles<br>
+                45946 ORLÉANS Cedex 9<br>
+                📞 3230<br>
+                🌐 www.caf.fr</p>
             </div>
+            
             <div class="card">
+                <div style="text-align:center; margin-bottom:1rem;">
+                    <img src="interlocuteurs_page-051.png" alt="Logo MSA" style="max-height:80px; margin:0 auto;">
+                </div>
                 <h3>MSA Beauce Cœur de Loire</h3>
-                <p>5 rue Chanzy, 28037 CHARTRES Cedex<br>📞 02 37 99 99 99</p>
+                <p>Mutualité Sociale Agricole<br>
+                5 rue Chanzy<br>
+                28037 CHARTRES Cedex<br>
+                📞 02 37 99 99 99<br>
+                🌐 https://bcl.msa.fr</p>
+            </div>
+            
+            <div class="card">
+                <h3>Agence Départementale des Solidarités</h3>
+                <p>Service de proximité du Département du Loiret<br>
+                Accompagnement personnalisé<br>
+                📞 02 38 25 45 45<br>
+                🌐 www.loiret.fr</p>
             </div>
         </div>
     </div>
@@ -566,8 +726,41 @@ li {
         </div>
         <h2 class="section-title">L'arrivée d'un enfant</h2>
         
+        <p class="quote">"Chaque parent vient au monde en même temps que son premier enfant." - Ernst Kramer</p>
+        
         <div class="content-box">
-            <h3 style="color:var(--primary-color); margin-bottom:1.5rem;">Accompagnement périnatal</h3>
+            <h3 style="color:var(--primary-color);">Démarches avant l'arrivée de l'enfant</h3>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <h4>État civil et droits</h4>
+                    <p>• Reconnaissance de l'enfant par les parents (couples non mariés)<br>
+                    • Choix du nom de famille<br>
+                    • Se renseigner auprès de la CAF et de la MSA pour les primes de naissance</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Santé</h4>
+                    <p>• S'inscrire à la maternité le plus tôt possible<br>
+                    • Faire sa déclaration de grossesse (avant la fin du 3e mois)<br>
+                    • Se renseigner sur les remboursements et examens obligatoires</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Emploi</h4>
+                    <p>• Déclarer sa grossesse à son employeur<br>
+                    • S'informer sur le congé maternité et paternité</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Mode de garde</h4>
+                    <p>• Commencer les démarches pour trouver un mode de garde dès l'annonce de la grossesse</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Accompagnement périnatal</h3>
             
             <div class="logos-grid" style="margin:2rem 0;">
                 <div class="logo-item"><img src="arrivee_enfant_page-004.png" alt="MVB Doula"></div>
@@ -578,34 +771,47 @@ li {
             <div class="subsections">
                 <div class="subsection">
                     <h3>Maternité la plus proche</h3>
-                    <p><strong>Hôpital de Gien</strong><br>
-                    Centre Hospitalier du Giennois<br>
+                    <h4>Hôpital de Gien</h4>
+                    <p>Centre Hospitalier du Giennois<br>
                     Rue Wiltzer, 45500 GIEN<br>
                     📞 02 38 67 61 00</p>
                 </div>
                 
                 <div class="subsection">
-                    <h3>Centre de Planification et d'Éducation Familiale</h3>
-                    <p>Accueil, information, consultations médicales gratuites<br>
-                    📞 02 38 05 61 61 (secrétariat médical)</p>
-                </div>
-
-                <div class="subsection">
                     <h3>Protection Maternelle et Infantile (PMI)</h3>
                     <p>Accompagnement médico-social, consultations gratuites<br>
                     10 rue Jean Mermoz, 45500 GIEN<br>
-                    📞 02 38 05 61 61</p>
+                    📞 02 38 05 61 61<br><br>
+                    La sage-femme de PMI vous accompagne gratuitement pendant et après la grossesse</p>
                 </div>
 
                 <div class="subsection">
-                    <h3>Doulas locales</h3>
-                    <p><strong>Marie-Virginie Bordet</strong><br>
-                    Doula traditionnelle et instructrice massage bébé<br>
-                    📞 06 98 08 37 26</p>
-                    <p><strong>Sophie Héra</strong><br>
-                    Accompagnement périnatal et post-partum<br>
-                    📞 06 02 56 21 56<br>
-                    📧 sophiehera@hotmail.fr</p>
+                    <h3>Sage-femme libérale</h3>
+                    <h4>Patricia Philippart</h4>
+                    <p>Maison de Santé François Rabelais<br>
+                    24 Rue du Glacis<br>
+                    CHÂTILLON-SUR-LOIRE<br>
+                    📞 02 38 31 25 85</p>
+                </div>
+
+                <div class="subsection">
+                    <h3>Doulas</h3>
+                    <div class="image-text-row" style="margin-top:1rem;">
+                        <div>
+                            <img src="arrivee_enfant_page-004.png" alt="MVB Doula" style="max-height:80px; margin-bottom:0.5rem;">
+                            <h4>Marie-Virginie Bordet</h4>
+                            <p>Doula traditionnelle et instructrice massage bébé<br>
+                            BRIARE<br>
+                            📞 06 42 21 42 28</p>
+                        </div>
+                        <div>
+                            <img src="arrivee_enfant_page-005.png" alt="Hera Doula" style="max-height:80px; margin-bottom:0.5rem;">
+                            <h4>Sophie Héra (Hera Doula)</h4>
+                            <p>Accompagnement périnatal et post-partum<br>
+                            CHÂTILLON-SUR-LOIRE<br>
+                            📞 06 26 07 54 63</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="subsection">
@@ -628,28 +834,51 @@ li {
         </div>
         <h2 class="section-title">Petite enfance (0-5 ans)</h2>
         
+        <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
+        
+        <p class="quote">"J'avance à mon propre rythme et je développe toutes mes facultés en même temps : pour moi, tout est langage, corps, jeu, expérience. J'ai besoin que l'on me parle, de temps et d'espace pour jouer librement et pour exercer mes multiples capacités" - Principe n°2 de la Charte nationale pour l'accueil du jeune enfant</p>
+
         <div class="content-box">
-            <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
+            <h3 style="color:var(--primary-color);">Accueil collectif</h3>
+            
+            <p>Le territoire dispose de deux structures d'accueil collectif labélisées "éveil et signes" avec un agrément délivré par la PMI. Elles accueillent des enfants âgés de 10 semaines à 4 ans révolus.</p>
+            
+            <div class="photo-gallery" style="margin:2rem 0;">
+                <img src="petite_enfance_page-020.png" alt="Multi-accueil Briare">
+                <img src="petite_enfance_page-021.png" alt="Multi-accueil Châtillon">
+                <img src="petite_enfance_page-029.png" alt="Activités enfants">
+            </div>
 
-            <div class="subsections">
-                <div class="subsection">
+            <div class="cards-grid">
+                <div class="card">
                     <h3>Multi-accueil Briare "La Ribambelle"</h3>
-                    <p>3 mois - 4 ans, 18 places<br>
-                    6 rue Michel Jacquet, Briare<br>
-                    📞 02 38 05 18 02<br>
+                    <p><strong>30 places</strong> réparties en 2 sections<br>
+                    12 bébés/moyens + 18 moyens/grands<br><br>
+                    3 mois - 4 ans<br>
+                    Pôle Petite Enfance<br>
+                    39, avenue Yver Bapterosses, Briare<br>
+                    📞 02 38 31 38 62<br>
                     Lun-Ven : 7h30-18h30<br>
-                    📧 multiaccueilbriare@cc-berryloirepuisaye.fr</p>
+                    📧 multiaccueil.briare@cc-berryloirepuisaye.fr</p>
                 </div>
 
-                <div class="subsection">
+                <div class="card">
                     <h3>Multi-accueil Châtillon-sur-Loire "L'Arc-en-Ciel"</h3>
-                    <p>3 mois - 4 ans, 12 places<br>
-                    Cour de la Mairie, Châtillon-sur-Loire<br>
-                    📞 02 38 05 18 06<br>
-                    Lun-Ven : 7h30-18h30<br>
-                    📧 multiaccueilchatillon@cc-berryloirepuisaye.fr</p>
+                    <p><strong>16 places</strong> (âge mélangé)<br><br>
+                    3 mois - 4 ans<br>
+                    Centre Médico-social<br>
+                    1, rue de la Boyaudière, Châtillon-sur-Loire<br>
+                    📞 02 38 31 15 25<br>
+                    Lun-Ven : 7h00-18h00<br>
+                    📧 multiaccueil.chatillon@cc-berryloirepuisaye.fr</p>
                 </div>
+            </div>
+        </div>
 
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Autres structures</h3>
+            
+            <div class="subsections">
                 <div class="subsection">
                     <h3>Micro-crèche "Bouts d'chou"</h3>
                     <p>Beaulieu-sur-Loire<br>
@@ -664,40 +893,116 @@ li {
                     📞 02 38 05 09 10<br>
                     Lun-Ven : 7h30-18h30</p>
                 </div>
+            </div>
+        </div>
 
-                <div class="subsection">
-                    <h3>Lieu d'Accueil Enfants Parents (LAEP)</h3>
-                    <p>0-6 ans avec leurs parents<br>
-                    Mercredi 9h-11h30 (hors vacances scolaires)<br>
-                    Multi-accueil de Châtillon-sur-Loire<br>
-                    📞 02 38 05 18 06<br>
-                    Gratuit, sans inscription</p>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Guichet Unique de la Petite Enfance</h3>
+            <p>Accompagnement individualisé pour votre recherche d'un mode d'accueil</p>
+            
+            <div class="cards-grid">
+                <div class="card">
+                    <h4>Permanence Briare</h4>
+                    <p>Mardi et jeudi de 13h30 à 17h00<br>
+                    Mercredi de 9h00 à 12h30<br>
+                    Pôle Petite Enfance<br>
+                    39, avenue Yver Bapterosses<br>
+                    02 38 36 78 73</p>
+                </div>
+                <div class="card">
+                    <h4>Permanence Châtillon-sur-Loire</h4>
+                    <p>Lundi et vendredi de 13h30 à 17h30<br>
+                    Centre Médico-social<br>
+                    1, rue de la Boyaudière<br>
+                    02 38 37 23 74</p>
                 </div>
             </div>
-
-            <h3 style="margin-top:2rem; color:var(--primary-color);">Modes de garde individuels</h3>
             
-            <div class="cards-grid" style="margin-top:1rem;">
+            <p style="text-align:center; margin-top:2rem;">
+                📧 guichetunique.pe@cc-berryloirepuisaye.fr
+            </p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Relais Petite Enfance (RPE)</h3>
+            <p>Orientation, information et animation pour les parents et les assistants maternels</p>
+            
+            <div class="cards-grid">
                 <div class="card">
-                    <h4>Assistantes maternelles agréées</h4>
-                    <p>Liste disponible :<br>
-                    • Relais Petite Enfance (02 38 05 18 04)<br>
-                    • CAF du Loiret (3230)<br>
-                    • Site monenfant.fr</p>
+                    <h4>Permanence Briare</h4>
+                    <p>Mardi au jeudi de 13h30 à 17h30<br>
+                    Pôle Petite Enfance<br>
+                    39, avenue Yver Bapterosses<br>
+                    02 38 36 78 73</p>
                 </div>
                 <div class="card">
-                    <h4>Relais Petite Enfance</h4>
-                    <p>Information, accompagnement, ateliers d'éveil<br>
-                    📞 02 38 05 18 04<br>
-                    📧 rpe@cc-berryloirepuisaye.fr</p>
+                    <h4>Permanence Châtillon-sur-Loire</h4>
+                    <p>Lundi et vendredi de 13h30 à 17h30<br>
+                    Centre Médico-social<br>
+                    1, rue de la Boyaudière<br>
+                    02 38 37 23 74</p>
+                </div>
+            </div>
+            
+            <p style="margin-top:1.5rem;"><strong>Le RPE vous accompagne dans la recherche d'assistants maternels agréés</strong><br>
+            Liste disponible sur demande, sur www.cc-berryloirepuisaye.fr et sur www.monenfant.fr</p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">La Marelle - Lieu d'accueil enfants-parents (LAEP)</h3>
+            <p>Un espace convivial et ludique pour les enfants de moins de 6 ans accompagnés d'un parent ou d'un adulte référent. Gratuit, sans inscription, anonyme.</p>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <p><strong>Tous les mercredis de 9h15 à 11h45</strong><br>
+                    au Pôle Petite Enfance à Briare</p>
+                </div>
+                <div class="subsection">
+                    <p><strong>Tous les mercredis de 15h00 à 17h30</strong><br>
+                    à la salle des Fêtes d'Ouzouër-sur-Trézée</p>
+                </div>
+                <div class="subsection">
+                    <p><strong>Tous les jeudis de 15h00 à 17h30</strong><br>
+                    au Centre médico-social à Châtillon-sur-Loire</p>
+                </div>
+            </div>
+            
+            <p style="margin-top:1.5rem;">📧 laep@cc-berryloirepuisaye.fr - 📞 02 38 36 78 73</p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">PMI - Consultations et ateliers</h3>
+            
+            <div class="subsections">
+                <div class="subsection">
+                    <h4>Consultations médicales et de puériculture GRATUITES</h4>
+                    <p><strong>Au Centre Médico-social de Briare</strong> (6 rue des Grands Jardins)<br>
+                    • Consultation médicale : 1er lundi de 9h00 à 17h00 et 3ème lundi du mois de 9h00 à 13h00<br>
+                    • Permanence de puéricultrice : 2ème vendredi de 9h00 à 11h30<br>
+                    • 4ème vendredi de 9h00 à 11h30 à la Maison Médicale de Bonny-sur-Loire</p>
+                    
+                    <p style="margin-top:1rem;">📞 Pour prendre rendez-vous : 02 38 05 23 61</p>
+                </div>
+                
+                <div class="subsection">
+                    <h4>Atelier manipulation enfants-parents (GRATUIT)</h4>
+                    <p>Pour les enfants de 1 à 3 ans<br>
+                    Activités de manipulation : sable magique, semoule, terre, fleurs, eau, feuilles...<br>
+                    <strong>Tous les 2e vendredis du mois de 9h30 à 11h30</strong><br>
+                    Au Pôle Petite enfance - 39 avenue Yver Bapterosses, Briare<br>
+                    📞 06 23 59 73 28</p>
                 </div>
             </div>
         </div>
 
-        <div class="photo-gallery" style="margin-top:2rem;">
-            <img src="petite_enfance_page-020.png" alt="Multi-accueil Briare">
-            <img src="petite_enfance_page-021.png" alt="Multi-accueil Châtillon">
-            <img src="petite_enfance_page-029.png" alt="Activités enfants">
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">La Bulle Musicale</h3>
+            <p>Espace sensoriel unique où la musique devient un terrain d'exploration pour les tout-petits</p>
+            
+            <p><strong>Pour les enfants de moins de 7 ans - GRATUIT</strong><br>
+            Mercredis de 9h15 à 11h45<br>
+            Pôle Petite Enfance - 39, avenue Yver Bapterosses, Briare<br>
+            📞 02 38 36 78 73</p>
         </div>
     </div>
 </section>
@@ -710,24 +1015,155 @@ li {
         </div>
         <h2 class="section-title">Enfance (3-11 ans)</h2>
         
+        <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto, pédiatre, psychanalyste</p>
+
         <div class="content-box">
             <h3 style="color:var(--primary-color);">Scolarité</h3>
             
-            <div class="subsections">
-                <div class="subsection">
-                    <h4>Écoles maternelles et élémentaires</h4>
-                    <p>Sur l'ensemble des communes du territoire<br>
-                    Inscriptions : se rapprocher de votre mairie</p>
+            <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
+            
+            <div style="text-align:center; margin:2rem 0;">
+                <img src="enfance_page-020.png" alt="Carte des établissements scolaires" style="max-width:100%; border-radius:8px; box-shadow:var(--shadow-md);">
+            </div>
+            
+            <h4 style="color:var(--primary-dark); margin-top:2rem;">Écoles du territoire</h4>
+            
+            <div class="ecoles-grid">
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Autry-le-Châtel">
+                    <div class="ecole-card-content">
+                        <h3>Autry-le-Châtel</h3>
+                        <p>Maternelle et élémentaire<br>
+                        14 rue de l'École (élémentaire)<br>
+                        route de Châtillon (maternelle)<br>
+                        📞 02 38 36 82 62 - 02 38 36 81 88</p>
+                    </div>
                 </div>
                 
-                <div class="subsection">
-                    <h4>Restauration scolaire</h4>
-                    <p>Service proposé dans plusieurs communes<br>
-                    Renseignements : mairie de votre commune</p>
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Beaulieu-sur-Loire">
+                    <div class="ecole-card-content">
+                        <h3>Beaulieu-sur-Loire</h3>
+                        <p>Maternelle et élémentaire<br>
+                        15 rue de Châtillon (élémentaire)<br>
+                        17 rue de Châtillon (maternelle)<br>
+                        📞 02.19.00.49.86 - 02.38.35.85.35</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Ousson-sur-Loire">
+                    <div class="ecole-card-content">
+                        <h3>Ousson-sur-Loire</h3>
+                        <p>Maternelle et élémentaire<br>
+                        11 rue de l'abreuvoi (élémentaire)<br>
+                        2 bis rue des marronnier (maternelle)<br>
+                        📞 02 38 31 00 51</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Marcel Gaime">
+                    <div class="ecole-card-content">
+                        <h3>Briare - École Marcel Gaime</h3>
+                        <p>Maternelle<br>
+                        place Saint Roch<br>
+                        📞 02 38 31 25 85</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École du Centre">
+                    <div class="ecole-card-content">
+                        <h3>Briare - École du Centre</h3>
+                        <p>Élémentaire<br>
+                        3 square Foch<br>
+                        📞 02 38 31 26 49</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Gustave Eiffel">
+                    <div class="ecole-card-content">
+                        <h3>Briare - École Gustave Eiffel</h3>
+                        <p>Maternelle et élémentaire<br>
+                        7, rue de l'Espérance<br>
+                        📞 02 38 31 25 34</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-021.png" alt="École Sainte-Anne">
+                    <div class="ecole-card-content">
+                        <h3>Briare - École Sainte-Anne</h3>
+                        <p>Maternelle et élémentaire (privée)<br>
+                        5, rue des Grands Jardins<br>
+                        📞 02 38 31 26 48</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-022.png" alt="École Bonny-sur-Loire">
+                    <div class="ecole-card-content">
+                        <h3>Bonny-sur-Loire</h3>
+                        <p>Maternelle et élémentaire<br>
+                        2 avenue de la Gare<br>
+                        📞 02 38 31 63 57</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-022.png" alt="École Châtillon-sur-Loire">
+                    <div class="ecole-card-content">
+                        <h3>Châtillon-sur-Loire</h3>
+                        <p>Maternelle et élémentaire<br>
+                        place du Champ de foire<br>
+                        📞 02 38 31 40 74</p>
+                    </div>
+                </div>
+                
+                <div class="ecole-card">
+                    <img src="enfance_page-022.png" alt="École Ouzouër-sur-Trézée">
+                    <div class="ecole-card-content">
+                        <h3>Ouzouër-sur-Trézée</h3>
+                        <p>Maternelle et élémentaire<br>
+                        14 rue de la Flamandière (élémentaire)<br>
+                        1 rue du Stade (maternelle)<br>
+                        📞 02 38 31 97 47 / 02 38 31 92 89</p>
+                    </div>
                 </div>
             </div>
+            
+            <div class="subsections" style="margin-top:2rem;">
+                <div class="subsection">
+                    <h4>RPI et SIIS</h4>
+                    <p><strong>RPI Cernoy-en-Berry / Pierrefitte-ès-Bois</strong><br>
+                    • Cernoy-en-Berry : Maternelle, 5 rue d'Autry - 02 38 31 01 00<br>
+                    • Pierrefitte-ès-Bois : Élémentaire, 7 rue de la Mairie - 02 38 31 08 13</p>
+                    
+                    <p style="margin-top:1rem;"><strong>SIIS Adon / La Bussière</strong><br>
+                    • Adon : 13 route de la Bussière - 02 38 35 94 69<br>
+                    • La Bussière : 1 rue de Briare - 02 38 35 90 68</p>
+                </div>
+            </div>
+        </div>
 
-            <h3 style="margin-top:2rem; color:var(--primary-color);">Accueils de loisirs</h3>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">CLAS - Contrat Local d'Accompagnement à la Scolarité</h3>
+            <p>Gratuit et ouvert à tous, de l'école élémentaire au lycée</p>
+            
+            <div class="subsection">
+                <h4>Bonny-sur-Loire</h4>
+                <p>École élémentaire et EVS Bee Mobile<br>
+                2 avenue de la Gare<br>
+                📞 02 38 31 63 57</p>
+            </div>
+            
+            <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
+        </div>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Accueils de loisirs</h3>
             
             <div class="cards-grid">
                 <div class="card">
@@ -738,6 +1174,7 @@ li {
                     Mercredis + vacances : 7h30-18h30<br>
                     📧 alshbriare@cc-berryloirepuisaye.fr</p>
                 </div>
+                
                 <div class="card">
                     <h4>Accueil de loisirs Châtillon-sur-Loire</h4>
                     <p>3-11 ans<br>
@@ -746,6 +1183,36 @@ li {
                     Mercredis + vacances : 7h30-18h30<br>
                     📧 alshchatillon@cc-berryloirepuisaye.fr</p>
                 </div>
+                
+                <div class="card">
+                    <h4>Autry-le-Châtel</h4>
+                    <p>En juillet<br>
+                    8 rue de la Mairie<br>
+                    📞 02 38 36 80 59</p>
+                </div>
+                
+                <div class="card">
+                    <h4>Beaulieu-sur-Loire</h4>
+                    <p>Les Crayons de couleurs<br>
+                    Association Familles Rurales<br>
+                    15 route de Châtillon<br>
+                    📞 02 38 05 03 84 / 06 70 02 16 12</p>
+                </div>
+                
+                <div class="card">
+                    <h4>Bonny-sur-Loire</h4>
+                    <p>avenue de la gare<br>
+                    📞 02 38 29 59 00<br>
+                    Mercredis et petites vacances</p>
+                </div>
+                
+                <div class="card">
+                    <h4>La Bussière</h4>
+                    <p>1 route de Briare<br>
+                    📞 02 38 35 90 68<br>
+                    Mercredis et 1ère semaine des petites vacances</p>
+                </div>
+                
                 <div class="card">
                     <h4>Centre social Saint-Martin</h4>
                     <p>Briare<br>
@@ -753,16 +1220,13 @@ li {
                     Mercredis et vacances scolaires</p>
                 </div>
             </div>
+        </div>
 
-            <h3 style="margin-top:2rem; color:var(--primary-color);">Autres services</h3>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Accueils périscolaires</h3>
+            <p>Matin et soir dans les écoles - Informations en mairie</p>
             
             <div class="subsections">
-                <div class="subsection">
-                    <h4>Accueils périscolaires</h4>
-                    <p>Matin et soir (écoles)<br>
-                    Informations : mairie de votre commune</p>
-                </div>
-                
                 <div class="subsection">
                     <h4>Étude surveillée</h4>
                     <p>École Jean Bégault - Briare<br>
@@ -809,6 +1273,7 @@ li {
                     Mer 14h-18h, Sam (2/mois), vacances 10h-18h<br>
                     Adhésion : 15€/an</p>
                 </div>
+                
                 <div class="card">
                     <h4>Maison Saint-Jean (Briare)</h4>
                     <p>6e-17 ans<br>
@@ -816,6 +1281,7 @@ li {
                     📞 02 38 37 16 64 / 07 64 75 48 98<br>
                     Mercredis + vacances</p>
                 </div>
+                
                 <div class="card">
                     <h4>Maison des Adolescents (AMARA 45)</h4>
                     <p>11-25 ans - Soutien santé mentale<br>
@@ -823,6 +1289,7 @@ li {
                     📧 mdaloiret@gmail.com<br>
                     Gratuit, confidentiel, anonyme</p>
                 </div>
+                
                 <div class="card">
                     <h4>Mission Locale de Gien</h4>
                     <p>16-25 ans : emploi, formation, orientation<br>
@@ -831,8 +1298,10 @@ li {
                     📧 contact@missionlocale-gien.fr</p>
                 </div>
             </div>
+        </div>
 
-            <h3 style="margin-top:2rem; color:var(--primary-color);">Scolarité secondaire</h3>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Scolarité secondaire</h3>
             
             <div class="cards-grid">
                 <div class="card">
@@ -840,18 +1309,22 @@ li {
                     <p>Rue du Château d'Eau<br>
                     📞 02 38 31 20 09</p>
                 </div>
+                
                 <div class="card">
                     <h4>Collège Bernard-Giraudeau (Châtillon-sur-Loire)</h4>
                     <p>Route d'Assay<br>
                     📞 02 38 31 42 49</p>
                 </div>
+                
                 <div class="card">
                     <h4>Collège Pierre-de-Coubertin (Beaulieu)</h4>
                     <p>📞 02 38 05 03 84</p>
                 </div>
             </div>
+        </div>
 
-            <h3 style="margin-top:2rem; color:var(--primary-color);">City stades et skate-parks</h3>
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">City stades et skate-parks</h3>
             <p>Équipements sportifs disponibles à Briare, Châtillon-sur-Loire, Bonny-sur-Loire, Ousson-sur-Loire</p>
         </div>
     </div>
@@ -864,6 +1337,8 @@ li {
             <img src="parentalite_page-000.png" alt="Parentalité">
         </div>
         <h2 class="section-title">Parentalité</h2>
+        
+        <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
         
         <div class="logos-grid">
             <div class="logo-item"><img src="parentalite_page-007.png" alt="Aidaphi"></div>
@@ -879,8 +1354,6 @@ li {
         </div>
 
         <div class="content-box">
-            <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
-            
             <div class="subsections">
                 <div class="subsection">
                     <h3>Aide Éducative à Domicile (AED)</h3>
@@ -940,26 +1413,31 @@ li {
                 <p>Réseau de bibliothèques sur le territoire<br>
                 Programmation culturelle régulière</p>
             </div>
+            
             <div class="card">
                 <h3>Office de Tourisme</h3>
                 <p>Informations touristiques et animations<br>
                 Briare, Châtillon-sur-Loire</p>
             </div>
+            
             <div class="card">
                 <h3>Ludothèques</h3>
                 <p>Ludotm'obile : ludothèque itinérante<br>
                 Jeux et animations pour tous âges</p>
             </div>
+            
             <div class="card">
                 <h3>Micro-Folie Briare</h3>
                 <p>Musée numérique et espace culturel<br>
                 Collections des plus grands musées</p>
             </div>
+            
             <div class="card">
                 <h3>Maison des Pays</h3>
                 <p>Patrimoine et histoire locale<br>
                 Expositions et visites</p>
             </div>
+            
             <div class="card">
                 <h3>Clubs sportifs</h3>
                 <p>Football, tennis, judo, danse, gymnastique...<br>
@@ -997,7 +1475,7 @@ li {
 
                 <div class="subsection">
                     <h3>Permanence numérique</h3>
-                    <img src="vivre_page-004.png" alt="Permanence numérique" style="margin-bottom:1rem;">
+                    <img src="vivre_page-004.png" alt="Permanence numérique" style="margin-bottom:1rem; max-width:300px;">
                     <p>Aide à l'utilisation d'un ordinateur, réseaux sociaux, démarches administratives<br>
                     Service itinérant sur l'ensemble des communes<br>
                     📞 07 57 40 10 28</p>
@@ -1022,6 +1500,7 @@ li {
                     <p>1 Place Beaupin Lagier<br>
                     📞 02 38 05 18 74<br>
                     Mar-Ven : 9h-12h30 / 14h-17h30</p>
+                    
                     <h4>Espace Service Public (itinérant)</h4>
                     <p>📞 02 38 05 18 03<br>
                     Rendez-vous au siège de la CC ou dans votre commune</p>
@@ -1073,8 +1552,9 @@ li {
                 <p>42 rue des Prés Gris<br>
                 45250 BRIARE</p>
                 <p>📞 02 38 37 03 84<br>
-                📧 enfancejeunesse@cc-berryloirepuisaye.fr</p>
+                📧 contact@cc-berryloirepuisaye.fr</p>
             </div>
+            
             <div class="footer-section">
                 <h3>Liens utiles</h3>
                 <ul>
@@ -1085,6 +1565,7 @@ li {
                     <li><a href="https://www.monenfant.fr" target="_blank">Mon Enfant.fr</a></li>
                 </ul>
             </div>
+            
             <div class="footer-section">
                 <h3>Téléchargements</h3>
                 <ul>
@@ -1092,6 +1573,7 @@ li {
                 </ul>
             </div>
         </div>
+        
         <div class="footer-bottom">
             <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
             <p>Dernière mise à jour : 13 février 2026</p>
@@ -1103,6 +1585,27 @@ li {
 <button id="scrollTop" class="scroll-top" aria-label="Retour en haut">↑</button>
 
 <script>
+// Menu hamburger pour mobile
+const menuToggle = document.getElementById('menuToggle');
+const navList = document.getElementById('navList');
+
+if (menuToggle && navList) {
+    menuToggle.addEventListener('click', () => {
+        navList.classList.toggle('active');
+        menuToggle.textContent = navList.classList.contains('active') ? '✕ Fermer' : '☰ Menu';
+    });
+
+    // Fermer le menu après un clic sur un lien
+    document.querySelectorAll('.nav-list a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 768) {
+                navList.classList.remove('active');
+                menuToggle.textContent = '☰ Menu';
+            }
+        });
+    });
+}
+
 // Smooth scroll pour les liens d'ancrage
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -1120,36 +1623,39 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Bouton retour en haut
 const scrollTopBtn = document.getElementById('scrollTop');
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
-    }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     });
-});
 
-// Navigation sticky effect
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Navigation sticky effect (desktop uniquement)
 const nav = document.getElementById('mainNav');
-let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll > 100) {
-        nav.classList.add('sticky');
-    } else {
-        nav.classList.remove('sticky');
-    }
-    
-    lastScroll = currentScroll;
-});
+if (nav) {
+    window.addEventListener('scroll', () => {
+        if (window.innerWidth > 768) {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('sticky');
+            } else {
+                nav.classList.remove('sticky');
+            }
+        }
+    });
+}
 </script>
 
 </body>
