@@ -36,7 +36,7 @@ html {
 }
 
 body {
-    font-family: 'Nunito', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Nunito', Nunito;
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-lighter);
