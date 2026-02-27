@@ -13,13 +13,13 @@
 
 /* === Variables CSS === */
 :root {
-    /* Couleurs inspirées du guide (à ajuster selon votre nuancier) */
-    --primary-color: #E67E22;    /* Exemple : Orange du logo parentalité */
-    --primary-light: #F39C12;
-    --primary-dark: #D35400;
-    --secondary-color: #2980B9;  /* Exemple : Bleu pour la petite enfance */
-    --text-dark: #2C3E50;
-    --font-main: 'Nunito', sans-serif;
+    --primary-color: #2E7D32;
+    --primary-light: #66BB6A;
+    --primary-dark: #1B5E20;
+    --secondary-color: #00897B;
+    --secondary-light: #4DB6AC;
+    --accent-color: #FF6F00;
+    --text-dark: #212121;
     --text-medium: #424242;
     --text-light: #757575;
     --bg-white: #FFFFFF;
@@ -30,7 +30,6 @@
     --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
     --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
     --transition: all 0.3s ease;
-/* Police : Le guide papier utilise souvent des polices sans-serif rondes */
 }
 
 * {
@@ -47,48 +46,7 @@ body {
     font-family: 'Nunito', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: #fdfdfd;(--bg-lighter); /* Un blanc légèrement cassé pour un aspect papier */
-    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="btnBackToTop" title="Retour en haut">
-  ↑
-</button>
-
-<style>
-#btnBackToTop {
-  display: none; /* Caché par défaut */
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  background-color: var(--primary-color);
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  font-size: 20px;
-  box-shadow: var(--shadow-md);
-  transition: opacity 0.3s;
-}
-
-#btnBackToTop:hover {
-  background-color: var(--primary-dark);
-}
-</style>
-
-<script>
-// Affiche le bouton quand on descend de 300px
-window.onscroll = function() {
-  const btn = document.getElementById("btnBackToTop");
-  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-};
-</script>
+    background-color: var(--bg-lighter);
 }
 
 .container {
@@ -478,20 +436,6 @@ section {
     border-radius: 8px;
     box-shadow: var(--shadow-md);
     width: 100%;
-}
-        /* Empêche les images de dépasser et adoucit les bords */
-img {
-    border-radius: 4px;
-    max-width: 100%;
-    height: auto;
-}
-
-/* Sur mobile, on réduit les marges des boites de contenu */
-@media (max-width: 768px) {
-    .content-box {
-        padding: 1rem;
-        margin: 1rem 0;
-    }
 }
 
 /* === Footer === */
@@ -921,53 +865,6 @@ img {
             <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
         </div>
         <h2 class="section-title">Des interlocuteurs clés</h2>
-        
-        <div class="inner-nav-container">
-            <p><strong>Sommaire de cette rubrique :</strong></p>
-            <div class="inner-links">
-                <a href="#mairies-liste" class="btn-thème">📍 Les Mairies</a>
-                <a href="#comcom-info" class="btn-thème">🏢 Communauté de Communes</a>
-                <a href="#carte-territoire" class="btn-thème">🗺️ Carte du territoire</a>
-            </div>
-        </div>
-
-        <h3 id="mairies-liste" style="color:var(--primary-color); margin-top:2rem;">Mairies</h3>
-        <p>Adressez-vous à votre commune pour les inscriptions...</p>
-        
-        <h3 id="comcom-info" style="color:var(--primary-color); margin-top:3rem;">Communauté de communes Berry Loire Puisaye</h3>
-        <div id="carte-territoire" style="text-align:center; margin:3rem 0;">
-            <img src="interlocuteurs_page-047.png" alt="Carte du territoire">
-        </div>
-    </div>
-</section>
-    
-    <ul class="nav-list" id="navList">
-    <li class="dropdown">
-        <a href="#interlocuteurs">Interlocuteurs ▾</a>
-        <ul class="dropdown-menu">
-            <li><a href="#mairies-liste">Mairies</a></li>
-            <li><a href="#comcom-info">Com-Com</a></li>
-            <li><a href="#partenaires">Partenaires</a></li>
-        </ul>
-    </li>
-
-    <li class="dropdown">
-        <a href="#petite-enfance">Petite enfance ▾</a>
-        <ul class="dropdown-menu">
-            <li><a href="#modes-accueil">Modes d'accueil</a></li>
-            <li><a href="#rpe">Le RPE</a></li>
-            <li><a href="#laep">Le LAEP</a></li>
-        </ul>
-    </li>
-    
-    <li><a href="#enfance">Enfance</a></li>
-    <li><a href="#jeunesse">Jeunesse</a></li>
-</ul>
-        
-</nav>
-
-<div id="mairies" class="content-box">...</div>
-<div id="ccblp">...</div>
         
         <div class="content-box">
             <h3 style="color:var(--primary-color);">Mairies</h3>
