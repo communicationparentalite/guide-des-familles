@@ -13,13 +13,13 @@
 
 /* === Variables CSS === */
 :root {
-    --primary-color: #2E7D32;
-    --primary-light: #66BB6A;
-    --primary-dark: #1B5E20;
-    --secondary-color: #00897B;
-    --secondary-light: #4DB6AC;
-    --accent-color: #FF6F00;
-    --text-dark: #212121;
+    /* Couleurs inspirées du guide (à ajuster selon votre nuancier) */
+    --primary-color: #E67E22;    /* Exemple : Orange du logo parentalité */
+    --primary-light: #F39C12;
+    --primary-dark: #D35400;
+    --secondary-color: #2980B9;  /* Exemple : Bleu pour la petite enfance */
+    --text-dark: #2C3E50;
+    --font-main: 'Nunito', sans-serif;
     --text-medium: #424242;
     --text-light: #757575;
     --bg-white: #FFFFFF;
@@ -30,6 +30,7 @@
     --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
     --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
     --transition: all 0.3s ease;
+/* Police : Le guide papier utilise souvent des polices sans-serif rondes */
 }
 
 * {
@@ -46,7 +47,7 @@ body {
     font-family: 'Nunito', sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--bg-lighter);
+    background-color: #fdfdfd;(--bg-lighter); /* Un blanc légèrement cassé pour un aspect papier */
 }
 
 .container {
@@ -864,7 +865,54 @@ section {
         <div class="section-header">
             <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
         </div>
-        <h2 class="section-title">Des interlocuteurs clés</h2>
+       <h2 class="section-title">Des interlocuteurs clés</h2>
+
+<nav class="inner-nav">
+    <p>Aller directement à :</p>
+    <div class="inner-links">
+        <a href="#mairies">Les Mairies</a>
+        <a href="#ccblp">La Communauté de Communes</a>
+        <a href="#partenaires">Les Partenaires</a>
+    </div>
+    
+<sytle>
+    .inner-nav {
+    background: var(--bg-light);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.inner-nav p {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.inner-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.inner-links a {
+    background: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    border: 1px solid var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.inner-links a:hover {
+    background: var(--primary-color);
+    color: white;
+}
+        
+</nav>
+
+<div id="mairies" class="content-box">...</div>
+<div id="ccblp">...</div>
         
         <div class="content-box">
             <h3 style="color:var(--primary-color);">Mairies</h3>
