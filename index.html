@@ -48,6 +48,47 @@ body {
     line-height: 1.6;
     color: var(--text-dark);
     background-color: #fdfdfd;(--bg-lighter); /* Un blanc légèrement cassé pour un aspect papier */
+    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="btnBackToTop" title="Retour en haut">
+  ↑
+</button>
+
+<style>
+#btnBackToTop {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  box-shadow: var(--shadow-md);
+  transition: opacity 0.3s;
+}
+
+#btnBackToTop:hover {
+  background-color: var(--primary-dark);
+}
+</style>
+
+<script>
+// Affiche le bouton quand on descend de 300px
+window.onscroll = function() {
+  const btn = document.getElementById("btnBackToTop");
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+</script>
 }
 
 .container {
@@ -879,49 +920,49 @@ img {
         <div class="section-header">
             <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
         </div>
-       <h2 class="section-title">Des interlocuteurs clés</h2>
+        <h2 class="section-title">Des interlocuteurs clés</h2>
+        
+        <div class="inner-nav-container">
+            <p><strong>Sommaire de cette rubrique :</strong></p>
+            <div class="inner-links">
+                <a href="#mairies-liste" class="btn-thème">📍 Les Mairies</a>
+                <a href="#comcom-info" class="btn-thème">🏢 Communauté de Communes</a>
+                <a href="#carte-territoire" class="btn-thème">🗺️ Carte du territoire</a>
+            </div>
+        </div>
 
-<nav class="inner-nav">
-    <p>Aller directement à :</p>
-    <div class="inner-links">
-        <a href="#mairies">Les Mairies</a>
-        <a href="#ccblp">La Communauté de Communes</a>
-        <a href="#partenaires">Les Partenaires</a>
+        <h3 id="mairies-liste" style="color:var(--primary-color); margin-top:2rem;">Mairies</h3>
+        <p>Adressez-vous à votre commune pour les inscriptions...</p>
+        
+        <h3 id="comcom-info" style="color:var(--primary-color); margin-top:3rem;">Communauté de communes Berry Loire Puisaye</h3>
+        <div id="carte-territoire" style="text-align:center; margin:3rem 0;">
+            <img src="interlocuteurs_page-047.png" alt="Carte du territoire">
+        </div>
     </div>
+</section>
     
-<sytle>
-    .inner-nav {
-    background: var(--bg-light);
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
-}
+    <ul class="nav-list" id="navList">
+    <li class="dropdown">
+        <a href="#interlocuteurs">Interlocuteurs ▾</a>
+        <ul class="dropdown-menu">
+            <li><a href="#mairies-liste">Mairies</a></li>
+            <li><a href="#comcom-info">Com-Com</a></li>
+            <li><a href="#partenaires">Partenaires</a></li>
+        </ul>
+    </li>
 
-.inner-nav p {
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-}
-
-.inner-links {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.inner-links a {
-    background: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    border: 1px solid var(--primary-color);
-    font-size: 0.9rem;
-}
-
-.inner-links a:hover {
-    background: var(--primary-color);
-    color: white;
-}
+    <li class="dropdown">
+        <a href="#petite-enfance">Petite enfance ▾</a>
+        <ul class="dropdown-menu">
+            <li><a href="#modes-accueil">Modes d'accueil</a></li>
+            <li><a href="#rpe">Le RPE</a></li>
+            <li><a href="#laep">Le LAEP</a></li>
+        </ul>
+    </li>
+    
+    <li><a href="#enfance">Enfance</a></li>
+    <li><a href="#jeunesse">Jeunesse</a></li>
+</ul>
         
 </nav>
 
