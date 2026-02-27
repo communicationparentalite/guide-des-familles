@@ -1,12 +1,31 @@
 <style>
-    /* Custom Styling for Interlocuteurs Clés Section */
-    .interlocuteurs-cles-title {
-        color: #5ce1e6;
+    /* Modify CSS variables for "Interlocuteurs clés" section */
+    :root {
+        --title-color: #5ce1e6;
+        --mairies-card-color: #1f5692;
+        --institutions-color: #004aad;
     }
-    .mairies {
-        color: #1f5692;
+
+    /* Specific styling for the title */
+    .interlocuteurs-titre {
+        color: var(--title-color);
     }
-    .institutions-partenaires {
-        color: #004aad;
+
+    /* Specific styling for Mairies cards */
+    .mairies-card {
+        background-color: var(--mairies-card-color);
+        /* Add additional styling if needed */
+    }
+
+    /* Specific styling for institutions partenaires */
+    .institutions-partenaire {
+        background-color: var(--institutions-color);
+        /* Add additional styling if needed */
     }
 </style>
+
+<div class="interlocuteurs">
+    <h2 class="interlocuteurs-titre">Interlocuteurs clés</h2>
+    <div class="mairies-card">Mairie Information</div>
+    <div class="institutions-partenaire">Institution Information</div>
+</div>
