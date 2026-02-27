@@ -43,7 +43,48 @@ body {
     font-family: 'Nunito', sans serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: #fdfdfd; /* Un blanc légèrement cassé pour un aspect papier */}
+    background-color: #fdfdfd; /* Un blanc légèrement cassé pour un aspect papier */
+<button onclick="window.scrollTo({top: 0, behavior: 'smooth'});" id="btnBackToTop" title="Retour en haut">
+  ↑
+</button>
+
+<style>
+#btnBackToTop {
+  display: none; /* Caché par défaut */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 99;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  box-shadow: var(--shadow-md);
+  transition: opacity 0.3s;
+}
+
+#btnBackToTop:hover {
+  background-color: var(--primary-dark);
+}
+</style>
+
+<script>
+// Affiche le bouton quand on descend de 300px
+window.onscroll = function() {
+  const btn = document.getElementById("btnBackToTop");
+  if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+};
+</script>}
 
 .container {
     max-width: 1200px;
@@ -147,8 +188,65 @@ li {
     justify-content: center;
 }
 
+/* Style de base pour les éléments de liste parents */
 .nav-list li {
-    margin: 0;
+    position: relative;
+}
+
+/* Cacher le sous-menu par défaut */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    min-width: 200px;
+    box-shadow: var(--shadow-md);
+    list-style: none;
+    padding: 10px 0;
+    border-radius: 0 0 8px 8px;
+    border-top: 3px solid var(--primary-color);
+}
+
+/* Style des liens dans le sous-menu */
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu a {
+    padding: 10px 20px !important;
+    font-size: 0.9rem;
+    border: none !important;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--bg-light);
+    color: var(--primary-color);
+}
+
+/* Affichage au survol sur ordinateur */
+@media (min-width: 769px) {
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}
+
+/* Adaptation spécifique pour le menu mobile */
+@media (max-width: 768px) {
+    .dropdown-menu {
+        position: static;
+        display: none; /* On pourra l'ouvrir au clic en JS si besoin */
+        background-color: var(--bg-lighter);
+        box-shadow: none;
+        padding-left: 20px;
+    }
+    
+    /* Pour mobile, on peut forcer l'affichage ou utiliser un petit script */
+    .dropdown.active .dropdown-menu {
+        display: block;
+    }
+}
+   
 }
 
 .nav-list a {
@@ -165,7 +263,53 @@ li {
     border-bottom-color: var(--primary-color);
     color: var(--primary-color);
 }
+   
+.inner-nav-container {
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border-left: 5px solid var(--primary-color);
+    margin-bottom: 2rem;
+}
 
+.inner-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-thème {
+    background: white;
+    color: var(--text-dark) !important;
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.btn-thème:hover {
+    background: var(--primary-color);
+    color: white !important;
+    border-color: var(--primary-color);
+}
+
+/* Empêche les images de dépasser et adoucit les bords */
+img {
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Sur mobile, on réduit les marges des boites de contenu */
+@media (max-width: 768px) {
+    .content-box {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+}
+   
 /* === Hero Section === */
 .hero {
     background: linear-gradient(135deg, rgba(46, 125, 50, 0.05) 0%, rgba(0, 137, 123, 0.05) 100%);
