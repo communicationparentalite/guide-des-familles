@@ -5,13 +5,17 @@
 
 /* === Variables CSS === */
 :root {
-    --primary-color: #2E7D32;
-    --primary-light: #66BB6A;
-    --primary-dark: #1B5E20;
-    --secondary-color: #00897B;
+  :root {
+    /* Couleurs inspirées du guide (à ajuster selon votre nuancier) */
+    --primary-color: #E67E22;    /* Exemple : Orange du logo parentalité */
+    --primary-light: #F39C12;
+    --primary-dark: #D35400;
+    --secondary-color: #2980B9;  /* Exemple : Bleu pour la petite enfance */
+    /* Police : Le guide papier utilise souvent des polices sans-serif rondes */
+    --font-main: 'Nunito', sans-serif;
     --secondary-light: #4DB6AC;
     --accent-color: #FF6F00;
-    --text-dark: #212121;
+    --text-dark: #2C3E50;
     --text-medium: #424242;
     --text-light: #757575;
     --bg-white: #FFFFFF;
@@ -39,8 +43,7 @@ body {
     font-family: 'Nunito', sans serif;
     line-height: 1.6;
     color: var(--text-dark);
-    background-color: var(--bg-lighter);
-}
+    background-color: #fdfdfd; /* Un blanc légèrement cassé pour un aspect papier */}
 
 .container {
     max-width: 1200px;
