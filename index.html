@@ -438,6 +438,20 @@ section {
     box-shadow: var(--shadow-md);
     width: 100%;
 }
+        /* Empêche les images de dépasser et adoucit les bords */
+img {
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Sur mobile, on réduit les marges des boites de contenu */
+@media (max-width: 768px) {
+    .content-box {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+}
 
 /* === Footer === */
 .footer {
