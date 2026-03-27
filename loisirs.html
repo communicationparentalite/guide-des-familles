@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loisirs & Culture - Guide des Familles Berry Loire Puisaye</title>
+    <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <h1><a href="index.html" style="color:white; text-decoration:none;">Guide des Familles</a></h1>
+                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
+            </div>
+            <div class="header-info">
+                <p><strong>Dernière mise à jour :</strong> 13 février 2026</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav" id="mainNav">
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+    <ul class="nav-list" id="navList">
+        <li><a href="index.html" >Accueil</a></li>
+        <li><a href="interlocuteurs.html" >Interlocuteurs</a></li>
+        <li><a href="arrivee-enfant.html" >Arrivée d'un enfant</a></li>
+        <li><a href="petite-enfance.html" >Petite enfance</a></li>
+        <li><a href="enfance.html" >Enfance</a></li>
+        <li><a href="jeunesse.html" >Jeunesse</a></li>
+        <li><a href="parentalite.html" >Parentalité</a></li>
+        <li><a href="loisirs.html" class="active">Loisirs</a></li>
+        <li><a href="vivre-ensemble.html" >Vivre ensemble</a></li>
+        <li><a href="acces-droits.html" >Accès aux droits</a></li>
+    </ul>
+</nav>
+
+<main>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="presentation_page-000.png" alt="Loisirs et culture">
+        </div>
+        <h2 class="section-title">Loisirs & Culture</h2>
+
+        <div class="cards-grid">
+            <div class="card">
+                <h3>📚 Bibliothèques</h3>
+                <p>Réseau de bibliothèques sur le territoire<br>Programmation culturelle régulière</p>
+            </div>
+            <div class="card">
+                <h3>🗺️ Office de Tourisme</h3>
+                <p>Informations touristiques et animations<br>Briare, Châtillon-sur-Loire</p>
+            </div>
+            <div class="card">
+                <h3>🎲 Ludothèques</h3>
+                <p>Ludotm'obile : ludothèque itinérante<br>Jeux et animations pour tous âges</p>
+            </div>
+            <div class="card">
+                <h3>🖥️ Micro-Folie Briare</h3>
+                <p>Musée numérique et espace culturel<br>Collections des plus grands musées</p>
+            </div>
+            <div class="card">
+                <h3>🏛️ Maison des Pays</h3>
+                <p>Patrimoine et histoire locale<br>Expositions et visites</p>
+            </div>
+            <div class="card">
+                <h3>⚽ Clubs sportifs</h3>
+                <p>Football, tennis, judo, danse, gymnastique...<br>Nombreuses associations sportives</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+                <p>📞 02 38 37 03 84<br>
+                📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens utiles</h3>
+                <ul>
+                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
+                    <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
+                    <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation rapide</h3>
+                <ul>
+                    <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+                    <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
+                    <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
+                    <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
+                    <li><a href="acces-droits.html">Accès aux droits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+        </div>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+
+<script>
+// Menu mobile
+const menuToggle = document.getElementById('menuToggle');
+const navList = document.getElementById('navList');
+if (menuToggle) {
+    menuToggle.addEventListener('click', function () {
+        navList.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+    });
+}
+
+// Bouton retour en haut
+const scrollTop = document.getElementById('scrollTop');
+window.addEventListener('scroll', function () {
+    if (window.scrollY > 300) {
+        scrollTop.classList.add('visible');
+    } else {
+        scrollTop.classList.remove('visible');
+    }
+});
+if (scrollTop) {
+    scrollTop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+</script>
+
+</body>
+</html>
