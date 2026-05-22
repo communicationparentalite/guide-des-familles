@@ -7,6 +7,101 @@
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Accordéon ── */
+        .accordion-item {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .accordion-header {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 1.1rem 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+        }
+
+        .accordion-header:hover {
+            background: #f5f8ff;
+        }
+
+        .accordion-header.open {
+            background: var(--primary-color, #4a90d9);
+            color: white;
+        }
+
+        .accordion-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: inherit;
+        }
+
+        .accordion-icon {
+            font-size: 1.3rem;
+            font-weight: 300;
+            line-height: 1;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: 12px;
+        }
+
+        .accordion-header.open .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+        }
+
+        .accordion-body.open {
+            max-height: 1000px;
+            padding: 1.2rem 1.4rem;
+        }
+
+        .accordion-body-inner {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .accordion-body-inner .text {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .accordion-body-inner .text p {
+            margin: 0 0 0.5rem;
+            line-height: 1.7;
+        }
+
+        .accordion-body-inner .images {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .accordion-body-inner .images img {
+            width: 140px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+    </style>
 </head>
 <body>
 
@@ -27,16 +122,16 @@
 <nav class="nav" id="mainNav">
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
     <ul class="nav-list" id="navList">
-        <li><a href="index.html" >Accueil</a></li>
-        <li><a href="interlocuteurs.html" >Interlocuteurs</a></li>
-        <li><a href="arrivee-enfant.html" >Arrivée d'un enfant</a></li>
-        <li><a href="petite-enfance.html" >Petite enfance</a></li>
-        <li><a href="enfance.html" >Enfance</a></li>
-        <li><a href="jeunesse.html" >Jeunesse</a></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="interlocuteurs.html">Interlocuteurs</a></li>
+        <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+        <li><a href="petite-enfance.html">Petite enfance</a></li>
+        <li><a href="enfance.html">Enfance</a></li>
+        <li><a href="jeunesse.html">Jeunesse</a></li>
         <li><a href="parentalite.html" class="active">Parentalité</a></li>
-        <li><a href="loisirs.html" >Loisirs</a></li>
-        <li><a href="vivre-ensemble.html" >Vivre ensemble</a></li>
-        <li><a href="acces-droits.html" >Accès aux droits</a></li>
+        <li><a href="loisirs.html">Loisirs</a></li>
+        <li><a href="vivre-ensemble.html">Vivre ensemble</a></li>
+        <li><a href="acces-droits.html">Accès aux droits</a></li>
     </ul>
 </nav>
 
@@ -64,42 +159,131 @@
             <img src="parentalite_page-017.png" alt="Guid'asso">
         </div>
 
-        <div class="content-box">
-            <div class="subsections">
-                <div class="subsection">
+        <!-- ══════════════ ACCORDÉON ══════════════ -->
+        <div class="accordion" style="margin-top:2rem;">
+
+            <!-- 1. AED -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
                     <h3>Aide Éducative à Domicile (AED)</h3>
-                    <p>Accompagnement des parents et/ou enfants par des travailleurs sociaux<br>
-                    Contact ADS Gien : 📞 02 38 05 23 49</p>
-                </div>
-                <div class="subsection">
-                    <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
-                    <p>Accompagnement personnalisé pour les parents<br>
-                    📞 02 38 55 50 10<br>
-                    📧 <a href="mailto:sdaep@aidaphi.fr">sdaep@aidaphi.fr</a></p>
-                </div>
-                <div class="subsection">
-                    <h3>Espace de vie sociale Bee'Mobile</h3>
-                    <p>Ateliers parents-enfants, cafés des parents, sorties familiales<br>
-                    📞 07 57 40 10 28<br>Mercredis, jeudis, vendredis</p>
-                </div>
-                <div class="subsection">
-                    <h3>Programme d'Animations Familiales (PAF)</h3>
-                    <p>Ateliers gratuits mensuels parents-enfants<br>
-                    📧 <a href="mailto:paf.berryloirepuisaye@familles-rurales.fr">paf.berryloirepuisaye@familles-rurales.fr</a><br>
-                    📞 02 38 05 18 07</p>
-                </div>
-                <div class="subsection">
-                    <h3>Groupe d'échanges entre parents</h3>
-                    <p>Temps d'échanges conviviaux (4 fois par an)<br>Multi-accueil de Briare et Châtillon-sur-Loire</p>
-                </div>
-                <div class="subsection">
-                    <h3>Service d'Intervention Sociale CAF</h3>
-                    <p>Accompagnement lors d'événements familiaux<br>
-                    📞 02 38 51 50 42 / 02 38 51 77 42<br>
-                    📧 <a href="mailto:is.loiret@caf.fr">is.loiret@caf.fr</a></p>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>L'Aide Éducative à Domicile accompagne les parents et/ou enfants à domicile par des travailleurs sociaux qualifiés. Ce dispositif vise à soutenir les familles dans l'exercice de leur rôle parental et à prévenir les difficultés éducatives.</p>
+                            <p>📞 Contact ADS Gien : <a href="tel:0238052349">02 38 05 23 49</a></p>
+                        </div>
+                        <div class="images">
+                            <!-- Remplacez par vos propres images -->
+                            <img src="parentalite_page-011.png" alt="Aide éducative à domicile">
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <!-- 2. SDAEP -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>Le SDAEP propose un accompagnement personnalisé pour les parents qui rencontrent des difficultés dans leur rôle éducatif. Des professionnels formés vous accompagnent dans la durée, à votre rythme.</p>
+                            <p>📞 <a href="tel:0238555010">02 38 55 50 10</a><br>
+                            📧 <a href="mailto:sdaep@aidaphi.fr">sdaep@aidaphi.fr</a></p>
+                        </div>
+                        <div class="images">
+                            <img src="parentalite_page-013.png" alt="SDAEP accompagnement">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Bee'Mobile -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <h3>Espace de vie sociale Bee'Mobile</h3>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>Bee'Mobile est un espace de vie sociale itinérant qui propose des ateliers parents-enfants, des cafés des parents et des sorties familiales sur le territoire.</p>
+                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                            🗓️ Mercredis, jeudis et vendredis</p>
+                        </div>
+                        <div class="images">
+                            <img src="parentalite_page-017.png" alt="Bee'Mobile espace de vie sociale">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. PAF -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <h3>Programme d'Animations Familiales (PAF)</h3>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>Le PAF propose des ateliers gratuits mensuels parents-enfants sur tout le territoire. Ces moments conviviaux permettent de partager des activités et de créer du lien entre familles.</p>
+                            <p>📧 <a href="mailto:paf.berryloirepuisaye@familles-rurales.fr">paf.berryloirepuisaye@familles-rurales.fr</a><br>
+                            📞 <a href="tel:0238051807">02 38 05 18 07</a></p>
+                        </div>
+                        <div class="images">
+                            <img src="parentalite_page-011.png" alt="Programme d'animations familiales">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Groupe d'échanges -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <h3>Groupe d'échanges entre parents</h3>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>Des temps d'échanges conviviaux organisés 4 fois par an permettent aux parents de partager leurs expériences, de trouver des conseils et de rompre l'isolement dans un cadre bienveillant.</p>
+                            <p>🏠 Multi-accueil de Briare et Châtillon-sur-Loire</p>
+                        </div>
+                        <div class="images">
+                            <img src="parentalite_page-013.png" alt="Groupe d'échanges entre parents">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. CAF -->
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <h3>Service d'Intervention Sociale CAF</h3>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="accordion-body-inner">
+                        <div class="text">
+                            <p>Le service d'intervention sociale de la CAF accompagne les familles lors d'événements de vie difficiles (séparation, deuil, maladie, naissance…) pour maintenir l'équilibre familial.</p>
+                            <p>📞 <a href="tel:0238515042">02 38 51 50 42</a> / <a href="tel:0238517742">02 38 51 77 42</a><br>
+                            📧 <a href="mailto:is.loiret@caf.fr">is.loiret@caf.fr</a></p>
+                        </div>
+                        <div class="images">
+                            <img src="parentalite_page-017.png" alt="Service d'intervention sociale CAF">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+        <!-- ══════════════ FIN ACCORDÉON ══════════════ -->
+
     </div>
 </section>
 
@@ -117,9 +301,9 @@
             <div class="footer-section">
                 <h3>Liens utiles</h3>
                 <ul>
-                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                    <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                    <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
+                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                    <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                    <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -166,6 +350,28 @@ if (scrollTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+// Accordéon
+document.querySelectorAll('.accordion-header').forEach(function(header) {
+    header.addEventListener('click', function() {
+        const body = this.nextElementSibling;
+        const isOpen = this.classList.contains('open');
+
+        // Fermer tous les autres
+        document.querySelectorAll('.accordion-header').forEach(function(h) {
+            h.classList.remove('open');
+            h.setAttribute('aria-expanded', 'false');
+            h.nextElementSibling.classList.remove('open');
+        });
+
+        // Ouvrir celui cliqué (sauf s'il était déjà ouvert)
+        if (!isOpen) {
+            this.classList.add('open');
+            this.setAttribute('aria-expanded', 'true');
+            body.classList.add('open');
+        }
+    });
+});
 </script>
 
 </body>
