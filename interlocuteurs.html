@@ -59,6 +59,413 @@
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.3s ease;
             background: #fafbff;
+            padding: 0 1rem;
+        }
+
+        .accordion-partner-body.open {
+            max-height: 500px;
+            padding: 1rem;
+        }
+
+        .accordion-partner-body p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .accordion-partner-body a {
+            color: var(--primary-color, #4a90d9);
+            text-decoration: none;
+        }
+
+        .accordion-partner-body a:hover {
+            text-decoration: underline;
+        }
+
+        .accordion-partner-logo {
+            text-align: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .accordion-partner-logo img {
+            max-height: 80px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="header-content">
+            <div class="logo">
+                <h1><a href="index.html" style="color:white; text-decoration:none;">Guide des Familles</a></h1>
+                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
+            </div>
+            <div class="header-info">
+                <p><strong>Dernière mise à jour :</strong> 22 mai 2026</p>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav" id="mainNav">
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+    <ul class="nav-list" id="navList">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="interlocuteurs.html" class="active">Interlocuteurs</a></li>
+        <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+        <li><a href="petite-enfance.html">Petite enfance</a></li>
+        <li><a href="enfance.html">Enfance</a></li>
+        <li><a href="jeunesse.html">Jeunesse</a></li>
+        <li><a href="parentalite.html">Parentalité</a></li>
+        <li><a href="loisirs.html">Loisirs</a></li>
+        <li><a href="vivre-ensemble.html">Vivre ensemble</a></li>
+        <li><a href="acces-droits.html">Accès aux droits</a></li>
+    </ul>
+</nav>
+
+<main>
+
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
+        </div>
+        <h2 class="section-title">Des interlocuteurs clés</h2>
+
+        <div class="content-box">
+            <h3 style="color:var(--primary-color);">Mairies</h3>
+            <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
+
+            <div class="cards-grid" style="margin-top:2rem;">
+                <div class="card">
+                    <h4>Adon</h4>
+                    <p>9 route de la Bussière<br>45230 ADON<br>📞 02 38 35 93 52<br>📧 <a href="mailto:mairie.adon@orange.fr">mairie.adon@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar 14h-17h30<br>Fen 10h-12h et 15h-17h30</p>
+                </div>
+                <div class="card">
+                    <h4>Autry-le-Châtel</h4>
+                    <p>8 rue de la Mairie<br>45500 AUTRY-LE-CHÂTEL<br>📞 02 38 36 80 59<br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a><br>🌐 <a href="https://www.autry-le-chatel.fr" target="_blank" rel="noopener">www.autry-le-chatel.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun-Ven 14h-17h</p>
+                </div>
+                <div class="card">
+                    <h4>Batilly-en-Puisaye</h4>
+                    <p>14 Grande rue<br>45420 BATILLY-EN-PUISAYE<br>📞 02 38 31 96 98<br>📧 <a href="mailto:batilly-en-puisaye.commune-de@wanadoo.fr">batilly-en-puisaye.commune-de@wanadoo.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar 9h-12h<br>Fen 14h-17h</p>
+                </div>
+                <div class="card">
+                    <h4>Beaulieu-sur-Loire</h4>
+                    <p>10 place de l'église<br>45630 BEAULIEU-SUR-LOIRE<br>📞 02 38 35 80 48<br>📧 <a href="mailto:mairie@beaulieu-sur-loire.fr">mairie@beaulieu-sur-loire.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun 9h-14h</p>
+                </div>
+                <div class="card">
+                    <h4>Bonny-sur-Loire</h4>
+                    <p>15 avenue du Gal Leclerc<br>45420 BONNY-SUR-LOIRE<br>📞 02 38 29 59 00<br>📧 <a href="mailto:mairie@bonny-sur-loire.fr">mairie@bonny-sur-loire.fr</a><br>🌐 <a href="https://www.bonny-sur-loire.fr" target="_blank" rel="noopener">www.bonny-sur-loire.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar, Mer, Fen 9h-12h et 13h45-17h45<br>Jeu, Sam 9h-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Breteau</h4>
+                    <p>1 rue de Champoulet<br>45250 BRETEAU<br>📞 02 38 31 94 66<br>📧 <a href="mailto:mairie.breteau@orange.fr">mairie.breteau@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun, Fen 9h-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Briare</h4>
+                    <p>place Charles de Gaulle<br>45250 BRIARE<br>📞 02 38 31 20 08<br>📧 <a href="mailto:mairie@villedebriare.fr">mairie@villedebriare.fr</a><br>🌐 <a href="https://www.villedebriare.fr" target="_blank" rel="noopener">www.villedebriare.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun-Jeu 8h30-12h30 et 13h30-17h<br>Fen jusqu'à 16h30</p>
+                </div>
+                <div class="card">
+                    <h4>Cernoy-en-Berry</h4>
+                    <p>2 rue de Concressault<br>45360 CERNOY-EN-BERRY<br>📞 02 38 31 47 02<br>📧 <a href="mailto:secretairiat@cernoy-en-berry.fr">secretairiat@cernoy-en-berry.fr</a><br>🌐 <a href="https://www.cernoy-en-berry.fr" target="_blank" rel="noopener">www.cernoy-en-berry.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar, Mer, Fen, Sam 8h30-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Champoulet</h4>
+                    <p>25 rue Principale<br>45420 CHAMPOULET<br>📞 02 38 31 95 09<br>📧 <a href="mailto:commune-de-champoulet@orange.fr">commune-de-champoulet@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun, Mer 13h30-17h</p>
+                </div>
+                <div class="card">
+                    <h4>Châtillon-sur-Loire</h4>
+                    <p>25 rue de l'hôtel de ville<br>45360 CHÂTILLON-SUR-LOIRE<br>📞 02 38 31 40 54<br>📧 <a href="mailto:mairie@chatillonsurloire.fr">mairie@chatillonsurloire.fr</a><br>🌐 <a href="https://www.chatillon-sur-loire.com" target="_blank" rel="noopener">www.chatillon-sur-loire.com</a></p>
+                    <p><strong>Horaires :</strong><br>Lun-Fen 8h30-12h et 13h30-17h</p>
+                </div>
+                <div class="card">
+                    <h4>Dammarie-en-Puisaye</h4>
+                    <p>3 rue de la Mairie<br>45420 DAMMARIE-EN-PUISAYE<br>📞 02 38 31 92 26<br>📧 <a href="mailto:commune-de-dammarie-en-puisaye@wanadoo.fr">commune-de-dammarie-en-puisaye@wanadoo.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun (sem. paire) 9h-12h30 et 13h-17h30<br>Mer (sem. impaire) 16h-18h<br>Jeu 9h-12h30 et 13h30-18h</p>
+                </div>
+                <div class="card">
+                    <h4>Escrignelles</h4>
+                    <p>Le Bourg<br>45250 ESCRIGNELLES<br>📞 02 38 31 92 70<br>📧 <a href="mailto:mairie.escrignelles@orange.fr">mairie.escrignelles@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar 9h-12h30<br>Fen 9h-12h30 et 13h-17h30<br>1er sam du mois 10h-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Faverelles</h4>
+                    <p>3 route de Thou<br>45420 FAVERELLES<br>📞 02 38 31 62 76<br>📧 <a href="mailto:mairie.faverelles@orange.fr">mairie.faverelles@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar 14h-18h<br>Jeu 9h-12h30 et 13h-17h30</p>
+                </div>
+                <div class="card">
+                    <h4>Feins-en-Gâtinais</h4>
+                    <p>Le Bourg<br>45230 FEINS EN GATINAIS<br>📞 02 38 35 94 45<br>📧 <a href="mailto:mairie.secretariat@feinsengatinais.fr">mairie.secretariat@feinsengatinais.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun, Mer 9h-14h</p>
+                </div>
+                <div class="card">
+                    <h4>La Bussière</h4>
+                    <p>1 rue de Briare<br>45230 LA BUSSIERE<br>📞 02 38 35 90 68<br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a><br>🌐 <a href="https://www.labussiere45.fr" target="_blank" rel="noopener">www.labussiere45.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun, Fen 14h-17h30<br>Mar 9h-12h et 14h-17h30<br>Jeu 9h-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Ousson-sur-Loire</h4>
+                    <p>1 rue de la Loire<br>45250 OUSSON-SUR-LOIRE<br>📞 02 38 31 44 56<br>📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun-Fen 9h30-17h30</p>
+                </div>
+                <div class="card">
+                    <h4>Ouzouër-sur-Trézée</h4>
+                    <p>1 rue Grande<br>45250 OUZOUER-SUR-TRÉZÉE<br>📞 02 38 31 93 90<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a><br>🌐 <a href="https://www.ouzouer-sur-trezee.fr" target="_blank" rel="noopener">www.ouzouer-sur-trezee.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mar, Fen 10h-12h et 14h-17h<br>Mer 10h-12h<br>Lun et Jeu sur RDV uniquement</p>
+                </div>
+                <div class="card">
+                    <h4>Pierrefitte-ès-Bois</h4>
+                    <p>3 place du Monument<br>45360 PIERREFITTE-ÈS-BOIS<br>📞 02 38 31 47 09<br>📧 <a href="mailto:mairie.pierrefitteesbois@orange.fr">mairie.pierrefitteesbois@orange.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun, Mar, Jeu, Fen 8h30-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Saint-Firmin-sur-Loire</h4>
+                    <p>32 Grande rue<br>45360 SAINT-FIRMIN-SUR-LOIRE<br>📞 02 38 37 08 74<br>📧 <a href="mailto:mairie.accueil@stfirminsurloire.fr">mairie.accueil@stfirminsurloire.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Lun 13h30-17h30<br>Mar-Fen 9h-12h</p>
+                </div>
+                <div class="card">
+                    <h4>Thou</h4>
+                    <p>12 route Impériale<br>45420 THOU<br>📞 02 38 31 62 20<br>📧 <a href="mailto:secretariat@thou.fr">secretariat@thou.fr</a></p>
+                    <p><strong>Horaires :</strong><br>Mer 8h-14h<br>Fen 13h30-19h</p>
+                </div>
+            </div>
+
+            <h3 style="color:var(--primary-color); margin-top:2rem;">Communauté de communes Berry Loire Puisaye</h3>
+            <p>42 rue des Prés Gris, 45250 BRIARE<br>
+            📞 02 38 37 03 84<br>
+            📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a><br>
+            🌐 <a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">www.cc-berryloirepuisaye.fr</a><br>
+            <i class="fa-brands fa-facebook" style="color:#1877F2; font-size:1.1em;"></i>
+            <a href="https://facebook.com/ccberryloirepuisaye" target="_blank" rel="noopener">ccberryloirepuisaye</a></p>
+
+            <div style="text-align:center; margin:3rem 0;">
+                <img src="interlocuteurs_page-047.png" alt="Carte du territoire"
+                     style="max-width:800px; margin:0 auto; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            </div>
+
+            <h3 style="color:var(--primary-color); margin-top:3rem;">Partenaires institutionnels</h3>
+            <p>Cliquez sur les cartes pour voir les informations de contact et services proposés.</p>
+        </div>
+
+        <!-- ══════════════ ACCORDÉON PARTENAIRES ══════════════ -->
+        <div class="partner-accordion">
+
+            <div class="accordion-partner">
+                <button class="accordion-partner-header" aria-expanded="false">
+                    <div class="accordion-partner-logo">
+                        <img src="interlocuteurs_page-050.png" alt="Logo CAF">
+                    </div>
+                    <h3>CAF du Loiret</h3>
+                </button>
+                <div class="accordion-partner-body">
+                    <p><strong>Caisse d'Allocations Familiales du Loiret</strong></p>
+                    <p>2 place Saint Charles<br>45946 ORLÉANS Cedex 9</p>
+                    <p>📞 <a href="tel:3230">3230</a> (numéro national)</p>
+                    <p>🌐 <a href="https://www.caf.fr" target="_blank" rel="noopener">www.caf.fr</a></p>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#666;">La CAF accompagne les familles avec des allocations, aides au logement, et services pour la garde d'enfants.</p>
+                </div>
+            </div>
+
+            <div class="accordion-partner">
+                <button class="accordion-partner-header" aria-expanded="false">
+                    <div class="accordion-partner-logo">
+                        <img src="interlocuteurs_page-051.png" alt="Logo MSA">
+                    </div>
+                    <h3>MSA Beauce Cœur de Loire</h3>
+                </button>
+                <div class="accordion-partner-body">
+                    <p><strong>Mutualité Sociale Agricole</strong></p>
+                    <p>5 rue Chanzy<br>28037 CHARTRES Cedex</p>
+                    <p>📞 <a href="tel:0237999999">02 37 99 99 99</a></p>
+                    <p>🌐 <a href="https://bcl.msa.fr" target="_blank" rel="noopener">bcl.msa.fr</a></p>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#666;">La MSA accompagne les agriculteurs et leurs familles pour la santé, les prestations familiales et les retraites.</p>
+                </div>
+            </div>
+
+            <div class="accordion-partner">
+                <button class="accordion-partner-header" aria-expanded="false">
+                    <div class="accordion-partner-logo">
+                        <img src="interlocuteurs_page-009.png" alt="Logo Département Loiret">
+                    </div>
+                    <h3>Agence Départementale des Solidarités</h3>
+                </button>
+                <div class="accordion-partner-body">
+                    <p><strong>Service de proximité du Département du Loiret</strong></p>
+                    <p>Accompagnement personnalisé des familles</p>
+                    <p>📞 <a href="tel:0238254545">02 38 25 45 45</a></p>
+                    <p>🌐 <a href="https://www.loiret.fr" target="_blank" rel="noopener">www.loiret.fr</a></p>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#666;">L'ADS propose des services de proximité pour accompagner les familles dans différents domaines : protection de l'enfance, aide sociale, etc.</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- ══════════════ FIN ACCORDÉON PARTENAIRES ══════════════ -->
+
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+                <p>📞 02 38 37 03 84<br>
+                📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Liens utiles</h3>
+                <ul>
+                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                    <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                    <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Navigation rapide</h3>
+                <ul>
+                    <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+                    <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
+                    <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
+                    <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
+                    <li><a href="acces-droits.html">Accès aux droits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+        </div>
+    </div>
+</footer>
+
+<button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+
+<script>
+    // ── Menu mobile ──
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function () {
+            navList.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    }
+
+    // ── Bouton retour en haut ──
+    const scrollTop = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function () {
+        if (window.scrollY > 300) {
+            scrollTop.classList.add('visible');
+        } else {
+            scrollTop.classList.remove('visible');
+        }
+    });
+    if (scrollTop) {
+        scrollTop.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+
+    // ── Accordéon partenaires (corrigé) ──
+    document.querySelectorAll('.accordion-partner-header').forEach(function (header) {
+        header.addEventListener('click', function () {
+            const parent = this.closest('.accordion-partner');
+            const body = parent.querySelector('.accordion-partner-body');
+            const isOpen = this.classList.contains('open');
+
+            // Fermer tous les accordéons
+            document.querySelectorAll('.accordion-partner').forEach(function (item) {
+                item.querySelector('.accordion-partner-header').classList.remove('open');
+                item.querySelector('.accordion-partner-header').setAttribute('aria-expanded', 'false');
+                item.querySelector('.accordion-partner-body').classList.remove('open');
+            });
+
+            // Ouvrir celui cliqué (sauf s'il était déjà ouvert)
+            if (!isOpen) {
+                this.classList.add('open');
+                this.setAttribute('aria-expanded', 'true');
+                body.classList.add('open');
+            }
+        });
+    });
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interlocuteurs clés - Guide des Familles Berry Loire Puisaye</title>
+    <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ── Accordéon pour partenaires ── */
+        .partner-accordion {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .accordion-partner {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s;
+        }
+
+        .accordion-partner:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .accordion-partner-header {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.2s;
+        }
+
+        .accordion-partner-header:hover {
+            background: #f5f8ff;
+        }
+
+        .accordion-partner-header.open {
+            background: var(--primary-color, #4a90d9);
+            color: white;
+        }
+
+        .accordion-partner-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .accordion-partner-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
         }
 
         .accordion-partner-body.open {
