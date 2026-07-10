@@ -231,18 +231,21 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
     .mode-garde-grid .item-expandable {
         margin: 0;
     }
-    .mode-garde-grid .image-text-row {
+    .volet-mg {
+        display: flex;
         flex-direction: column;
     }
-    .mode-garde-grid .image-text-row > div:last-child {
-        flex: 0 0 auto !important;
+    .volet-mg-image {
         width: 100%;
-        order: -1;
+        display: block;
         margin-bottom: 1rem;
     }
-    .mode-garde-grid .image-text-row > div:last-child img {
+    .volet-mg-image img {
         width: 100%;
         height: auto;
+        display: block;
+        border-radius: 8px;
+        box-shadow: var(--shadow-md);
     }
     .zoomable-image {
         cursor: zoom-in;
@@ -295,16 +298,16 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
         <details class="item-expandable">
             <summary>Guichet Unique de la Petite Enfance</summary>
             <div class="item-content">
-                <div class="image-text-row" style="gap: 2rem; align-items: flex-start;">
-                    <div style="flex: 1;">
+                <div class="volet-mg">
+                    <div class="volet-mg-image">
+                        <img src="arrivee_enfant_page-023.png" alt="Guichet Unique de la Petite Enfance" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)">
+                    </div>
+                    <div>
                         <p style="font-size: 0.95rem; color: #666;">Le Guichet Unique de la Petite Enfance est votre premier interlocuteur pour toute question sur les modes de garde du territoire (assistants maternels, crèches, structures collectives). Il vous informe sur les places disponibles, vous oriente selon vos besoins et vous accompagne dans la constitution de votre dossier.</p>
                         <p style="margin: 0.8rem 0 0.3rem 0;"><strong>Coordonnées</strong><br>
                         39 avenue Yver-Bapterosses, 45250 BRIARE<br>
                         📞 02 38 36 78 73</p>
                         <p style="margin: 0.3rem 0;">📧 <a href="mailto:rpe.frimousses@cc-berryloirepuisaye.fr">rpe.frimousses@cc-berryloirepuisaye.fr</a></p>
-                    </div>
-                    <div style="flex: 0 0 200px; text-align: center;">
-                        <img src="arrivee_enfant_page-023.png" alt="Guichet Unique de la Petite Enfance" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)" style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); margin-bottom: 0.8rem;">
                     </div>
                 </div>
             </div>
@@ -313,14 +316,14 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
         <details class="item-expandable">
             <summary>Monenfant.fr</summary>
             <div class="item-content">
-                <div class="image-text-row" style="gap: 2rem; align-items: flex-start;">
-                    <div style="flex: 1;">
+                <div class="volet-mg">
+                    <div class="volet-mg-image">
+                        <img src="arrivee_enfant_page-018.png" alt="Monenfant.fr">
+                    </div>
+                    <div>
                         <p style="font-size: 0.95rem; color: #666;">Monenfant.fr est le site officiel de la Caisse nationale des Allocations familiales dédié à la recherche d'un mode de garde. Il permet de localiser les assistants maternels et structures d'accueil près de chez soi, de vérifier leurs disponibilités en temps réel, d'estimer le coût de la garde grâce au simulateur, et de constituer son dossier de A à Z en ligne.</p>
                         <p style="margin: 0.8rem 0 0.3rem 0;"><strong>Site internet</strong><br>
                         🌐 <a href="https://www.monenfant.fr" target="_blank" rel="noopener">www.monenfant.fr</a></p>
-                    </div>
-                    <div style="flex: 0 0 200px; text-align: center;">
-                        <img src="arrivee_enfant_page-018.png" alt="Monenfant.fr" style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); margin-bottom: 0.8rem;">
                     </div>
                 </div>
             </div>
@@ -329,14 +332,14 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
         <details class="item-expandable">
             <summary>URSSAF - Pajemploi pour les futurs parents employeurs</summary>
             <div class="item-content">
-                <div class="image-text-row" style="gap: 2rem; align-items: flex-start;">
-                    <div style="flex: 1;">
+                <div class="volet-mg">
+                    <div class="volet-mg-image">
+                        <img src="arrivee_enfant_page-019.png" alt="URSSAF Pajemploi">
+                    </div>
+                    <div>
                         <p style="font-size: 0.95rem; color: #666;">Dès lors qu'un parent emploie un assistant maternel agréé ou une garde d'enfants à domicile, il devient employeur et doit s'inscrire sur Pajemploi, le service de l'URSSAF dédié à ce type d'emploi. La plateforme permet de déclarer le salarié, d'effectuer les déclarations mensuelles de salaire, de calculer et payer les cotisations sociales, et de bénéficier du versement automatique du Complément de libre choix du mode de garde (CMG) lorsque les conditions sont remplies.</p>
                         <p style="margin: 0.8rem 0 0.3rem 0;"><strong>Site internet</strong><br>
                         🌐 <a href="https://www.pajemploi.urssaf.fr" target="_blank" rel="noopener">www.pajemploi.urssaf.fr</a></p>
-                    </div>
-                    <div style="flex: 0 0 200px; text-align: center;">
-                        <img src="arrivee_enfant_page-019.png" alt="URSSAF Pajemploi" style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); margin-bottom: 0.8rem;">
                     </div>
                 </div>
             </div>
