@@ -244,6 +244,42 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
         width: 100%;
         height: auto;
     }
+    .zoomable-image {
+        cursor: zoom-in;
+        transition: transform 0.2s ease;
+    }
+    .zoomable-image:hover {
+        transform: scale(1.02);
+    }
+    .image-lightbox-overlay {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 9999;
+        justify-content: center;
+        align-items: center;
+        cursor: zoom-out;
+        padding: 2rem;
+    }
+    .image-lightbox-overlay.active {
+        display: flex;
+    }
+    .image-lightbox-overlay img {
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+    .image-lightbox-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+        color: white;
+        font-size: 2.5rem;
+        cursor: pointer;
+        line-height: 1;
+    }
     @media (max-width: 900px) {
         .mode-garde-grid {
             grid-template-columns: 1fr;
@@ -268,7 +304,7 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
                         <p style="margin: 0.3rem 0;">📧 <a href="mailto:rpe.frimousses@cc-berryloirepuisaye.fr">rpe.frimousses@cc-berryloirepuisaye.fr</a></p>
                     </div>
                     <div style="flex: 0 0 200px; text-align: center;">
-                        <img src="arrivee_enfant_guichet_unique.png" alt="Guichet Unique de la Petite Enfance" style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); margin-bottom: 0.8rem;">
+                        <img src="arrivee_enfant_guichet_unique.png" alt="Guichet Unique de la Petite Enfance" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)" style="max-width: 100%; border-radius: 8px; box-shadow: var(--shadow-md); margin-bottom: 0.8rem;">
                     </div>
                 </div>
             </div>
@@ -312,6 +348,11 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
 
 </main>
 
+<div class="image-lightbox-overlay" id="imageLightbox" onclick="closeImageLightbox()">
+    <span class="image-lightbox-close" onclick="closeImageLightbox()">&times;</span>
+    <img id="imageLightboxImg" src="" alt="">
+</div>
+
 <footer class="footer">
     <div class="container">
         <div class="footer-content">
@@ -349,6 +390,24 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
 <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
 <script>
+// Lightbox image (agrandissement au clic)
+function openImageLightbox(src, alt) {
+    const overlay = document.getElementById('imageLightbox');
+    const img = document.getElementById('imageLightboxImg');
+    img.src = src;
+    img.alt = alt;
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeImageLightbox() {
+    const overlay = document.getElementById('imageLightbox');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeImageLightbox();
+});
+
 // Menu mobile
 const menuToggle = document.getElementById('menuToggle');
 const navList = document.getElementById('navList');
