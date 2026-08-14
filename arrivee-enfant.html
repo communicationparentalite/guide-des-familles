@@ -28,8 +28,25 @@
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
     <ul class="nav-list" id="navList">
         <li><a href="index.html" >Accueil</a></li>
-        <li><a href="interlocuteurs.html" >Interlocuteurs</a></li>
+       <li class="nav-dropdown">
+    <a href="interlocuteurs.html" class="active">Interlocuteurs ▾</a>
+    <ul class="nav-dropdown-menu">
+        <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+        <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+        <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+        <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+        <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+    </ul>
+</li>
         <li><a href="arrivee-enfant.html" class="active">Arrivée d'un enfant</a></li>
+          <li class="nav-dropdown">
+    <a href="arrivee-enfant.html." class="active">Arrivée d'un enfant ▾</a>
+    <ul class="nav-dropdown-menu">
+        <li><a href="arrivée-enfant.html#demarches">Démarches</a></li>
+        <li><a href="arrivée-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+        <li><a href="arrivée-enfant.html#mode-de-garde">Mode de garde</a></li>
+    </ul>
+</li>
         <li><a href="petite-enfance.html" >Petite enfance</a></li>
         <li><a href="enfance.html" >Enfance</a></li>
         <li><a href="jeunesse.html" >Jeunesse</a></li>
@@ -52,7 +69,7 @@
         <p class="quote">"Chaque parent vient au monde en même temps que son premier enfant." - Ernst Kramer</p>
 
         <div class="content-box">
-            <h3 style="color:var(--primary-color);">Démarches avant l'arrivée de l'enfant</h3>
+            <h3 style="color:var(--primary-color);" id="demarche">Démarches avant l'arrivée de l'enfant</h3>
             <div class="subsections">
                 <div class="subsection">
     <h4>État civil et droits</h4>
@@ -135,7 +152,7 @@ L'ensemble des démarches, droits et offres de service pour les futurs ou jeunes
 </div>                   
            
 <div class="content-box">
-    <h3 style="color:var(--primary-color);">Accompagnement périnatal</h3>
+    <h3 style="color:var(--primary-color);" id="accompagnement-perinatal">Accompagnement périnatal</h3>
     
     <p style="margin-bottom: 2rem; font-size: 1.05rem;">Pendant votre grossesse et après l'accouchement, plusieurs professionnels et structures sont à votre écoute pour vous accompagner et vous soutenir. Voici les ressources disponibles près de chez vous.</p>
 
@@ -291,7 +308,7 @@ De plus, elles fournissent des conseils précieux sur l'allaitement, la nutritio
 </style>
 
 <div class="content-box">
-    <h3 style="color:var(--primary-color);">Recherche d'un mode de garde</h3>
+    <h3 style="color:var(--primary-color);" id="mode-de-garde">Recherche d'un mode de garde</h3>
 
     <div class="subsections mode-garde-grid">
 
