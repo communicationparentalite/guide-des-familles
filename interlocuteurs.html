@@ -17,8 +17,78 @@
             --secondary-light: #5B92C4;
         }
 
+        /* ── Menu déroulant rapide ── */
+        .quick-nav {
+            position: relative;
+            margin: 1.5rem 0 2rem;
+            max-width: 320px;
+        }
+
+        .quick-nav-toggle {
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.9rem 1.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+
+        .quick-nav-toggle:hover {
+            background: var(--primary-dark);
+        }
+
+        .quick-nav-arrow {
+            transition: transform 0.3s;
+        }
+
+        .quick-nav-toggle.open .quick-nav-arrow {
+            transform: rotate(180deg);
+        }
+
+        .quick-nav-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+        }
+
+        .quick-nav-menu.open {
+            max-height: 400px;
+        }
+
+        .quick-nav-menu li a {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            color: var(--text-dark, #212121);
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+
+        .quick-nav-menu li:last-child a {
+            border-bottom: none;
+        }
+
+        .quick-nav-menu li a:hover {
+            background: #f5f8ff;
+            color: var(--primary-color);
+        }
+
         /* ── Accordéon pour partenaires ── */
-        .partner-accordion {
         .partner-accordion {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -144,8 +214,21 @@
         </div>
         <h2 class="section-title">Des interlocuteurs clés</h2>
 
+        <div class="quick-nav">
+            <button class="quick-nav-toggle" id="quickNavToggle">
+                📍 Aller directement à... <span class="quick-nav-arrow">▾</span>
+            </button>
+            <ul class="quick-nav-menu" id="quickNavMenu">
+                <li><a href="#mairies">Mairies</a></li>
+                <li><a href="#communaute-communes">Communauté de communes</a></li>
+                <li><a href="#caf">CAF du Loiret</a></li>
+                <li><a href="#msa">MSA Beauce Cœur de Loire</a></li>
+                <li><a href="#ads">Agence Départementale des Solidarités</a></li>
+            </ul>
+        </div>
+
         <div class="content-box">
-            <h3 style="color:var(--primary-color);">Mairies</h3>
+            <h3 style="color:var(--primary-color);" id="mairies">Mairies</h3>
             <p>Adressez-vous à votre commune pour les inscriptions dans les écoles, la restauration scolaire, l'accueil de loisirs ou l'inscription sur la liste électorale.</p>
 
             <div class="cards-grid" style="margin-top:2rem;">
@@ -201,7 +284,7 @@
                 </div>
                 <div class="card">
                     <h4>Dammarie-en-Puisaye</h4>
-                    <p>3 rue de la Mairie<br>45420 DAMMARIE-EN-PUISAYE<br>📞 <a href="tel:0238319226">02 38 31 92 2</a>6<br>📧 <a href="mailto:commune-de-dammarie-en-puisaye@wanadoo.fr">commune-de-dammarie-en-puisaye@wanadoo.fr</a></p>
+                    <p>3 rue de la Mairie<br>45420 DAMMARIE-EN-PUISAYE<br>📞 <a href="tel:0238319226">02 38 31 92 26</a><br>📧 <a href="mailto:commune-de-dammarie-en-puisaye@wanadoo.fr">commune-de-dammarie-en-puisaye@wanadoo.fr</a></p>
                     <p><strong>Horaires :</strong><br>Lun (sem. paire) 9h-12h30 et 13h-17h30<br>Mer (sem. impaire) 16h-18h<br>Jeu 9h-12h30 et 13h30-18h</p>
                 </div>
                 <div class="card">
@@ -251,7 +334,7 @@
                 </div>
             </div>
 
-            <h3 style="color:var(--primary-color); margin-top:2rem;">Communauté de communes Berry Loire Puisaye</h3>
+            <h3 style="color:var(--primary-color); margin-top:2rem;" id="communaute-communes">Communauté de communes Berry Loire Puisaye</h3>
             <p>42 rue des Prés Gris, 45250 BRIARE<br>
             📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
             📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a><br>
@@ -271,7 +354,7 @@
         <!-- ══════════════ ACCORDÉON PARTENAIRES ══════════════ -->
         <div class="partner-accordion">
 
-            <div class="accordion-partner">
+            <div class="accordion-partner" id="caf">
                 <button class="accordion-partner-header" aria-expanded="false">
                     <div class="accordion-partner-logo">
                         <img src="interlocuteurs_page-050.png" alt="Logo CAF">
@@ -283,11 +366,11 @@
                     <p>2 place Saint Charles<br>45946 ORLÉANS Cedex 9</p>
                     <p>📞 <a href="tel:3230">3230</a> (numéro national)</p>
                     <p>🌐 <a href="https://www.caf.fr" target="_blank" rel="noopener">www.caf.fr</a></p>
-                    <p style="margin-top:1rem; font-size:0.9rem; color:#666;">La Caisse d'Allocations Familiales (CAF) accompagne les familles et les collectivités pour améliorer la qualité de vie sur les territoires. Elle finance des services et des projets dans les domaines de la petite enfance, de la parentalité, de l'enfance, de la jeunesse et du logement. Aux côtés des collectivités, elle apporte un appui technique et financier pour développer des services de proximité, en particulier dans les territoires ruraux, afin de favoriser l'égalité d'accès aux services et la cohésion sociale.<br</p>
+                    <p style="margin-top:1rem; font-size:0.9rem; color:#666;">La Caisse d'Allocations Familiales (CAF) accompagne les familles et les collectivités pour améliorer la qualité de vie sur les territoires. Elle finance des services et des projets dans les domaines de la petite enfance, de la parentalité, de l'enfance, de la jeunesse et du logement. Aux côtés des collectivités, elle apporte un appui technique et financier pour développer des services de proximité, en particulier dans les territoires ruraux, afin de favoriser l'égalité d'accès aux services et la cohésion sociale.</p>
                 </div>
             </div>
 
-            <div class="accordion-partner">
+            <div class="accordion-partner" id="msa">
                 <button class="accordion-partner-header" aria-expanded="false">
                     <div class="accordion-partner-logo">
                         <img src="interlocuteurs_page-051.png" alt="Logo MSA">
@@ -303,7 +386,7 @@
                 </div>
             </div>
 
-            <div class="accordion-partner">
+            <div class="accordion-partner" id="ads">
                 <button class="accordion-partner-header" aria-expanded="false">
                     <div class="accordion-partner-logo">
                         <img src="interlocuteurs_page-052.png" alt="Logo Département Loiret">
@@ -389,6 +472,22 @@
         });
     }
 
+    // ── Menu déroulant rapide ──
+    const quickNavToggle = document.getElementById('quickNavToggle');
+    const quickNavMenu = document.getElementById('quickNavMenu');
+    if (quickNavToggle) {
+        quickNavToggle.addEventListener('click', function () {
+            quickNavToggle.classList.toggle('open');
+            quickNavMenu.classList.toggle('open');
+        });
+        quickNavMenu.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                quickNavToggle.classList.remove('open');
+                quickNavMenu.classList.remove('open');
+            });
+        });
+    }
+
     // ── Accordéon partenaires (corrigé) ──
     document.querySelectorAll('.accordion-partner-header').forEach(function (header) {
         header.addEventListener('click', function () {
@@ -414,4 +513,4 @@
 </script>
 
 </body>
-
+</html>
