@@ -7,6 +7,8 @@
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
      <style>
         :root {
             --primary-color: #686be7;
@@ -73,6 +75,59 @@
                 display: block;
             }
         }
+
+        /* --- Carte interactive des écoles --- */
+        #carte-ecoles {
+            height: 480px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.15));
+            margin: 2rem 0;
+            z-index: 1;
+        }
+
+        .ecole-tooltip {
+            font-family: 'Nunito', sans-serif;
+            line-height: 1.5;
+        }
+
+        .ecole-tooltip .ecole-commune {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--primary-light);
+            font-weight: 700;
+            margin-bottom: 0.15rem;
+        }
+
+        .ecole-tooltip .ecole-nom {
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.35rem;
+        }
+
+        .ecole-tooltip .ecole-detail {
+            display: block;
+            font-size: 0.85rem;
+            color: #333;
+        }
+
+        .leaflet-tooltip.ecole-tooltip-wrapper {
+            background: #fff;
+            border: none;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.2));
+            padding: 0.75rem 1rem;
+            max-width: 240px;
+            white-space: normal;
+        }
+
+        .leaflet-tooltip.ecole-tooltip-wrapper::before {
+            border-top-color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -130,10 +185,8 @@
             <h3 style="color:var(--primary-color);">Scolarité</h3>
             <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
 
-            <div style="text-align:center; margin:2rem 0;">
-                <img src="enfance_page-020.png" alt="Carte des établissements scolaires"
-                     style="max-width:100%; border-radius:8px; box-shadow:var(--shadow-md);">
-            </div>
+            <div id="carte-ecoles"></div>
+            <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
 
             <h4 style="color:var(--primary-dark); margin-top:2rem;">Écoles du territoire</h4>
 
@@ -325,7 +378,159 @@
 
 <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script>
+// Carte interactive des écoles
+const ecolesData = [
+    {
+        commune: "Autry-le-Châtel",
+        nom: "École maternelle et élémentaire",
+        adresse: "14 rue de l'École / route de Châtillon, 45500 Autry-le-Châtel",
+        telephone: "02 38 36 82 62 / 02 38 36 81 88",
+        email: "",
+        lat: 47.598875, lng: 2.604867
+    },
+    {
+        commune: "Beaulieu-sur-Loire",
+        nom: "École maternelle et élémentaire",
+        adresse: "15-17 rue de Châtillon, 45630 Beaulieu-sur-Loire",
+        telephone: "02.19.00.49.86 / 02.38.35.85.35",
+        email: "",
+        lat: 47.544626, lng: 2.812810
+    },
+    {
+        commune: "Ousson-sur-Loire",
+        nom: "École maternelle et élémentaire",
+        adresse: "11 rue de l'Abreuvoir / 2 bis rue des Marronniers, 45250 Ousson-sur-Loire",
+        telephone: "02 38 31 00 51",
+        email: "",
+        lat: 47.588507, lng: 2.786550
+    },
+    {
+        commune: "Briare",
+        nom: "École Marcel Gaime (maternelle)",
+        adresse: "place Saint Roch, 45250 Briare",
+        telephone: "02 38 31 25 85",
+        email: "",
+        lat: 47.637205, lng: 2.738436
+    },
+    {
+        commune: "Briare",
+        nom: "École du Centre (élémentaire)",
+        adresse: "3 square Foch, 45250 Briare",
+        telephone: "02 38 31 26 49",
+        email: "",
+        lat: 47.640598, lng: 2.737694
+    },
+    {
+        commune: "Briare",
+        nom: "École Gustave Eiffel (maternelle et élémentaire)",
+        adresse: "7 rue de l'Espérance, 45250 Briare",
+        telephone: "02 38 31 25 34",
+        email: "",
+        lat: 47.631652, lng: 2.743530
+    },
+    {
+        commune: "Briare",
+        nom: "École Sainte-Anne (privée, maternelle et élémentaire)",
+        adresse: "5 rue des Grands Jardins, 45250 Briare",
+        telephone: "02 38 31 26 48",
+        email: "",
+        lat: 47.637611, lng: 2.736503
+    },
+    {
+        commune: "Bonny-sur-Loire",
+        nom: "École maternelle et élémentaire",
+        adresse: "2 avenue de la Gare, 45420 Bonny-sur-Loire",
+        telephone: "02 38 31 63 57",
+        email: "",
+        lat: 47.559345, lng: 2.842596
+    },
+    {
+        commune: "Châtillon-sur-Loire",
+        nom: "École maternelle et élémentaire",
+        adresse: "place du Champ de Foire, 45360 Châtillon-sur-Loire",
+        telephone: "02 38 31 40 74",
+        email: "",
+        lat: 47.591146, lng: 2.748100
+    },
+    {
+        commune: "Ouzouër-sur-Trézée",
+        nom: "École maternelle et élémentaire",
+        adresse: "14 rue de la Flamandière / 1 rue du Stade, 45250 Ouzouër-sur-Trézée",
+        telephone: "02 38 31 97 47 / 02 38 31 92 89",
+        email: "",
+        lat: 47.670537, lng: 2.807115
+    },
+    {
+        commune: "Cernoy-en-Berry",
+        nom: "École maternelle (RPI Cernoy / Pierrefitte)",
+        adresse: "5 rue d'Autry, 45360 Cernoy-en-Berry",
+        telephone: "02 38 31 01 00",
+        email: "",
+        lat: 47.541448, lng: 2.660588
+    },
+    {
+        commune: "Pierrefitte-ès-Bois",
+        nom: "École élémentaire (RPI Cernoy / Pierrefitte)",
+        adresse: "7 rue de la Mairie, 45360 Pierrefitte-ès-Bois",
+        telephone: "02 38 31 08 13",
+        email: "",
+        lat: 47.507527, lng: 2.717887
+    },
+    {
+        commune: "Adon",
+        nom: "École (SIIS Adon / La Bussière)",
+        adresse: "13 route de la Bussière, 45230 Adon",
+        telephone: "02 38 35 94 69",
+        email: "",
+        lat: 47.763036, lng: 2.795527
+    },
+    {
+        commune: "La Bussière",
+        nom: "École (SIIS Adon / La Bussière)",
+        adresse: "1 rue de Briare, 45230 La Bussière",
+        telephone: "02 38 35 90 68",
+        email: "",
+        lat: 47.744547, lng: 2.749711
+    }
+];
+
+const mapEcolesEl = document.getElementById('carte-ecoles');
+if (mapEcolesEl) {
+    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.75], 11);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(mapEcoles);
+
+    ecolesData.forEach(function (ecole) {
+        const marker = L.marker([ecole.lat, ecole.lng]).addTo(mapEcoles);
+
+        const emailLigne = ecole.email
+            ? '<span class="ecole-detail">✉️ ' + ecole.email + '</span>'
+            : '<span class="ecole-detail" style="color:#999; font-style:italic;">✉️ non communiqué</span>';
+
+        const contenu =
+            '<div class="ecole-tooltip">' +
+                '<span class="ecole-commune">' + ecole.commune + '</span>' +
+                '<span class="ecole-nom">' + ecole.nom + '</span>' +
+                '<span class="ecole-detail">📍 ' + ecole.adresse + '</span>' +
+                '<span class="ecole-detail">📞 ' + ecole.telephone + '</span>' +
+                emailLigne +
+            '</div>';
+
+        marker.bindTooltip(contenu, {
+            direction: 'top',
+            offset: [0, -30],
+            className: 'ecole-tooltip-wrapper',
+            opacity: 1
+        });
+    });
+}
+
 // Menu mobile
 const menuToggle = document.getElementById('menuToggle');
 const navList = document.getElementById('navList');
