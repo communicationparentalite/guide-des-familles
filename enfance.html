@@ -15,6 +15,64 @@
             --secondary-color: #5754D6;
             --secondary-light: #8280E0;
         }
+
+        /* --- Menu déroulant (sous-sections) --- */
+        .nav-list li.has-dropdown {
+            position: relative;
+        }
+
+        .nav-list li.has-dropdown > a::after {
+            content: " ▾";
+            font-size: 0.75em;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.15));
+            padding: 0.5rem 0;
+            margin: 0;
+            list-style: none;
+            z-index: 100;
+        }
+
+        .nav-list li.has-dropdown:hover .dropdown-menu,
+        .nav-list li.has-dropdown:focus-within .dropdown-menu,
+        .nav-list li.has-dropdown.open .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: var(--primary-dark);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu li a:hover {
+            background: var(--primary-light);
+            color: #fff;
+        }
+
+        /* Sur mobile : le sous-menu s'affiche en ligne, sans positionnement absolu */
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                display: none;
+                position: static;
+                box-shadow: none;
+                background: rgba(0,0,0,0.03);
+                padding-left: 1rem;
+            }
+            .nav-list li.has-dropdown.open .dropdown-menu {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -40,7 +98,15 @@
         <li><a href="interlocuteurs.html" >Interlocuteurs</a></li>
         <li><a href="arrivee-enfant.html" >Arrivée d'un enfant</a></li>
         <li><a href="petite-enfance.html" >Petite enfance</a></li>
-        <li><a href="enfance.html" class="active">Enfance</a></li>
+        <li class="has-dropdown">
+            <a href="enfance.html" class="active">Enfance</a>
+            <ul class="dropdown-menu">
+                <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                <li><a href="enfance.html#clas">CLAS</a></li>
+                <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+            </ul>
+        </li>
         <li><a href="jeunesse.html" >Jeunesse</a></li>
         <li><a href="parentalite.html" >Parentalité</a></li>
         <li><a href="loisirs.html" >Loisirs</a></li>
@@ -60,7 +126,7 @@
 
         <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto</p>
 
-        <div class="content-box">
+        <div class="content-box" id="scolarite">
             <h3 style="color:var(--primary-color);">Scolarité</h3>
             <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
 
@@ -157,7 +223,7 @@
             </div>
         </div>
 
-        <div class="content-box">
+        <div class="content-box" id="clas">
             <h3 style="color:var(--primary-color);">CLAS - Contrat Local d'Accompagnement à la Scolarité</h3>
             <p>Gratuit et ouvert à tous, de l'école élémentaire au lycée</p>
             <div class="subsection">
@@ -167,7 +233,7 @@
             <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
         </div>
 
-        <div class="content-box">
+        <div class="content-box" id="accueils-loisirs">
             <h3 style="color:var(--primary-color);">Accueils de loisirs</h3>
             <div class="cards-grid">
                 <div class="card">
@@ -201,7 +267,7 @@
             </div>
         </div>
 
-        <div class="content-box">
+        <div class="content-box" id="accueils-periscolaires">
             <h3 style="color:var(--primary-color);">Accueils périscolaires</h3>
             <p>Matin et soir dans les écoles - Informations en mairie</p>
             <div class="subsections">
@@ -269,6 +335,18 @@ if (menuToggle) {
         menuToggle.classList.toggle('active');
     });
 }
+
+// Sous-menu déroulant "Enfance" : clic pour ouvrir/fermer (utile en tactile et sur mobile)
+document.querySelectorAll('.nav-list li.has-dropdown > a').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+        // Sur mobile, le menu est en colonne : on intercepte le clic pour déplier le sous-menu
+        // plutôt que de naviguer directement, seulement si l'écran est étroit.
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            link.parentElement.classList.toggle('open');
+        }
+    });
+});
 
 // Bouton retour en haut
 const scrollTop = document.getElementById('scrollTop');
