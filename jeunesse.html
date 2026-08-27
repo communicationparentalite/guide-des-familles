@@ -75,7 +75,15 @@
                 <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
             </ul>
         </li>
-        <li><a href="jeunesse.html">Jeunesse</a></li>
+        <!-- MENU JEUNESSE MODIFIÉ AVEC SOUS-SECTIONS -->
+        <li class="nav-dropdown">
+            <a href="jeunesse.html">Jeunesse ▾</a>
+            <ul class="nav-dropdown-menu">
+                <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                <li><a href="jeunesse.html#city-skate">City stades et skate-parks</a></li>
+            </ul>
+        </li>
         <li><a href="parentalite.html">Parentalité</a></li>
         <li><a href="loisirs.html">Loisirs</a></li>
         <li><a href="vivre-ensemble.html">Vivre ensemble</a></li>
@@ -99,8 +107,9 @@
             <img src="jeunesse_page-013.png" alt="Collège Briare">
         </div>
 
-        <div class="content-box">
-            <h3 style="color:var(--primary-color);">Structures d'accueil</h3>
+        <!-- SECTION STRUCTURES D'ACCUEIL (avec ID pour le menu) -->
+        <div class="content-box" id="structures-loisirs">
+            <h3 style="color:var(--primary-color);">Structures d'accueil et de loisirs</h3>
             <div class="cards-grid">
                 <div class="card">
                     <h4>Culture Ados (Bee'Mobile)</h4>
@@ -121,8 +130,9 @@
             </div>
         </div>
 
-        <div class="content-box">
-            <h3 style="color:var(--primary-color);">Scolarité secondaire</h3>
+        <!-- SECTION SCOLAIRITÉ SECONDAIRE (renommée "Collèges" avec ID) -->
+        <div class="content-box" id="colleges">
+            <h3 style="color:var(--primary-color);">Collèges</h3>
             <div class="cards-grid">
                 <div class="card">
                     <h4>Collège Auguste-Birot (Briare)</h4>
@@ -139,7 +149,8 @@
             </div>
         </div>
 
-        <div class="content-box">
+        <!-- SECTION CITY STADES ET SKATE-PARKS (avec ID) -->
+        <div class="content-box" id="city-skate">
             <h3 style="color:var(--primary-color);">City stades et skate-parks</h3>
             <p>Équipements sportifs disponibles à Briare, Châtillon-sur-Loire, Bonny-sur-Loire, Ousson-sur-Loire</p>
         </div>
