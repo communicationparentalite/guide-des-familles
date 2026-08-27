@@ -125,6 +125,7 @@ li { margin-bottom: 0.5rem; }
 }
 
 .menu-toggle { display: none; }
+
 /* === Sous-menu déroulant dans la navigation === */
 .nav-dropdown {
     position: relative;
@@ -170,27 +171,7 @@ li { margin-bottom: 0.5rem; }
 .nav-dropdown-menu li a:hover {
     background-color: var(--bg-light);
 }
-// ── Sous-menus déroulants au tap sur mobile/tablette ──
-document.querySelectorAll('.nav-dropdown').forEach(function (dropdown) {
-    const link = dropdown.querySelector(':scope > a');
 
-    link.addEventListener('click', function (e) {
-        // Seulement en mode menu mobile (bouton ☰ visible)
-        if (getComputedStyle(menuToggle).display === 'none') return;
-
-        const isOpen = dropdown.classList.contains('open');
-
-        if (!isOpen) {
-            e.preventDefault();
-            document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
-                if (item !== dropdown) item.classList.remove('open');
-            });
-            dropdown.classList.add('open');
-        }
-        // Sinon (déjà ouvert) : le lien navigue normalement
-    });
-});
-       
 /* === Hero === */
 .hero {
     position: relative;
@@ -437,7 +418,7 @@ document.querySelectorAll('.nav-dropdown').forEach(function (dropdown) {
     .header-content { flex-direction: column; text-align: center; gap: 0.5rem; }
     .header-info { text-align: center; }
 
-   /* Sous-menus déroulants en mobile : repositionnés dans le flux */
+    /* Sous-menus déroulants en mobile : repositionnés dans le flux */
     .nav-dropdown-menu {
         position: static;
         display: none;
