@@ -16,7 +16,8 @@
             --secondary-color: #E650B4;
             --secondary-light: #FF8CD2;
         }
-     /* ── Accordéon ── */
+     
+        /* ── Accordéon ── */
         .accordion-item {
             border: 1px solid #e0e0e0;
             border-radius: 10px;
@@ -128,6 +129,32 @@
         .accordion-body.open {
             overflow: visible;
         }
+
+        /* --- styles supplémentaires pour les logos dans les en-têtes --- */
+        .accordion-header .header-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .accordion-header .header-logo-large {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .accordion-header .header-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex: 1;
+        }
+        .accordion-header .header-content h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -236,14 +263,14 @@
 
         <p class="quote">"La liberté c'est le respect des droits de chacun ; l'ordre c'est le respect des droits de tous." - Mirabeau</p>
 
-            <!-- ══════════════ ACCORDÉON ══════════════ -->
+        <!-- ══════════════ ACCORDÉON ══════════════ -->
         <div class="accordion" style="margin-top:3rem; max-width:1000px; margin-left:auto; margin-right:auto;">
 
             <!-- 1. Réseau France Service -->
             <div class="accordion-item" id="franceservice">
                 <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="acces_logo_franceservices.png" alt="Logo France Service" style="width:100px; height:100px; object-fit:contain;">
+                    <div class="header-content">
+                        <img src="acces_logo_franceservices.png" alt="Logo France Service" class="header-logo-large">
                         <h3>Réseau France Services</h3>
                     </div>
                     <span class="accordion-icon">+</span>
@@ -275,7 +302,7 @@ Point-justice</p>
                             <a href="tel:0238051874">02 38 05 18 74</a><br>
                             📧 <a href="mailto:bonny-sur-loire@france-services.gouv.fr">bonny-sur-loire@france-services.gouv.fr</a></p>
                         </div>
-                    <div class="images">
+                        <div class="images">
                             <img src="acces_franceservice.png" alt="Poste de Bonny" class="accordion-image" data-full="acces_franceservice.png">
                             <img src="acces_borne_franceservice.png" alt="Borne France Services" class="accordion-image" data-full="acces_borne_franceservice.png">
                         </div>
@@ -286,8 +313,8 @@ Point-justice</p>
             <!-- 2. ADS -->
             <div class="accordion-item" id="ads">
                 <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="interlocuteurs_page-052.png" alt="Logo Loiret" style="width:100px; height:100px; object-fit:contain;">
+                    <div class="header-content">
+                        <img src="interlocuteurs_page-052.png" alt="Logo Loiret" class="header-logo-large">
                         <h3>Agence Départementale des Solidarités - ADS Gien Montargis</h3>
                     </div>
                     <span class="accordion-icon">+</span>
@@ -317,11 +344,11 @@ Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
                 </div>
             </div>
 
-               <!-- 3. Service d'Intervention Sociale de la CAF -->
+            <!-- 3. Service d'Intervention Sociale de la CAF -->
             <div class="accordion-item" id="sis">
                 <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="interlocuteurs_page-50.png" alt="Logo CAF" style="width:40px; height:40px; object-fit:contain;">
+                    <div class="header-content">
+                        <img src="interlocuteurs_page-50.png" alt="Logo CAF" class="header-logo">
                         <h3>Service d'Intervention Sociale de la CAF</h3>
                     </div>
                     <span class="accordion-icon">+</span>
@@ -356,8 +383,8 @@ Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
             <!-- 4. CIDFF -->
             <div class="accordion-item" id="cidff">
                 <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="acces_logo_cidff.png" alt="Logo CIDFF" style="width:100px; height:100px; object-fit:contain;">
+                    <div class="header-content">
+                        <img src="acces_logo_cidff.png" alt="Logo CIDFF" class="header-logo-large">
                         <h3>CIDFF - Centre d'Information sur les Droits des Femmes et des Familles</h3>
                     </div>
                     <span class="accordion-icon">+</span>
@@ -380,6 +407,7 @@ Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
                             21 rue de Paris - 45500 Gien</p>
                         </div>
                         <div class="images">
+                            <!-- Image optionnelle à ajouter -->
                         </div>
                     </div>
                 </div>
@@ -388,8 +416,8 @@ Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
             <!-- 5. PRH45 -->
             <div class="accordion-item" id="prh45">
                 <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="acces_logo_prh45.png" alt="Logo Pôle Ressources Handicap 45" style="width:100px; height:100px; object-fit:contain;">
+                    <div class="header-content">
+                        <img src="acces_logo_prh45.png" alt="Logo Pôle Ressources Handicap 45" class="header-logo-large">
                         <h3>Pôle Ressources Handicap 45 (PRH45)</h3>
                     </div>
                     <span class="accordion-icon">+</span>
@@ -408,13 +436,14 @@ Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
                             🌐 <a href="https://prh45.fr" target="_blank" rel="noopener">prh45.fr</a></p>
                         </div>
                         <div class="images">
+                            <!-- Image optionnelle à ajouter -->
                         </div>
                     </div>
                 </div>
             </div>
 
         </div>
-         <!-- ══════════════ FIN ACCORDÉON ══════════════ -->
+        <!-- ══════════════ FIN ACCORDÉON ══════════════ -->
 
     </div>
 </section>
