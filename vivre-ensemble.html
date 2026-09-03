@@ -36,19 +36,81 @@
 <nav class="nav" id="mainNav">
     <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
     <ul class="nav-list" id="navList">
-        <li><a href="index.html" >Accueil</a></li>
-        <li><a href="interlocuteurs.html" >Interlocuteurs</a></li>
-        <li><a href="arrivee-enfant.html" >Arrivée d'un enfant</a></li>
-        <li><a href="petite-enfance.html" >Petite enfance</a></li>
-        <li><a href="enfance.html" >Enfance</a></li>
-        <li><a href="jeunesse.html" >Jeunesse</a></li>
-        <li><a href="parentalite.html" >Parentalité</a></li>
-        <li><a href="loisirs.html" >Loisirs</a></li>
-        <li><a href="vivre-ensemble.html" class="active">Vivre ensemble</a></li>
-        <li><a href="acces-droits.html" >Accès aux droits</a></li>
+        <li><a href="index.html">Accueil</a></li>
+        <li class="nav-dropdown">
+    <a href="interlocuteurs.html">Interlocuteurs ▾</a>
+    <ul class="nav-dropdown-menu">
+        <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+        <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+        <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+        <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+        <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+    </ul>
+</li>
+         <li class="nav-dropdown">
+    <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
+    <ul class="nav-dropdown-menu">
+        <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée de l'enfant</a></li>
+        <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+        <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+    </ul>
+</li>
+         <li class="nav-dropdown">
+    <a href="petite-enfance.html">Petite enfance ▾</a>
+    <ul class="nav-dropdown-menu">
+        <li><a href="petite-enfance.html#Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+        <li><a href="petite-enfance.html#Accueil-collectif">Accueil collectif</a></li>
+        <li><a href="petite-enfance.html#MAM">Maison d'Assistantes Maternelles (MAM)</a></li>
+        <li><a href="petite-enfance.html#Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</a></li>
+        <li><a href="petite-enfance.html#pmi-consultations-ateliers">PMI - Consultations et ateliers</a></li>
+        <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+    </ul>
+</li>
+        <li class="nav-dropdown">
+            <a href="enfance.html">Enfance ▾</a>
+            <ul class="nav-dropdown-menu">
+                <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                <li><a href="enfance.html#clas">CLAS</a></li>
+                <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+            </ul>
+        </li>
+        <li class="nav-dropdown">
+            <a href="jeunesse.html">Jeunesse ▾</a>
+            <ul class="nav-dropdown-menu">
+                <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                <li><a href="jeunesse.html#city-skate">City stades et skate-parks</a></li>
+            </ul>
+        </li>
+        <li class="nav-dropdown">
+            <a href="parentalite.html">Parentalité ▾</a>
+            <ul class="nav-dropdown-menu">
+                <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+            </ul>
+        </li>
+        <li><a href="loisirs.html">Loisirs</a></li>
+        <li><a href="vivre-ensemble.html">Vivre ensemble</a></li>
+        <li class="nav-dropdown">
+            <a href="acces-droits.html" class="active">Accès aux droits ▾</a>
+            <ul class="nav-dropdown-menu">
+                <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+            </ul>
+        </li>
     </ul>
 </nav>
-
 <main>
 
 <section class="section section-alt">
