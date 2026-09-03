@@ -114,12 +114,20 @@
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        /* ── Zoom au survol : l'image s'agrandit sur place, au-dessus du reste ── */
+        /* ── Zoom au survol : l'image s'agrandit largement, sans être rognée ── */
         .accordion-body-inner .images img:hover {
-            transform: scale(2.6);
-            z-index: 50;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-            border-color: white;
+            transform: scale(3.6);
+            z-index: 999;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.4);
+            border: 3px solid white;
+        }
+
+        /* Les conteneurs masquent normalement leur contenu (nécessaire à l'animation
+           d'ouverture/fermeture) ; on lève ce masquage pendant le survol pour que
+           le zoom ne soit plus coupé, et une fois l'accordéon ouvert. */
+        .accordion-item:has(.images img:hover),
+        .accordion-body.open {
+            overflow: visible;
         }
     </style>
 </head>
