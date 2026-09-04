@@ -1108,21 +1108,23 @@ li {
         text-align: center;
     }
 
-    /* Navigation mobile - version originale */
-    .nav-dropdown-menu {
-        position: static;
-        display: none;
-        box-shadow: none;
-        border-radius: 0;
-        background: var(--bg-lighter);
-    }
-
-    .nav-dropdown.open .nav-dropdown-menu {
+    /* Navigation mobile - version originale avec hamburger toujours visible */
+    .menu-toggle {
         display: block;
+        background: var(--primary-color);
+        border: none;
+        font-size: 1.1rem;
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        color: white;
+        font-weight: 600;
+        /* Le bouton reste toujours visible */
     }
 
-    .nav-dropdown-menu li a {
-        padding-left: 2.5rem;
+    .menu-toggle.active {
+        background: var(--primary-dark);
     }
 
     .nav-list {
@@ -1153,21 +1155,22 @@ li {
         font-weight: 600;
     }
 
-    .menu-toggle {
-        display: block;
-        background: var(--primary-color);
-        border: none;
-        font-size: 1.1rem;
-        padding: 0.75rem 1rem;
-        cursor: pointer;
-        width: 100%;
-        text-align: left;
-        color: white;
-        font-weight: 600;
+    .nav-dropdown-menu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        border-radius: 0;
+        background: var(--bg-lighter);
     }
 
-    .menu-toggle.active {
-        background: var(--primary-dark);
+    .nav-dropdown.open .nav-dropdown-menu {
+        display: block;
+    }
+
+    .nav-dropdown-menu li a {
+        padding-left: 2.5rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
     }
 
     /* Sections */
