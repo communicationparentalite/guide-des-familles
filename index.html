@@ -21,6 +21,7 @@
             overflow: hidden;
             border-radius: var(--radius);
             margin-bottom: 2rem;
+            cursor: pointer;
         }
 
         .hero-bg {
@@ -31,6 +32,11 @@
             height: 100%;
             object-fit: cover;
             filter: brightness(0.7);
+            transition: filter 0.3s;
+        }
+
+        .hero:hover .hero-bg {
+            filter: brightness(0.6);
         }
 
         .hero-content {
@@ -52,12 +58,30 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        /* ===== MESSAGE DU PRÉSIDENT AVEC IMAGE CLIQUABLE ===== */
+        .hero .click-hint {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0.7;
+            z-index: 2;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .hero:hover .click-hint {
+            opacity: 1;
+        }
+
+        /* ===== MESSAGE DU PRÉSIDENT ===== */
         .president-message {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: start;
+            display: block;
         }
 
         .president-message .text-content .full-text {
@@ -66,37 +90,6 @@
 
         .president-message .text-content .full-text.visible {
             display: block;
-        }
-
-        .president-message .image-wrapper {
-            position: relative;
-            cursor: pointer;
-        }
-
-        .president-message .image-wrapper img {
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-md);
-            width: 100%;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .president-message .image-wrapper img:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .president-message .image-wrapper .click-hint {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            opacity: 0.8;
-            pointer-events: none;
         }
 
         .read-more-btn {
@@ -266,15 +259,10 @@
                 font-size: 0.95rem;
                 padding: 0 10px;
             }
-
-            .president-message {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .president-message .image-wrapper .click-hint {
+            .hero .click-hint {
                 font-size: 0.65rem;
-                padding: 0.2rem 0.6rem;
+                padding: 0.2rem 0.8rem;
+                bottom: 1rem;
             }
 
             .quick-access-nav {
@@ -316,7 +304,7 @@
             }
         }
 
-        /* ===== HEADER MODIFIÉ AVEC TITRE AGRANDI x2 ===== */
+        /* ===== HEADER AVEC TITRE AGRANDI x2 ===== */
         .header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
@@ -351,7 +339,6 @@
             color: white;
             margin-bottom: 0;
             font-size: 3.6rem;
-            /* AGRANDI x2 (1.8rem × 2) */
             font-weight: 700;
             letter-spacing: 0.02em;
         }
@@ -380,7 +367,6 @@
             }
             .logo h1 {
                 font-size: 2.6rem;
-                /* AGRANDI x2 sur tablette (1.3rem × 2) */
             }
             .header-info {
                 font-size: 0.5rem;
@@ -394,7 +380,6 @@
             }
             .logo h1 {
                 font-size: 2.2rem;
-                /* AGRANDI x2 sur mobile (1.1rem × 2) */
             }
             .header-info {
                 font-size: 0.45rem;
@@ -522,13 +507,14 @@
     <main>
         <section class="section">
             <div class="container">
-                <!-- Hero -->
-                <div class="hero">
+                <!-- Hero - clic pour lire la suite -->
+                <div class="hero" id="heroImage">
                     <img src="couverture_page-000.png" alt="Famille" class="hero-bg">
                     <div class="hero-content">
                         <h2>Bienvenue dans votre Guide des Familles</h2>
                         <p class="hero-text">"Chères familles, nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie."</p>
                     </div>
+                    <span class="click-hint">👆 Cliquez pour lire la suite du message</span>
                 </div>
 
                 <!-- ===== MESSAGE DU PRÉSIDENT ===== -->
@@ -555,10 +541,6 @@
                                 </p>
                             </div>
                             <button class="read-more-btn" id="presidentReadMore">Lire la suite</button>
-                        </div>
-                        <div class="image-wrapper" id="presidentImage">
-                            <img src="presentation_page-001.png" alt="Siège de la Communauté de communes">
-                            <span class="click-hint">👆 Cliquez pour lire la suite</span>
                         </div>
                     </div>
                 </div>
@@ -775,10 +757,10 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ---- Lire la suite du président (clic sur image ou bouton) ----
+            // ---- Lire la suite du président (clic sur image hero OU bouton) ----
             const presidentFullText = document.querySelector('.president-message .full-text');
             const presidentBtn = document.getElementById('presidentReadMore');
-            const presidentImage = document.getElementById('presidentImage');
+            const heroImage = document.getElementById('heroImage');
 
             function togglePresidentText() {
                 const isVisible = presidentFullText.classList.contains('visible');
@@ -793,8 +775,8 @@
                 });
             }
 
-            if (presidentImage) {
-                presidentImage.addEventListener('click', function() {
+            if (heroImage) {
+                heroImage.addEventListener('click', function() {
                     togglePresidentText();
                 });
             }
@@ -806,7 +788,6 @@
                     const isOpen = this.classList.contains('open');
                     const body = this.nextElementSibling;
 
-                    // Fermer tous les autres
                     document.querySelectorAll('.guide-accordion .accordion-header').forEach(function(h) {
                         h.classList.remove('open');
                         h.setAttribute('aria-expanded', 'false');
