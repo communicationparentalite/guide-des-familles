@@ -172,11 +172,11 @@ li {
     margin-bottom: 0.5rem;
 }
 
-/* === HEADER === */
+/* === HEADER AVEC LOGO === */
 .header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
-    padding: 2rem 0;
+    padding: 1.2rem 0 0.8rem;
     box-shadow: var(--shadow-md);
 }
 
@@ -188,10 +188,22 @@ li {
     gap: 1rem;
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo img {
+    height: 60px;
+    width: auto;
+    display: block;
+}
+
 .logo h1 {
     color: white;
-    margin-bottom: 0.25rem;
-    font-size: 2rem;
+    margin-bottom: 0;
+    font-size: 1.8rem;
 }
 
 .logo h1 a {
@@ -199,15 +211,10 @@ li {
     text-decoration: none;
 }
 
-.subtitle {
-    color: rgba(255,255,255,0.9);
-    font-size: 1.1rem;
-    font-weight: 300;
-}
-
 .header-info {
     text-align: right;
     color: rgba(255,255,255,0.95);
+    font-size: 0.85rem;
 }
 
 .header-info strong {
@@ -1090,12 +1097,17 @@ li {
         padding: 0 15px;
     }
 
-    .header h1 {
-        font-size: 1.5rem;
+    /* Header avec logo - responsive */
+    .header {
+        padding: 0.8rem 0;
     }
 
-    .subtitle {
-        font-size: 0.95rem;
+    .logo img {
+        height: 45px;
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
     }
 
     .header-content {
@@ -1104,8 +1116,13 @@ li {
         gap: 0.5rem;
     }
 
+    .logo {
+        justify-content: center;
+    }
+
     .header-info {
         text-align: center;
+        font-size: 0.75rem;
     }
 
     /* Navigation mobile - version originale avec hamburger toujours visible */
@@ -1120,7 +1137,6 @@ li {
         text-align: left;
         color: white;
         font-weight: 600;
-        /* Le bouton reste toujours visible */
     }
 
     .menu-toggle.active {
@@ -1317,12 +1333,16 @@ li {
 }
 
 @media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.3rem;
+    .logo img {
+        height: 35px;
     }
 
-    .subtitle {
-        font-size: 0.85rem;
+    .logo h1 {
+        font-size: 1.1rem;
+    }
+
+    .header-info {
+        font-size: 0.7rem;
     }
 
     h2 {
