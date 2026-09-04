@@ -12,16 +12,20 @@
         /* ===== STYLES SPÉCIFIQUES À L'ACCUEIL ===== */
         .hero {
             position: relative;
-            min-height: 500px;
+            min-height: 400px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            text-align: center;
             overflow: hidden;
             border-radius: var(--radius);
             margin-bottom: 2rem;
             cursor: pointer;
+            transition: min-height 0.6s ease;
+        }
+
+        .hero.expanded {
+            min-height: 800px;
         }
 
         .hero-bg {
@@ -31,12 +35,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.6);
+            filter: brightness(0.55);
             transition: filter 0.3s;
         }
 
         .hero:hover .hero-bg {
-            filter: brightness(0.5);
+            filter: brightness(0.45);
         }
 
         .hero-content {
@@ -45,6 +49,7 @@
             padding: 2.5rem;
             max-width: 900px;
             width: 100%;
+            text-align: left;
         }
 
         .hero h2 {
@@ -52,19 +57,14 @@
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             color: white;
+            text-align: center;
         }
 
         .hero .message-text {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.8;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-            max-height: 180px;
-            overflow: hidden;
-            transition: max-height 0.6s ease;
-        }
-
-        .hero .message-text.expanded {
-            max-height: 2000px;
+            text-align: left;
         }
 
         .hero .message-text .full-text {
@@ -133,80 +133,41 @@
             opacity: 1;
         }
 
-        /* ===== ACCORDÉON GUIDE COLLABORATIF ===== */
-        .guide-accordion .accordion-item {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 14px;
-            background: white;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-        }
-
-        .guide-accordion .accordion-item:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .guide-accordion .accordion-header {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 1rem 1.2rem;
-            display: flex;
-            justify-content: space-between;
+        /* ===== GUIDE COLLABORATIF AVEC IMAGE ET LIRE LA SUITE ===== */
+        .guide-collaboratif {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             align-items: center;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-            font-size: 1rem;
+        }
+
+        .guide-collaboratif .text-content .full-text {
+            display: none;
+        }
+
+        .guide-collaboratif .text-content .full-text.visible {
+            display: block;
+        }
+
+        .guide-collaboratif .image-wrapper img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
             font-weight: 600;
-            color: var(--text-dark);
+            padding: 0.2rem 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline dotted;
         }
 
-        .guide-accordion .accordion-header:hover {
-            background: #f5f8ff;
-        }
-
-        .guide-accordion .accordion-header.open {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .guide-accordion .accordion-icon {
-            font-size: 1.6rem;
-            font-weight: 300;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            margin-left: auto;
-        }
-
-        .guide-accordion .accordion-header.open .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        .guide-accordion .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #fafbff;
-        }
-
-        .guide-accordion .accordion-body.open {
-            max-height: 500px;
-            padding: 0.8rem 1.2rem 1.5rem;
-        }
-
-        .guide-accordion .accordion-body p {
-            margin: 0.5rem 0;
-            line-height: 1.7;
-        }
-
-        .guide-accordion .accordion-body ul {
-            margin: 0.5rem 0 0.5rem 1.5rem;
-        }
-
-        .guide-accordion .accordion-body ul li {
-            margin-bottom: 0.3rem;
+        .read-more-btn:hover {
+            color: var(--primary-dark);
         }
 
         /* ===== NAVIGATION RAPIDE AVEC IMAGES ===== */
@@ -276,14 +237,17 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
-                min-height: 350px;
+                min-height: 300px;
+            }
+            .hero.expanded {
+                min-height: 700px;
             }
             .hero h2 {
                 font-size: 1.5rem;
+                text-align: center;
             }
             .hero .message-text {
                 font-size: 0.95rem;
-                max-height: 140px;
             }
             .hero .message-text .signature {
                 font-size: 0.85rem;
@@ -296,6 +260,19 @@
                 font-size: 0.6rem;
                 padding: 0.15rem 0.8rem;
                 bottom: 0.8rem;
+            }
+            .hero-content {
+                padding: 1.5rem;
+            }
+
+            .guide-collaboratif {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .guide-collaboratif .image-wrapper img {
+                max-height: 200px;
+                object-fit: cover;
             }
 
             .quick-access-nav {
@@ -319,14 +296,19 @@
 
         @media (max-width: 480px) {
             .hero {
-                min-height: 280px;
+                min-height: 250px;
+            }
+            .hero.expanded {
+                min-height: 650px;
             }
             .hero .message-text {
                 font-size: 0.85rem;
-                max-height: 120px;
             }
             .hero .message-text .signature {
                 font-size: 0.75rem;
+            }
+            .hero-content {
+                padding: 1rem;
             }
 
             .quick-access-nav {
@@ -580,16 +562,15 @@
                     <span class="click-hint">👆 Cliquez sur l'image ou sur le bouton</span>
                 </div>
 
-                <!-- ===== GUIDE COLLABORATIF EN ACCORDÉON ===== -->
+                <!-- ===== GUIDE COLLABORATIF AVEC IMAGE ET LIRE LA SUITE ===== -->
                 <div class="content-box">
                     <h3 style="color:var(--primary-color);">Un guide collaboratif</h3>
-                    <div class="guide-accordion">
-                        <div class="accordion-item">
-                            <button class="accordion-header" aria-expanded="false">
-                                <span>Le Guide des Familles est né du constat d'un manque de connaissance des habitants concernant les services, dispositifs et ressources présents sur le territoire.</span>
-                                <span class="accordion-icon">+</span>
-                            </button>
-                            <div class="accordion-body">
+                    <div class="guide-collaboratif">
+                        <div class="text-content">
+                            <div class="short-text">
+                                <p>Le Guide des Familles est né du constat d'un manque de connaissance des habitants concernant les services, dispositifs et ressources présents sur le territoire.</p>
+                            </div>
+                            <div class="full-text">
                                 <p><strong>Conçu de manière collaborative</strong> avec les structures locales, la Caisse d'Allocations Familiales du Loiret (CAF), la Mutualité Sociale Agricole Beauce-Cœur de Loire (MSA), les élus et les familles elles-mêmes, il se veut être un <strong>outil indispensable recensant l'ensemble des informations utiles à la vie familiale</strong>, au sens large.</p>
                                 <p><strong>On y retrouve des repères clairs et pratiques autour :</strong></p>
                                 <ul>
@@ -600,6 +581,10 @@
                                 </ul>
                                 <p style="margin-top:1rem; font-style:italic; color:var(--primary-dark);">Ce guide a pour ambition de faciliter le quotidien des familles, de renforcer le lien avec les acteurs locaux et de valoriser toutes les ressources disponibles sur notre territoire.</p>
                             </div>
+                            <button class="read-more-btn" id="guideReadMore">Lire la suite</button>
+                        </div>
+                        <div class="image-wrapper">
+                            <img src="presentation_page-000.png" alt="Partenaires du guide">
                         </div>
                     </div>
                 </div>
@@ -793,55 +778,47 @@
             });
 
             // ============================================================
-            // ---- HERO : Lire la suite / Réduire (clic sur hero ou bouton) ----
+            // ---- HERO : Lire la suite / Réduire AVEC AGRANDISSEMENT ----
             // ============================================================
-            const fullText = document.querySelector('.hero .full-text');
-            const toggleBtn = document.getElementById('togglePresidentBtn');
+            const heroFullText = document.querySelector('.hero .full-text');
+            const heroToggleBtn = document.getElementById('togglePresidentBtn');
             const heroSection = document.getElementById('heroSection');
 
-            function togglePresidentMessage() {
-                const isVisible = fullText.classList.contains('visible');
-                fullText.classList.toggle('visible');
-                toggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+            function toggleHeroMessage() {
+                const isVisible = heroFullText.classList.contains('visible');
+                heroFullText.classList.toggle('visible');
+                heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+                heroSection.classList.toggle('expanded');
             }
 
-            // Clic sur le bouton
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', function(e) {
+            if (heroToggleBtn) {
+                heroToggleBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    togglePresidentMessage();
+                    toggleHeroMessage();
                 });
             }
 
-            // Clic sur le hero (image + fond)
             if (heroSection) {
                 heroSection.addEventListener('click', function(e) {
-                    // Ne pas déclencher si on clique sur le bouton (déjà géré)
-                    if (e.target === toggleBtn) return;
-                    togglePresidentMessage();
+                    if (e.target === heroToggleBtn) return;
+                    toggleHeroMessage();
                 });
             }
 
-            // ---- Accordéon guide collaboratif ----
-            const guideHeaders = document.querySelectorAll('.guide-accordion .accordion-header');
-            guideHeaders.forEach(function(header) {
-                header.addEventListener('click', function() {
-                    const isOpen = this.classList.contains('open');
-                    const body = this.nextElementSibling;
+            // ============================================================
+            // ---- GUIDE COLLABORATIF : Lire la suite / Réduire ----
+            // ============================================================
+            const guideFullText = document.querySelector('.guide-collaboratif .full-text');
+            const guideToggleBtn = document.getElementById('guideReadMore');
 
-                    document.querySelectorAll('.guide-accordion .accordion-header').forEach(function(h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        h.nextElementSibling.classList.remove('open');
-                    });
-
-                    if (!isOpen) {
-                        this.classList.add('open');
-                        this.setAttribute('aria-expanded', 'true');
-                        body.classList.add('open');
-                    }
+            if (guideToggleBtn) {
+                guideToggleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const isVisible = guideFullText.classList.contains('visible');
+                    guideFullText.classList.toggle('visible');
+                    guideToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
                 });
-            });
+            }
 
         })();
     </script>
