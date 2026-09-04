@@ -7,6 +7,7 @@
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
         :root {
             --primary-color: #f0bb1e;
@@ -15,7 +16,71 @@
             --secondary-color: #E6A014;
             --secondary-light: #F5C850;
         }
-    </style> 
+
+        /* Style pour les sections avec image à gauche */
+        .subsection-with-image {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .subsection-with-image .image-wrapper {
+            flex: 0 0 200px;
+            max-width: 200px;
+        }
+
+        .subsection-with-image .image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        .subsection-with-image .text-wrapper {
+            flex: 1;
+        }
+
+        .subsection-with-image .text-wrapper h3 {
+            margin-top: 0;
+            color: var(--primary-dark);
+        }
+
+        .subsection-with-image .text-wrapper .social-links {
+            margin-top: 0.5rem;
+        }
+
+        .subsection-with-image .text-wrapper .social-links a {
+            font-size: 1.3rem;
+            margin-right: 0.6rem;
+            text-decoration: none;
+        }
+
+        .subsection-with-image .text-wrapper .social-links a:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .subsection-with-image {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .subsection-with-image .image-wrapper {
+                flex: 0 0 auto;
+                max-width: 100%;
+                width: 100%;
+            }
+
+            .subsection-with-image .image-wrapper img {
+                max-width: 250px;
+                display: block;
+                margin: 0 auto;
+            }
+        }
+</style> 
 </head>
 <body>
 
@@ -120,54 +185,66 @@
         </div>
         <h2 class="section-title">Vivre ensemble</h2>
 
-               <div class="content-box">
+        <div class="content-box">
             <div class="subsections">
-                <div class="subsection">
-                    <h3>Guid'asso</h3>
-                      <img src="vivre_ensemble_guideasso.png" alt="guide asso"
-                         style="margin-bottom:1rem; max-width:300px;">
-                    <p>Dispositif de l’Etat, géré par la Ligue de l’enseignement pour le département du Loiret, qui propose un accompagnement des associations tout au long de leur existence : de leur création à leur dissolution. Présence d’une informatrice au sein de Bee’Mobile qui pourra répondre aux questions des associations ou au besoin les rediriger vers des accompagnateurs généralistes, aptes à répondre à toutes les questions. 
-Propositions de temps de rencontre et de formations gratuites tout au long de l’année.</p><br>
-                    <br>
-                    <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire <br>    
-                    📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                    📧 <a href="mailto:evsitinerant@laligue45.fr ">evsitinerant@laligue45.fr </a><br>
-                    <p style="margin-top:0.5rem;">
-                    <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://instagram.com/evsligue45 " target="_blank" rel="noopener" style="color:#E1306C; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-instagram"></i></a></p>
+
+                <!-- Guid'asso -->
+                <div class="subsection-with-image">
+                    <div class="image-wrapper">
+                        <img src="vivre_ensemble_guideasso.png" alt="guide asso">
+                    </div>
+                    <div class="text-wrapper">
+                        <h3>Guid'asso</h3>
+                        <p>Dispositif de l'Etat, géré par la Ligue de l'enseignement pour le département du Loiret, qui propose un accompagnement des associations tout au long de leur existence : de leur création à leur dissolution. Présence d'une informatrice au sein de Bee'Mobile qui pourra répondre aux questions des associations ou au besoin les rediriger vers des accompagnateurs généralistes, aptes à répondre à toutes les questions. 
+                        Propositions de temps de rencontre et de formations gratuites tout au long de l'année.</p>
+                        <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire</p>
+                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                        <div class="social-links">
+                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="subsection">
-                    <h3>Espace Initiatives Habitants</h3>
-                      <img src="vivre_ensemble_projet_initiative.png" alt="intiatives habitants"
-                         style="margin-bottom:1rem; max-width:300px;">
-                    <p>Service ouvert à l’ensemble des habitants pour proposer et mettre en œuvre des projets collectifs : <br>
-Projet en cours de développement : un jardin partagé à Bonny-sur-Loire, rue de Bicètre.<br>
-Projet à venir : projet artistique “Rêver plus grand !”. Projet intergénérationnel encadré par trois artistes : une comédienne, une écrivaine et une danseuse. <br></p>
-               <br>
-                 <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire <br>    
-                    📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                    📧 <a href="mailto:evsitinerant@laligue45.fr ">evsitinerant@laligue45.fr </a><br>
-                    <p style="margin-top:0.5rem;">
-                    <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://instagram.com/evsligue45 " target="_blank" rel="noopener" style="color:#E1306C; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-instagram"></i></a></p></div>
+
+                <!-- Espace Initiatives Habitants -->
+                <div class="subsection-with-image">
+                    <div class="image-wrapper">
+                        <img src="vivre_ensemble_projet_initiative.png" alt="initiatives habitants">
+                    </div>
+                    <div class="text-wrapper">
+                        <h3>Espace Initiatives Habitants</h3>
+                        <p>Service ouvert à l'ensemble des habitants pour proposer et mettre en œuvre des projets collectifs :<br>
+                        Projet en cours de développement : un jardin partagé à Bonny-sur-Loire, rue de Bicètre.<br>
+                        Projet à venir : projet artistique "Rêver plus grand !". Projet intergénérationnel encadré par trois artistes : une comédienne, une écrivaine et une danseuse.</p>
+                        <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire</p>
+                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                        <div class="social-links">
+                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
-                   
-                <div class="subsection">
-                    <h3>Permanence numérique</h3>
-                    <img src="vivre_page-004.png" alt="Permanence numérique"
-                         style="margin-bottom:1rem; max-width:300px;">
-                    <p>Service en cours de développement qui vise à proposer aux habitants et aux associations de l’ensemble de la Communauté de communes un accompagnement sur toutes les thématiques relatives au numérique (aide à l’utilisation d’un ordinateur, bonne utilisation des réseaux sociaux, formations à l’utilisation d’outils, accompagnement pour les démarches administratives, ...).Ce service sera en itinérance sur l’ensemble des communes du Berry Loire Puisaye.<br>
-                   <br>
-                    <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire <br>    
-                    📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                    📧 <a href="mailto:evsitinerant@laligue45.fr ">evsitinerant@laligue45.fr </a><br>
-                    <p style="margin-top:0.5rem;">
-                    <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://instagram.com/evsligue45 " target="_blank" rel="noopener" style="color:#E1306C; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-instagram"></i></a></p>
-                    <br>
-                   
+
+                <!-- Permanence numérique -->
+                <div class="subsection-with-image">
+                    <div class="image-wrapper">
+                        <img src="vivre_page-004.png" alt="Permanence numérique">
+                    </div>
+                    <div class="text-wrapper">
+                        <h3>Permanence numérique</h3>
+                        <p>Service en cours de développement qui vise à proposer aux habitants et aux associations de l'ensemble de la Communauté de communes un accompagnement sur toutes les thématiques relatives au numérique (aide à l'utilisation d'un ordinateur, bonne utilisation des réseaux sociaux, formations à l'utilisation d'outils, accompagnement pour les démarches administratives, ...). Ce service sera en itinérance sur l'ensemble des communes du Berry Loire Puisaye.</p>
+                        <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire</p>
+                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                        <div class="social-links">
+                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
