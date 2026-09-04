@@ -1,659 +1,785 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parentalité - Guide des Familles Berry Loire Puisaye</title>
-    <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Parentalité - Guide des Familles Berry Loire Puisaye</title>
+  <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-        :root {
-            --primary-color: #585e70;
-            --primary-light: #7D8296;
-            --primary-dark: #3F4451;
-            --secondary-color: #6C7285;
-            --secondary-light: #9A9FAD;
-        }
-     
-        /* ── Accordéon ── */
-        .accordion-item {
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
+    /* ===== RESET & BASE ===== */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f9faff;
+      color: #1e1e2a;
+      line-height: 1.5;
+    }
+    img { max-width: 100%; height: auto; display: block; }
 
-        .accordion-header {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 1.1rem 1.4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-        }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.2rem; }
 
-        .accordion-header:hover {
-            background: #f5f8ff;
-        }
+    /* ===== HEADER ===== */
+    .header {
+      background: linear-gradient(135deg, #3F4451 0%, #585e70 100%);
+      color: white;
+      padding: 1.2rem 0 0.8rem;
+    }
+    .header-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo h1 { font-size: 1.5rem; font-weight: 700; }
+    .logo h1 a { color: white; text-decoration: none; }
+    .subtitle { font-size: 0.85rem; opacity: 0.85; }
+    .header-info { font-size: 0.8rem; background: rgba(255,255,255,0.12); padding: 0.3rem 0.9rem; border-radius: 30px; }
 
-        .accordion-header.open {
-            background: var(--primary-color, #585e70);
-            color: white;
-        }
+    /* ===== NAV ===== */
+    .nav {
+      background: #2d323d;
+      padding: 0 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      padding: 0.5rem 0;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+    .nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      gap: 0.2rem 0.4rem;
+      padding: 0.4rem 0;
+    }
+    .nav-list > li > a {
+      color: #eaeef5;
+      text-decoration: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-block;
+      transition: 0.2s;
+    }
+    .nav-list > li > a:hover, .nav-list > li > a.active {
+      background: rgba(255,255,255,0.18);
+      color: white;
+    }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown-menu {
+      display: none;
+      position: absolute;
+      background: #2d323d;
+      min-width: 200px;
+      border-radius: 10px;
+      padding: 0.4rem 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      top: 100%;
+      left: 0;
+      z-index: 999;
+    }
+    .nav-dropdown-menu a {
+      display: block;
+      padding: 0.5rem 1.2rem;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 0.85rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .nav-dropdown-menu a:hover { background: #3f4451; color: white; }
+    .nav-dropdown:hover .nav-dropdown-menu { display: block; }
 
-        .accordion-header h3 {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-            color: inherit;
-        }
+    /* mobile nav */
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 0.5rem 0;
+      }
+      .nav-list.active { display: flex; }
+      .nav-dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: #1e222b;
+        border-radius: 0;
+        padding-left: 1rem;
+        display: none;
+      }
+      .nav-dropdown.open .nav-dropdown-menu { display: block; }
+      .nav-dropdown > a { pointer-events: auto; }
+      .nav-list > li > a { padding: 0.6rem 0.8rem; width: 100%; }
+    }
 
-        .accordion-icon {
-            font-size: 1.3rem;
-            font-weight: 300;
-            line-height: 1;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            margin-left: 12px;
-        }
+    /* ===== SECTION ===== */
+    .section { padding: 2.8rem 0; }
+    .section-alt { background: white; }
+    .section-header img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3F4451;
+      margin-bottom: 0.5rem;
+      border-left: 6px solid #585e70;
+      padding-left: 1rem;
+    }
+    .quote {
+      font-style: italic;
+      color: #585e70;
+      background: #f1f4fa;
+      padding: 0.8rem 1.5rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.5rem 0 1.5rem;
+      font-size: 0.95rem;
+    }
 
-        .accordion-header.open .accordion-icon {
-            transform: rotate(45deg);
-        }
+    /* ===== ACCORDÉON ===== */
+    .accordion { margin-top: 2.5rem; }
+    .accordion-item {
+      border: 1px solid #e2e7f0;
+      border-radius: 14px;
+      margin-bottom: 14px;
+      background: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .accordion-item:hover { box-shadow: 0 4px 14px rgba(88,94,112,0.12); }
 
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #fafbff;
-        }
+    .accordion-header {
+      width: 100%;
+      background: white;
+      border: none;
+      padding: 0.9rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.2s;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #2d323d;
+    }
+    .accordion-header:hover { background: #f5f8ff; }
+    .accordion-header.open {
+      background: #585e70;
+      color: white;
+    }
+    .accordion-header.open h3 { color: white; }
+    .accordion-header img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .accordion-header h3 {
+      margin: 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      flex: 1;
+    }
+    .accordion-icon {
+      font-size: 1.6rem;
+      font-weight: 300;
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+    .accordion-header.open .accordion-icon { transform: rotate(45deg); }
 
-        .accordion-body.open {
-            max-height: 2000px;
-            padding: 1.2rem 1.4rem;
-        }
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      background: #fafbff;
+    }
+    .accordion-body.open {
+      max-height: 3000px;
+      padding: 0.8rem 1.2rem 1.5rem;
+    }
 
-        .accordion-body-inner {
-            display: flex;
-            gap: 1.5rem;
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
+    .accordion-body-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .accordion-body-inner .text {
+      flex: 1;
+      min-width: 0;
+    }
+    .accordion-body-inner .text p {
+      margin: 0 0 0.6rem;
+      line-height: 1.6;
+    }
+    .accordion-body-inner .text .full-text {
+      display: none;
+    }
+    .accordion-body-inner .text .full-text.visible {
+      display: block;
+    }
+    .read-more-btn {
+      background: none;
+      border: none;
+      color: #585e70;
+      font-weight: 600;
+      padding: 0.2rem 0;
+      cursor: pointer;
+      font-size: 0.85rem;
+      text-decoration: underline dotted;
+    }
+    .read-more-btn:hover { color: #3F4451; }
 
-        .accordion-body-inner .text {
-            flex: 1;
-            min-width: 200px;
-        }
+    .accordion-body-inner .images {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: flex-start;
+    }
+    .accordion-body-inner .images img {
+      width: 100%;
+      max-width: 140px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid #dde2ec;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      flex: 0 0 auto;
+    }
+    .accordion-body-inner .images img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+    @media (max-width: 480px) {
+      .accordion-body-inner .images img {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+      }
+    }
 
-        .accordion-body-inner .text p {
-            margin: 0 0 0.5rem;
-            line-height: 1.7;
-        }
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox-content {
+      max-width: 90vw;
+      max-height: 90vh;
+      background: white;
+      border-radius: 16px;
+      padding: 0.5rem;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+      position: relative;
+    }
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 12px;
+      display: block;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: -14px;
+      right: -14px;
+      background: #2d323d;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.4rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
 
-        .accordion-body-inner .images {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .accordion-body-inner .images img {
-            width: 140px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #e0e0e0;
-            position: relative;
-            cursor: zoom-in;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        /* ── Zoom au survol : l'image s'agrandit largement, sans être rognée ── */
-        .accordion-body-inner .images img:hover {
-            transform: scale(3.6);
-            z-index: 999;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.4);
-            border: 3px solid white;
-        }
-
-        /* Les conteneurs masquent normalement leur contenu (nécessaire à l'animation
-           d'ouverture/fermeture) ; on lève ce masquage pendant le survol pour que
-           le zoom ne soit plus coupé, et une fois l'accordéon ouvert. */
-        .accordion-item:has(.images img:hover),
-        .accordion-body.open {
-            overflow: visible;
-        }
-    </style>
+    /* ===== FOOTER ===== */
+    .footer {
+      background: #2d323d;
+      color: #cfd7e6;
+      padding: 2.5rem 0 1rem;
+      margin-top: 2rem;
+    }
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    .footer-section h3 { color: white; margin-bottom: 0.8rem; font-size: 1.1rem; }
+    .footer-section ul { list-style: none; }
+    .footer-section ul li { margin-bottom: 0.4rem; }
+    .footer-section a { color: #bcc6da; text-decoration: none; }
+    .footer-section a:hover { color: white; text-decoration: underline; }
+    .footer-bottom {
+      border-top: 1px solid #3f4451;
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      background: #585e70;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      z-index: 500;
+    }
+    .scroll-top.visible { opacity: 1; }
+    .scroll-top:hover { background: #3F4451; }
+  </style>
 </head>
 <body>
 
 <header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <h1><a href="index.html" style="color:white; text-decoration:none;">Guide des Familles</a></h1>
-                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
-            </div>
-            <div class="header-info">
-                <p><strong>Dernière mise à jour :</strong> 3 septembre 2026</p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">
+        <h1><a href="index.html">Guide des Familles</a></h1>
+        <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
+      </div>
+      <div class="header-info"><strong>Dernière mise à jour :</strong> 3 septembre 2026</div>
     </div>
+  </div>
 </header>
 
 <nav class="nav" id="mainNav">
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
-    <ul class="nav-list" id="navList">
-        <li><a href="index.html">Accueil</a></li>
-        <li class="nav-dropdown">
-    <a href="interlocuteurs.html">Interlocuteurs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-        <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-        <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-        <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-        <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée de l'enfant</a></li>
-        <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-        <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="petite-enfance.html">Petite enfance ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="petite-enfance.html#Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#Accueil-collectif">Accueil collectif</a></li>
-        <li><a href="petite-enfance.html#MAM">Maison d'Assistantes Maternelles (MAM)</a></li>
-        <li><a href="petite-enfance.html#Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#pmi-consultations-ateliers">PMI - Consultations et ateliers</a></li>
-        <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-    </ul>
-</li>
-        <li class="nav-dropdown">
-            <a href="enfance.html">Enfance ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="enfance.html#scolarite">Scolarité</a></li>
-                <li><a href="enfance.html#clas">CLAS</a></li>
-                <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-                <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-            <a href="jeunesse.html">Jeunesse ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="jeunesse.html#colleges">Collèges</a></li>
-                <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-                <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-             </ul>
-        </li>
-        <li class="nav-dropdown">
-            <a href="parentalite.html" class="active">Parentalité ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-                <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-                <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-                <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-                <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-                <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-                <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-                <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-            </ul>
-        </li>
-      <li class="nav-dropdown">
-    <a href="loisirs.html">Loisirs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-        <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-        <li><a href="loisirs.html#associations">Associations</a></li>
-        <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-        <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-        <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-        <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-        <li><a href="loisirs.html#squares">Squares</a></li>
-        <li><a href="loisirs.html#city-skate">City-stades</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-            <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-                <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-                <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-            <a href="acces-droits.html">Accès aux droits ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-                <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-                <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-                <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-                <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
-            </ul>
-        </li>
-    </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+  <ul class="nav-list" id="navList">
+    <li><a href="index.html">Accueil</a></li>
+    <!-- Navigation simplifiée mais fonctionnelle avec sous-menus déroulants -->
+    <li class="nav-dropdown"><a href="interlocuteurs.html">Interlocuteurs ▾</a><ul class="nav-dropdown-menu"><li><a href="interlocuteurs.html#mairies">Mairies</a></li><li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li><li><a href="interlocuteurs.html#caf">CAF</a></li><li><a href="interlocuteurs.html#msa">MSA</a></li><li><a href="interlocuteurs.html#ads">ADS</a></li></ul></li>
+    <li class="nav-dropdown"><a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a><ul class="nav-dropdown-menu"><li><a href="arrivee-enfant.html#demarches">Démarches</a></li><li><a href="arrivee-enfant.html#accompagnement-perinatal">Périnatal</a></li><li><a href="arrivee-enfant.html#mode-de-garde">Mode de garde</a></li></ul></li>
+    <li class="nav-dropdown"><a href="petite-enfance.html">Petite enfance ▾</a><ul class="nav-dropdown-menu"><li><a href="petite-enfance.html#Guichet-Unique">Guichet Unique</a></li><li><a href="petite-enfance.html#Accueil-collectif">Accueil collectif</a></li><li><a href="petite-enfance.html#MAM">MAM</a></li><li><a href="petite-enfance.html#Accueil-individuel">Accueil individuel</a></li><li><a href="petite-enfance.html#pmi-consultations-ateliers">PMI</a></li><li><a href="petite-enfance.html#bulle-musicale">Bulle Musicale</a></li></ul></li>
+    <li class="nav-dropdown"><a href="enfance.html">Enfance ▾</a><ul class="nav-dropdown-menu"><li><a href="enfance.html#scolarite">Scolarité</a></li><li><a href="enfance.html#clas">CLAS</a></li><li><a href="enfance.html#accueils-loisirs">Loisirs</a></li><li><a href="enfance.html#accueils-periscolaires">Périscolaire</a></li></ul></li>
+    <li class="nav-dropdown"><a href="jeunesse.html">Jeunesse ▾</a><ul class="nav-dropdown-menu"><li><a href="jeunesse.html#colleges">Collèges</a></li><li><a href="jeunesse.html#ter">TER</a></li><li><a href="jeunesse.html#structures-loisirs">Structures</a></li></ul></li>
+    <li class="nav-dropdown"><a href="parentalite.html" class="active">Parentalité ▾</a><ul class="nav-dropdown-menu"><li><a href="parentalite.html#aed">AED</a></li><li><a href="parentalite.html#sdaep">SDAEP</a></li><li><a href="parentalite.html#allo-parents-crise">Allo Parents</a></li><li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li><li><a href="parentalite.html#bee-mobile">Bee'Mobile</a></li><li><a href="parentalite.html#paf">PAF</a></li><li><a href="parentalite.html#groupe-echanges">Groupe échanges</a></li><li><a href="parentalite.html#nid-fleuri">Nid fleuri</a></li></ul></li>
+    <li class="nav-dropdown"><a href="loisirs.html">Loisirs ▾</a><ul class="nav-dropdown-menu"><li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li><li><a href="loisirs.html#saison-culturelle">Culture</a></li><li><a href="loisirs.html#associations">Associations</a></li><li><a href="loisirs.html#ludotheques">Ludothèques</a></li><li><a href="loisirs.html#microfolie">Micro-Folie</a></li><li><a href="loisirs.html#tourisme">Tourisme</a></li><li><a href="loisirs.html#patrimoine">Patrimoine</a></li><li><a href="loisirs.html#squares">Squares</a></li><li><a href="loisirs.html#city-skate">City-stades</a></li></ul></li>
+    <li class="nav-dropdown"><a href="vivre-ensemble.html">Vivre ensemble ▾</a><ul class="nav-dropdown-menu"><li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li><li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives</a></li><li><a href="vivre-ensemble.html#permanence-numerique">Numérique</a></li></ul></li>
+    <li class="nav-dropdown"><a href="acces-droits.html">Accès aux droits ▾</a><ul class="nav-dropdown-menu"><li><a href="acces-droits.html#franceservice">France Services</a></li><li><a href="acces-droits.html#ads">ADS</a></li><li><a href="acces-droits.html#sis">SIS CAF</a></li><li><a href="acces-droits.html#cidff">CIDFF</a></li><li><a href="acces-droits.html#prh45">PRH45</a></li></ul></li>
+  </ul>
 </nav>
-    
+
 <main>
-
-<section class="section section-alt">
+  <section class="section section-alt">
     <div class="container">
-        <div class="section-header">
-            <img src="parentalite_page-000.png" alt="Parentalité">
+      <div class="section-header"><img src="parentalite_page-000.png" alt="Parentalité"></div>
+      <h2 class="section-title">Parentalité</h2>
+      <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
+
+      <div class="accordion" id="accordionContainer">
+
+        <!-- 1. AED -->
+        <div class="accordion-item" id="aed">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="parentalite_page-009.png" alt="Logo Conseil Départemental">
+            <h3>Aide Éducative à Domicile (AED)</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Le département propose à chaque Loirétain, quel que soit son âge, sa situation et son lieu d'habitation, un service de proximité pour permettre de trouver les solutions les plus adaptées aux besoins exprimés.</p>
+                  <p>Concernant l'Aide Éducative à Domicile, <strong>les travailleurs sociaux en prévention proposent un accompagnement à des parents et/ou des enfants...</strong></p>
+                </div>
+                <div class="full-text">
+                  <p>...ensemble ou séparément, de manière concomitante ou non. Cette démarche s'exerce dans leur milieu de vie ordinaire au sein duquel il existe des difficultés matérielles, éducatives, relationnelles qui risquent de mettre en danger la santé, la moralité, la sécurité, l'entretien, l'éducation le développement de l'enfant.</p>
+                </div>
+                <button class="read-more-btn" data-target="aed">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>📞 ADS Gien : <a href="tel:0238052349">02 38 05 23 49</a><br>📧 <a href="mailto:adsgienmontargis@loiret.fr">adsgienmontargis@loiret.fr</a><br>🌐 <a href="https://www.loiret.fr/annuaire/agence-departementale-des-solidarites-montargis-gien-anternne-de-gien" target="_blank">www.loiret.fr - ADS de Gien</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_page-010.png" alt="Bureaux de l'ADS de Gien">
+                <img src="parentalite_page-011.png" alt="Plaquette de l'ADS">
+              </div>
+            </div>
+          </div>
         </div>
-        <h2 class="section-title">Parentalité</h2>
 
-        <p class="quote">"Il n'y a pas de parent parfait, pas plus que de parentalité parfaite !" - Isabelle Filliozat</p>
-
-           <!-- ══════════════ ACCORDÉON ══════════════ -->
-        <div class="accordion" style="margin-top:3rem; max-width:1000px; margin-left:auto; margin-right:auto;">
-
-            <!-- 1. AED -->
-            <div class="accordion-item" id="aed">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="parentalite_page-009.png" alt="Logo Conseil Départemental" style="width:100px; height:100px; object-fit:contain;">
-                        <h3>Aide Éducative à Domicile (AED)</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Le département propose à chaque Loirétain, quel que soit son âge, sa situation et son lieu d'habitation, un service de proximité pour permettre de trouver les solutions les plus adaptées aux besoins exprimés :</p>
-                            <p>Concernant l'Aide Éducative à Domicile, <strong>les travailleurs sociaux en prévention proposent un accompagnement à des parents et/ou des enfants, ensemble ou séparément, de manière concomitante ou non.</strong> Cette démarche s'exerce dans leur milieu de vie ordinaire au sein duquel il existe des difficultés matérielles, éducatives, relationnelles qui risquent de mettre en danger la santé, la moralité, la sécurité, l'entretien, l'éducation le développement de l'enfant.</p>
-                            <p>📞 Contact ADS Gien : <a href="tel:0238052349">02 38 05 23 49</a><br>
-                            📧 <a href="mailto:adsgienmontargis@loiret.fr">adsgienmontargis@loiret.fr</a><br>
-                            🌐 <a href="https://www.loiret.fr/annuaire/agence-departementale-des-solidarites-montargis-gien-anternne-de-gien" target="_blank" rel="noopener">www.loiret.fr - ADS de Gien</a></p>
-                        </div>
-                    <div class="images">
-                            <img src="parentalite_page-010.png" alt="Bureaux de l'ADS de Gien" class="accordion-image" data-full="parentalite_page-010.png">
-                            <img src="parentalite_page-011.png" alt="Plaquette de l'ADS" class="accordion-image" data-full="parentalite_page-011.png">
-                        </div>
-                    </div>
+        <!-- 2. SDAEP -->
+        <div class="accordion-item" id="sdaep">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="parentalite_page-007.png" alt="Logo Aidaphi">
+            <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Pour le développement de votre enfant et de votre relation parent-enfant, la Protection Maternelle et Infantile met à votre disposition des professionnels experts de la puériculture, de la santé de l’enfant, de la parentalité, de l’aide sociale et familiale.</p>
                 </div>
-            </div>
-
-            <!-- 2. SDAEP -->
-            <div class="accordion-item" id="sdaep">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="parentalite_page-007.png" alt="Logo Aidaphi" style="width:100px; height:100px; object-fit:contain;">
-                        <h3>Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Pour le développement de votre enfant et de votre relation parent-enfant, la Protection Maternelle et Infantile met à votre disposition des professionnels experts de la puériculture, de la santé de l’enfant, de la parentalité, de l’aide sociale et familiale. Elle peut également vous orienter vers des services spécialisés (CAMSP, psychologues, éducateurs, ...)</p>
-                            <p>Être parents c’est toujours se poser des questions et parfois rencontrer de réelles difficultés.<br>
-                            Chacun peut avoir à un moment ou à un autre, besoin de soutien ou d’accompagnement. Le SDAEP vous propose des rencontres régulières (service, domicile, autres lieux) afin de vous accompagner à appréhender les difficultés rencontrées et vous soutenir dans vos réflexions concernant vos responsabilités de parents.<br>
-                            Accès : En contractualisant auprès de l’Agence Départementale des Solidarités (ADS) ou directement auprès du service d’AEP dans le cadre d’un accès direct.</p>
-                            <p>📞 <a href="tel:0238555010">02 38 55 50 10</a><br>
-                            Contact du lundi au jeudi de 9h00 à 12h30 et de 13h30 à 17h30 et le vendredi jusqu'à 17h00<br>
-                            📧 <a href="mailto:aep45@aidaphi.fr">aep45@aidaphi.fr</a></p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalite_page-011.png" alt="Logo CDLoiret">
-                            <img src="parentalite_page-008.png" alt="Bande dessinée">
-                        </div>
-                    </div>
+                <div class="full-text">
+                  <p>Elle peut également vous orienter vers des services spécialisés (CAMSP, psychologues, éducateurs, ...). Être parents c’est toujours se poser des questions et parfois rencontrer de réelles difficultés. Chacun peut avoir à un moment ou à un autre, besoin de soutien ou d’accompagnement. Le SDAEP vous propose des rencontres régulières (service, domicile, autres lieux) afin de vous accompagner à appréhender les difficultés rencontrées et vous soutenir dans vos réflexions concernant vos responsabilités de parents. Accès : En contractualisant auprès de l’Agence Départementale des Solidarités (ADS) ou directement auprès du service d’AEP dans le cadre d’un accès direct.</p>
                 </div>
+                <button class="read-more-btn" data-target="sdaep">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>📞 <a href="tel:0238555010">02 38 55 50 10</a> (lun-jeu 9h-12h30 / 13h30-17h30, ven jusqu'à 17h)<br>📧 <a href="mailto:aep45@aidaphi.fr">aep45@aidaphi.fr</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_page-011.png" alt="Logo CDLoiret">
+                <img src="parentalite_page-008.png" alt="Bande dessinée">
+              </div>
             </div>
-
-               <!-- 3. Allo, Parents en crise -->
-            <div class="accordion-item" id="allo-parents-crise">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="logo-epe-Loiret-quadri.avif" alt="Logo CAF" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>Allo, Parents en crise</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p><b>Écouter, échanger, accompagner familles et professionnels</b> <br>
-- Proposer une écoute gratuite et sans rdv<br>
-- Créer un espace rassurant où l’anonymat et le non-jugement favorisent l’expression de situations complexes qui mettent à mal l’équilibre familial<br>
-- Valoriser les compétences et ressources personnelles des parents<br>
-- Évaluer les situations et donner des clés de compréhension à l’appelant<br>
-- Orienter vers des personnes ou des lieux ressources de proximité<br></p>
-                            <p>📞 <a href="tel:0805382300">0 805 382 300 (N° vert)</a><br>
-                            du lundi au vendredi de 10h à 13h et de 14h à 17h</p>
-                        </div>
-                        <div class="images">
-                            <img src="alloparentsencrise.jpg.webp" alt="Affiche Allo, parents en crise">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-               <!-- 4. A DOMICILE 45 -->
-            <div class="accordion-item" id="a-domicile-45">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="logo_adomicile45.png" alt="Logo Adomicile45" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>A domicile 45</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Votre quotidien est bousculé par un changement dans votre organisation familiale et vous ne savez plus où donner de la tête ? Un conseil : ne laissez pas la situation empirer. 
-                            Un professionnel de l’aide à domicile peut vous accompagner dans votre rôle de parent.</p>
-                            <p><b>Aide et accompagnement à domicile</b><br>
-                            Pour en savoir plus, contacter votre caisse d’allocations familiales ou un service d’aide à domicile, partenaire de la CAF ou de la MSA pour pouvoir bénéficier de ce service personnalisé.<br>
-                                 
-Assurée par des professionnels formés, qualifiés et diplômés pour vous soutenir temporairement dans votre rôle de parents, pour prévenir l’aggravation de difficultés ponctuelles :<br>
-- lors de l’arrivée d’un enfant,<br>
-- lors d’une recomposition familiale, un déménagement, la maladie d’un enfant ou d’un parent, l’entrée à l’école<br>
-- en cas de séparation, décès<br>
-- quand un parent isolé s’inscrit dans une démarche d’insertion socio-professionnelle<br>
-- en cas de besoin de répit si vous êtes parent d’enfant porteur de handicap...</p>
-
-                            <p>22 Faubourg de la Chaussée - 45 200 Montargis<br>
-                            1er étage - Centre commercial “La Chaussée”</p>
-                            <p>📞 <a href="tel:0238265087">02 38 26 50 87</a></p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalie_adomicile45.png" alt="Service d'intervention sociale CAF">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 5. Bee'Mobile -->
-            <div class="accordion-item" id="bee-mobile">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="logo_beemobile.png" alt="Logo Bee Mobile" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>Espace de vie sociale Bee'Mobile</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Bee Mobile est un Espace de Vie Sociale né d’après la volonté conjointe, entre la communauté de communes du Berry Loire Puisaye et la CAF du Loiret d’apporter une <b>réponse aux besoins des personnes sur ce territoire.</b> La Ligue de l’Enseignement (1ère association ayant obtenu le statut d’association loi 1901) du Loiret a été missionnée pour animer cette structure associative.</p>
-                            <p>Voici différents dispositifs qui sont assurés par l’équipe “Bee Mobile” :<br>
-- un espace d’accueil jeunesse,<br>
-- un espace initiative habitants,<br>
-- une ludothèque itinérante,<br>
-- des cafés des parents,<br>
-- des ateliers parents-enfants (cuisine, jardinage, loisirs créatifs, échanges de savoirs, ...),<br>
-- des sorties familiales,<br>
-- de la médiation numérique,<br>
-- des événements festifs,<br>
-- des services aux habitants accompagnement à l’usage du numérique/relais d’informations et/ou de services publics.</p>
-                            <p>L’accueil sera ouvert à différents endroits pour différentes activités selon le planning en vigueur.<br>
-                            Horaires indicatifs auxquels vous pourrez nous trouver sur place.</p>
-                            <p>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire<br>
-                            📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                            <p style="margin-top:0.5rem;">
-                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" style="color:#E1306C; font-size:1.3rem;"><i class="fa-brands fa-instagram"></i></a>
-                            </p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalite_page-017.png" alt="Bee'Mobile espace de vie sociale">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. PAF -->
-            <div class="accordion-item" id="paf">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="logo_paf.png" alt="Logo PAF" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>Programme d'Animations Familiales (PAF)</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Le PAF propose des ateliers gratuits mensuels parents-enfants sur tout le territoire. Ces moments conviviaux permettent de partager des activités et de créer du lien entre familles.</p>
-                            <p><b>C'est quoi ?</b> Plusieurs ateliers sont organisés chaque mois depuis février 2024, pour vous et vos enfants.
-Jouez et apprenez ensemble, partagez de bons moments avec vos enfants autour d'un thème : antigaspi, tri sélectif, alimentation, lecture, recyclage, compost, patrimoine local, sport ou culture... Il y en a pour tous les goûts.<br>
-<br>
-<b>Où ?</b> Cernoy-en-Berry, Châtillon-sur-Loire, Bonny-sur-Loire, Beaulieu-sur-Loire, Briare, Ouzouër-sur-Trézée et ailleurs, ...<br>
-<br>
-<b>Combien ?</b> C'est GRATUIT !<br>
-<br>
-<b>Quand ?</b> Surveillez les affiches<br>
-<br>
-<b>Qui ?</b> Un collectif constitué de la Communauté de communes, des services communaux, des associations d’habitants, des bibliothèques, des services du Conseil départemental, des représentants de la CAF ou de la MSA 
-et toutes les autres bonnes volontés qui veulent œuvrer pour développer des animations familiales...</p>
-                            <p>📧 <a href="mailto:communication.parentalite@cc-berryloirepuisaye.fr">communication.parentalite@cc-berryloirepuisaye.fr</a><br>
-                            📞 <a href="tel:0238051807">02 38 05 18 07</a></p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalite_paf.png" alt="Programme d'animations familiales">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Groupe d'échanges -->
-            <div class="accordion-item" id="groupe-echanges">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="logo_frimousses.png" alt="Logo Frimousses de Loire" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>Groupe d'échanges entre parents</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Ces moments de rencontres conviviaux sont destinés aux parents de la Communauté de communes, dans l’optique de favoriser les échanges d’expérience, de partager au sujet d’éventuelles difficultés rencontrées, la mise en commun de solutions à ces problèmes, la lutte contre l’isolement, la communication non violente... et plein d'autres thèmes.<br>
-                            Fréquence : 4 fois par an dans les multi-accueils de Briare et de Chatillon pour les parents d’enfants en âge pré-scolaire</p>
-                            <p style="margin-top:0.5rem;">
-                            Toutes les informations sur la page Facebook « Frimousses de Loire - Parentalité » :
-                            <a href="https://www.facebook.com/search/top/?q=frimousses%20de%20loire%20parentalite" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-left:0.4rem;"><i class="fa-brands fa-facebook"></i></a>
-                            </p>
-                            <p>🏠 Multi-accueil de Briare<br>
-                            Pôle Petite Enfance<br>
-                            39, avenue Yver Bapterosses<br>
-                            📞 <a href="tel:0238313862">02 38 31 38 62</a><br>
-                            📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a></p>
-                            <p>🏠 Multi-accueil de Châtillon-sur-Loire<br>
-                            Centre Médico-social<br>
-                            1, rue de la Boyaudière<br>
-                            📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
-                            📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalite_cafedesparents.png" alt="Groupe d'échanges entre parents">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. LE NID FLEURI -->
-            <div class="accordion-item" id="nid-fleuri">
-                <button class="accordion-header" aria-expanded="false">
-                    <div style="display:flex; align-items:center; gap:12px; flex:1;">
-                        <img src="parentalite_logocroixrouge.png" alt="Logo Croix-rouge" style="width:40px; height:40px; object-fit:contain;">
-                        <h3>Relais Parental "Le Nid fleuri"</h3>
-                    </div>
-                    <span class="accordion-icon">+</span>
-                </button>
-                <div class="accordion-body">
-                    <div class="accordion-body-inner">
-                        <div class="text">
-                            <p>Pas évident d’être parent ! Pour vous aider, pour souffler, pour vous soutenir, allez rencontrer l’équipe du Nid Fleuri.<br>
-                            Le Relais Parental de Gien appartient à la Croix-Rouge française. Il permet d’accueillir, en dehors de toute mesure de placement, des mineurs dont les parents sont confrontés à des difficultés ponctuelles ou périodiques.
-Service prévention et de soutien à la parentalité, il accueille les enfants et accompagne les parents résidant dans le Loiret.
-Le Relais Parental est autorisé et financé par le Conseil Départemental du Loiret.</p>
-                            <p>“Le Nid fleuri” accueille les enfants de l’âge de 10 semaines jusqu’à 18 ans. La journée s’organise autour des besoins des enfants : jeux, temps de pause, repas, accompagnements, ... Dans la mesure du possible, la scolarité est maintenue.<br>
-                            Le Relais parental propose deux types d’accueil : l’accueil en urgence, l’accueil ordinaire (préparé), adapté à la situation de chacun, il offre une solution sur-mesure aux besoins des familles.<br>
-                            Les motifs d’accueil sont le besoin de répit, la santé (hospitalisation, maternité, ...), les difficultés sociales et familiales (séparation, conflits, difficultés relationnelles parent/enfant).</p>
-                            <p>Un contrat d'accueil est signé entre les parents et la directrice adjointe et s’établit pour une période d’un mois maximum, renouvelable.
-Une participation financière de la famille est demandée selon un barème prédéfini. L'objectif principal est le soutien et l'accompagnement.</p>
-                            <p>51 rue Paul Bert - 45 500 GIEN<br>
-                            📞 <a href="tel:0618608722">06 18 60 87 22</a><br>
-                            📧 <a href="mailto:relaisparental.gien@croix-rouge.fr">relaisparental.gien@croix-rouge.fr</a></p>
-                        </div>
-                        <div class="images">
-                            <img src="parentalite_nidfleuri.png" alt="Le Nid fleuri">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
-        <!-- ══════════════ FIN ACCORDÉON ══════════════ -->
 
-    </div>
-</section>
-<div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
-        <img id="lightbox-img" class="lightbox-image" src="" alt="">
-    </div>
-</div>
+        <!-- 3. Allo, Parents en crise -->
+        <div class="accordion-item" id="allo-parents-crise">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="logo-epe-Loiret-quadri.avif" alt="Logo CAF">
+            <h3>Allo, Parents en crise</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p><b>Écouter, échanger, accompagner familles et professionnels</b><br>- Proposer une écoute gratuite et sans rdv<br>- Créer un espace rassurant où l’anonymat et le non-jugement favorisent l’expression de situations complexes.</p>
+                </div>
+                <div class="full-text">
+                  <p>...qui mettent à mal l’équilibre familial.<br>- Valoriser les compétences et ressources personnelles des parents<br>- Évaluer les situations et donner des clés de compréhension à l’appelant<br>- Orienter vers des personnes ou des lieux ressources de proximité</p>
+                </div>
+                <button class="read-more-btn" data-target="allo-parents-crise">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>📞 <a href="tel:0805382300">0 805 382 300</a> (N° vert) du lundi au vendredi de 10h à 13h et de 14h à 17h</p>
+              </div>
+              <div class="images">
+                <img src="alloparentsencrise.jpg.webp" alt="Affiche Allo, parents en crise">
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- 4. A DOMICILE 45 -->
+        <div class="accordion-item" id="a-domicile-45">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="logo_adomicile45.png" alt="Logo Adomicile45">
+            <h3>A domicile 45</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Votre quotidien est bousculé par un changement dans votre organisation familiale et vous ne savez plus où donner de la tête ? Un conseil : ne laissez pas la situation empirer. Un professionnel de l’aide à domicile peut vous accompagner dans votre rôle de parent.</p>
+                </div>
+                <div class="full-text">
+                  <p><b>Aide et accompagnement à domicile</b><br>Pour en savoir plus, contacter votre caisse d’allocations familiales ou un service d’aide à domicile, partenaire de la CAF ou de la MSA pour pouvoir bénéficier de ce service personnalisé. Assurée par des professionnels formés, qualifiés et diplômés pour vous soutenir temporairement dans votre rôle de parents, pour prévenir l’aggravation de difficultés ponctuelles : lors de l’arrivée d’un enfant, lors d’une recomposition familiale, un déménagement, la maladie d’un enfant ou d’un parent, l’entrée à l’école, en cas de séparation, décès, quand un parent isolé s’inscrit dans une démarche d’insertion socio-professionnelle, en cas de besoin de répit si vous êtes parent d’enfant porteur de handicap...</p>
+                </div>
+                <button class="read-more-btn" data-target="a-domicile-45">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>22 Faubourg de la Chaussée - 45 200 Montargis (1er étage - Centre commercial “La Chaussée”)<br>📞 <a href="tel:0238265087">02 38 26 50 87</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalie_adomicile45.png" alt="Service d'intervention sociale CAF">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Bee'Mobile -->
+        <div class="accordion-item" id="bee-mobile">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="logo_beemobile.png" alt="Logo Bee Mobile">
+            <h3>Espace de vie sociale Bee'Mobile</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Bee Mobile est un Espace de Vie Sociale né d’après la volonté conjointe, entre la communauté de communes du Berry Loire Puisaye et la CAF du Loiret d’apporter une <b>réponse aux besoins des personnes sur ce territoire.</b></p>
+                </div>
+                <div class="full-text">
+                  <p>La Ligue de l’Enseignement (1ère association ayant obtenu le statut d’association loi 1901) du Loiret a été missionnée pour animer cette structure associative.</p>
+                  <p>Voici différents dispositifs qui sont assurés par l’équipe “Bee Mobile” :<br>- un espace d’accueil jeunesse,<br>- un espace initiative habitants,<br>- une ludothèque itinérante,<br>- des cafés des parents,<br>- des ateliers parents-enfants (cuisine, jardinage, loisirs créatifs, échanges de savoirs, ...),<br>- des sorties familiales,<br>- de la médiation numérique,<br>- des événements festifs,<br>- des services aux habitants accompagnement à l’usage du numérique/relais d’informations et/ou de services publics.</p>
+                </div>
+                <button class="read-more-btn" data-target="bee-mobile">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>Local permanent : 1 rue de Bicètre, Bonny-sur-Loire<br>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a><br><a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank"><i class="fa-brands fa-facebook"></i></a> <a href="https://instagram.com/evsligue45" target="_blank"><i class="fa-brands fa-instagram"></i></a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_page-017.png" alt="Bee'Mobile espace de vie sociale">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. PAF -->
+        <div class="accordion-item" id="paf">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="logo_paf.png" alt="Logo PAF">
+            <h3>Programme d'Animations Familiales (PAF)</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Le PAF propose des ateliers gratuits mensuels parents-enfants sur tout le territoire. Ces moments conviviaux permettent de partager des activités et de créer du lien entre familles.</p>
+                </div>
+                <div class="full-text">
+                  <p><b>C'est quoi ?</b> Plusieurs ateliers sont organisés chaque mois depuis février 2024, pour vous et vos enfants. Jouez et apprenez ensemble, partagez de bons moments avec vos enfants autour d'un thème : antigaspi, tri sélectif, alimentation, lecture, recyclage, compost, patrimoine local, sport ou culture... Il y en a pour tous les goûts.<br><br><b>Où ?</b> Cernoy-en-Berry, Châtillon-sur-Loire, Bonny-sur-Loire, Beaulieu-sur-Loire, Briare, Ouzouër-sur-Trézée et ailleurs, ...<br><br><b>Combien ?</b> C'est GRATUIT !<br><br><b>Quand ?</b> Surveillez les affiches<br><br><b>Qui ?</b> Un collectif constitué de la Communauté de communes, des services communaux, des associations d’habitants, des bibliothèques, des services du Conseil départemental, des représentants de la CAF ou de la MSA et toutes les autres bonnes volontés qui veulent œuvrer pour développer des animations familiales...</p>
+                </div>
+                <button class="read-more-btn" data-target="paf">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>📧 <a href="mailto:communication.parentalite@cc-berryloirepuisaye.fr">communication.parentalite@cc-berryloirepuisaye.fr</a><br>📞 <a href="tel:0238051807">02 38 05 18 07</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_paf.png" alt="Programme d'animations familiales">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Groupe d'échanges -->
+        <div class="accordion-item" id="groupe-echanges">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="logo_frimousses.png" alt="Logo Frimousses de Loire">
+            <h3>Groupe d'échanges entre parents</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Ces moments de rencontres conviviaux sont destinés aux parents de la Communauté de communes, dans l’optique de favoriser les échanges d’expérience, de partager au sujet d’éventuelles difficultés rencontrées, la mise en commun de solutions à ces problèmes, la lutte contre l’isolement, la communication non violente... et plein d'autres thèmes.</p>
+                </div>
+                <div class="full-text">
+                  <p>Fréquence : 4 fois par an dans les multi-accueils de Briare et de Chatillon pour les parents d’enfants en âge pré-scolaire</p>
+                </div>
+                <button class="read-more-btn" data-target="groupe-echanges">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>🏠 Multi-accueil de Briare : Pôle Petite Enfance, 39 avenue Yver Bapterosses, 📞 <a href="tel:0238313862">02 38 31 38 62</a>, 📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a><br>🏠 Multi-accueil de Châtillon-sur-Loire : Centre Médico-social, 1 rue de la Boyaudière, 📞 <a href="tel:0238311525">02 38 31 15 25</a>, 📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a><br><a href="https://www.facebook.com/search/top/?q=frimousses%20de%20loire%20parentalite" target="_blank"><i class="fa-brands fa-facebook"></i> Frimousses de Loire - Parentalité</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_cafedesparents.png" alt="Groupe d'échanges entre parents">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. LE NID FLEURI -->
+        <div class="accordion-item" id="nid-fleuri">
+          <button class="accordion-header" aria-expanded="false">
+            <img src="parentalite_logocroixrouge.png" alt="Logo Croix-rouge">
+            <h3>Relais Parental "Le Nid fleuri"</h3>
+            <span class="accordion-icon">+</span>
+          </button>
+          <div class="accordion-body">
+            <div class="accordion-body-inner">
+              <div class="text">
+                <div class="short-text">
+                  <p>Pas évident d’être parent ! Pour vous aider, pour souffler, pour vous soutenir, allez rencontrer l’équipe du Nid Fleuri. Le Relais Parental de Gien appartient à la Croix-Rouge française. Il permet d’accueillir, en dehors de toute mesure de placement, des mineurs dont les parents sont confrontés à des difficultés ponctuelles ou périodiques.</p>
+                </div>
+                <div class="full-text">
+                  <p>Service prévention et de soutien à la parentalité, il accueille les enfants et accompagne les parents résidant dans le Loiret. Le Relais Parental est autorisé et financé par le Conseil Départemental du Loiret.</p>
+                  <p>“Le Nid fleuri” accueille les enfants de l’âge de 10 semaines jusqu’à 18 ans. La journée s’organise autour des besoins des enfants : jeux, temps de pause, repas, accompagnements, ... Dans la mesure du possible, la scolarité est maintenue. Le Relais parental propose deux types d’accueil : l’accueil en urgence, l’accueil ordinaire (préparé), adapté à la situation de chacun, il offre une solution sur-mesure aux besoins des familles. Les motifs d’accueil sont le besoin de répit, la santé (hospitalisation, maternité, ...), les difficultés sociales et familiales (séparation, conflits, difficultés relationnelles parent/enfant).</p>
+                  <p>Un contrat d'accueil est signé entre les parents et la directrice adjointe et s’établit pour une période d’un mois maximum, renouvelable. Une participation financière de la famille est demandée selon un barème prédéfini. L'objectif principal est le soutien et l'accompagnement.</p>
+                </div>
+                <button class="read-more-btn" data-target="nid-fleuri">Lire la suite</button>
+                <p><strong>Contacts :</strong><br>51 rue Paul Bert - 45 500 GIEN<br>📞 <a href="tel:0618608722">06 18 60 87 22</a><br>📧 <a href="mailto:relaisparental.gien@croix-rouge.fr">relaisparental.gien@croix-rouge.fr</a></p>
+              </div>
+              <div class="images">
+                <img src="parentalite_nidfleuri.png" alt="Le Nid fleuri">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- fin accordion -->
+    </div>
+  </section>
 </main>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-content">
+    <button class="lightbox-close" id="lightboxClose">&times;</button>
+    <img id="lightboxImg" class="lightbox-image" src="" alt="">
+  </div>
+</div>
+
 <footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Communauté de Communes Berry Loire Puisaye</h3>
-                <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
-                📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
-                    <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
-                    <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Navigation rapide</h3>
-                <ul>
-                    <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
-                    <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
-                    <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
-                    <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
-                    <li><a href="acces-droits.html">Accès aux droits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
-        </div>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Communauté de Communes Berry Loire Puisaye</h3>
+        <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+        <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+      </div>
+      <div class="footer-section">
+        <h3>Liens utiles</h3>
+        <ul><li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li><li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li><li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li></ul>
+      </div>
+      <div class="footer-section">
+        <h3>Navigation rapide</h3>
+        <ul><li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li><li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li><li><a href="enfance.html">Enfance (3-11 ans)</a></li><li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li><li><a href="acces-droits.html">Accès aux droits</a></li></ul>
+      </div>
     </div>
+    <div class="footer-bottom"><p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p></div>
+  </div>
 </footer>
 
 <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
 <script>
-// Menu mobile
-const menuToggle = document.getElementById('menuToggle');
-const navList = document.getElementById('navList');
-if (menuToggle) {
-    menuToggle.addEventListener('click', function () {
+  (function() {
+    // ---- Menu mobile ----
+    const menuToggle = document.getElementById('menuToggle');
+    const navList = document.getElementById('navList');
+    if (menuToggle) {
+      menuToggle.addEventListener('click', function() {
         navList.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
-}
-
-// Menu déroulant : clic pour ouvrir/fermer sur mobile/tactile
-document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const parent = link.parentElement;
-            const wasOpen = parent.classList.contains('open');
-            document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
-                item.classList.remove('open');
-            });
-            if (!wasOpen) {
-                parent.classList.add('open');
-            }
-        }
-    });
-});
-
-// Bouton retour en haut
-const scrollTop = document.getElementById('scrollTop');
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 300) {
-        scrollTop.classList.add('visible');
-    } else {
-        scrollTop.classList.remove('visible');
+      });
     }
-});
-if (scrollTop) {
-    scrollTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Dropdown mobile : clic sur parent pour ouvrir/fermer
+    document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          const parent = link.parentElement;
+          const wasOpen = parent.classList.contains('open');
+          document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
+            item.classList.remove('open');
+          });
+          if (!wasOpen) parent.classList.add('open');
+        }
+      });
     });
-}
 
-// Accordéon
-function openAccordionItem(header) {
-    document.querySelectorAll('.accordion-header').forEach(function(h) {
+    // ---- Scroll top ----
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', function() {
+      scrollBtn.classList.toggle('visible', window.scrollY > 300);
+    });
+    scrollBtn.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+    // ---- Accordéon ----
+    function openAccordionItem(header) {
+      document.querySelectorAll('.accordion-header').forEach(function(h) {
         h.classList.remove('open');
         h.setAttribute('aria-expanded', 'false');
         h.nextElementSibling.classList.remove('open');
-    });
-    header.classList.add('open');
-    header.setAttribute('aria-expanded', 'true');
-    header.nextElementSibling.classList.add('open');
-}
+      });
+      header.classList.add('open');
+      header.setAttribute('aria-expanded', 'true');
+      header.nextElementSibling.classList.add('open');
+    }
 
-document.querySelectorAll('.accordion-header').forEach(function(header) {
-    header.addEventListener('click', function() {
+    document.querySelectorAll('.accordion-header').forEach(function(header) {
+      header.addEventListener('click', function() {
         const isOpen = this.classList.contains('open');
         document.querySelectorAll('.accordion-header').forEach(function(h) {
-            h.classList.remove('open');
-            h.setAttribute('aria-expanded', 'false');
-            h.nextElementSibling.classList.remove('open');
+          h.classList.remove('open');
+          h.setAttribute('aria-expanded', 'false');
+          h.nextElementSibling.classList.remove('open');
         });
-        if (!isOpen) {
-            openAccordionItem(this);
-        }
+        if (!isOpen) openAccordionItem(this);
+      });
     });
-});
 
-// Ouvre automatiquement l'accordéon ciblé par le menu de navigation (ex: parentalite.html#paf)
-function openAccordionFromHash() {
-    if (!window.location.hash) return;
-    const target = document.querySelector(window.location.hash);
-    if (target && target.classList.contains('accordion-item')) {
+    // Ouverture par hash
+    function openFromHash() {
+      if (!window.location.hash) return;
+      const target = document.querySelector(window.location.hash);
+      if (target && target.classList.contains('accordion-item')) {
         const header = target.querySelector('.accordion-header');
         if (header) {
-            openAccordionItem(header);
-            setTimeout(function () {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
+          openAccordionItem(header);
+          setTimeout(function() { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }, 150);
         }
+      }
     }
-}
-window.addEventListener('DOMContentLoaded', openAccordionFromHash);
-window.addEventListener('hashchange', openAccordionFromHash);
-</script>
+    window.addEventListener('DOMContentLoaded', openFromHash);
+    window.addEventListener('hashchange', openFromHash);
 
+    // ---- Lire la suite (toggle) ----
+    document.querySelectorAll('.read-more-btn').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const targetId = this.getAttribute('data-target');
+        const item = document.getElementById(targetId);
+        if (!item) return;
+        const fullText = item.querySelector('.full-text');
+        if (!fullText) return;
+        const isVisible = fullText.classList.contains('visible');
+        fullText.classList.toggle('visible');
+        this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+      });
+    });
+
+    // ---- Lightbox ----
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('lightboxClose');
+
+    function openLightbox(src) {
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Clic sur une image dans les accordéons
+    document.querySelectorAll('.accordion-body .images img').forEach(function(img) {
+      img.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const src = this.getAttribute('src');
+        if (src) openLightbox(src);
+      });
+    });
+
+    // Fermeture : clic sur close ou hors image
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    // Échap
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+  })();
+</script>
 </body>
 </html>
