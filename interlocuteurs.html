@@ -537,11 +537,11 @@
             <li class="nav-dropdown">
                 <a href="interlocuteurs.html" class="active">Interlocuteurs ▾</a>
                 <ul class="nav-dropdown-menu">
-                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                    <li><a href="#mairies">Mairies</a></li>
+                    <li><a href="#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="#caf">CAF du Loiret</a></li>
+                    <li><a href="#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="#ads">Agence Départementale des Solidarités</a></li>
                 </ul>
             </li>
             <li class="nav-dropdown">
@@ -1030,27 +1030,66 @@
             // ============================================================
             // ---- ACCORDÉON ----
             // ============================================================
+            function toggleAccordion(header) {
+                const isOpen = header.classList.contains('open');
+                const body = header.nextElementSibling;
+
+                if (isOpen) {
+                    // Fermer
+                    header.classList.remove('open');
+                    header.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('open');
+                } else {
+                    // Fermer tous les autres
+                    document.querySelectorAll('.accordion-header').forEach(function(h) {
+                        h.classList.remove('open');
+                        h.setAttribute('aria-expanded', 'false');
+                        h.nextElementSibling.classList.remove('open');
+                    });
+                    // Ouvrir celui-ci
+                    header.classList.add('open');
+                    header.setAttribute('aria-expanded', 'true');
+                    body.classList.add('open');
+                }
+            }
+
             document.querySelectorAll('.accordion-header').forEach(function(header) {
                 header.addEventListener('click', function() {
-                    const isOpen = this.classList.contains('open');
-                    const body = this.nextElementSibling;
+                    toggleAccordion(this);
+                });
+            });
 
-                    // Fermer tous les autres accordéons
-                    document.querySelectorAll('.accordion-header').forEach(function(h) {
-                        if (h !== header) {
+            // ============================================================
+            // ---- OUVERTURE PAR ANCRE (depuis le menu) ----
+            // ============================================================
+            function openAccordionFromHash() {
+                if (!window.location.hash) return;
+                const target = document.querySelector(window.location.hash);
+                if (target && target.classList.contains('accordion-item')) {
+                    const header = target.querySelector('.accordion-header');
+                    if (header) {
+                        // Fermer tous les autres
+                        document.querySelectorAll('.accordion-header').forEach(function(h) {
                             h.classList.remove('open');
                             h.setAttribute('aria-expanded', 'false');
                             h.nextElementSibling.classList.remove('open');
-                        }
-                    });
-
-                    if (!isOpen) {
-                        this.classList.add('open');
-                        this.setAttribute('aria-expanded', 'true');
-                        body.classList.add('open');
+                        });
+                        // Ouvrir celui-ci
+                        header.classList.add('open');
+                        header.setAttribute('aria-expanded', 'true');
+                        header.nextElementSibling.classList.add('open');
+                        // Scroller vers la section
+                        setTimeout(function() {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 200);
                     }
-                });
-            });
+                }
+            }
+
+            // Au chargement de la page
+            window.addEventListener('DOMContentLoaded', openAccordionFromHash);
+            // Quand le hash change (clic sur un lien)
+            window.addEventListener('hashchange', openAccordionFromHash);
 
             // ============================================================
             // ---- LIRE LA SUITE POUR LES PARTENAIRES ----
