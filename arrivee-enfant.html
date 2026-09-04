@@ -9,727 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== COULEURS VERTES COMME L'ACCUEIL ===== */
+        /* ===== COULEURS SPÉCIFIQUES À ARRIVÉE D'UN ENFANT (VERT COMME ACCUEIL) ===== */
         .page-arrivee-enfant {
             --primary-color: #2E7D32;
             --primary-light: #66BB6A;
             --primary-dark: #1B5E20;
             --secondary-color: #00897B;
             --secondary-light: #4DB6AC;
-        }
-
-        /* ===== HEADER ===== */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 1.2rem 0 0.8rem;
-            box-shadow: var(--shadow-md);
-            position: relative;
-        }
-
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-        }
-
-        .logo img {
-            height: 70px;
-            width: auto;
-            display: block;
-        }
-
-        .logo h1 {
-            color: white;
-            margin-bottom: 0;
-            font-size: 3.6rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-        }
-
-        .logo h1 a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .header-info {
-            position: absolute;
-            bottom: -0.2rem;
-            right: 0;
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.7);
-            text-align: right;
-        }
-
-        .header-info strong {
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .logo img {
-                height: 50px;
-            }
-            .logo h1 {
-                font-size: 2.6rem;
-            }
-            .header-info {
-                font-size: 0.5rem;
-                bottom: -0.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                height: 40px;
-            }
-            .logo h1 {
-                font-size: 2.2rem;
-            }
-            .header-info {
-                font-size: 0.45rem;
-            }
-        }
-
-        /* ===== NAVIGATION ===== */
-        .nav {
-            background-color: var(--bg-white);
-            box-shadow: var(--shadow-sm);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-list {
-            display: flex;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-list li {
-            margin: 0;
-        }
-
-        .nav-list a {
-            display: block;
-            padding: 1rem 1.25rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            border-bottom: 3px solid transparent;
-            transition: var(--transition);
-        }
-
-        .nav-list a:hover,
-        .nav-list a.active {
-            background-color: var(--bg-light);
-            border-bottom-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .nav-dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            min-width: 260px;
-            box-shadow: var(--shadow-md);
-            border-radius: 0 0 8px 8px;
-            z-index: 1001;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-dropdown:hover .nav-dropdown-menu,
-        .nav-dropdown.open .nav-dropdown-menu {
-            display: block;
-        }
-
-        .nav-dropdown-menu li a {
-            padding: 0.75rem 1.25rem;
-            display: block;
-            font-weight: 400;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .nav-dropdown-menu li:last-child a {
-            border-bottom: none;
-        }
-
-        .nav-dropdown-menu li a:hover {
-            background-color: var(--bg-light);
-        }
-
-        /* ===== RESPONSIVE NAV ===== */
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-                background: var(--primary-color);
-                border: none;
-                font-size: 1.1rem;
-                padding: 0.75rem 1rem;
-                cursor: pointer;
-                width: 100%;
-                text-align: left;
-                color: white;
-                font-weight: 600;
-            }
-
-            .menu-toggle.active {
-                background: var(--primary-dark);
-            }
-
-            .nav-list {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .nav-list.active {
-                display: flex;
-            }
-
-            .nav-list li {
-                width: 100%;
-                margin: 0;
-            }
-
-            .nav-list a {
-                text-align: center;
-                border-bottom: 1px solid var(--border-color);
-                padding: 0.75rem 1rem;
-            }
-
-            .nav-list a.active {
-                background-color: var(--primary-light);
-                color: white;
-                font-weight: 600;
-            }
-
-            .nav-dropdown-menu {
-                position: static;
-                display: none;
-                box-shadow: none;
-                border-radius: 0;
-                background: var(--bg-lighter);
-            }
-
-            .nav-dropdown.open .nav-dropdown-menu {
-                display: block;
-            }
-
-            .nav-dropdown-menu li a {
-                padding-left: 2.5rem;
-                text-align: left;
-                border-bottom: 1px solid var(--border-color);
-            }
-        }
-
-        /* ===== SECTION ===== */
-        .section {
-            padding: 3rem 0;
-        }
-
-        .section-alt {
-            background-color: var(--bg-lighter);
-        }
-
-        .section-header {
-            position: relative;
-            height: 300px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .section-header img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--primary-light);
-            display: inline-block;
-        }
-
-        .quote {
-            font-style: italic;
-            color: var(--text-light);
-            padding: 1rem;
-            border-left: 4px solid var(--primary-color);
-            background: var(--bg-light);
-            margin-bottom: 2rem;
-            border-radius: 4px;
-        }
-
-        .content-box {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-
-        /* ===== ACCORDÉON PRINCIPAL ===== */
-        .accordion-item {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            margin-bottom: 14px;
-            background: white;
-            box-shadow: var(--shadow-sm);
-            overflow: hidden;
-            transition: box-shadow 0.2s;
-        }
-
-        .accordion-item:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .accordion-header {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 0.9rem 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .accordion-header:hover {
-            background: #f5f8ff;
-        }
-
-        .accordion-header.open {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .accordion-icon {
-            font-size: 1.6rem;
-            font-weight: 300;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            margin-left: auto;
-        }
-
-        .accordion-header.open .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        .accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #fafbff;
-        }
-
-        .accordion-body.open {
-            max-height: 3000px;
-            padding: 0.8rem 1.2rem 1.5rem;
-        }
-
-        /* ===== SOUS-ACCORDÉON ===== */
-        .sub-accordion-item {
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            margin-bottom: 10px;
-            background: white;
-            overflow: hidden;
-        }
-
-        .sub-accordion-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .sub-accordion-header {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 0.7rem 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .sub-accordion-header:hover {
-            background: #f5f8ff;
-        }
-
-        .sub-accordion-header.open {
-            background: var(--primary-light);
-            color: white;
-        }
-
-        .sub-accordion-icon {
-            font-size: 1.2rem;
-            font-weight: 300;
-            transition: transform 0.3s;
-            flex-shrink: 0;
-            margin-left: auto;
-        }
-
-        .sub-accordion-header.open .sub-accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        .sub-accordion-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #fafbff;
-        }
-
-        .sub-accordion-body.open {
-            max-height: 2000px;
-            padding: 0.6rem 1rem 1rem;
-        }
-
-        /* ===== LIRE LA SUITE ===== */
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 0.2rem 0;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-decoration: underline dotted;
-        }
-
-        .read-more-btn:hover {
-            color: var(--primary-dark);
-        }
-
-        .full-text {
-            display: none;
-        }
-
-        .full-text.visible {
-            display: block;
-        }
-
-        /* ===== CARTES ===== */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-        }
-
-        .card {
-            background: white;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .card h5 {
-            margin: 0 0 0.3rem 0;
-            color: var(--primary-dark);
-        }
-
-        /* ===== MODE DE GARDE ===== */
-        .mode-garde-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .mode-garde-item {
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            background: white;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: box-shadow 0.2s;
-        }
-
-        .mode-garde-item:hover {
-            box-shadow: var(--shadow-md);
-        }
-
-        .mode-garde-header {
-            width: 100%;
-            background: white;
-            border: none;
-            padding: 0.9rem 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            text-align: left;
-            transition: background 0.2s;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .mode-garde-header:hover {
-            background: #f5f8ff;
-        }
-
-        .mode-garde-header.open {
-            background: var(--primary-color);
-            color: white;
-        }
-
-        .mode-garde-header.open .accordion-icon {
-            transform: rotate(45deg);
-        }
-
-        .mode-garde-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s ease;
-            background: #fafbff;
-        }
-
-        .mode-garde-body.open {
-            max-height: 1500px;
-            padding: 0.8rem 1.2rem 1.5rem;
-        }
-
-        .mode-garde-body .mg-image {
-            width: 100%;
-            border-radius: 6px;
-            margin-bottom: 0.8rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .mode-garde-body .mg-image:hover {
-            transform: scale(1.02);
-        }
-
-        @media (max-width: 768px) {
-            .mode-garde-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== IMAGE + TEXTE ===== */
-        .image-text-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: flex-start;
-        }
-
-        .image-text-row img {
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            width: 100%;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .image-text-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ===== LIGHTBOX ===== */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 1.5rem;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90vw;
-            max-height: 90vh;
-            background: white;
-            border-radius: var(--radius);
-            padding: 0.5rem;
-            box-shadow: var(--shadow-lg);
-            position: relative;
-        }
-
-        .lightbox-image {
-            max-width: 100%;
-            max-height: 85vh;
-            object-fit: contain;
-            border-radius: 10px;
-            display: block;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -14px;
-            right: -14px;
-            background: #2d323d;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            font-size: 1.4rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .lightbox-close:hover {
-            transform: scale(1.1);
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: linear-gradient(135deg, #212121 0%, #424242 100%);
-            color: white;
-            padding: 3rem 0 1rem;
-            margin-top: 3rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: white;
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            margin-left: 0;
-        }
-
-        .footer-section a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.2);
-            padding-top: 1.5rem;
-            text-align: center;
-        }
-
-        /* ===== SCROLL TOP ===== */
-        .scroll-top {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: var(--shadow-md);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--transition);
-            z-index: 999;
-        }
-
-        .scroll-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .scroll-top:hover {
-            background: var(--primary-dark);
-            transform: translateY(-3px);
-        }
-
-        /* ===== CONTAINER ===== */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        a:hover {
-            color: var(--primary-dark);
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 600;
-            line-height: 1.3;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        p {
-            margin-bottom: 1rem;
-        }
-
-        .bg-light {
-            background-color: var(--bg-light);
         }
     </style>
 </head>
@@ -740,7 +26,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye" onerror="this.style.display='none'">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
                     <h1><a href="index.html">Guide des Familles</a></h1>
                 </div>
                 <div class="header-info">
@@ -860,16 +146,14 @@
                 <h2 class="section-title">L'arrivée d'un enfant</h2>
                 <p class="quote">"Chaque parent vient au monde en même temps que son premier enfant." - Ernst Kramer</p>
 
-                <!-- ============================================================ -->
                 <!-- ===== 1. DÉMARCHES AVANT L'ARRIVÉE ===== -->
-                <!-- ============================================================ -->
                 <div class="content-box" id="demarches">
                     <h3 style="color:var(--primary-color);">Démarches avant l'arrivée de l'enfant</h3>
 
                     <div class="accordion">
 
                         <!-- État civil et droits -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="etat-civil">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>📋 État civil et droits</span>
                                 <span class="accordion-icon">+</span>
@@ -926,7 +210,7 @@
                         </div>
 
                         <!-- Santé -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="sante">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>🏥 Santé</span>
                                 <span class="accordion-icon">+</span>
@@ -958,8 +242,7 @@
                                             <p>Le premier examen prénatal doit avoir lieu avant la fin du troisième mois.</p>
                                         </div>
                                         <div class="full-text">
-                                            <p>À cette occasion le médecin généraliste, le gynécologue ou la sage-femme remplit, à l'aide de la carte Vitale, la déclaration de grossesse. Elle est directement transmise à la caisse primaire d'Assurance maladie et à la caisse d'Allocations familiales.<br>
-                                            Une déclaration sur un formulaire papier est également possible. Dans ce cas, il faudra l'envoyer aux deux organismes.</p>
+                                            <p>À cette occasion le médecin généraliste, le gynécologue ou la sage-femme remplit, à l'aide de la carte Vitale, la déclaration de grossesse. Elle est directement transmise à la caisse primaire d'Assurance maladie et à la caisse d'Allocations familiales.<br>Une déclaration sur un formulaire papier est également possible. Dans ce cas, il faudra l'envoyer aux deux organismes.</p>
                                         </div>
                                         <button class="read-more-btn">Lire la suite</button>
                                     </div>
@@ -984,7 +267,7 @@
                         </div>
 
                         <!-- Emploi -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="emploi">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>💼 Emploi</span>
                                 <span class="accordion-icon">+</span>
@@ -1033,8 +316,7 @@
                                         </div>
                                         <div class="full-text">
                                             <p>Pour cela, vous pouvez vous adresser au Guichet Unique et la Petite enfance (02 38 36 78 73) ou consulter le site 🌐<a href="https://www.monenfant.fr" target="_blank">www.monenfant.fr</a></p>
-                                            <p><strong>Pour ne rien oublier : le parcours Naissance (CAF) numérique</strong><br>
-                                            L'ensemble des démarches, droits et offres de service pour les futurs ou jeunes parents sur une frise temporelle est à retrouver sur le site suivant : 🌐<a href="https://www.mesdroitssociaux.gouv.fr/accueil/" target="_blank">www.mesdroitssociaux.gouv.fr</a></p>
+                                            <p><strong>Pour ne rien oublier : le parcours Naissance (CAF) numérique</strong><br>L'ensemble des démarches, droits et offres de service pour les futurs ou jeunes parents sur une frise temporelle est à retrouver sur le site suivant : 🌐<a href="https://www.mesdroitssociaux.gouv.fr/accueil/" target="_blank">www.mesdroitssociaux.gouv.fr</a></p>
                                         </div>
                                         <button class="read-more-btn">Lire la suite</button>
                                     </div>
@@ -1045,9 +327,7 @@
                     </div>
                 </div>
 
-                <!-- ============================================================ -->
                 <!-- ===== 2. ACCOMPAGNEMENT PÉRINATAL ===== -->
-                <!-- ============================================================ -->
                 <div class="content-box" id="accompagnement-perinatal">
                     <h3 style="color:var(--primary-color);">Accompagnement périnatal</h3>
                     <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Pendant votre grossesse et après l'accouchement, plusieurs professionnels et structures sont à votre écoute pour vous accompagner et vous soutenir. Voici les ressources disponibles près de chez vous.</p>
@@ -1055,7 +335,7 @@
                     <div class="accordion">
 
                         <!-- Structures médicales -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="structures-medicales">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>🏥 Structures médicales</span>
                                 <span class="accordion-icon">+</span>
@@ -1076,13 +356,7 @@
                                         </div>
                                         <div class="full-text">
                                             <p style="font-size: 0.95rem; color: #666;">Il existe plusieurs centres de PMI pour être au plus proche des familles. Ils accueillent les (futurs) parents et les enfants de moins de 6 ans. On peut y faire suivre sa grossesse et bénéficier d'un accompagnement personnalisé en pré et postnatal. Après la naissance, la PMI peut également réaliser le suivi médical de l'enfant. On peut aussi participer à des ateliers en groupe organisés à la PMI.</p>
-                                            <p style="font-size: 0.95rem; color: #666; margin-top: 0.5rem;">La sage-femme de PMI du Loiret peut :<br>
-                                            • réaliser le suivi médical et psycho-social de la grossesse ainsi que les entretiens pré et postnataux précoces<br>
-                                            • accompagner et soutenir la femme/le couple dans leurs vulnérabilités médico-psycho-sociales<br>
-                                            • proposer des séances de préparation à la naissance et à la parentalité en individuel ou en couple<br>
-                                            • accompagner la femme dans les suites de couches et proposer une contraception adaptée<br>
-                                            • animer des actions organisées par la PMI (alimentation pendant la grossesse, allaitement, groupe de paroles…)<br>
-                                            • établir des liens avec les partenaires pour offrir aux futurs parents une prise en charge adaptée à leur situation.</p>
+                                            <p style="font-size: 0.95rem; color: #666; margin-top: 0.5rem;">La sage-femme de PMI du Loiret peut :<br>• réaliser le suivi médical et psycho-social de la grossesse ainsi que les entretiens pré et postnataux précoces<br>• accompagner et soutenir la femme/le couple dans leurs vulnérabilités médico-psycho-sociales<br>• proposer des séances de préparation à la naissance et à la parentalité en individuel ou en couple<br>• accompagner la femme dans les suites de couches et proposer une contraception adaptée<br>• animer des actions organisées par la PMI (alimentation pendant la grossesse, allaitement, groupe de paroles…)<br>• établir des liens avec les partenaires pour offrir aux futurs parents une prise en charge adaptée à leur situation.</p>
                                         </div>
                                         <button class="read-more-btn">Lire la suite</button>
                                     </div>
@@ -1094,7 +368,7 @@
                         </div>
 
                         <!-- Professionnels en libéral -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="professionnels-liberaux">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>👩‍⚕️ Professionnels en libéral</span>
                                 <span class="accordion-icon">+</span>
@@ -1108,9 +382,7 @@
                                             <p style="font-size: 0.95rem; color: #666; margin-top: 0.5rem;">Suivi de grossesse, accompagnement à l'accouchement et suivi postnatal en toute confiance.</p>
                                         </div>
                                         <div class="full-text">
-                                            <p style="font-size: 0.95rem; color: #666;">La sage-femme joue un rôle crucial dans le domaine de la périnatalité, offrant un soutien essentiel aux femmes avant, pendant et après la grossesse. Sa mission ne se limite pas à l'assistance lors de l'accouchement ; elle inclut également la préparation à la naissance, l'éducation prénatale et le suivi postnatal.<br>
-                                            Les sages-femmes sont formées pour reconnaître les signes de complications potentielles et pour intervenir de manière appropriée, garantissant ainsi la sécurité et le bien-être de la mère et de l'enfant.<br>
-                                            De plus, elles fournissent des conseils précieux sur l'allaitement, la nutrition, et l'adaptation émotionnelle à la parentalité. En tant que professionnelles de santé de confiance, elles contribuent à créer un environnement rassurant pour les nouvelles familles, favorisant un début de vie serein et sain pour le nouveau-né.</p>
+                                            <p style="font-size: 0.95rem; color: #666;">La sage-femme joue un rôle crucial dans le domaine de la périnatalité, offrant un soutien essentiel aux femmes avant, pendant et après la grossesse. Sa mission ne se limite pas à l'assistance lors de l'accouchement ; elle inclut également la préparation à la naissance, l'éducation prénatale et le suivi postnatal.<br>Les sages-femmes sont formées pour reconnaître les signes de complications potentielles et pour intervenir de manière appropriée, garantissant ainsi la sécurité et le bien-être de la mère et de l'enfant.<br>De plus, elles fournissent des conseils précieux sur l'allaitement, la nutrition, et l'adaptation émotionnelle à la parentalité. En tant que professionnelles de santé de confiance, elles contribuent à créer un environnement rassurant pour les nouvelles familles, favorisant un début de vie serein et sain pour le nouveau-né.</p>
                                         </div>
                                         <button class="read-more-btn">Lire la suite</button>
                                     </div>
@@ -1123,7 +395,7 @@
                         </div>
 
                         <!-- Accompagnement émotionnel -->
-                        <div class="accordion-item">
+                        <div class="accordion-item" id="accompagnement-emotionnel">
                             <button class="accordion-header" aria-expanded="false">
                                 <span>💗 Accompagnement émotionnel</span>
                                 <span class="accordion-icon">+</span>
@@ -1153,22 +425,20 @@
                     </div>
                 </div>
 
-                <!-- ============================================================ -->
                 <!-- ===== 3. MODE DE GARDE ===== -->
-                <!-- ============================================================ -->
                 <div class="content-box" id="mode-de-garde">
                     <h3 style="color:var(--primary-color);">Recherche d'un mode de garde</h3>
 
                     <div class="mode-garde-grid">
 
                         <!-- Guichet Unique -->
-                        <div class="mode-garde-item">
+                        <div class="mode-garde-item" id="guichet-unique">
                             <button class="mode-garde-header" aria-expanded="false">
                                 <span>Guichet Unique de la Petite Enfance</span>
                                 <span class="accordion-icon">+</span>
                             </button>
                             <div class="mode-garde-body">
-                                <img src="arrivee_enfant_page-023.png" alt="Guichet Unique de la Petite Enfance" class="mg-image">
+                                <img src="arrivee_enfant_page-023.png" alt="Guichet Unique" class="mg-image">
                                 <div class="short-text">
                                     <p>Vous êtes parent ou sur le point de le devenir ? Vous recherchez un mode de garde / d'accueil pour votre enfant âgé de 0 à 4 ans ? Bénéficiez d'un accompagnement individualisé, sur rendez-vous, pour votre recherche d'un mode d'accueil.</p>
                                 </div>
@@ -1188,7 +458,7 @@
                         </div>
 
                         <!-- Monenfant.fr -->
-                        <div class="mode-garde-item">
+                        <div class="mode-garde-item" id="monenfant">
                             <button class="mode-garde-header" aria-expanded="false">
                                 <span>Monenfant.fr</span>
                                 <span class="accordion-icon">+</span>
@@ -1207,7 +477,7 @@
                         </div>
 
                         <!-- Pajemploi -->
-                        <div class="mode-garde-item">
+                        <div class="mode-garde-item" id="pajemploi">
                             <button class="mode-garde-header" aria-expanded="false">
                                 <span>URSSAF - Pajemploi</span>
                                 <span class="accordion-icon">+</span>
@@ -1247,8 +517,7 @@
                 <div class="footer-section">
                     <h3>Communauté de Communes Berry Loire Puisaye</h3>
                     <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
-                    📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Liens utiles</h3>
@@ -1278,7 +547,7 @@
     <!-- ===== SCROLL TOP ===== -->
     <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS ===== -->
+    <!-- ===== SCRIPTS CORRIGÉS ===== -->
     <script>
         (function() {
             // ============================================================
@@ -1431,18 +700,38 @@
             // ============================================================
             function openAccordionFromHash() {
                 if (!window.location.hash) return;
-                const target = document.querySelector(window.location.hash);
+                const targetId = window.location.hash;
+                const target = document.querySelector(targetId);
                 if (!target) return;
 
-                // Si la cible est un content-box, trouver l'accordéon parent
+                // Vérifier si la cible est un .content-box (section principale)
+                if (target.classList.contains('content-box')) {
+                    // Trouver le premier accordéon à l'intérieur
+                    const firstAccordion = target.querySelector('.accordion-item');
+                    if (firstAccordion) {
+                        const header = firstAccordion.querySelector('.accordion-header');
+                        if (header && !header.classList.contains('open')) {
+                            // Fermer tous les autres
+                            document.querySelectorAll('.accordion-header, .mode-garde-header').forEach(function(h) {
+                                h.classList.remove('open');
+                                h.setAttribute('aria-expanded', 'false');
+                                h.nextElementSibling.classList.remove('open');
+                            });
+                            header.classList.add('open');
+                            header.setAttribute('aria-expanded', 'true');
+                            header.nextElementSibling.classList.add('open');
+                            setTimeout(function() {
+                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }, 200);
+                        }
+                        return;
+                    }
+                }
+
+                // Vérifier si la cible est un .accordion-item ou .mode-garde-item
                 let accordionItem = target.closest('.accordion-item');
                 if (!accordionItem) {
-                    // Chercher dans les mode-garde
                     accordionItem = target.closest('.mode-garde-item');
-                }
-                if (!accordionItem) {
-                    // Chercher un accordéon dans la cible
-                    accordionItem = target.querySelector('.accordion-item');
                 }
                 if (!accordionItem) return;
 
@@ -1463,7 +752,9 @@
                 }
             }
 
+            // Au chargement de la page
             window.addEventListener('DOMContentLoaded', openAccordionFromHash);
+            // Quand le hash change (clic sur un lien du menu)
             window.addEventListener('hashchange', openAccordionFromHash);
 
         })();
