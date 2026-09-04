@@ -52,30 +52,209 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        .quick-access .card {
-            text-align: center;
-            border-top: none;
-            border-left: 4px solid var(--primary-color);
-            padding: 1.5rem 1.2rem;
+        /* ===== MESSAGE DU PRÉSIDENT AVEC IMAGE CLIQUABLE ===== */
+        .president-message {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
         }
 
-        .quick-access .card .icon {
-            font-size: 2.5rem;
+        .president-message .text-content .full-text {
+            display: none;
+        }
+
+        .president-message .text-content .full-text.visible {
+            display: block;
+        }
+
+        .president-message .image-wrapper {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .president-message .image-wrapper img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .president-message .image-wrapper img:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .president-message .image-wrapper .click-hint {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .read-more-btn {
+            background: none;
+            border: none;
             color: var(--primary-color);
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            padding: 0.2rem 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline dotted;
         }
 
-        .quick-access .card h3 {
+        .read-more-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== ACCORDÉON GUIDE COLLABORATIF ===== */
+        .guide-accordion .accordion-item {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            margin-bottom: 14px;
+            background: white;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+
+        .guide-accordion .accordion-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .guide-accordion .accordion-header {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 1rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
             font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .guide-accordion .accordion-header:hover {
+            background: #f5f8ff;
+        }
+
+        .guide-accordion .accordion-header.open {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .guide-accordion .accordion-icon {
+            font-size: 1.6rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .guide-accordion .accordion-header.open .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .guide-accordion .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+        }
+
+        .guide-accordion .accordion-body.open {
+            max-height: 500px;
+            padding: 0.8rem 1.2rem 1.5rem;
+        }
+
+        .guide-accordion .accordion-body p {
+            margin: 0.5rem 0;
+            line-height: 1.7;
+        }
+
+        .guide-accordion .accordion-body ul {
+            margin: 0.5rem 0 0.5rem 1.5rem;
+        }
+
+        .guide-accordion .accordion-body ul li {
             margin-bottom: 0.3rem;
         }
 
-        .quick-access .card p {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin: 0;
+        /* ===== NAVIGATION RAPIDE AVEC IMAGES ===== */
+        .quick-access-nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
 
+        .quick-access-nav .nav-card {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            height: 180px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .quick-access-nav .nav-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .quick-access-nav .nav-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.5);
+            transition: filter 0.3s, transform 0.3s;
+        }
+
+        .quick-access-nav .nav-card:hover img {
+            filter: brightness(0.6);
+            transform: scale(1.05);
+        }
+
+        .quick-access-nav .nav-card .card-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+
+        .quick-access-nav .nav-card .card-content h3 {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0 0 0.2rem 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .quick-access-nav .nav-card .card-content p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.8rem;
+            margin: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
                 min-height: 250px;
@@ -87,9 +266,57 @@
                 font-size: 0.95rem;
                 padding: 0 10px;
             }
+
+            .president-message {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .president-message .image-wrapper .click-hint {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.6rem;
+            }
+
+            .quick-access-nav {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .quick-access-nav .nav-card {
+                height: 140px;
+                padding: 1rem;
+            }
+
+            .quick-access-nav .nav-card .card-content h3 {
+                font-size: 0.9rem;
+            }
+
+            .quick-access-nav .nav-card .card-content p {
+                font-size: 0.7rem;
+            }
         }
 
-        /* ===== HEADER MODIFIÉ ===== */
+        @media (max-width: 480px) {
+            .quick-access-nav {
+                grid-template-columns: 1fr 1fr;
+                gap: 0.8rem;
+            }
+
+            .quick-access-nav .nav-card {
+                height: 120px;
+                padding: 0.8rem;
+            }
+
+            .quick-access-nav .nav-card .card-content h3 {
+                font-size: 0.8rem;
+            }
+
+            .quick-access-nav .nav-card .card-content p {
+                font-size: 0.65rem;
+            }
+        }
+
+        /* ===== HEADER MODIFIÉ AVEC TITRE AGRANDI x2 ===== */
         .header {
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             color: white;
@@ -123,7 +350,10 @@
         .logo h1 {
             color: white;
             margin-bottom: 0;
-            font-size: 1.8rem;
+            font-size: 3.6rem;
+            /* AGRANDI x2 (1.8rem × 2) */
+            font-weight: 700;
+            letter-spacing: 0.02em;
         }
 
         .logo h1 a {
@@ -144,16 +374,14 @@
             font-weight: 600;
         }
 
-        /* Responsive header */
         @media (max-width: 768px) {
             .logo img {
                 height: 50px;
             }
-
             .logo h1 {
-                font-size: 1.3rem;
+                font-size: 2.6rem;
+                /* AGRANDI x2 sur tablette (1.3rem × 2) */
             }
-
             .header-info {
                 font-size: 0.5rem;
                 bottom: -0.1rem;
@@ -164,11 +392,10 @@
             .logo img {
                 height: 40px;
             }
-
             .logo h1 {
-                font-size: 1.1rem;
+                font-size: 2.2rem;
+                /* AGRANDI x2 sur mobile (1.1rem × 2) */
             }
-
             .header-info {
                 font-size: 0.45rem;
             }
@@ -177,7 +404,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER MODIFIÉ ===== -->
+    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -304,101 +531,127 @@
                     </div>
                 </div>
 
-                <!-- Présentation -->
+                <!-- ===== MESSAGE DU PRÉSIDENT ===== -->
                 <div class="content-box">
-                    <div class="image-text-row">
-                        <div>
-                            <img src="presentation_page-001.png" alt="Siège de la Communauté de communes" style="border-radius:var(--radius);">
+                    <h2 style="color:var(--primary-color); margin-bottom:1.5rem;">Chères familles,</h2>
+                    <div class="president-message">
+                        <div class="text-content">
+                            <div class="short-text">
+                                <p><em>Nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie.</em></p>
+                                <p>Grâce à nos services et à nos partenariats, nous travaillons chaque jour pour vous accompagner : accueil de la petite enfance, accompagnement des jeunes, accès à l'information et aux droits.</p>
+                            </div>
+                            <div class="full-text">
+                                <p><strong>Notre volonté est simple : que chaque habitant puisse trouver écoute, soutien et solutions adaptées.</strong></p>
+                                <p>Vous trouverez dans ce guide toutes les informations pratiques dont vous pouvez avoir besoin, ainsi que l'ensemble des ressources disponibles sur notre territoire pour favoriser l'épanouissement des plus jeunes et de leurs parents.</p>
+                                <p>Parce que la richesse de notre territoire, ce sont avant tout ses habitants, nous continuerons à agir pour une Communauté de Communes plus solidaire, attentive et humaine.</p>
+                                <p style="margin-top:1.5rem;"><strong>Bonne lecture</strong></p>
+                                <p style="margin-top:1rem;">
+                                    <strong>M. GITTON Vincent</strong><br>
+                                    <em>Président de la Communauté de Communes Berry Loire Puisaye</em>
+                                </p>
+                                <p style="margin-top:0.5rem;">
+                                    <strong>Mme BERTRAND Isabelle</strong><br>
+                                    <em>Vice-présidente en charge des affaires sociales</em>
+                                </p>
+                            </div>
+                            <button class="read-more-btn" id="presidentReadMore">Lire la suite</button>
                         </div>
-                        <div>
-                            <h2 style="color:var(--primary-color); margin-bottom:1.5rem;">Chères familles,</h2>
-                            <p><em>Nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie.</em></p>
-                            <p>Grâce à nos services et à nos partenariats, nous travaillons chaque jour pour vous accompagner : accueil de la petite enfance, accompagnement des jeunes, accès à l'information et aux droits.</p>
-                            <p><strong>Notre volonté est simple : que chaque habitant puisse trouver écoute, soutien et solutions adaptées.</strong></p>
-                            <p>Vous trouverez dans ce guide toutes les informations pratiques dont vous pouvez avoir besoin, ainsi que l'ensemble des ressources disponibles sur notre territoire pour favoriser l'épanouissement des plus jeunes et de leurs parents.</p>
-                            <p>Parce que la richesse de notre territoire, ce sont avant tout ses habitants, nous continuerons à agir pour une Communauté de Communes plus solidaire, attentive et humaine.</p>
-                            <p style="margin-top:1.5rem;"><strong>Bonne lecture</strong></p>
-                            <p style="margin-top:1rem;">
-                                <strong>M. GITTON Vincent</strong><br>
-                                <em>Président de la Communauté de Communes Berry Loire Puisaye</em>
-                            </p>
-                            <p style="margin-top:0.5rem;">
-                                <strong>Mme BERTRAND Isabelle</strong><br>
-                                <em>Vice-présidente en charge des affaires sociales</em>
-                            </p>
+                        <div class="image-wrapper" id="presidentImage">
+                            <img src="presentation_page-001.png" alt="Siège de la Communauté de communes">
+                            <span class="click-hint">👆 Cliquez pour lire la suite</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Un guide collaboratif -->
+                <!-- ===== GUIDE COLLABORATIF EN ACCORDÉON ===== -->
                 <div class="content-box">
-                    <div class="image-text-row">
-                        <div>
-                            <h3 style="color:var(--primary-color);">Un guide collaboratif</h3>
-                            <p>Le Guide des Familles est né du constat d'un manque de connaissance des habitants concernant les services, dispositifs et ressources présents sur le territoire.</p>
-                            <p><strong>Conçu de manière collaborative</strong> avec les structures locales, la Caisse d'Allocations Familiales du Loiret (CAF), la Mutualité Sociale Agricole Beauce-Cœur de Loire (MSA), les élus et les familles elles-mêmes, il se veut être un <strong>outil indispensable recensant l'ensemble des informations utiles à la vie familiale</strong>, au sens large.</p>
-                            <p><strong>On y retrouve des repères clairs et pratiques autour :</strong></p>
-                            <ul>
-                                <li>des mairies et les services publics,</li>
-                                <li>de la petite enfance, l'enfance et la jeunesse,</li>
-                                <li>de l'accès aux droits et à la parentalité,</li>
-                                <li>des loisirs et de la culture.</li>
-                            </ul>
-                            <p style="margin-top:1.5rem; font-style:italic; color:var(--primary-dark);">Ce guide a pour ambition de faciliter le quotidien des familles, de renforcer le lien avec les acteurs locaux et de valoriser toutes les ressources disponibles sur notre territoire.</p>
-                        </div>
-                        <div>
-                            <img src="presentation_page-000.png" alt="Partenaires du guide" style="border-radius:var(--radius);">
+                    <h3 style="color:var(--primary-color);">Un guide collaboratif</h3>
+                    <div class="guide-accordion">
+                        <div class="accordion-item">
+                            <button class="accordion-header" aria-expanded="false">
+                                <span>Le Guide des Familles est né du constat d'un manque de connaissance des habitants concernant les services, dispositifs et ressources présents sur le territoire.</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="accordion-body">
+                                <p><strong>Conçu de manière collaborative</strong> avec les structures locales, la Caisse d'Allocations Familiales du Loiret (CAF), la Mutualité Sociale Agricole Beauce-Cœur de Loire (MSA), les élus et les familles elles-mêmes, il se veut être un <strong>outil indispensable recensant l'ensemble des informations utiles à la vie familiale</strong>, au sens large.</p>
+                                <p><strong>On y retrouve des repères clairs et pratiques autour :</strong></p>
+                                <ul>
+                                    <li>des mairies et les services publics,</li>
+                                    <li>de la petite enfance, l'enfance et la jeunesse,</li>
+                                    <li>de l'accès aux droits et à la parentalité,</li>
+                                    <li>des loisirs et de la culture.</li>
+                                </ul>
+                                <p style="margin-top:1rem; font-style:italic; color:var(--primary-dark);">Ce guide a pour ambition de faciliter le quotidien des familles, de renforcer le lien avec les acteurs locaux et de valoriser toutes les ressources disponibles sur notre territoire.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Accès rapide -->
+                <!-- ===== NAVIGATION RAPIDE AVEC IMAGES ===== -->
                 <h3 style="color:var(--primary-color); margin-top:2rem; margin-bottom:1.5rem;">Accédez directement à une rubrique</h3>
-                <div class="cards-grid quick-access">
-                    <a href="interlocuteurs.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">🏛️</div>
-                        <h3>Interlocuteurs clés</h3>
-                        <p>Mairies, CC, CAF, MSA - tous vos contacts locaux</p>
+                <div class="quick-access-nav">
+                    <a href="interlocuteurs.html" class="nav-card">
+                        <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
+                        <div class="card-content">
+                            <h3>Interlocuteurs clés</h3>
+                            <p>Mairies, CC, CAF, MSA</p>
+                        </div>
                     </a>
-                    <a href="arrivee-enfant.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">👶</div>
-                        <h3>Arrivée d'un enfant</h3>
-                        <p>Démarches, maternité, PMI, sages-femmes</p>
+                    <a href="arrivee-enfant.html" class="nav-card">
+                        <img src="arrivee_enfant_page-000.png" alt="Arrivée d'un enfant">
+                        <div class="card-content">
+                            <h3>Arrivée d'un enfant</h3>
+                            <p>Démarches, maternité, PMI</p>
+                        </div>
                     </a>
-                    <a href="petite-enfance.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">🌱</div>
-                        <h3>Petite enfance (0-5 ans)</h3>
-                        <p>Multi-accueil, assistantes maternelles, RPE</p>
+                    <a href="petite-enfance.html" class="nav-card">
+                        <img src="petite_enfance_page-000.png" alt="Petite enfance">
+                        <div class="card-content">
+                            <h3>Petite enfance (0-5 ans)</h3>
+                            <p>Multi-accueil, assistantes maternelles</p>
+                        </div>
                     </a>
-                    <a href="enfance.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">📚</div>
-                        <h3>Enfance (3-11 ans)</h3>
-                        <p>Écoles, accueils de loisirs, périscolaire</p>
+                    <a href="enfance.html" class="nav-card">
+                        <img src="enfance_page-000.png" alt="Enfance">
+                        <div class="card-content">
+                            <h3>Enfance (3-11 ans)</h3>
+                            <p>Écoles, accueils de loisirs</p>
+                        </div>
                     </a>
-                    <a href="jeunesse.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">🎯</div>
-                        <h3>Jeunesse (11-25 ans)</h3>
-                        <p>Collèges, structures jeunesse, mission locale</p>
+                    <a href="jeunesse.html" class="nav-card">
+                        <img src="jeunesse_page-000.png" alt="Jeunesse">
+                        <div class="card-content">
+                            <h3>Jeunesse (11-25 ans)</h3>
+                            <p>Collèges, structures jeunesse</p>
+                        </div>
                     </a>
-                    <a href="parentalite.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">👪</div>
-                        <h3>Parentalité</h3>
-                        <p>Accompagnement, ateliers, soutien à la famille</p>
+                    <a href="parentalite.html" class="nav-card">
+                        <img src="parentalite_page-000.png" alt="Parentalité">
+                        <div class="card-content">
+                            <h3>Parentalité</h3>
+                            <p>Accompagnement, ateliers</p>
+                        </div>
                     </a>
-                    <a href="loisirs.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">🎨</div>
-                        <h3>Loisirs & Culture</h3>
-                        <p>Bibliothèques, sport, musée numérique</p>
+                    <a href="loisirs.html" class="nav-card">
+                        <img src="Loisirs1.png" alt="Loisirs">
+                        <div class="card-content">
+                            <h3>Loisirs & Culture</h3>
+                            <p>Bibliothèques, sport, culture</p>
+                        </div>
                     </a>
-                    <a href="vivre-ensemble.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">🤝</div>
-                        <h3>Vivre ensemble</h3>
-                        <p>Associations, initiatives citoyennes, numérique</p>
+                    <a href="vivre-ensemble.html" class="nav-card">
+                        <img src="Vivre_ensemble.png" alt="Vivre ensemble">
+                        <div class="card-content">
+                            <h3>Vivre ensemble</h3>
+                            <p>Associations, initiatives citoyennes</p>
+                        </div>
                     </a>
-                    <a href="acces-droits.html" class="card" style="text-decoration:none; color:inherit;">
-                        <div class="icon">⚖️</div>
-                        <h3>Accès aux droits</h3>
-                        <p>France Services, ADS, CIDFF, handicap</p>
+                    <a href="acces-droits.html" class="nav-card">
+                        <img src="Accès aux droits.png" alt="Accès aux droits">
+                        <div class="card-content">
+                            <h3>Accès aux droits</h3>
+                            <p>France Services, ADS, CIDFF</p>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -520,6 +773,52 @@
             });
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeLightbox();
+            });
+
+            // ---- Lire la suite du président (clic sur image ou bouton) ----
+            const presidentFullText = document.querySelector('.president-message .full-text');
+            const presidentBtn = document.getElementById('presidentReadMore');
+            const presidentImage = document.getElementById('presidentImage');
+
+            function togglePresidentText() {
+                const isVisible = presidentFullText.classList.contains('visible');
+                presidentFullText.classList.toggle('visible');
+                presidentBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+            }
+
+            if (presidentBtn) {
+                presidentBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    togglePresidentText();
+                });
+            }
+
+            if (presidentImage) {
+                presidentImage.addEventListener('click', function() {
+                    togglePresidentText();
+                });
+            }
+
+            // ---- Accordéon guide collaboratif ----
+            const guideHeaders = document.querySelectorAll('.guide-accordion .accordion-header');
+            guideHeaders.forEach(function(header) {
+                header.addEventListener('click', function() {
+                    const isOpen = this.classList.contains('open');
+                    const body = this.nextElementSibling;
+
+                    // Fermer tous les autres
+                    document.querySelectorAll('.guide-accordion .accordion-header').forEach(function(h) {
+                        h.classList.remove('open');
+                        h.setAttribute('aria-expanded', 'false');
+                        h.nextElementSibling.classList.remove('open');
+                    });
+
+                    if (!isOpen) {
+                        this.classList.add('open');
+                        this.setAttribute('aria-expanded', 'true');
+                        body.classList.add('open');
+                    }
+                });
             });
 
         })();
