@@ -247,30 +247,34 @@
         }
         .microfolie-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: start;
+            grid-template-columns: 380px 1fr;
+            gap: 2.5rem;
+            align-items: center;
         }
         .microfolie-grid .image-col img {
             width: 100%;
-            height: 300px;
+            height: 340px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .microfolie-grid .text-col {
+            display: flow-root;
         }
         .microfolie-grid .text-col h3 {
             color: var(--primary-dark);
             margin-top: 0;
         }
-        .microfolie-grid .text-col .logo-row {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin: 1rem 0;
-        }
-        .microfolie-grid .text-col .logo-row img {
-            height: 50px;
+        .microfolie-grid .text-col .microfolie-logo {
+            float: left;
+            height: 80px;
             width: auto;
             object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 0.5rem 0.9rem;
+            margin: 0 1.2rem 0.8rem 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
         .microfolie-grid .text-col ul {
             padding-left: 1.2rem;
@@ -283,12 +287,17 @@
         .microfolie-grid .text-col a:hover {
             text-decoration: underline;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .microfolie-grid {
                 grid-template-columns: 1fr;
             }
             .microfolie-grid .image-col img {
-                height: 200px;
+                height: 220px;
+            }
+            .microfolie-grid .text-col .microfolie-logo {
+                float: none;
+                display: block;
+                margin: 0 0 1rem 0;
             }
         }
 </style>
@@ -526,8 +535,9 @@
                 <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes, les animations ont lieu au premier étage du Centre-socio-culturel de Châtillon sur Loire<br>
                 7 rue Gelée<br>45360 Châtillon-sur-Loire</p>
                 <p>📞 <a href="tel:0684552778">06 84 55 27 78</a><br>
-                📧 <a href="mailto:jeuxdboule@gmail.com">jeuxdboule@gmail.com</a><br>
-                🌐 <a href="https://facebook.com/Jeux.D.boule" target="_blank" rel="noopener">Facebook : Jeux.D.boule</a></p>
+                📧 <a href="mailto:jeuxdboule@gmail.com">jeuxdboule@gmail.com</a></p>
+                <p style="margin-top:0.5rem;">
+                <a href="https://facebook.com/Jeux.D.boule" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a></p>
             </div>
             <div class="card" style="text-align:center; background:var(--primary-light);">
                 <i class="fas fa-truck" style="font-size:2.5rem; color:var(--primary-dark);"></i>
@@ -536,9 +546,10 @@
                 <p>Ludothèque itinérante sur la Communauté de communes avec jeux de sociétés et jeux géants dont l'idée est de partager des moments conviviaux entre amis, voisins, inconnus…<br>
                 Fréquence : 2 fois par mois</p>
                 <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a><br>
-                🌐 <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener">Instagram : evsligue45</a><br>
-                🌐 <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener">Facebook : EVS-Itinérant-Berry Loire Puisaye</a></p>
+                📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                <p style="margin-top:0.5rem;">
+                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" style="color:#E1306C; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-instagram"></i></a></p>
             </div>
         </div>
     </div>
@@ -552,12 +563,9 @@
             <div class="microfolie-grid">
                 <div class="image-col">
                     <img src="microfolie.jpg" alt="Micro-Folie Briare">
-                    <div style="margin-top:1rem; display:flex; gap:1rem; align-items:center; justify-content:center;">
-                        <img src="loisirs_micro.png" alt="Micro-Folie" style="height:50px; width:auto;">
-                        <img src="loisirs_logo_micro.png" alt="Logo Micro-Folie" style="height:50px; width:auto;">
-                    </div>
                 </div>
                 <div class="text-col">
+                    <img src="loisirs_logo_micro.png" alt="Logo Micro-Folie" class="microfolie-logo">
                     <h3>Musée numérique et espace culturel</h3>
                     <p>La Micro-Folie est un musée numérique gratuit et accessible à tous. Sur écran géant ou tablette, partez à la découverte de milliers d'œuvres du monde entier.</p>
                     <p>Pilotée par la Communauté de communes Berry Loire Puisaye et la ville de Briare, la Micro-Folie propose ateliers, conférences, expositions et animations. Accompagné par un médiateur culturel, voyagez depuis Briare vers d'autres horizons, casque de réalité virtuelle sur la tête ou tablette en main.</p>
@@ -648,8 +656,9 @@
                 <p>Accessibilité : Accessible aux personnes à mobilité réduite. Visites individuelles libres en permanence.</p>
                 <p><strong>📍 3 place d'Armes - 45630 Beaulieu-sur-Loire</strong></p>
                 <p>📞 <a href="tel:0673360660">06 73 36 06 60</a><br>
-                📧 <a href="mailto:maison-du-terroir@beaulieu-sur-loire.fr">maison-du-terroir@beaulieu-sur-loire.fr</a><br>
-                🌐 <a href="https://facebook.com/TerroirBeaulieusurLoire" target="_blank" rel="noopener">Facebook : @TerroirBeaulieusurLoire</a></p>
+                📧 <a href="mailto:maison-du-terroir@beaulieu-sur-loire.fr">maison-du-terroir@beaulieu-sur-loire.fr</a></p>
+                <p style="margin-top:0.5rem;">
+                <a href="https://facebook.com/TerroirBeaulieusurLoire" target="_blank" rel="noopener" style="color:#1877F2; font-size:1.3rem; margin-right:0.6rem;"><i class="fa-brands fa-facebook"></i></a></p>
             </div>
         </div>
     </div>
