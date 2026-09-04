@@ -547,7 +547,7 @@
     <!-- ===== SCROLL TOP ===== -->
     <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS CORRIGÉS ===== -->
+    <!-- ===== SCRIPTS CORRIGÉS AVEC FERMETURE DU SOUS-MENU ===== -->
     <script>
         (function() {
             // ============================================================
@@ -580,6 +580,28 @@
 
                         if (!wasOpen) {
                             parent.classList.add('open');
+                        }
+                    }
+                });
+            });
+
+            // ============================================================
+            // ---- FERMETURE DU SOUS-MENU QUAND ON CLIQUE SUR UN LIEN ----
+            // ============================================================
+            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    // Sur mobile, fermer le sous-menu après le clic
+                    if (window.innerWidth <= 768) {
+                        const parentDropdown = this.closest('.nav-dropdown');
+                        if (parentDropdown) {
+                            parentDropdown.classList.remove('open');
+                        }
+                        // Fermer aussi le menu principal
+                        if (navList) {
+                            navList.classList.remove('active');
+                        }
+                        if (menuToggle) {
+                            menuToggle.classList.remove('active');
                         }
                     }
                 });
