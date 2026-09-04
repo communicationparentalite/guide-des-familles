@@ -12,7 +12,7 @@
         /* ===== STYLES SPÉCIFIQUES À L'ACCUEIL ===== */
         .hero {
             position: relative;
-            min-height: 400px;
+            min-height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -31,19 +31,20 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.7);
+            filter: brightness(0.6);
             transition: filter 0.3s;
         }
 
         .hero:hover .hero-bg {
-            filter: brightness(0.6);
+            filter: brightness(0.5);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 2rem;
-            max-width: 800px;
+            padding: 2.5rem;
+            max-width: 900px;
+            width: 100%;
         }
 
         .hero h2 {
@@ -53,23 +54,76 @@
             color: white;
         }
 
-        .hero-text {
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        .hero .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+            max-height: 180px;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+        }
+
+        .hero .message-text.expanded {
+            max-height: 2000px;
+        }
+
+        .hero .message-text .full-text {
+            display: none;
+        }
+
+        .hero .message-text .full-text.visible {
+            display: block;
+        }
+
+        .hero .message-text strong {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .hero .message-text .signature {
+            margin-top: 1.5rem;
+            font-style: italic;
+            font-size: 0.95rem;
+        }
+
+        .hero .message-text .signature strong {
+            font-style: normal;
+        }
+
+        .hero .toggle-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid rgba(255,255,255,0.4);
+            padding: 0.5rem 1.8rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-shadow: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .hero .toggle-btn:hover {
+            background: rgba(255,255,255,0.35);
+            border-color: rgba(255,255,255,0.7);
+            transform: scale(1.03);
         }
 
         .hero .click-hint {
             position: absolute;
-            bottom: 1.5rem;
+            bottom: 1.2rem;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0,0,0,0.6);
+            background: rgba(0,0,0,0.5);
             color: white;
-            padding: 0.3rem 1.2rem;
+            padding: 0.25rem 1rem;
             border-radius: 30px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            opacity: 0.7;
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.6;
             z-index: 2;
             pointer-events: none;
             transition: opacity 0.3s;
@@ -77,34 +131,6 @@
 
         .hero:hover .click-hint {
             opacity: 1;
-        }
-
-        /* ===== MESSAGE DU PRÉSIDENT ===== */
-        .president-message {
-            display: block;
-        }
-
-        .president-message .text-content .full-text {
-            display: none;
-        }
-
-        .president-message .text-content .full-text.visible {
-            display: block;
-        }
-
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 0.2rem 0;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-decoration: underline dotted;
-        }
-
-        .read-more-btn:hover {
-            color: var(--primary-dark);
         }
 
         /* ===== ACCORDÉON GUIDE COLLABORATIF ===== */
@@ -250,19 +276,26 @@
         /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
-                min-height: 250px;
+                min-height: 350px;
             }
             .hero h2 {
                 font-size: 1.5rem;
             }
-            .hero-text {
+            .hero .message-text {
                 font-size: 0.95rem;
-                padding: 0 10px;
+                max-height: 140px;
+            }
+            .hero .message-text .signature {
+                font-size: 0.85rem;
+            }
+            .hero .toggle-btn {
+                font-size: 0.8rem;
+                padding: 0.4rem 1.2rem;
             }
             .hero .click-hint {
-                font-size: 0.65rem;
-                padding: 0.2rem 0.8rem;
-                bottom: 1rem;
+                font-size: 0.6rem;
+                padding: 0.15rem 0.8rem;
+                bottom: 0.8rem;
             }
 
             .quick-access-nav {
@@ -285,6 +318,17 @@
         }
 
         @media (max-width: 480px) {
+            .hero {
+                min-height: 280px;
+            }
+            .hero .message-text {
+                font-size: 0.85rem;
+                max-height: 120px;
+            }
+            .hero .message-text .signature {
+                font-size: 0.75rem;
+            }
+
             .quick-access-nav {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.8rem;
@@ -507,42 +551,33 @@
     <main>
         <section class="section">
             <div class="container">
-                <!-- Hero - clic pour lire la suite -->
-                <div class="hero" id="heroImage">
+                <!-- ===== HERO AVEC MESSAGE DU PRÉSIDENT INTÉGRÉ ===== -->
+                <div class="hero" id="heroSection">
                     <img src="couverture_page-000.png" alt="Famille" class="hero-bg">
                     <div class="hero-content">
                         <h2>Bienvenue dans votre Guide des Familles</h2>
-                        <p class="hero-text">"Chères familles, nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie."</p>
-                    </div>
-                    <span class="click-hint">👆 Cliquez pour lire la suite du message</span>
-                </div>
+                        <div class="message-text" id="presidentMessage">
+                            <p><strong>Chères familles,</strong></p>
+                            <p>Nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie.</p>
 
-                <!-- ===== MESSAGE DU PRÉSIDENT ===== -->
-                <div class="content-box">
-                    <h2 style="color:var(--primary-color); margin-bottom:1.5rem;">Chères familles,</h2>
-                    <div class="president-message">
-                        <div class="text-content">
-                            <div class="short-text">
-                                <p><em>Nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie.</em></p>
-                                <p>Grâce à nos services et à nos partenariats, nous travaillons chaque jour pour vous accompagner : accueil de la petite enfance, accompagnement des jeunes, accès à l'information et aux droits.</p>
-                            </div>
                             <div class="full-text">
+                                <p>Grâce à nos services et à nos partenariats, nous travaillons chaque jour pour vous accompagner : accueil de la petite enfance, accompagnement des jeunes, accès à l'information et aux droits.</p>
                                 <p><strong>Notre volonté est simple : que chaque habitant puisse trouver écoute, soutien et solutions adaptées.</strong></p>
                                 <p>Vous trouverez dans ce guide toutes les informations pratiques dont vous pouvez avoir besoin, ainsi que l'ensemble des ressources disponibles sur notre territoire pour favoriser l'épanouissement des plus jeunes et de leurs parents.</p>
                                 <p>Parce que la richesse de notre territoire, ce sont avant tout ses habitants, nous continuerons à agir pour une Communauté de Communes plus solidaire, attentive et humaine.</p>
-                                <p style="margin-top:1.5rem;"><strong>Bonne lecture</strong></p>
-                                <p style="margin-top:1rem;">
-                                    <strong>M. GITTON Vincent</strong><br>
-                                    <em>Président de la Communauté de Communes Berry Loire Puisaye</em>
-                                </p>
-                                <p style="margin-top:0.5rem;">
-                                    <strong>Mme BERTRAND Isabelle</strong><br>
-                                    <em>Vice-présidente en charge des affaires sociales</em>
-                                </p>
+                                <p><strong>Bonne navigation</strong></p>
+                                <div class="signature">
+                                    <p><strong>M. GITTON Vincent</strong><br>
+                                    <em>Président de la Communauté de Communes Berry Loire Puisaye</em></p>
+                                    <p><strong>Mme BERTRAND Isabelle</strong><br>
+                                    <em>Vice-présidente en charge des affaires sociales</em></p>
+                                </div>
                             </div>
-                            <button class="read-more-btn" id="presidentReadMore">Lire la suite</button>
+
+                            <button class="toggle-btn" id="togglePresidentBtn">Lire la suite</button>
                         </div>
                     </div>
+                    <span class="click-hint">👆 Cliquez sur l'image ou sur le bouton</span>
                 </div>
 
                 <!-- ===== GUIDE COLLABORATIF EN ACCORDÉON ===== -->
@@ -757,27 +792,33 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ---- Lire la suite du président (clic sur image hero OU bouton) ----
-            const presidentFullText = document.querySelector('.president-message .full-text');
-            const presidentBtn = document.getElementById('presidentReadMore');
-            const heroImage = document.getElementById('heroImage');
+            // ============================================================
+            // ---- HERO : Lire la suite / Réduire (clic sur hero ou bouton) ----
+            // ============================================================
+            const fullText = document.querySelector('.hero .full-text');
+            const toggleBtn = document.getElementById('togglePresidentBtn');
+            const heroSection = document.getElementById('heroSection');
 
-            function togglePresidentText() {
-                const isVisible = presidentFullText.classList.contains('visible');
-                presidentFullText.classList.toggle('visible');
-                presidentBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+            function togglePresidentMessage() {
+                const isVisible = fullText.classList.contains('visible');
+                fullText.classList.toggle('visible');
+                toggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
             }
 
-            if (presidentBtn) {
-                presidentBtn.addEventListener('click', function(e) {
+            // Clic sur le bouton
+            if (toggleBtn) {
+                toggleBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    togglePresidentText();
+                    togglePresidentMessage();
                 });
             }
 
-            if (heroImage) {
-                heroImage.addEventListener('click', function() {
-                    togglePresidentText();
+            // Clic sur le hero (image + fond)
+            if (heroSection) {
+                heroSection.addEventListener('click', function(e) {
+                    // Ne pas déclencher si on clique sur le bouton (déjà géré)
+                    if (e.target === toggleBtn) return;
+                    togglePresidentMessage();
                 });
             }
 
