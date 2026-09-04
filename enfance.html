@@ -2,15 +2,15 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Enfance (3-11 ans) - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-     <style>
-        :root {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== COULEURS SPÉCIFIQUES À ENFANCE (VIOLET) ===== */
+        .page-enfance {
             --primary-color: #686be7;
             --primary-light: #8B8DEF;
             --primary-dark: #4A4DBD;
@@ -18,13 +18,117 @@
             --secondary-light: #8280E0;
         }
 
-        /* --- Carte interactive des écoles --- */
+        /* ===== CARTES ÉCOLES ===== */
+        .ecole-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 0.5rem;
+        }
+
+        .ecole-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        }
+
+        .ecole-card h4 {
+            color: var(--primary-dark);
+            margin: 0 0 0.3rem 0;
+            font-size: 1rem;
+        }
+
+        .ecole-card p {
+            margin: 0.2rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .ecole-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .ecole-card a:hover {
+            text-decoration: underline;
+        }
+
+        .ecole-card .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 20px;
+            margin-bottom: 0.3rem;
+            opacity: 0.8;
+        }
+
+        /* ===== ACCORDÉON CARTES GRID ===== */
+        .accordion-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== CARTES STANDARD ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            margin: 0.2rem 0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .card a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== CARTE LEaFLET ===== */
         #carte-ecoles {
             height: 480px;
             width: 100%;
             border-radius: 8px;
-            box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.15));
-            margin: 2rem 0;
+            box-shadow: var(--shadow-md);
+            margin: 1.5rem 0;
             z-index: 1;
         }
 
@@ -62,7 +166,7 @@
             background: #fff;
             border: none;
             border-radius: 8px;
-            box-shadow: var(--shadow-md, 0 4px 12px rgba(0,0,0,0.2));
+            box-shadow: var(--shadow-md);
             padding: 0.75rem 1.1rem;
             max-width: none;
             white-space: nowrap;
@@ -71,640 +175,351 @@
         .leaflet-tooltip.ecole-tooltip-wrapper::before {
             border-top-color: #fff;
         }
-    </style>
-</head>
-<body>
 
-<header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <h1><a href="index.html" style="color:white; text-decoration:none;">Guide des Familles</a></h1>
-                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
-            </div>
-            <div class="header-info">
-                <p><strong>Dernière mise à jour :</strong> 3 septembre 2026</p>
-            </div>
-        </div>
-    </div>
-</header>
+        /* ===== IMAGE + TEXTE ===== */
+        .image-text-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
 
-<nav class="nav" id="mainNav">
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
-    <ul class="nav-list" id="navList">
-        <li><a href="index.html">Accueil</a></li>
-        <li class="nav-dropdown">
-    <a href="interlocuteurs.html">Interlocuteurs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-        <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-        <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-        <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-        <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée de l'enfant</a></li>
-        <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-        <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="petite-enfance.html">Petite enfance ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="petite-enfance.html#Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#Accueil-collectif">Accueil collectif</a></li>
-        <li><a href="petite-enfance.html#MAM">Maison d'Assistantes Maternelles (MAM)</a></li>
-        <li><a href="petite-enfance.html#Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#pmi-consultations-ateliers">PMI - Consultations et ateliers</a></li>
-        <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-    </ul>
-</li>
-        <li class="nav-dropdown">
-            <a href="enfance.html" class="active">Enfance ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="enfance.html#scolarite">Scolarité</a></li>
-                <li><a href="enfance.html#clas">CLAS</a></li>
-                <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-                <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-            </ul>
-        </li>
-          <li class="nav-dropdown">
-            <a href="jeunesse.html">Jeunesse ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="jeunesse.html#colleges">Collèges</a></li>
-                <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-                <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-            </ul>
-        </li>
-         <li class="nav-dropdown">
-            <a href="parentalite.html">Parentalité ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-                <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-                <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-                <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-                <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-                <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-                <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-                <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-    <a href="loisirs.html">Loisirs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-        <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-        <li><a href="loisirs.html#associations">Associations</a></li>
-        <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-        <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-        <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-        <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-        <li><a href="loisirs.html#squares">Squares</a></li>
-        <li><a href="loisirs.html#city-skate">City-stades</a></li>
-    </ul>
-</li>
-        <li class="nav-dropdown">
-            <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-                <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-                <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-            <a href="acces-droits.html">Accès aux droits ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-                <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-                <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-                <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-                <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-    
-<main>
-   
+        .image-text-row img {
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            cursor: pointer;
+        }
 
-<section class="section section-alt">
-    <div class="container">
-        <div class="section-header">
-            <img src="enfance_page-000.png" alt="Enfance">
-        </div>
-        <h2 class="section-title">Enfance (3-11 ans)</h2>
-
-        <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto</p>
-
-        <div class="content-box" id="scolarite">
-            <h3 style="color:var(--primary-color);">Scolarité</h3>
-            <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
-
-            <div id="carte-ecoles"></div>
-            <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
-
-            <h4 style="color:var(--primary-dark); margin-top:2rem;">Écoles du territoire</h4>
-
-            <div class="ecoles-grid">
-                <div class="ecole-card">
-                    <img src="ecole_autry.png" alt="École Autry-le-Châtel">
-                    <div class="ecole-card-content">
-                        <h3>Autry-le-Châtel</h3>
-                        <p>Maternelle et élémentaire<br>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)<br>
-                        📞 <a href="tel:+33238368262">02 38 36 82 62</a> (élém.) - <a href="tel:+33238368188">02 38 36 81 88</a> (mat.)<br>
-                        ✉️ <a href="mailto:ce.0450195T@ac-orleans-tours.fr">ce.0450195T@ac-orleans-tours.fr</a> (élém.)<br>
-                        ✉️ <a href="mailto:ce.0450749V@ac-orleans-tours.fr">ce.0450749V@ac-orleans-tours.fr</a> (mat.)</p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_beaulieu.png" alt="École Beaulieu-sur-Loire">
-                    <div class="ecole-card-content">
-                        <h3>Beaulieu-sur-Loire</h3>
-                        <p>Maternelle et élémentaire<br>15 rue de Châtillon (élémentaire)<br>17 rue de Châtillon (maternelle)<br>
-                        📞 <a href="tel:+33219004986">02.19.00.49.86</a> - <a href="tel:+33238358535">02.38.35.85.35</a><br>
-                        ✉️ <a href="mailto:ce.0451398A@ac-orleans-tours.fr">ce.0451398A@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_bonny.png" alt="École Bonny-sur-Loire">
-                    <div class="ecole-card-content">
-                        <h3>Bonny-sur-Loire</h3>
-                        <b>Regroupement pédagogique intercommunal avec les communes de Thou, Batilly-en-Puisaye, Dammarie-en-Puisaye et Faverelles</b>
-                        <p>Maternelle et élémentaire<br>2 avenue de la Gare<br>
-                        📞 <a href="tel:+33238316357">02 38 31 63 57</a><br>
-                        ✉️ <a href="mailto:ce.0450182D@ac-orleans-tours.fr">ce.0450182D@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_briaregaime.png" alt="École Marcel Gaime">
-                    <div class="ecole-card-content">
-                        <h3>Briare - École Marcel Gaime</h3>
-                        <p>Maternelle<br>place Saint Roch<br>
-                        📞 <a href="tel:+33238312585">02 38 31 25 85</a><br>
-                        ✉️ <a href="mailto:ce.0450167M@ac-orleans-tours.fr">ce.0450167M@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_briarecentre.png" alt="École du Centre">
-                    <div class="ecole-card-content">
-                        <h3>Briare - École du Centre</h3>
-                        <p>Élémentaire<br>3 square Foch<br>
-                        📞 <a href="tel:+33238312649">02 38 31 26 49</a><br>
-                        ✉️ <a href="mailto:ce.0450869A@ac-orleans-tours.fr">ce.0450869A@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_briareeiffel.png" alt="École Gustave Eiffel">
-                    <div class="ecole-card-content">
-                        <h3>Briare - École Gustave Eiffel</h3>
-                        <p>Maternelle et élémentaire<br>7, rue de l'Espérance<br>
-                        📞 <a href="tel:+33238312534">02 38 31 25 34</a><br>
-                        ✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_briaresteanne.png" alt="École Sainte-Anne">
-                    <div class="ecole-card-content">
-                        <h3>Briare - École Sainte-Anne</h3>
-                        <p>Maternelle et élémentaire (privée)<br>5, rue des Grands Jardins<br>
-                        📞 <a href="tel:+33238312648">02 38 31 26 48</a><br>
-                        ✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_chatillon.png" alt="École Châtillon-sur-Loire">
-                    <div class="ecole-card-content">
-                        <h3>Châtillon-sur-Loire</h3>
-                        <p>Maternelle et élémentaire<br>place du Champ de Foire<br>
-                        📞 <a href="tel:+33238314074">02 38 31 40 74</a><br>
-                        ✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_ousson.png" alt="École Ousson-sur-Loire">
-                    <div class="ecole-card-content">
-                        <h3>Ousson-sur-Loire</h3>
-                        <p>École primaire George Sand<br>11 rue de l'Abreuvoir (élémentaire)<br>2 bis rue des Marronniers (maternelle)<br>
-                        📞 <a href="tel:+33238310051">02 38 31 00 51</a><br>
-                        ✉️ <a href="mailto:ce.0450189L@ac-orleans-tours.fr">ce.0450189L@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_ouzouer.png" alt="École Ouzouër-sur-Trézée">
-                    <div class="ecole-card-content">
-                        <h3>Ouzouër-sur-Trézée</h3>
-                        <p>École Jacques Prévert - Maternelle et élémentaire<br>14 rue de la Flamandière (élémentaire)<br>1 rue du Stade (maternelle)<br>
-                        📞 <a href="tel:+33238319747">02 38 31 97 47</a><br> <a href="tel:+33238319289">02 38 31 92 89</a><br>
-                        ✉️ <a href="mailto:ce.0451269K@ac-orleans-tours.fr">ce.0451269K@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_siis_cernoy.png" alt="École Cernoy-en-Berry">
-                    <div class="ecole-card-content">
-                        <h3>SIIS Cernoy-en-Berry / Pierrefitte-ès-Bois</h3>
-                        • Cernoy-en-Berry : Maternelle, 5 rue d'Autry<br> 📞 <a href="tel:+33238310100">02 38 31 01 00</a><br> ✉️ <a href="mailto:ec-cernoy-en-berry@ac-orleans-tours.fr">ec-cernoy-en-berry@ac-orleans-tours.fr</a><br>
-                        • Pierrefitte-ès-Bois : Élémentaire, 7 rue de la Mairie<br> 📞 <a href="tel:+33238310813">02 38 31 08 13</a><br> ✉️ <a href="mailto:ec-pierrefitte-es-bois@ac-orleans-tours.fr">ec-pierrefitte-es-bois@ac-orleans-tours.fr</a></p>
-                     </div>
-                </div>
-                <div class="ecole-card">
-                    <img src="ecole_siis_bussiere.png" alt="École La Bussière">
-                    <div class="ecole-card-content">
-                        <h3>SIIS Adon / La Bussière</h3>
-                        • Adon : 13 route de la Bussière<br> 📞 <a href="tel:+33238359469">02 38 35 94 69</a><br> ✉️ <a href="mailto:ce.0450175W@ac-orleans-tours.fr">ce.0450175W@ac-orleans-tours.fr</a><br>
-                        • La Bussière : rue d'Ouzouer<br> 📞 <a href="tel:+33238359068">02 38 35 90 68</a><br> ✉️ <a href="mailto:ce.0450184F@ac-orleans-tours.fr">ce.0450184F@ac-orleans-tours.fr</a></p>
-                    </div>
-                </div>
-            </div>
-
-          
-        <div class="content-box" id="clas">
-            <h3 style="color:var(--primary-color);">CLAS - Contrat Local d'Accompagnement à la Scolarité</h3>
-            <img src="enfance_clas.png" alt="intiatives habitants"
-                         style="margin-bottom:1rem; max-width:300px;">
-            <p>Trop souvent confondues avec une simple aide aux devoirs, les missions du Clas vont bien au-delà. Gratuits et ouverts à tous, les Clas sont des programmes de soutien à la scolarité, de l’école élémentaire au lycée. Ils sont organisés par des associations ou par les municipalités partenaires de la Caf. L’objectif est que l’enfant vive mieux sa scolarité : tout au long de l’année, les parents et les équipes enseignantes sont sollicités pour participer au suivi de l’enfant. Pour le moment, une seule commune de la Communauté de communes s’est engagé dans la démarche.</p><br>
-            <p>“ Le CLAS, c’est un accompagnement pour aider votre enfant à mieux réussir à l’école, mais aussi un soutien pour vous, parents, dans le suivi scolaire.<br>
- 
-Votre enfant pourra :<br>
-- Faire une partie de ses devoirs avec un adulte qui l’aide si quelque chose est difficile,<br>
-- Apprendre à mieux s’organiser et à gagner confiance en lui,<br>
-- Participer à des activités socio-culturelles qui renforcent ses connaissances.<br>
-Et vous, parents, êtes au cœur du dispositif : on vous accompagne, on vous conseille pour suivre les progrès de votre enfant et pour vous aider à soutenir son apprentissage à la maison.<br>
-Le CLAS se fait en petit groupe, gratuitement, dans un cadre convivial et sécurisant. L’objectif est que chaque enfant avance à son rythme, avec le soutien de sa famille. ” <br>
-</p>
-            <div class="subsection">
-                <h4>Bonny-sur-Loire</h4>
-                <p>École élémentaire et EVS Bee Mobile<br>2 avenue de la Gare<br>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
-            </div>
-            <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
-        </div>
-
-        <div class="content-box" id="accueils-periscolaires">
-            <h3 style="color:var(--primary-color);">Accueils périscolaires</h3>
-            <p><b>L’organisation de l’année et des vacances scolaires peut vous conduire à rechercher un mode d’accueil pour votre enfant en dehors des heures d’école. Le territoire Berry Loire Puisaye est riche de 9 accueils périscolaire et 6 accueils de loisirs où votre (vos) enfant(s) sera (seront) accueilli(s)par des professionnels de qualité</b></p>
-            <div class="cards-grid">
-                  <div class="card">
-                    <h4>Autry-le-Châtel</h4>
-                    <p><b>Contact en mairie les après-midis</b><br>
-                    Lun, mar, jeu, ven de 7h15 à 8h45 et de 16h30 à 18h30<br>
-                    8 rue de la Mairie<br>    
-                    📞 <a href="tel:0238368059">02 38 36 80 59</a><br> 📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>Beaulieu-sur-Loire</h4>
-                    <p><b>Les Crayons de couleurs</b><br>Association Familles Rurales<br>
-                    Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h15 à 18h30 / Mer de 7h30 à 18h30<br>
-                    15 route de Châtillon<br>
-                    📞 <a href="tel:0238050384">02 38 05 03 84</a><br> 📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p> 
-                </div>
-                <div class="card">
-                    <h4>Bonny-sur-Loire</h4>
-                    <p><b>Contact en mairie</b><br> Lun, mar, jeu, ven de 7h30 à 8h50 et de 16h30 à 18h30<br>
-                    avenue de la gare<br>
-                    📞 <a href="tel:0238295900">02 38 29 59 00</a><br> 📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p> 
-                </div>
-                <div class="card">
-                    <h4>Briare</h4>
-                    <p><b>L'inscription se fait par le portail famille</b><br>Lun, mar, jeu, ven 7h00 à 8h40 et de 16h20 à 18h00<br>
-                    📞 <a href="tel:+33238316357">02 38 31 63 57</a><br> 📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>Châtillon-sur-Loire</h4>
-                    <p><b>Une permanence est assurée au bureau jusqu’à 10h30.</b><br>
-                    Lun., mar., jeu. et vend. de 7h00 à 8h45 et de 16h30 à 18h30. <br>
-                    place du Champ de Foire<br>
-                    📞 <a href="tel:0632085479">06 32 08 54 79</a><br> 📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>Ousson-sur-Loire</h4>
-                    <p><b>Contact en mairie</b><br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30<br>
-                    2 bis rue des Marronniers<br>
-                    📞 <a href="tel:0238314456">02 38 31 44 56</a><br> 📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
-                </div>
-               <div class="card">
-                    <h4>Ouzouër-sur-Loire</h4>
-                    <p><b>Contact en mairie</b><br>Garderie sans inscription sauf le mercredi Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30<br>
-                    📞 <a href="tel:0238319390">02 38 31 93 90</a>(mairie)<br>    <a href="tel:0238356952">02 38 35 69 52</a>(garderie uniquement sur les horaires de fonctionnement))<br> 📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>SIIS Adon - La Bussière</h4>
-                    <p><b>Regroupement sur la commune de La Bussière.<br>Contact en mairie</b><br> 
-                    Lun, mar, jeu, ven de 7h15 à 8h30 et de 16h30 à 18h30 - Mer de 7h15 à 18h30 <br>
-                    Une permanence est assurée au bureau jusqu’à 10h30.<br>
-                    1 route de Briare<br>
-                    📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>SIIS Cernoy-en-Berry / Pierrefitte-ès-Bois</h4>
-                    <p><b>Regroupement sur la commune de Cernoy-en-Berry.<br>Contact en mairie</b><br> 
-                    <p>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 19h00 <br>
-                    Une permanence est assurée au bureau jusqu’à 10h30.<br>
-                    2 rue de Concressault<br>
-                    📞 <a href="tel:0632085479">02 38 31 47 02</a><br>📧 <a href="mailto:siriscernoypierrefitte@cernoy-en-berry.fr">siriscernoypierrefitte@cernoy-en-berry.fr</a></p>
-                </div>
-            </div>
-        </div>
-                
-        <div class="content-box" id="accueils-loisirs">
-            <h3 style="color:var(--primary-color);">Accueil de loisirs</h3>
-            <div class="cards-grid">
-                  <div class="card">
-                    <h4>Autry-le-Châtel</h4>
-                    <p><b>Contact en mairie les après-midis</b><br>
-                    4 semaines en juillet de 7h00 à 18h30<br>
-                    8 rue de la Mairie<br>    
-                    📞 <a href="tel:0238368059">02 38 36 80 59</a><br> 📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>Beaulieu-sur-Loire</h4>
-                    <p><b>Les Crayons de couleurs</b><br>Association Familles Rurales<br>
-                    Chaque vacances scolaires (sauf NOël) de 7h30 à 18h30<br>
-                        15 route de Châtillon<br>
-                    📞 <a href="tel:0238050384">02 38 05 03 84</a><br> 📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p> 
-                </div>
-               <div class="card">
-                    <h4>Bonny-sur-Loire</h4>
-                    <p><b>Contact en mairie</b><br> 
-                    La 1ère semaine des petites vacances sauf Noël du lundi au vendredi <br>
-                    en journée de 7h30 à 18h00 ou en demi-journée de 7h30 à 12h00 ou de 13h30 à 18h00<br>
-                    <br>
-                    Le 1er mois d’été de 8h00 à 18h00<br>
-                    avenue de la gare<br>
-                    📞 <a href="tel:0238295900">02 38 29 59 00</a><br> 📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p> 
-                </div>
-                <div class="card">
-                    <h4>Briare</h4>
-                    <p><b>L'inscription se fait par le portail famille</b><br>Inscription à la journée les mercredis et petites vacances scolaires<br>
-                    Inscriptions à la semaine pendant les grandes vacances scolaires<br>
-                    Arrivée entre 7h00 et 9h00 / Départ en 16h30 et 18h00<br>
-                    📞 <a href="tel:0238316755">02 38 31 67 55</a><br> 📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>Châtillon-sur-Loire</h4>
-                    <p><b>Une permanence est assurée au bureau jusqu’à 10h30.</b><br>
-                    Les mercredis : de 7h00 à 18h00 (journée complète) /de 7h00 à 12h15 (demi-journée) ou de 13h30 à 18h00 (demi-journée).<br>
-                    Les petites vacances : du lundi au vendredi, de 7h00 à 18h00 <br>
-                    Les grandes vacances : du lundi au vendredi de 7h30 à 18h00 - (inscription uniquement sur des semaines complètes) <br>
-                    place du Champ de Foire<br>
-                    📞 <a href="tel:0632085479">06 32 08 54 79</a><br> 📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
-               </div>
-               <div class="card">
-                    <h4>Ouzouër-sur-Loire</h4>
-                    <p><b>Contact en mairie</b><br>Les mercredis de 7h00 à 18h30 - Insciption possible par ½ journée (Repas et goûter non fournis)<br>
-                    📞 <a href="tel:0238319289">02 38 31 92 89</a>(mairie)<br>    <a href="tel:0238356952">02 38 35 69 52</a>(garderie uniquement sur les horaires de fonctionnement))<br> 📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
-                </div>
-                <div class="card">
-                    <h4>La Bussière</h4>
-                    <p><b>Contact en mairie</b><br> 
-                    Les mercredis de  7h15 à 18h30 <br>
-                    Vacances de la Toussaint, d’hiver et de printemps <br>
-                    (ouverture la 1ère semaine uniquement) de 7h30 à 18h00<br>
-                    Une permanence est assurée au bureau jusqu’à 10h30.<br>
-                    1 route de Briare<br>
-                    📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
-                </div>
-            </div>
-        </div>
-                 
-
-        
-</section>
-
-</main>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Communauté de Communes Berry Loire Puisaye</h3>
-                <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                <p>📞 02 38 37 03 84<br>
-                📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                    <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                    <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Navigation rapide</h3>
-                <ul>
-                    <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
-                    <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
-                    <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
-                    <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
-                    <li><a href="acces-droits.html">Accès aux droits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
-        </div>
-    </div>
-</footer>
-
-<button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-<script>
-// Carte interactive des écoles
-const ecolesData = [
-    {
-        commune: "Autry-le-Châtel",
-        nom: "École maternelle et élémentaire",
-        adresse: "14 rue de l'École / route de Châtillon, 45500 Autry-le-Châtel",
-        telephone: "02 38 36 82 62 / 02 38 36 81 88",
-        email: "ce.0450195T@ac-orleans-tours.fr (élémentaire) / ce.0450749V@ac-orleans-tours.fr (maternelle)",
-        lat: 47.598875, lng: 2.604867
-    },
-    {
-        commune: "Beaulieu-sur-Loire",
-        nom: "École maternelle et élémentaire",
-        adresse: "15-17 rue de Châtillon, 45630 Beaulieu-sur-Loire",
-        telephone: "02.19.00.49.86 / 02.38.35.85.35",
-        email: "ce.0451398A@ac-orleans-tours.fr",
-        lat: 47.544626, lng: 2.812810
-    },
-    {
-        commune: "Ousson-sur-Loire",
-        nom: "École élémentaire George Sand",
-        adresse: "11 rue de l'Abreuvoir / 2 bis rue des Marronniers, 45250 Ousson-sur-Loire",
-        telephone: "02 38 31 00 51",
-        email: "ce.0450189L@ac-orleans-tours.fr",
-        lat: 47.588507, lng: 2.786550
-    },
-    {
-        commune: "Briare",
-        nom: "École Marcel Gaime (maternelle)",
-        adresse: "place Saint Roch, 45250 Briare",
-        telephone: "02 38 31 25 85",
-        email: "ce.0450167M@ac-orleans-tours.fr",
-        lat: 47.637205, lng: 2.738436
-    },
-    {
-        commune: "Briare",
-        nom: "École du Centre (élémentaire)",
-        adresse: "3 square Foch, 45250 Briare",
-        telephone: "02 38 31 26 49",
-        email: "ce.0450869A@ac-orleans-tours.fr",
-        lat: 47.640598, lng: 2.737694
-    },
-    {
-        commune: "Briare",
-        nom: "École Gustave Eiffel (maternelle et élémentaire)",
-        adresse: "7 rue de l'Espérance, 45250 Briare",
-        telephone: "02 38 31 25 34",
-        email: "ce.0450178Z@ac-orleans-tours.fr",
-        lat: 47.631652, lng: 2.743530
-    },
-    {
-        commune: "Briare",
-        nom: "École Sainte-Anne (privée, maternelle et élémentaire)",
-        adresse: "5 rue des Grands Jardins, 45250 Briare",
-        telephone: "02 38 31 26 48",
-        email: "ce.0451522K@ac-orleans-tours.fr",
-        lat: 47.637611, lng: 2.736503
-    },
-    {
-        commune: "Bonny-sur-Loire",
-        nom: "École maternelle et élémentaire",
-        adresse: "2 avenue de la Gare, 45420 Bonny-sur-Loire",
-        telephone: "02 38 31 63 57",
-        email: "ce.0450182D@ac-orleans-tours.fr",
-        lat: 47.559345, lng: 2.842596
-    },
-    {
-        commune: "Châtillon-sur-Loire",
-        nom: "École maternelle et élémentaire",
-        adresse: "place du Champ de Foire, 45360 Châtillon-sur-Loire",
-        telephone: "02 38 31 40 74",
-        email: "ce.0450881N@ac-orleans-tours.fr",
-        lat: 47.591146, lng: 2.748100
-    },
-    {
-        commune: "Ouzouër-sur-Trézée",
-        nom: "École Jacques Prévert (maternelle et élémentaire)",
-        adresse: "14 rue de la Flamandière / 1 rue du Stade, 45250 Ouzouër-sur-Trézée",
-        telephone: "02 38 31 97 47 / 02 38 31 92 89",
-        email: "ce.0451269K@ac-orleans-tours.fr",
-        lat: 47.670537, lng: 2.807115
-    },
-    {
-        commune: "Cernoy-en-Berry",
-        nom: "École maternelle (RPI Cernoy / Pierrefitte)",
-        adresse: "5 rue d'Autry, 45360 Cernoy-en-Berry",
-        telephone: "02 38 31 01 00",
-        email: "ec-cernoy-en-berry@ac-orleans-tours.fr",
-        lat: 47.541448, lng: 2.660588
-    },
-    {
-        commune: "Pierrefitte-ès-Bois",
-        nom: "École élémentaire (RPI Cernoy / Pierrefitte)",
-        adresse: "7 rue de la Mairie, 45360 Pierrefitte-ès-Bois",
-        telephone: "02 38 31 08 13",
-        email: "ec-pierrefitte-es-bois@ac-orleans-tours.fr",
-        lat: 47.507527, lng: 2.717887
-    },
-    {
-        commune: "Adon",
-        nom: "École élémentaire (SIIS Adon / La Bussière)",
-        adresse: "13 route de la Bussière, 45230 Adon",
-        telephone: "02 38 35 94 69",
-        email: "ce.0450175W@ac-orleans-tours.fr",
-        lat: 47.763036, lng: 2.795527
-    },
-    {
-        commune: "La Bussière",
-        nom: "École primaire (SIIS Adon / La Bussière)",
-        adresse: "rue d'Ouzouer, 45230 La Bussière",
-        telephone: "02 38 35 90 68",
-        email: "ce.0450184F@ac-orleans-tours.fr",
-        lat: 47.744547, lng: 2.749711
-    }
-];
-
-const mapEcolesEl = document.getElementById('carte-ecoles');
-if (mapEcolesEl) {
-    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.75], 11);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-    }).addTo(mapEcoles);
-
-    ecolesData.forEach(function (ecole) {
-        const marker = L.marker([ecole.lat, ecole.lng]).addTo(mapEcoles);
-
-        const emailLigne = ecole.email
-            ? '<span class="ecole-detail">✉️ ' + ecole.email + '</span>'
-            : '<span class="ecole-detail" style="color:#999; font-style:italic;">✉️ non communiqué</span>';
-
-        const contenu =
-            '<div class="ecole-tooltip">' +
-                '<span class="ecole-commune">' + ecole.commune + '</span>' +
-                '<span class="ecole-nom">' + ecole.nom + '</span>' +
-                '<span class="ecole-detail">📍 ' + ecole.adresse + '</span>' +
-                '<span class="ecole-detail">📞 ' + ecole.telephone + '</span>' +
-                emailLigne +
-            '</div>';
-
-        marker.bindTooltip(contenu, {
-            direction: 'top',
-            offset: [0, -30],
-            className: 'ecole-tooltip-wrapper',
-            opacity: 1
-        });
-    });
-}
-
-// Menu mobile
-const menuToggle = document.getElementById('menuToggle');
-const navList = document.getElementById('navList');
-if (menuToggle) {
-    menuToggle.addEventListener('click', function () {
-        navList.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
-}
-
-// Menu déroulant : clic pour ouvrir/fermer sur mobile/tactile
-document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const parent = link.parentElement;
-            const wasOpen = parent.classList.contains('open');
-            document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
-                item.classList.remove('open');
-            });
-            if (!wasOpen) {
-                parent.classList.add('open');
+        @media (max-width: 768px) {
+            .image-text-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            #carte-ecoles {
+                height: 350px;
+            }
+            .accordion-card-grid {
+                grid-template-columns: 1fr;
             }
         }
-    });
-});
+    </style>
+</head>
+<body class="page-enfance">
 
-// Bouton retour en haut
-const scrollTop = document.getElementById('scrollTop');
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 300) {
-        scrollTop.classList.add('visible');
-    } else {
-        scrollTop.classList.remove('visible');
-    }
-});
-if (scrollTop) {
-    scrollTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
-</script>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <h1><a href="index.html">Guide des Familles</a></h1>
+                </div>
+                <div class="header-info">
+                    <strong>Dernière mise à jour :</strong> 3 septembre 2026
+                </div>
+            </div>
+        </div>
+    </header>
 
-</body>
-</html>
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <ul class="nav-list" id="navList">
+            <li><a href="index.html">Accueil</a></li>
+            <li class="nav-dropdown">
+                <a href="interlocuteurs.html">Interlocuteurs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="petite-enfance.html">Petite enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
+                    <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
+                    <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
+                    <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="enfance.html" class="active">Enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="#scolarite">Scolarité</a></li>
+                    <li><a href="#clas">CLAS</a></li>
+                    <li><a href="#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="jeunesse.html">Jeunesse ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="parentalite.html">Parentalité ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="loisirs.html">Loisirs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="loisirs.html#associations">Associations</a></li>
+                    <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
+                    <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
+                    <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
+                    <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
+                    <li><a href="loisirs.html#squares">Squares</a></li>
+                    <li><a href="loisirs.html#city-skate">City-stades</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="acces-droits.html">Accès aux droits ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <section class="section section-alt">
+            <div class="container">
+                <!-- Bannière -->
+                <div class="section-header">
+                    <img src="enfance_page-000.png" alt="Enfance">
+                </div>
+                <h2 class="section-title">Enfance (3-11 ans)</h2>
+
+                <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto</p>
+
+                <!-- ============================================================ -->
+                <!-- ===== ACCORDÉON ===== -->
+                <!-- ============================================================ -->
+                <div class="accordion">
+
+                    <!-- ===== 1. SCOLARITÉ ===== -->
+                    <div class="accordion-item" id="scolarite">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>📚 Scolarité</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="short-text">
+                                <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
+                            </div>
+                            <div class="full-text">
+                                <!-- Carte Leaflet -->
+                                <div id="carte-ecoles"></div>
+                                <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
+
+                                <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Écoles du territoire</h4>
+                                <div class="accordion-card-grid">
+                                    <div class="ecole-card">
+                                        <h4>Autry-le-Châtel</h4>
+                                        <p>Maternelle et élémentaire<br>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)</p>
+                                        <p>📞 <a href="tel:+33238368262">02 38 36 82 62</a> (élém.)<br>
+                                        📞 <a href="tel:+33238368188">02 38 36 81 88</a> (mat.)</p>
+                                        <p>✉️ <a href="mailto:ce.0450195T@ac-orleans-tours.fr">ce.0450195T@ac-orleans-tours.fr</a> (élém.)<br>
+                                        ✉️ <a href="mailto:ce.0450749V@ac-orleans-tours.fr">ce.0450749V@ac-orleans-tours.fr</a> (mat.)</p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Beaulieu-sur-Loire</h4>
+                                        <p>Maternelle et élémentaire<br>15 rue de Châtillon (élémentaire)<br>17 rue de Châtillon (maternelle)</p>
+                                        <p>📞 <a href="tel:+33219004986">02.19.00.49.86</a><br>
+                                        📞 <a href="tel:+33238358535">02.38.35.85.35</a></p>
+                                        <p>✉️ <a href="mailto:ce.0451398A@ac-orleans-tours.fr">ce.0451398A@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Bonny-sur-Loire</h4>
+                                        <p>Maternelle et élémentaire<br>2 avenue de la Gare</p>
+                                        <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450182D@ac-orleans-tours.fr">ce.0450182D@ac-orleans-tours.fr</a></p>
+                                        <span class="badge">RPI</span>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Briare - Marcel Gaime</h4>
+                                        <p>Maternelle<br>place Saint Roch</p>
+                                        <p>📞 <a href="tel:+33238312585">02 38 31 25 85</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450167M@ac-orleans-tours.fr">ce.0450167M@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Briare - Centre</h4>
+                                        <p>Élémentaire<br>3 square Foch</p>
+                                        <p>📞 <a href="tel:+33238312649">02 38 31 26 49</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450869A@ac-orleans-tours.fr">ce.0450869A@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Briare - Gustave Eiffel</h4>
+                                        <p>Maternelle et élémentaire<br>7, rue de l'Espérance</p>
+                                        <p>📞 <a href="tel:+33238312534">02 38 31 25 34</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Briare - Sainte-Anne</h4>
+                                        <p>Maternelle et élémentaire (privée)<br>5, rue des Grands Jardins</p>
+                                        <p>📞 <a href="tel:+33238312648">02 38 31 26 48</a></p>
+                                        <p>✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
+                                        <span class="badge">Privée</span>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <p>Maternelle et élémentaire<br>place du Champ de Foire</p>
+                                        <p>📞 <a href="tel:+33238314074">02 38 31 40 74</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Ousson-sur-Loire</h4>
+                                        <p>École primaire George Sand<br>11 rue de l'Abreuvoir (élémentaire)<br>2 bis rue des Marronniers (maternelle)</p>
+                                        <p>📞 <a href="tel:+33238310051">02 38 31 00 51</a></p>
+                                        <p>✉️ <a href="mailto:ce.0450189L@ac-orleans-tours.fr">ce.0450189L@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Ouzouër-sur-Trézée</h4>
+                                        <p>École Jacques Prévert - Maternelle et élémentaire<br>14 rue de la Flamandière (élémentaire)<br>1 rue du Stade (maternelle)</p>
+                                        <p>📞 <a href="tel:+33238319747">02 38 31 97 47</a><br>
+                                        📞 <a href="tel:+33238319289">02 38 31 92 89</a></p>
+                                        <p>✉️ <a href="mailto:ce.0451269K@ac-orleans-tours.fr">ce.0451269K@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>SIIS Cernoy-en-Berry / Pierrefitte</h4>
+                                        <p><strong>Cernoy-en-Berry :</strong> Maternelle, 5 rue d'Autry<br>📞 <a href="tel:+33238310100">02 38 31 01 00</a><br>✉️ <a href="mailto:ec-cernoy-en-berry@ac-orleans-tours.fr">ec-cernoy-en-berry@ac-orleans-tours.fr</a></p>
+                                        <p><strong>Pierrefitte-ès-Bois :</strong> Élémentaire, 7 rue de la Mairie<br>📞 <a href="tel:+33238310813">02 38 31 08 13</a><br>✉️ <a href="mailto:ec-pierrefitte-es-bois@ac-orleans-tours.fr">ec-pierrefitte-es-bois@ac-orleans-tours.fr</a></p>
+                                        <span class="badge">RPI</span>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>SIIS Adon / La Bussière</h4>
+                                        <p><strong>Adon :</strong> 13 route de la Bussière<br>📞 <a href="tel:+33238359469">02 38 35 94 69</a><br>✉️ <a href="mailto:ce.0450175W@ac-orleans-tours.fr">ce.0450175W@ac-orleans-tours.fr</a></p>
+                                        <p><strong>La Bussière :</strong> rue d'Ouzouer<br>📞 <a href="tel:+33238359068">02 38 35 90 68</a><br>✉️ <a href="mailto:ce.0450184F@ac-orleans-tours.fr">ce.0450184F@ac-orleans-tours.fr</a></p>
+                                        <span class="badge">RPI</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 2. CLAS ===== -->
+                    <div class="accordion-item" id="clas">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>📖 CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="short-text">
+                                <p>Trop souvent confondues avec une simple aide aux devoirs, les missions du Clas vont bien au-delà. Gratuits et ouverts à tous, les Clas sont des programmes de soutien à la scolarité, de l'école élémentaire au lycée.</p>
+                            </div>
+                            <div class="full-text">
+                                <img src="enfance_clas.png" alt="CLAS" style="max-width:300px; margin-bottom:1rem; border-radius:8px;">
+                                <p>Ils sont organisés par des associations ou par les municipalités partenaires de la Caf. L'objectif est que l'enfant vive mieux sa scolarité : tout au long de l'année, les parents et les équipes enseignantes sont sollicités pour participer au suivi de l'enfant.</p>
+                                <p>Pour le moment, une seule commune de la Communauté de communes s'est engagé dans la démarche.</p>
+                                <p><strong>"Le CLAS, c'est un accompagnement pour aider votre enfant à mieux réussir à l'école, mais aussi un soutien pour vous, parents, dans le suivi scolaire."</strong></p>
+                                <div class="subsection" style="background:var(--bg-light); padding:1rem; border-radius:8px; border-left:4px solid var(--primary-color); margin-top:1rem;">
+                                    <h4>Bonny-sur-Loire</h4>
+                                    <p>École élémentaire et EVS Bee Mobile<br>2 avenue de la Gare<br>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
+                                </div>
+                                <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 3. ACCUEIL PÉRISCOLAIRE ===== -->
+                    <div class="accordion-item" id="accueils-periscolaires">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>⏰ Accueil périscolaire</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="short-text">
+                                <p>L'organisation de l'année et des vacances scolaires peut vous conduire à rechercher un mode d'accueil pour votre enfant en dehors des heures d'école. Le territoire Berry Loire Puisaye est riche de 9 accueils périscolaires.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="ecole-card">
+                                        <h4>Autry-le-Châtel</h4>
+                                        <p>Contact en mairie les après-midis<br>Lun, mar, jeu, ven de 7h15 à 8h45 et de 16h30 à 18h30</p>
+                                        <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Beaulieu-sur-Loire</h4>
+                                        <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
+                                        <p>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h15 à 18h30 / Mer de 7h30 à 18h30</p>
+                                        <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Bonny-sur-Loire</h4>
+                                        <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h30 à 8h50 et de 16h30 à 18h30</p>
+                                        <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Briare</h4>
+                                        <p>L'inscription se fait par le portail famille<br>Lun, mar, jeu, ven 7h00 à 8h40 et de 16h20 à 18h00</p>
+                                        <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <p>Permanence au bureau jusqu'à 10h30<br>Lun., mar., jeu. et vend. de 7h00 à 8h45 et de 16h30 à 18h30</p>
+                                        <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Ousson-sur-Loire</h4>
+                                        <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
+                                        <p>2 bis rue des Marronniers<br>📞 <a href="tel:0238314456">02 38 31 44 56</a><br>📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>Ouzouër-sur-Loire</h4>
+                                        <p>Contact en mairie<br>Garderie sans inscription sauf le mercredi<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
+                                        <p>📞 <a href="tel:0238319390">02 38 31 93 90</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>SIIS Adon - La Bussière</h4>
+                                        <p>Regroupement sur La Bussière. Contact en mairie<br>Lun, mar, jeu, ven de 7h15 à 8h30 et de 16h30 à 18h30 - Mer de 7h15 à 18h30</p>
+                                        <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card">
+                                        <h4>SIIS Cernoy-en-Berry / Pierrefitte</h4>
+                                        <p>Regroupement sur Cernoy-en-Berry. Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 19h00</p>
+                                        <p>2 rue de Concressault<br>📞 <a href="tel:0238314702">02 38 31 47 02</a><br
