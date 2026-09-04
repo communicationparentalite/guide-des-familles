@@ -26,6 +26,7 @@
             padding: 1rem;
             background: #f9f9f9;
             border-radius: 8px;
+            scroll-margin-top: 80px;
         }
 
         .subsection-with-image .image-wrapper {
@@ -62,6 +63,64 @@
             opacity: 0.8;
         }
 
+        /* Menu de navigation interne */
+        .internal-nav {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .internal-nav label {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-right: 0.5rem;
+        }
+
+        .internal-nav select {
+            padding: 0.6rem 1.2rem;
+            border: 2px solid var(--primary-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: 'Nunito', sans-serif;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            min-width: 220px;
+            transition: border-color 0.3s;
+        }
+
+        .internal-nav select:hover,
+        .internal-nav select:focus {
+            border-color: var(--primary-dark);
+            outline: none;
+        }
+
+        .internal-nav .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .internal-nav .nav-links a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .internal-nav .nav-links a:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
         @media (max-width: 768px) {
             .subsection-with-image {
                 flex-direction: column;
@@ -78,6 +137,19 @@
                 max-width: 250px;
                 display: block;
                 margin: 0 auto;
+            }
+
+            .internal-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .internal-nav .nav-links {
+                justify-content: center;
+            }
+
+            .internal-nav select {
+                width: 100%;
             }
         }
 </style> 
@@ -163,9 +235,9 @@
             </ul>
         </li>
         <li><a href="loisirs.html">Loisirs</a></li>
-        <li><a href="vivre-ensemble.html">Vivre ensemble</a></li>
+        <li><a href="vivre-ensemble.html" class="active">Vivre ensemble</a></li>
         <li class="nav-dropdown">
-            <a href="acces-droits.html"">Accès aux droits ▾</a>
+            <a href="acces-droits.html">Accès aux droits ▾</a>
             <ul class="nav-dropdown-menu">
                 <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
                 <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
@@ -185,11 +257,27 @@
         </div>
         <h2 class="section-title">Vivre ensemble</h2>
 
+        <!-- Menu de navigation interne -->
+        <div class="internal-nav">
+            <label for="section-select">Accès rapide :</label>
+            <select id="section-select" aria-label="Navigation vers les sections">
+                <option value="">-- Choisir une section --</option>
+                <option value="#guidasso">Guid'Asso</option>
+                <option value="#espace-initiatives">Espace Initiatives Habitants</option>
+                <option value="#permanence-numerique">Permanence numérique</option>
+            </select>
+            <div class="nav-links">
+                <a href="#guidasso">Guid'Asso</a>
+                <a href="#espace-initiatives">Espace Initiatives Habitants</a>
+                <a href="#permanence-numerique">Permanence numérique</a>
+            </div>
+        </div>
+
         <div class="content-box">
             <div class="subsections">
 
                 <!-- Guid'asso -->
-                <div class="subsection-with-image">
+                <div class="subsection-with-image" id="guidasso">
                     <div class="image-wrapper">
                         <img src="vivre_ensemble_guideasso.png" alt="guide asso">
                     </div>
@@ -208,7 +296,7 @@
                 </div>
 
                 <!-- Espace Initiatives Habitants -->
-                <div class="subsection-with-image">
+                <div class="subsection-with-image" id="espace-initiatives">
                     <div class="image-wrapper">
                         <img src="vivre_ensemble_projet_initiative.png" alt="initiatives habitants">
                     </div>
@@ -228,7 +316,7 @@
                 </div>
 
                 <!-- Permanence numérique -->
-                <div class="subsection-with-image">
+                <div class="subsection-with-image" id="permanence-numerique">
                     <div class="image-wrapper">
                         <img src="vivre_page-004.png" alt="Permanence numérique">
                     </div>
@@ -313,6 +401,26 @@ if (scrollTop) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
+
+// Navigation interne - Menu déroulant
+document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('section-select');
+    if (select) {
+        select.addEventListener('change', function() {
+            const target = this.value;
+            if (target) {
+                const element = document.querySelector(target);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                // Réinitialiser la sélection après le défilement
+                setTimeout(() => {
+                    this.value = '';
+                }, 500);
+            }
+        });
+    }
+});
 </script>
 
 </body>
