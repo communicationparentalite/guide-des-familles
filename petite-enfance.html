@@ -2,421 +2,852 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Petite enfance (0-5 ans) - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        :root {
+        /* ===== COULEURS SPÉCIFIQUES À PETITE ENFANCE (VERT CLAIR) ===== */
+        .page-petite-enfance {
             --primary-color: #5be485;
             --primary-light: #8AEDA9;
             --primary-dark: #33B85D;
             --secondary-color: #3FCB6C;
             --secondary-light: #7DDD9C;
         }
-    </style>
-</head>
-<body>
 
-<header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <h1><a href="index.html" style="color:white; text-decoration:none;">Guide des Familles</a></h1>
-                <p class="subtitle">Communauté de Communes Berry Loire Puisaye</p>
-            </div>
-            <div class="header-info">
-                <p><strong>Dernière mise à jour :</strong> 3 septembre 2026</p>
-        </div>
-    </div>
-</header>
+        /* ===== MODE DE GARDE ===== */
+        .mode-garde-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
 
-<nav class="nav" id="mainNav">
-    <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
-    <ul class="nav-list" id="navList">
-        <li><a href="index.html">Accueil</a></li>
-        <li class="nav-dropdown">
-    <a href="interlocuteurs.html">Interlocuteurs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-        <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-        <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-        <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-        <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée de l'enfant</a></li>
-        <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-        <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-    <a href="petite-enfance.html" class="active">Petite enfance ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="petite-enfance.html#Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#Accueil-collectif">Accueil collectif</a></li>
-        <li><a href="petite-enfance.html#MAM">Maison d'Assistantes Maternelles (MAM)</a></li>
-        <li><a href="petite-enfance.html#Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</a></li>
-        <li><a href="petite-enfance.html#pmi-consultations-ateliers">PMI - Consultations et ateliers</a></li>
-        <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-    </ul>
-</li>
-        <li class="nav-dropdown">
-            <a href="enfance.html">Enfance ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="enfance.html#scolarite">Scolarité</a></li>
-                <li><a href="enfance.html#clas">CLAS</a></li>
-                <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-                <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-            </ul>
-        </li>
-         <li class="nav-dropdown">
-            <a href="jeunesse.html">Jeunesse ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="jeunesse.html#colleges">Collèges</a></li>
-                <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-                <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-            </ul>
-        </li>
-         <li class="nav-dropdown">
-            <a href="parentalite.html">Parentalité ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-                <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-                <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-                <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-                <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-                <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-                <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-                <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-    <a href="loisirs.html">Loisirs ▾</a>
-    <ul class="nav-dropdown-menu">
-        <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-        <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-        <li><a href="loisirs.html#associations">Associations</a></li>
-        <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-        <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-        <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-        <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-        <li><a href="loisirs.html#squares">Squares</a></li>
-        <li><a href="loisirs.html#city-skate">City-stades</a></li>
-    </ul>
-</li>
-         <li class="nav-dropdown">
-            <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-                <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-                <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-            </ul>
-        </li>
-        <li class="nav-dropdown">
-            <a href="acces-droits.html">Accès aux droits ▾</a>
-            <ul class="nav-dropdown-menu">
-                <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-                <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-                <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-                <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-                <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
-    
-<main>
+        .mode-garde-item {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            background: white;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s;
+        }
 
-<section class="section">
-    <div class="container">
-        <div class="section-header">
-            <img src="petite_enfance_page-000.png" alt="Petite enfance">
-        </div>
-        <h2 class="section-title">Petite enfance (0-5 ans)</h2>
+        .mode-garde-item:hover {
+            box-shadow: var(--shadow-md);
+        }
 
-        <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
-        <p class="quote">"J'avance à mon propre rythme et je développe toutes mes facultés en même temps : pour moi, tout est langage, corps, jeu, expérience." - Charte nationale pour l'accueil du jeune enfant</p>
+        .mode-garde-header {
+            width: 100%;
+            background: white;
+            border: none;
+            padding: 0.9rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            transition: background 0.2s;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
 
-        <div class="content-box">
-           <h3 style="color:var(--primary-color);"id="Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</h3>
-           <div class="subsections mode-garde-grid">
-            <summary>Guichet Unique de la Petite Enfance</summary>
-            <div class="item-content">
-                <div class="volet-mg">
-                    <div class="volet-mg-image">
-                        <img src="arrivee_enfant_page-023.png" alt="Guichet Unique de la Petite Enfance" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)">
-                    </div>
-                    <div>
-                        <p style="font-size: 0.95rem; color: #666;">Vous êtes parent ou sur le point de le devenir ?
+        .mode-garde-header:hover {
+            background: #f5f8ff;
+        }
 
-Vous recherchez un mode de garde / d’accueil pour votre enfant âgé de 0 à 4 ans ?
-Bénéficiez d’un accompagnement individualisé, sur rendez-vous, pour votre recherche d’un mode d’accueil .
+        .mode-garde-header.open {
+            background: var(--primary-color);
+            color: white;
+        }
 
-Le Guichet Unique de la Petite Enfance (animé par le Relais Petite Enfance) a pour mission d’informer les parents et futurs parents sur les différents modes d’accueil disponibles. Il s’engage également à les accompagner dans leurs démarches.</p>
-                        <p style="margin: 0.8rem 0 0.3rem 0;">
-                        Mar, Jeu 13h30-17h, Mer 9h-12h30 au Pôle Petite Enfance<br>
-                        39 avenue Yver-Bapterosses, 45250 Briare<br>
-                        📞 <a href="tel:0238367873"> 02 38 36 78 73</a><br>
-                        Lun, Ven 13h30-16h30, au Centre Médico-Social<br>
-                        1 rue de la Boyaudière, 45360 Châtillon-sur-Loire<br>
-                        📞 <a href="tel:0238372374"> 02 38 37 23 74</a><br>    
-                        </p>
-                        <p style="margin: 0.3rem 0;">📧 <a href="mailto:guichetunique.pe@cc-berryloirepuisaye.fr">guichetunique.pe@cc-berryloirepuisaye.fr</a></p>
-                </div>
-        <div class="content-box">
-            <h3 style="color:var(--primary-color);">"id="Accueil-collectif">Accueil collectif</h3>
-            <p>Le territoire dispose de deux structures d'accueil collectif labélisées "éveil et signes" avec un agrément délivré par la PMI. Elles accueillent des enfants âgés de 10 semaines à 4 ans révolus.</p>
+        .mode-garde-header.open .accordion-icon {
+            transform: rotate(45deg);
+        }
 
-            <div class="photo-gallery" style="margin:2rem 0;">
-                <img src="petite_enfance_page-003.png" alt="Multi-accueil Briare">
-                <img src="petite_enfance_page-004.png" alt="Multi-accueil Châtillon">
-                </div>
+        .mode-garde-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+        }
 
-            <div class="cards-grid">
-                <div class="card">
-                    <h3>Multi-accueil Briare "Frimousses de Loire"</h3>
-                    <p><strong>30 places</strong> réparties en 2 sections<br>
-                    12 bébés/moyens + 18 moyens/grands<br><br>
-                    3 mois - 4 ans<br>
-                    Pôle Petite Enfance<br>
-                    39, avenue Yver Bapterosses, Briare<br>
-                    📞 <a href="tel:0238313862">02 38 31 38 62</a><br>
-                    Lun-Ven : 7h30-18h30<br>
-                    📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a></p>
-                </div>
-                <div class="card">
-                    <h3>Multi-accueil Châtillon-sur-Loire "Frimousses de Loire"</h3>
-                    <p><strong>16 places</strong> (âge mélangé)<br><br>
-                    3 mois - 4 ans<br>
-                    Centre Médico-social<br>
-                    1, rue de la Boyaudière, Châtillon-sur-Loire<br>
-                    📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
-                    Lun-Ven : 7h00-18h00<br>
-                    📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
-                </div>
-            </div>
-        </div>
+        .mode-garde-body.open {
+            max-height: 1500px;
+            padding: 0.8rem 1.2rem 1.5rem;
+        }
 
-        <div class="content-box">
-            <h3 style="color:var(--primary-color);"id="MAM">Maison d'Assistantes Maternelles (MAM)</h3>
+        .mode-garde-body .mg-image {
+            width: 100%;
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-              <div class="photo-gallery" style="margin:2rem 0;">
-                <img src="petite_enfance_page-005.png" alt="Rayons de Soleil">
-               
-                </div>
-            <div class="subsection">
-                <h4>MAM "Rayons de Soleil" - La Bussière</h4>
-                <p>Le territoire dispose d'une MAM (Maison d'Assistantes Maternelles) associative sur la commune de La Bussière.</p>
-                <p>Deux assistantes maternelles agréées par la PMI vous accueillent du lundi au vendredi dans un local refait à neuf et adapté à un petit groupe d'enfants.</p>
-                <p><strong>📍 Adresse :</strong> 11, route d'Escrignelles, 45230 LA BUSSIÈRE</p>
-                <p><strong>👥 Contacts :</strong><br>
-                Nathalie Depardieu : 📞 <a href="tel:0650153575">06 50 15 35 75</a><br>
-                Julie Aufrère : 📞 <a href="tel:0659765709">06 59 76 57 09</a><br>
-                📧 <a href="mailto:mamrayonsdesoleil@gmail.fr">mamrayonsdesoleil@gmail.fr</a></p>
-            </div>
-        </div>
+        .mode-garde-body .mg-image:hover {
+            transform: scale(1.02);
+        }
 
-            <div class="content-box">
-            <h3 style="color:var(--primary-color);""id="Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</h3>
-           
-            <p>Orientation, information et animation pour les parents et les assistants maternels</p>
-            <p style="margin-top:1.5rem;"><strong>Le RPE vous accompagne dans la recherche d'assistants maternels agréés</strong><br>
-            <p>L'accueil est dit individuel lorsque votre enfant est accueilli chez un assistant maternel ou confié à un assistant parental (anciennement garde à domicile).<br>
-
-<strong>L'assistant maternel</strong><br> 
-L'assistant maternel employé par un particulier est une personne agréée, suivie et formée par le Conseil départemental via la PMI pour l'accueil simultané de quatre enfants maximum à son domicile.<br>
-Il a environ 60 professionnels agréés sur les vingt communes du territoire<br>
-
-La liste des assistants maternels agréés est disponible sur demande au Relais Petite Enfance, sur le site de la Communauté de communes www.cc-berryloirepuisaye.fr et sur www.monenfant.fr<br>
-
-<strong>L'assistant maternel</strong> - Les gardes à domicile<br> 
-L'assistant parental est un employé de maison qui garde le ou les enfants au domicile des parents. Il peut s'agir que d'une seule famille faisant garder un ou plusieurs enfants ou de plusieurs familles se regroupant pour partager les frais. <br>
-Dans ce dernier cas, appelé garde partagée, la garde peut se faire alternativement chez chaque famille ou une exclusivement.</p>
-
-        </div>
-                <div class="cards-grid">
-                <div class="card">
-                    <h4>Permanence Briare</h4>
-                    <p>Mardi au jeudi de 13h30 à 17h30<br>Pôle Petite Enfance<br>39, avenue Yver Bapterosses<br>📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
-                </div>
-                <div class="card">
-                    <h4>Permanence Châtillon-sur-Loire</h4>
-                    <p>Lundi et vendredi de 13h30 à 16h30<br>Centre Médico-social<br>1, rue de la Boyaudière<br>📞 <a href="tel:0238372374">02 38 37 23 74</a></p>
-                </div>
-            </div>
-            
-        <div class="content-box">
-            <h3 style="color:var(--primary-color);""id="la-marelle-laep">La Marelle - Lieu d'accueil enfants-parents (LAEP)</h3>
-            <p>Un espace convivial et ludique pour les enfants de moins de six ans accompagnés d'un parent ou d'un adulte référent. Idéal pour le jeu et la socialisation des enfants, il est aussi un espace de paroles gratuit et anonyme pour les parents.</p>
-             <div class="cards-grid">
-                <div class="card">
-                    <p><strong>Tous les mercredis de 9h15 à 11h45</strong><br>au Pôle Petite Enfance à Briare</p>
-                </div>
-              <div class="card">
-                    <p><strong>Tous les mercredis de 15h00 à 17h30</strong><br>à la salle des Fêtes d'Ouzouër-sur-Trézée</p>
-                </div>
-                <div class="card">
-                    <p><strong>Tous les jeudis de 15h00 à 17h30</strong><br>au Centre médico-social à Châtillon-sur-Loire</p>
-                </div>
-            </div>
-            <div class="photo-gallery" style="margin:2rem 0;">
-                    <img src="Marelle Briare.png" alt="Marelle Briare" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)">
-                    <img src="Marelle Ouzouer.png" alt="Marelle Ouzouer" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)">
-                    <img src="Marelle Chatillon.png" alt="Marelle Chatillon" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)">
-                  </div>
-                <p style="margin-top:1.5rem;">📧 <a href="mailto:laep@cc-berryloirepuisaye.fr">laep@cc-berryloirepuisaye.fr</a> - 📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
-            </div>
-        </div>
-
-              <h3 style="color:var(--primary-color);""id="pmi-consultations-ateliers">PMI - Consultations et ateliers</h3>
-              <div style="display:flex; align-items:flex-start; gap:1.5rem; margin:1rem 0;">
-    <img src="interlocuteurs_page-052.png" alt="Logo Département du Loiret" style="width:100px; flex-shrink:0;">
-    <p style="text-align:justify; margin:0;">
-        Au sein de chaque ADS, les équipes du service de Protection Maternelle et Infantile (PMI) <strong>assurent des missions de promotion de la santé et de prévention</strong> auprès des femmes enceintes, des enfants jusqu'à 6 ans, et de leur famille. La PMI est en outre chargée du suivi des modes d'accueil du jeune enfant et assure également les bilans de santé en école maternelle.
-    </p>
-</div>
-<div class="cards-grid">
-    <div class="card">
-        <h4>Consultations médicales et de puériculture prises en charge par le Département</h4>
-        <p>Selon les consultations, vous pourrez rencontrer : <br>
-
-- une infirmière puéricultrice ou une auxiliaire de puériculture <strong>pour échanger et obtenir des conseils</strong> pour votre enfant (0-6 ans)  à propos de divers sujets : alimentations, croissance (pesée), sommeil, éveil, développement....<br>
-- un médecin pour le <strong>suivi médical</strong> de votre enfant autour de la santé, des examens obligatoires et la vaccination.<br></p>
-        <img src="Consultations PMI.jpg" alt="PMI Consultations et ateliers" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)" style="width:100%; border-radius:8px; margin:0.8rem 0;">
-        <p><strong>Consultation médicale :</strong> <br>
-        • 1er lundi de 9h00 à 17h00  <br>
-        • 3ème lundi du mois de 9h00 à 13h00 <br>
-        au Centre Médico-social de Briare<br>
-        (6 rue des Grands Jardins)<br>
-<br>
-        <strong>Permanence de puéricultrice : </strong><br>
-        • 2ème vendredi de 9h00 à 11h30 <br>
-        au Centre Médico-social de Briare  <br>
-        • 4ème vendredi de 9h00 à 11h30 <br>
-      à la Maison Médicale de Bonny-sur-Loire<br>
-        
-        📞 Pour prendre rendez-vous du lundi au vendredi : <a href="tel:0238052365">02 38 05 23 65</a></p>
-    </div>
-    <div class="card">
-        <h4>Atelier manipulation enfants-parents</h4>
-        <p>Ce sont des <strong>ateliers gratuits</strong> : des activités de manipulation permettant aux enfants <strong>de 1 à 3 ans</strong> de découvrir, expérimenter, explorer des textures, des couleurs, le froissement, le transvasement, l’encastrement, ... </p>
-        <img src="Atelier manipulation enfants-parents.jpg" alt="Atelier manipulation enfants-parents" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)" style="width:100%; height:300px; object-fit:cover; border-radius:8px; margin:0.8rem 0;">
-        <p>Les activités et les textures naturelles évoluent au fil des saisons : sable magie, semoule, terre, fleurs, eau, feuilles... le matériel utile et simple et vous permet de reproduire facilement l’activité à la maison
-
-<strong>Bienfaits pour votre enfant :</strong> Ces activité permettent de développer sa confiance en lui et autre, sa motricité fine, son autonomie, sa concentration, tous ses sens...
-
-C’est un <strong>moment privilégié enfant-parent </strong>: ces temps d’échanges et de plaisirs vous permettent de le valoriser, l’encourager et le sécuriser pour l’ouvrir sur l’extérieur et aller vers la découverte.<br>
-        <br>
-        <strong>Tous les 2e vendredis du mois de 9h30 à 11h30</strong><br>
-        Au Pôle Petite enfance<br> 39 avenue Yver Bapterosses, Briare<br>
-        📞 <a href="tel:0623597328">06 23 59 73 28</a></p>
-    </div>
-</div>
-
-       <div class="content-box" style="background-color:var(--primary-color); color:white;">
-    <h3 style="color:white;""id="bulle-musicale">Focus sur La Bulle Musicale</h3>
-    <div style="display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
-        <div style="flex:1; min-width:250px;">
-            <p style="text-align:justify;">Installée au cœur de la <strong>salle du Relais Petite enfance</strong> au sein du Pôle Petite enfance depuis fin 2022, <strong>la Bulle Musicale</strong> est un équipement utilisé par les professionnels des multi-accueils, du Relais Petite enfance, les accueillantes de la Marelle et les parents qui fréquentent ce lieu d'accueil enfants parents.<br>
-            Véritable <strong>cocon</strong>, c'est un endroit que les enfants aiment explorer seuls ou accompagnés, pour se défouler ou se ressourcer. <br>
-            L'ensemble des équipes du service Petite enfance a été formé pour exploiter la plus value de cette Bulle dont <strong>le principe est de créer des rituels et du langage</strong> autour de ces rituels. <br>
-            Découverte musicale, contes musicaux, lotos sonores et autres possibilités de s'enregistrer pour entendre sa voix ou celles rassurantes des gens qu'on aime, la Bulle est avant tout <strong>un lieu d'exploration et de réconfort.</strong> <br></p>
-            <p style="text-align:justify;"><strong>Pour les enfants de moins de 7 ans - GRATUIT</strong><br>
-            Mercredis de 9h15 à 11h45<br>
-            Pôle Petite Enfance - 39, avenue Yver Bapterosses, Briare<br>
-            📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
-        </div>
-        <img src="bulle-musicale.png" alt="La Bulle Musicale" class="zoomable-image" onclick="openImageLightbox(this.src, this.alt)" style="width:500px; max-width:100%; height:300px; object-fit:cover; border-radius:8px; flex-shrink:0;">
-    </div>
-</div>
-</section>
-
-</main>
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Communauté de Communes Berry Loire Puisaye</h3>
-                <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
-                📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
-            </div>
-            <div class="footer-section">
-                <h3>Liens utiles</h3>
-                <ul>
-                    <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                    <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                    <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h3>Navigation rapide</h3>
-                <ul>
-                    <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
-                    <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
-                    <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
-                    <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
-                    <li><a href="acces-droits.html">Accès aux droits</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
-        </div>
-    </div>
-</footer>
-
-<button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
-
-<script>
-// Menu mobile
-const menuToggle = document.getElementById('menuToggle');
-const navList = document.getElementById('navList');
-if (menuToggle) {
-    menuToggle.addEventListener('click', function () {
-        navList.classList.toggle('active');
-        menuToggle.classList.toggle('active');
-    });
-}
-
-// Menu déroulant : clic pour ouvrir/fermer sur mobile/tactile
-document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-        if (window.innerWidth <= 768) {
-            e.preventDefault();
-            const parent = link.parentElement;
-            const wasOpen = parent.classList.contains('open');
-            document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
-                item.classList.remove('open');
-            });
-            if (!wasOpen) {
-                parent.classList.add('open');
+        @media (max-width: 768px) {
+            .mode-garde-grid {
+                grid-template-columns: 1fr;
             }
         }
-    });
-});
 
-// Bouton retour en haut
-const scrollTop = document.getElementById('scrollTop');
-window.addEventListener('scroll', function () {
-    if (window.scrollY > 300) {
-        scrollTop.classList.add('visible');
-    } else {
-        scrollTop.classList.remove('visible');
-    }
-});
-if (scrollTop) {
-    scrollTop.addEventListener('click', function () {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-}
-</script>
+        /* ===== PHOTO GALLERY ===== */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
 
+        .photo-gallery img {
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== IMAGE + TEXTE ===== */
+        .image-text-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .image-text-row img {
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .image-text-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        /* ===== SUBSECTIONS ===== */
+        .subsections {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .subsection {
+            background: var(--bg-lighter);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .subsection h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .subsection h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        /* ===== CARTES ===== */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .card p {
+            margin: 0.2rem 0;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .card a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== CONTENT BOX ===== */
+        .content-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
+</head>
+<body class="page-petite-enfance">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <h1><a href="index.html">Guide des Familles</a></h1>
+                </div>
+                <div class="header-info">
+                    <strong>Dernière mise à jour :</strong> 3 septembre 2026
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <ul class="nav-list" id="navList">
+            <li><a href="index.html">Accueil</a></li>
+            <li class="nav-dropdown">
+                <a href="interlocuteurs.html">Interlocuteurs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="petite-enfance.html" class="active">Petite enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="#Guichet-Unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="#Accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="#MAM">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="#Accueil-individuel">Accueil individuel avec le Relais Petite Enfance (RPE)</a></li>
+                    <li><a href="#la-marelle-laep">La Marelle - LAEP</a></li>
+                    <li><a href="#pmi-consultations-ateliers">PMI - Consultations et ateliers</a></li>
+                    <li><a href="#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="enfance.html">Enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                    <li><a href="enfance.html#clas">CLAS</a></li>
+                    <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="jeunesse.html">Jeunesse ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="parentalite.html">Parentalité ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="loisirs.html">Loisirs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="loisirs.html#associations">Associations</a></li>
+                    <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
+                    <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
+                    <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
+                    <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
+                    <li><a href="loisirs.html#squares">Squares</a></li>
+                    <li><a href="loisirs.html#city-skate">City-stades</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
+            <li class="nav-dropdown">
+                <a href="acces-droits.html">Accès aux droits ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <section class="section">
+            <div class="container">
+                <!-- Bannière -->
+                <div class="section-header">
+                    <img src="petite_enfance_page-000.png" alt="Petite enfance">
+                </div>
+                <h2 class="section-title">Petite enfance (0-5 ans)</h2>
+
+                <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
+                <p class="quote">"J'avance à mon propre rythme et je développe toutes mes facultés en même temps : pour moi, tout est langage, corps, jeu, expérience." - Charte nationale pour l'accueil du jeune enfant</p>
+
+                <!-- ===== 1. GUICHET UNIQUE ===== -->
+                <div class="content-box" id="Guichet-Unique">
+                    <h3 style="color:var(--primary-color);">Guichet Unique de la Petite Enfance (RPE)</h3>
+                    <div class="mode-garde-grid">
+                        <div class="mode-garde-item">
+                            <button class="mode-garde-header" aria-expanded="false">
+                                <span>Guichet Unique de la Petite Enfance</span>
+                                <span class="accordion-icon">+</span>
+                            </button>
+                            <div class="mode-garde-body">
+                                <img src="arrivee_enfant_page-023.png" alt="Guichet Unique" class="mg-image">
+                                <div class="short-text">
+                                    <p>Vous êtes parent ou sur le point de le devenir ? Vous recherchez un mode de garde / d'accueil pour votre enfant âgé de 0 à 4 ans ? Bénéficiez d'un accompagnement individualisé, sur rendez-vous, pour votre recherche d'un mode d'accueil.</p>
+                                </div>
+                                <div class="full-text">
+                                    <p>Le Guichet Unique de la Petite Enfance (animé par le Relais Petite Enfance) a pour mission d'informer les parents et futurs parents sur les différents modes d'accueil disponibles. Il s'engage également à les accompagner dans leurs démarches.</p>
+                                    <p style="margin: 0.8rem 0 0.3rem 0;">
+                                    Mar, Jeu 13h30-17h, Mer 9h-12h30 au Pôle Petite Enfance<br>
+                                    39 avenue Yver-Bapterosses, 45250 Briare<br>
+                                    📞 <a href="tel:0238367873">02 38 36 78 73</a><br>
+                                    Lun, Ven 13h30-16h30, au Centre Médico-Social<br>
+                                    1 rue de la Boyaudière, 45360 Châtillon-sur-Loire<br>
+                                    📞 <a href="tel:0238372374">02 38 37 23 74</a><br>
+                                    📧 <a href="mailto:guichetunique.pe@cc-berryloirepuisaye.fr">guichetunique.pe@cc-berryloirepuisaye.fr</a></p>
+                                </div>
+                                <button class="read-more-btn">Lire la suite</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 2. ACCUEIL COLLECTIF ===== -->
+                <div class="content-box" id="Accueil-collectif">
+                    <h3 style="color:var(--primary-color);">Accueil collectif</h3>
+                    <p>Le territoire dispose de deux structures d'accueil collectif labélisées "éveil et signes" avec un agrément délivré par la PMI. Elles accueillent des enfants âgés de 10 semaines à 4 ans révolus.</p>
+
+                    <div class="photo-gallery">
+                        <img src="petite_enfance_page-003.png" alt="Multi-accueil Briare">
+                        <img src="petite_enfance_page-004.png" alt="Multi-accueil Châtillon">
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <h3>Multi-accueil Briare "Frimousses de Loire"</h3>
+                            <p><strong>30 places</strong> réparties en 2 sections<br>
+                            12 bébés/moyens + 18 moyens/grands</p>
+                            <p>3 mois - 4 ans<br>
+                            Pôle Petite Enfance<br>
+                            39, avenue Yver Bapterosses, Briare</p>
+                            <p>📞 <a href="tel:0238313862">02 38 31 38 62</a><br>
+                            Lun-Ven : 7h30-18h30<br>
+                            📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a></p>
+                        </div>
+                        <div class="card">
+                            <h3>Multi-accueil Châtillon-sur-Loire "Frimousses de Loire"</h3>
+                            <p><strong>16 places</strong> (âge mélangé)</p>
+                            <p>3 mois - 4 ans<br>
+                            Centre Médico-social<br>
+                            1, rue de la Boyaudière, Châtillon-sur-Loire</p>
+                            <p>📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
+                            Lun-Ven : 7h00-18h00<br>
+                            📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 3. MAM ===== -->
+                <div class="content-box" id="MAM">
+                    <h3 style="color:var(--primary-color);">Maison d'Assistantes Maternelles (MAM)</h3>
+
+                    <div class="photo-gallery">
+                        <img src="petite_enfance_page-005.png" alt="Rayons de Soleil">
+                    </div>
+
+                    <div class="subsection">
+                        <h4>MAM "Rayons de Soleil" - La Bussière</h4>
+                        <p>Le territoire dispose d'une MAM (Maison d'Assistantes Maternelles) associative sur la commune de La Bussière.</p>
+                        <p>Deux assistantes maternelles agréées par la PMI vous accueillent du lundi au vendredi dans un local refait à neuf et adapté à un petit groupe d'enfants.</p>
+                        <p><strong>📍 Adresse :</strong> 11, route d'Escrignelles, 45230 LA BUSSIÈRE</p>
+                        <p><strong>👥 Contacts :</strong><br>
+                        Nathalie Depardieu : 📞 <a href="tel:0650153575">06 50 15 35 75</a><br>
+                        Julie Aufrère : 📞 <a href="tel:0659765709">06 59 76 57 09</a><br>
+                        📧 <a href="mailto:mamrayonsdesoleil@gmail.fr">mamrayonsdesoleil@gmail.fr</a></p>
+                    </div>
+                </div>
+
+                <!-- ===== 4. ACCUEIL INDIVIDUEL ===== -->
+                <div class="content-box" id="Accueil-individuel">
+                    <h3 style="color:var(--primary-color);">Accueil individuel avec le Relais Petite Enfance (RPE)</h3>
+
+                    <div class="short-text">
+                        <p>Orientation, information et animation pour les parents et les assistants maternels</p>
+                        <p><strong>Le RPE vous accompagne dans la recherche d'assistants maternels agréés</strong></p>
+                    </div>
+                    <div class="full-text">
+                        <p>L'accueil est dit individuel lorsque votre enfant est accueilli chez un assistant maternel ou confié à un assistant parental (anciennement garde à domicile).</p>
+                        <p><strong>L'assistant maternel</strong><br>
+                        L'assistant maternel employé par un particulier est une personne agréée, suivie et formée par le Conseil départemental via la PMI pour l'accueil simultané de quatre enfants maximum à son domicile.<br>
+                        Il y a environ 60 professionnels agréés sur les vingt communes du territoire.</p>
+                        <p>La liste des assistants maternels agréés est disponible sur demande au Relais Petite Enfance, sur le site de la Communauté de communes <a href="https://www.cc-berryloirepuisaye.fr" target="_blank">www.cc-berryloirepuisaye.fr</a> et sur <a href="https://www.monenfant.fr" target="_blank">www.monenfant.fr</a></p>
+                        <p><strong>L'assistant maternel</strong> - Les gardes à domicile<br>
+                        L'assistant parental est un employé de maison qui garde le ou les enfants au domicile des parents. Il peut s'agir que d'une seule famille faisant garder un ou plusieurs enfants ou de plusieurs familles se regroupant pour partager les frais.<br>
+                        Dans ce dernier cas, appelé garde partagée, la garde peut se faire alternativement chez chaque famille ou une exclusivement.</p>
+                    </div>
+                    <button class="read-more-btn">Lire la suite</button>
+
+                    <div class="cards-grid" style="margin-top: 1.5rem;">
+                        <div class="card">
+                            <h4>Permanence Briare</h4>
+                            <p>Mardi au jeudi de 13h30 à 17h30<br>Pôle Petite Enfance<br>39, avenue Yver Bapterosses<br>📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
+                        </div>
+                        <div class="card">
+                            <h4>Permanence Châtillon-sur-Loire</h4>
+                            <p>Lundi et vendredi de 13h30 à 16h30<br>Centre Médico-social<br>1, rue de la Boyaudière<br>📞 <a href="tel:0238372374">02 38 37 23 74</a></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 5. LA MARELLE ===== -->
+                <div class="content-box" id="la-marelle-laep">
+                    <h3 style="color:var(--primary-color);">La Marelle - Lieu d'accueil enfants-parents (LAEP)</h3>
+
+                    <div class="short-text">
+                        <p>Un espace convivial et ludique pour les enfants de moins de six ans accompagnés d'un parent ou d'un adulte référent. Idéal pour le jeu et la socialisation des enfants, il est aussi un espace de paroles gratuit et anonyme pour les parents.</p>
+                    </div>
+                    <div class="full-text">
+                        <p>Les ateliers sont animés par des professionnelles de la petite enfance et permettent aux enfants de découvrir, expérimenter et socialiser dans un cadre sécurisé.</p>
+                    </div>
+                    <button class="read-more-btn">Lire la suite</button>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <p><strong>Tous les mercredis de 9h15 à 11h45</strong><br>au Pôle Petite Enfance à Briare</p>
+                        </div>
+                        <div class="card">
+                            <p><strong>Tous les mercredis de 15h00 à 17h30</strong><br>à la salle des Fêtes d'Ouzouër-sur-Trézée</p>
+                        </div>
+                        <div class="card">
+                            <p><strong>Tous les jeudis de 15h00 à 17h30</strong><br>au Centre médico-social à Châtillon-sur-Loire</p>
+                        </div>
+                    </div>
+
+                    <div class="photo-gallery">
+                        <img src="Marelle Briare.png" alt="Marelle Briare">
+                        <img src="Marelle Ouzouer.png" alt="Marelle Ouzouer">
+                        <img src="Marelle Chatillon.png" alt="Marelle Chatillon">
+                    </div>
+
+                    <p style="margin-top:1.5rem;">📧 <a href="mailto:laep@cc-berryloirepuisaye.fr">laep@cc-berryloirepuisaye.fr</a> - 📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
+                </div>
+
+                <!-- ===== 6. PMI ===== -->
+                <div class="content-box" id="pmi-consultations-ateliers">
+                    <h3 style="color:var(--primary-color);">PMI - Consultations et ateliers</h3>
+
+                    <div style="display:flex; align-items:flex-start; gap:1.5rem; margin:1rem 0; flex-wrap:wrap;">
+                        <img src="interlocuteurs_page-052.png" alt="Logo Département du Loiret" style="width:100px; flex-shrink:0;">
+                        <p style="text-align:justify; margin:0;">
+                            Au sein de chaque ADS, les équipes du service de Protection Maternelle et Infantile (PMI) <strong>assurent des missions de promotion de la santé et de prévention</strong> auprès des femmes enceintes, des enfants jusqu'à 6 ans, et de leur famille. La PMI est en outre chargée du suivi des modes d'accueil du jeune enfant et assure également les bilans de santé en école maternelle.
+                        </p>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="card">
+                            <h4>Consultations médicales et de puériculture</h4>
+                            <div class="short-text">
+                                <p>Selon les consultations, vous pourrez rencontrer :<br>
+                                - une infirmière puéricultrice ou une auxiliaire de puériculture <strong>pour échanger et obtenir des conseils</strong> pour votre enfant (0-6 ans) à propos de divers sujets : alimentations, croissance (pesée), sommeil, éveil, développement...<br>
+                                - un médecin pour le <strong>suivi médical</strong> de votre enfant autour de la santé, des examens obligatoires et la vaccination.</p>
+                            </div>
+                            <div class="full-text">
+                                <img src="Consultations PMI.jpg" alt="PMI Consultations et ateliers" style="width:100%; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                <p><strong>Consultation médicale :</strong><br>
+                                • 1er lundi de 9h00 à 17h00<br>
+                                • 3ème lundi du mois de 9h00 à 13h00<br>
+                                au Centre Médico-social de Briare (6 rue des Grands Jardins)</p>
+                                <p><strong>Permanence de puéricultrice :</strong><br>
+                                • 2ème vendredi de 9h00 à 11h30 au Centre Médico-social de Briare<br>
+                                • 4ème vendredi de 9h00 à 11h30 à la Maison Médicale de Bonny-sur-Loire</p>
+                                <p>📞 Pour prendre rendez-vous du lundi au vendredi : <a href="tel:0238052365">02 38 05 23 65</a></p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+
+                        <div class="card">
+                            <h4>Atelier manipulation enfants-parents</h4>
+                            <div class="short-text">
+                                <p>Ce sont des <strong>ateliers gratuits</strong> : des activités de manipulation permettant aux enfants <strong>de 1 à 3 ans</strong> de découvrir, expérimenter, explorer des textures, des couleurs, le froissement, le transvasement, l'encastrement...</p>
+                            </div>
+                            <div class="full-text">
+                                <img src="Atelier manipulation enfants-parents.jpg" alt="Atelier manipulation enfants-parents" style="width:100%; height:300px; object-fit:cover; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                <p>Les activités et les textures naturelles évoluent au fil des saisons : sable magique, semoule, terre, fleurs, eau, feuilles... le matériel est utile et simple et vous permet de reproduire facilement l'activité à la maison.</p>
+                                <p><strong>Bienfaits pour votre enfant :</strong> Ces activités permettent de développer sa confiance en lui, sa motricité fine, son autonomie, sa concentration, tous ses sens...</p>
+                                <p>C'est un <strong>moment privilégié enfant-parent</strong> : ces temps d'échanges et de plaisirs vous permettent de le valoriser, l'encourager et le sécuriser pour l'ouvrir sur l'extérieur et aller vers la découverte.</p>
+                                <p><strong>Tous les 2e vendredis du mois de 9h30 à 11h30</strong><br>
+                                Au Pôle Petite enfance - 39 avenue Yver Bapterosses, Briare<br>
+                                📞 <a href="tel:0623597328">06 23 59 73 28</a></p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== 7. BULLE MUSICALE ===== -->
+                <div class="content-box" id="bulle-musicale" style="background-color:var(--primary-color); color:white;">
+                    <h3 style="color:white;">Focus sur La Bulle Musicale</h3>
+                    <div style="display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap;">
+                        <div style="flex:1; min-width:250px;">
+                            <div class="short-text">
+                                <p style="text-align:justify;">Installée au cœur de la <strong>salle du Relais Petite enfance</strong> au sein du Pôle Petite enfance depuis fin 2022, <strong>la Bulle Musicale</strong> est un équipement utilisé par les professionnels des multi-accueils, du Relais Petite enfance, les accueillantes de la Marelle et les parents qui fréquentent ce lieu d'accueil enfants-parents.</p>
+                            </div>
+                            <div class="full-text">
+                                <p style="text-align:justify;">Véritable <strong>cocon</strong>, c'est un endroit que les enfants aiment explorer seuls ou accompagnés, pour se défouler ou se ressourcer.<br>
+                                L'ensemble des équipes du service Petite enfance a été formé pour exploiter la plus-value de cette Bulle dont <strong>le principe est de créer des rituels et du langage</strong> autour de ces rituels.<br>
+                                Découverte musicale, contes musicaux, lotos sonores et autres possibilités de s'enregistrer pour entendre sa voix ou celles rassurantes des gens qu'on aime, la Bulle est avant tout <strong>un lieu d'exploration et de réconfort.</strong></p>
+                                <p style="text-align:justify;"><strong>Pour les enfants de moins de 7 ans - GRATUIT</strong><br>
+                                Mercredis de 9h15 à 11h45<br>
+                                Pôle Petite Enfance - 39, avenue Yver Bapterosses, Briare<br>
+                                📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
+                            </div>
+                            <button class="read-more-btn" style="color:white; border-color:rgba(255,255,255,0.4);">Lire la suite</button>
+                        </div>
+                        <img src="bulle-musicale.png" alt="La Bulle Musicale" style="width:500px; max-width:100%; height:300px; object-fit:cover; border-radius:8px; flex-shrink:0; cursor:pointer;">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <img id="lightboxImg" class="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                    <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
+                    📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
+                        <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation rapide</h3>
+                    <ul>
+                        <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+                        <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
+                        <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
+                        <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
+                        <li><a href="acces-droits.html">Accès aux droits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCROLL TOP ===== -->
+    <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script>
+        (function() {
+            // ============================================================
+            // ---- MENU MOBILE ----
+            // ============================================================
+            const menuToggle = document.getElementById('menuToggle');
+            const navList = document.getElementById('navList');
+
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    navList.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
+                });
+            }
+
+            // ============================================================
+            // ---- SOUS-MENU DÉROULANT SUR MOBILE AVEC DOUBLE-CLIC ----
+            // ============================================================
+            document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                let clickTimer = null;
+
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        if (clickTimer) {
+                            clearTimeout(clickTimer);
+                            clickTimer = null;
+                            return;
+                        }
+
+                        e.preventDefault();
+                        const parent = this.parentElement;
+                        const wasOpen = parent.classList.contains('open');
+
+                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
+                            item.classList.remove('open');
+                        });
+
+                        if (!wasOpen) {
+                            parent.classList.add('open');
+                        }
+
+                        clickTimer = setTimeout(function() {
+                            clickTimer = null;
+                        }, 300);
+                    }
+                });
+            });
+
+            // ============================================================
+            // ---- FERMETURE DU SOUS-MENU ----
+            // ============================================================
+            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        const parentDropdown = this.closest('.nav-dropdown');
+                        if (parentDropdown) {
+                            parentDropdown.classList.remove('open');
+                        }
+                        if (navList) {
+                            navList.classList.remove('active');
+                        }
+                        if (menuToggle) {
+                            menuToggle.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // ============================================================
+            // ---- SCROLL TOP ----
+            // ============================================================
+            const scrollBtn = document.getElementById('scrollTop');
+            window.addEventListener('scroll', function() {
+                scrollBtn.classList.toggle('visible', window.scrollY > 300);
+            });
+            scrollBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // ============================================================
+            // ---- LIGHTBOX ----
+            // ============================================================
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const closeBtn = document.getElementById('lightboxClose');
+
+            function openLightbox(src) {
+                lightboxImg.src = src;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            document.querySelectorAll('.section img:not(.hero-bg)').forEach(function(img) {
+                img.addEventListener('click', function(e) {
+                    if (this.closest('.hero')) return;
+                    e.stopPropagation();
+                    const src = this.getAttribute('src');
+                    if (src) openLightbox(src);
+                });
+            });
+
+            closeBtn.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', function(e) {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeLightbox();
+            });
+
+            // ============================================================
+            // ---- MODE GARDE TOGGLE ----
+            // ============================================================
+            function toggleModeGarde(header) {
+                const isOpen = header.classList.contains('open');
+                const body = header.nextElementSibling;
+
+                if (isOpen) {
+                    header.classList.remove('open');
+                    header.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('open');
+                } else {
+                    document.querySelectorAll('.mode-garde-header').forEach(function(h) {
+                        h.classList.remove('open');
+                        h.setAttribute('aria-expanded', 'false');
+                        h.nextElementSibling.classList.remove('open');
+                    });
+                    header.classList.add('open');
+                    header.setAttribute('aria-expanded', 'true');
+                    body.classList.add('open');
+                }
+            }
+
+            document.querySelectorAll('.mode-garde-header').forEach(function(header) {
+                header.addEventListener('click', function() {
+                    toggleModeGarde(this);
+                });
+            });
+
+            // ============================================================
+            // ---- LIRE LA SUITE ----
+            // ============================================================
+            document.querySelectorAll('.read-more-btn:not(.bulle-btn)').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const parent = this.closest('.content-box') || this.closest('.mode-garde-body') || this.parentElement;
+                    const fullText = parent.querySelector('.full-text');
+                    if (!fullText) return;
+                    const isVisible = fullText.classList.contains('visible');
+                    fullText.classList.toggle('visible');
+                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+                });
+            });
+
+            // ============================================================
+            // ---- OUVERTURE PAR ANCRE ----
+            // ============================================================
+            function openFromHash() {
+                if (!window.location.hash) return;
+                const target = document.querySelector(window.location.hash);
+                if (!target) return;
+
+                // Si c'est une content-box, on scroll vers elle
+                if (target.classList.contains('content-box')) {
+                    setTimeout(function() {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 200);
+                    return;
+                }
+
+                // Sinon, chercher un mode-garde-item
+                const item = target.closest('.mode-garde-item');
+                if (item) {
+                    const header = item.querySelector('.mode-garde-header');
+                    if (header && !header.classList.contains('open')) {
+                        document.querySelectorAll('.mode-garde-header').forEach(function(h) {
+                            h.classList.remove('open');
+                            h.setAttribute('aria-expanded', 'false');
+                            h.nextElementSibling.classList.remove('open');
+                        });
+                        header.classList.add('open');
+                        header.setAttribute('aria-expanded', 'true');
+                        header.nextElementSibling.classList.add('open');
+                        setTimeout(function() {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 200);
+                    }
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', openFromHash);
+            window.addEventListener('hashchange', openFromHash);
+
+            // ============================================================
+            // ---- BOUTON BULLE MUSICALE (style spécial) ----
+            // ============================================================
+            const bulleBtn = document.querySelector('#bulle-musicale .read-more-btn');
+            if (bulleBtn) {
+                bulleBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const parent = this.closest('#bulle-musicale');
+                    const fullText = parent.querySelector('.full-text');
+                    if (!fullText) return;
+                    const isVisible = fullText.classList.contains('visible');
+                    fullText.classList.toggle('visible');
+                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+                });
+            }
+
+        })();
+    </script>
 </body>
 </html>
