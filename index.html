@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* Styles spécifiques à l'accueil */
+        /* ===== STYLES SPÉCIFIQUES À L'ACCUEIL ===== */
         .hero {
             position: relative;
             min-height: 400px;
@@ -52,20 +52,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
-        @media (max-width: 768px) {
-            .hero {
-                min-height: 250px;
-            }
-            .hero h2 {
-                font-size: 1.5rem;
-            }
-            .hero-text {
-                font-size: 0.95rem;
-                padding: 0 10px;
-            }
-        }
-
-        /* Cartes d'accès rapide avec icônes */
         .quick-access .card {
             text-align: center;
             border-top: none;
@@ -89,23 +75,122 @@
             color: var(--text-light);
             margin: 0;
         }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 250px;
+            }
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            .hero-text {
+                font-size: 0.95rem;
+                padding: 0 10px;
+            }
+        }
+
+        /* ===== HEADER MODIFIÉ ===== */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 1.2rem 0 0.8rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+        }
+
+        .logo h1 {
+            color: white;
+            margin-bottom: 0;
+            font-size: 1.8rem;
+        }
+
+        .logo h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-info {
+            position: absolute;
+            bottom: -0.2rem;
+            right: 0;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.7);
+            text-align: right;
+        }
+
+        .header-info strong {
+            font-weight: 600;
+        }
+
+        /* Responsive header */
+        @media (max-width: 768px) {
+            .logo img {
+                height: 50px;
+            }
+
+            .logo h1 {
+                font-size: 1.3rem;
+            }
+
+            .header-info {
+                font-size: 0.5rem;
+                bottom: -0.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 40px;
+            }
+
+            .logo h1 {
+                font-size: 1.1rem;
+            }
+
+            .header-info {
+                font-size: 0.45rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- ===== HEADER ===== -->
-<header class="header">
-    <div class="container">
-        <div class="header-content">
-            <div class="logo">
-                <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye">
-                <h1><a href="index.html">Guide des Familles</a></h1>
-            </div>
-            <div class="header-info">
-                <strong>Dernière mise à jour :</strong> 14 août 2026
+
+    <!-- ===== HEADER MODIFIÉ ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye" onerror="this.style.display='none'">
+                    <h1><a href="index.html">Guide des Familles</a></h1>
+                </div>
+                <div class="header-info">
+                    <strong>Dernière mise à jour :</strong> 14 août 2026
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </header>
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
