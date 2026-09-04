@@ -133,7 +133,7 @@
             opacity: 1;
         }
 
-        /* ===== GUIDE COLLABORATIF AVEC IMAGE ET LIRE LA SUITE ===== */
+        /* ===== GUIDE COLLABORATIF ===== */
         .guide-collaboratif {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -155,22 +155,7 @@
             width: 100%;
         }
 
-        .read-more-btn {
-            background: none;
-            border: none;
-            color: var(--primary-color);
-            font-weight: 600;
-            padding: 0.2rem 0;
-            cursor: pointer;
-            font-size: 0.85rem;
-            text-decoration: underline dotted;
-        }
-
-        .read-more-btn:hover {
-            color: var(--primary-dark);
-        }
-
-        /* ===== NAVIGATION RAPIDE AVEC IMAGES ===== */
+        /* ===== NAVIGATION RAPIDE ===== */
         .quick-access-nav {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -234,7 +219,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .hero {
                 min-height: 300px;
@@ -279,16 +263,13 @@
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1rem;
             }
-
             .quick-access-nav .nav-card {
                 height: 140px;
                 padding: 1rem;
             }
-
             .quick-access-nav .nav-card .card-content h3 {
                 font-size: 0.9rem;
             }
-
             .quick-access-nav .nav-card .card-content p {
                 font-size: 0.7rem;
             }
@@ -315,100 +296,15 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 0.8rem;
             }
-
             .quick-access-nav .nav-card {
                 height: 120px;
                 padding: 0.8rem;
             }
-
             .quick-access-nav .nav-card .card-content h3 {
                 font-size: 0.8rem;
             }
-
             .quick-access-nav .nav-card .card-content p {
                 font-size: 0.65rem;
-            }
-        }
-
-        /* ===== HEADER AVEC TITRE AGRANDI x2 ===== */
-        .header {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: white;
-            padding: 1.2rem 0 0.8rem;
-            box-shadow: var(--shadow-md);
-            position: relative;
-        }
-
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.3rem;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.2rem;
-        }
-
-        .logo img {
-            height: 70px;
-            width: auto;
-            display: block;
-        }
-
-        .logo h1 {
-            color: white;
-            margin-bottom: 0;
-            font-size: 3.6rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-        }
-
-        .logo h1 a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .header-info {
-            position: absolute;
-            bottom: -0.2rem;
-            right: 0;
-            font-size: 0.6rem;
-            color: rgba(255,255,255,0.7);
-            text-align: right;
-        }
-
-        .header-info strong {
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .logo img {
-                height: 50px;
-            }
-            .logo h1 {
-                font-size: 2.6rem;
-            }
-            .header-info {
-                font-size: 0.5rem;
-                bottom: -0.1rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                height: 40px;
-            }
-            .logo h1 {
-                font-size: 2.2rem;
-            }
-            .header-info {
-                font-size: 0.45rem;
             }
         }
     </style>
@@ -420,7 +316,7 @@
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye" onerror="this.style.display='none'">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
                     <h1><a href="index.html">Guide des Familles</a></h1>
                 </div>
                 <div class="header-info">
@@ -448,7 +344,7 @@
             <li class="nav-dropdown">
                 <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
                 <ul class="nav-dropdown-menu">
-                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée de l'enfant</a></li>
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
                     <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
                     <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
                 </ul>
@@ -533,7 +429,7 @@
     <main>
         <section class="section">
             <div class="container">
-                <!-- ===== HERO AVEC MESSAGE DU PRÉSIDENT INTÉGRÉ ===== -->
+                <!-- Hero -->
                 <div class="hero" id="heroSection">
                     <img src="couverture_page-000.png" alt="Famille" class="hero-bg">
                     <div class="hero-content">
@@ -541,7 +437,6 @@
                         <div class="message-text" id="presidentMessage">
                             <p><strong>Chères familles,</strong></p>
                             <p>Nous savons combien il est parfois difficile de concilier vie personnelle, professionnelle et sociale. C'est pourquoi la Communauté de communes Berry Loire Puisaye souhaite être à vos côtés, à chaque étape de la vie.</p>
-
                             <div class="full-text">
                                 <p>Grâce à nos services et à nos partenariats, nous travaillons chaque jour pour vous accompagner : accueil de la petite enfance, accompagnement des jeunes, accès à l'information et aux droits.</p>
                                 <p><strong>Notre volonté est simple : que chaque habitant puisse trouver écoute, soutien et solutions adaptées.</strong></p>
@@ -549,20 +444,17 @@
                                 <p>Parce que la richesse de notre territoire, ce sont avant tout ses habitants, nous continuerons à agir pour une Communauté de Communes plus solidaire, attentive et humaine.</p>
                                 <p><strong>Bonne navigation</strong></p>
                                 <div class="signature">
-                                    <p><strong>M. GITTON Vincent</strong><br>
-                                    <em>Président de la Communauté de Communes Berry Loire Puisaye</em></p>
-                                    <p><strong>Mme BERTRAND Isabelle</strong><br>
-                                    <em>Vice-présidente en charge des affaires sociales</em></p>
+                                    <p><strong>M. GITTON Vincent</strong><br><em>Président de la Communauté de Communes Berry Loire Puisaye</em></p>
+                                    <p><strong>Mme BERTRAND Isabelle</strong><br><em>Vice-présidente en charge des affaires sociales</em></p>
                                 </div>
                             </div>
-
                             <button class="toggle-btn" id="togglePresidentBtn">Lire la suite</button>
                         </div>
                     </div>
                     <span class="click-hint">👆 Cliquez sur l'image ou sur le bouton</span>
                 </div>
 
-                <!-- ===== GUIDE COLLABORATIF AVEC IMAGE ET LIRE LA SUITE ===== -->
+                <!-- Guide collaboratif -->
                 <div class="content-box">
                     <h3 style="color:var(--primary-color);">Un guide collaboratif</h3>
                     <div class="guide-collaboratif">
@@ -589,7 +481,7 @@
                     </div>
                 </div>
 
-                <!-- ===== NAVIGATION RAPIDE AVEC IMAGES ===== -->
+                <!-- Navigation rapide -->
                 <h3 style="color:var(--primary-color); margin-top:2rem; margin-bottom:1.5rem;">Accédez directement à une rubrique</h3>
                 <div class="quick-access-nav">
                     <a href="interlocuteurs.html" class="nav-card">
@@ -675,8 +567,7 @@
                 <div class="footer-section">
                     <h3>Communauté de Communes Berry Loire Puisaye</h3>
                     <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
-                    📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Liens utiles</h3>
@@ -715,6 +606,7 @@
             if (menuToggle) {
                 menuToggle.addEventListener('click', function() {
                     navList.classList.toggle('active');
+                    menuToggle.classList.toggle('active');
                 });
             }
 
@@ -777,9 +669,7 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ============================================================
-            // ---- HERO : Lire la suite / Réduire AVEC AGRANDISSEMENT ----
-            // ============================================================
+            // ---- Hero toggle ----
             const heroFullText = document.querySelector('.hero .full-text');
             const heroToggleBtn = document.getElementById('togglePresidentBtn');
             const heroSection = document.getElementById('heroSection');
@@ -805,9 +695,7 @@
                 });
             }
 
-            // ============================================================
-            // ---- GUIDE COLLABORATIF : Lire la suite / Réduire ----
-            // ============================================================
+            // ---- Guide collaboratif toggle ----
             const guideFullText = document.querySelector('.guide-collaboratif .full-text');
             const guideToggleBtn = document.getElementById('guideReadMore');
 
