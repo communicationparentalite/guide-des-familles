@@ -600,34 +600,78 @@
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
-            // ---- Menu mobile ----
+            // ============================================================
+            // ---- MENU MOBILE ----
+            // ============================================================
             const menuToggle = document.getElementById('menuToggle');
             const navList = document.getElementById('navList');
+
             if (menuToggle) {
-                menuToggle.addEventListener('click', function() {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
                     navList.classList.toggle('active');
                     menuToggle.classList.toggle('active');
                 });
             }
 
-            // Dropdown mobile
+            // ============================================================
+            // ---- SOUS-MENU DÉROULANT SUR MOBILE AVEC DOUBLE-CLIC ----
+            // ============================================================
             document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
+                let clickTimer = null;
+
                 link.addEventListener('click', function(e) {
                     if (window.innerWidth <= 768) {
+                        // Si c'est un double-clic, on laisse la navigation se faire
+                        if (clickTimer) {
+                            clearTimeout(clickTimer);
+                            clickTimer = null;
+                            return; // Le double-clic navigue normalement
+                        }
+
+                        e.preventDefault();
                         const parent = this.parentElement;
-                        const isOpen = parent.classList.contains('open');
-                        if (!isOpen) {
-                            e.preventDefault();
-                            document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
-                                item.classList.remove('open');
-                            });
+                        const wasOpen = parent.classList.contains('open');
+
+                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
+                            item.classList.remove('open');
+                        });
+
+                        if (!wasOpen) {
                             parent.classList.add('open');
+                        }
+
+                        // Timer pour détecter le double-clic
+                        clickTimer = setTimeout(function() {
+                            clickTimer = null;
+                        }, 300);
+                    }
+                });
+            });
+
+            // ============================================================
+            // ---- FERMETURE DU SOUS-MENU QUAND ON CLIQUE SUR UN LIEN ----
+            // ============================================================
+            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        const parentDropdown = this.closest('.nav-dropdown');
+                        if (parentDropdown) {
+                            parentDropdown.classList.remove('open');
+                        }
+                        if (navList) {
+                            navList.classList.remove('active');
+                        }
+                        if (menuToggle) {
+                            menuToggle.classList.remove('active');
                         }
                     }
                 });
             });
 
-            // ---- Scroll top ----
+            // ============================================================
+            // ---- SCROLL TOP ----
+            // ============================================================
             const scrollBtn = document.getElementById('scrollTop');
             window.addEventListener('scroll', function() {
                 scrollBtn.classList.toggle('visible', window.scrollY > 300);
@@ -636,7 +680,9 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // ---- Lightbox ----
+            // ============================================================
+            // ---- LIGHTBOX ----
+            // ============================================================
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const closeBtn = document.getElementById('lightboxClose');
@@ -669,7 +715,9 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ---- Hero toggle ----
+            // ============================================================
+            // ---- HERO TOGGLE ----
+            // ============================================================
             const heroFullText = document.querySelector('.hero .full-text');
             const heroToggleBtn = document.getElementById('togglePresidentBtn');
             const heroSection = document.getElementById('heroSection');
@@ -695,7 +743,9 @@
                 });
             }
 
-            // ---- Guide collaboratif toggle ----
+            // ============================================================
+            // ---- GUIDE COLLABORATIF TOGGLE ----
+            // ============================================================
             const guideFullText = document.querySelector('.guide-collaboratif .full-text');
             const guideToggleBtn = document.getElementById('guideReadMore');
 
