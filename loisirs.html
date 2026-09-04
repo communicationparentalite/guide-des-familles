@@ -101,6 +101,13 @@
             font-size: 0.9rem;
             color: var(--primary-dark);
         }
+        .card a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
 
         /* Section avec deux colonnes */
         .two-col-section {
@@ -126,6 +133,13 @@
             color: var(--primary-dark);
             margin-top: 0;
         }
+        .two-col-section .col a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        .two-col-section .col a:hover {
+            text-decoration: underline;
+        }
 
         /* Encart associations */
         .associations-encart {
@@ -141,6 +155,14 @@
         }
         .associations-encart p {
             margin: 0.5rem 0;
+        }
+        .associations-encart a {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .associations-encart a:hover {
+            text-decoration: underline;
         }
 
         /* Responsive */
@@ -179,6 +201,12 @@
         .guide-section .btn-guide:hover {
             background: #6d5f4a;
         }
+        .guide-section a {
+            color: var(--primary-dark);
+        }
+        .guide-section a:hover {
+            text-decoration: underline;
+        }
 
         /* Focus Office Tourisme */
         .focus-section {
@@ -199,8 +227,69 @@
             object-fit: cover;
             border-radius: 8px;
         }
+        .focus-section a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        .focus-section a:hover {
+            text-decoration: underline;
+        }
         @media (max-width: 768px) {
             .focus-section { grid-template-columns: 1fr; }
+        }
+
+        /* Micro-Folie améliorée */
+        .microfolie-section {
+            background: #f5f0ea;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .microfolie-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .microfolie-grid .image-col img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .microfolie-grid .text-col h3 {
+            color: var(--primary-dark);
+            margin-top: 0;
+        }
+        .microfolie-grid .text-col .logo-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin: 1rem 0;
+        }
+        .microfolie-grid .text-col .logo-row img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+        .microfolie-grid .text-col ul {
+            padding-left: 1.2rem;
+            line-height: 1.8;
+        }
+        .microfolie-grid .text-col a {
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+        .microfolie-grid .text-col a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .microfolie-grid {
+                grid-template-columns: 1fr;
+            }
+            .microfolie-grid .image-col img {
+                height: 200px;
+            }
         }
 </style>
 </head>
@@ -323,26 +412,25 @@
                 <h3>Autry-le-Châtel</h3>
                 <p>Mar, ven de 16h30 à 18h30<br>Rue du 8 mai 195<br>45630 Beaulieu-sur-Loire</p>
                 📞 <a href="tel:0238368059">02 38 36 80 59</a><br>
-            </div><div class="card">
+            </div>
+            <div class="card">
                 <h3>Beaulieu-sur-Loire</h3>
                 <p>Mer, sam de 10h00 à 12h00<br>10 place de l'Église<br>45630 Beaulieu-sur-Loire</p>
                 📞 <a href="tel:0238351369">02 38 35 13 69</a><br>
             </div>
             <div class="card">
                 <h3>Bonny-sur-Loire</h3>
-                <p>ar de16h00 à 18h00, merc et sam de 10h00 à 12h00 hors périodes scolaires<br>rue de Bicêtre<br>45420 Bonny-sur-Loire</p>
+                <p>Mar de 16h00 à 18h00, mer et sam de 10h00 à 12h00 hors périodes scolaires<br>rue de Bicêtre<br>45420 Bonny-sur-Loire</p>
                 📞 <a href="tel:0238315771">02 38 31 57 71</a><br>
             </div>
             <div class="card">
                 <h3>Briare</h3>
-                <p>Mar de 16h00 à 18h00, merc de 14h30 à 17h00, ven de 9h00 à 11h00 et sam de 14h30 à 16h30<br>Square Pierre Armand Thiébaut<br>
-                    45250 Briare</p>
+                <p>Mar de 16h00 à 18h00, mer de 14h30 à 17h00, ven de 9h00 à 11h00 et sam de 14h30 à 16h30<br>Square Pierre Armand Thiébaut<br>45250 Briare</p>
                 📞 <a href="tel:0238312245">02 38 31 22 45</a><br>
             </div>
             <div class="card">
                 <h3>Châtillon-sur-Loire</h3>
-                <p>Lun de 16h00 à 18h00, merc de 14h30 à 17h30, jeu de 10h00 à 11h30 et sam de 10h00 à 12h00<br>
-                 Rue du Cormier<br>45360 Châtillon-sur-Loire</p>
+                <p>Lun de 16h00 à 18h00, mer de 14h30 à 17h30, jeu de 10h00 à 11h30 et sam de 10h00 à 12h00<br>Rue du Cormier<br>45360 Châtillon-sur-Loire</p>
                 📞 <a href="tel:0238319965">02 38 31 99 65</a><br>
             </div>
             <div class="card">
@@ -352,7 +440,7 @@
             </div>
             <div class="card">
                 <h3>La Bussière</h3>
-                <p>Mar, ven de 17h00 à 19h00<br> 9, rue de Lyon<br>13 route de Briare<br>45230 La Bussière/p>
+                <p>Mar, ven de 17h00 à 19h00<br>9, rue de Lyon<br>45230 La Bussière</p>
                 📞 <a href="tel:0238359892">02 38 35 98 92</a><br>
             </div>
             <div class="card">
@@ -367,8 +455,7 @@
             </div>
             <div class="card" style="background: var(--primary-light);">
                 <h3>💻 Médiathèque Départementale du Loiret - Loirétek</h3>
-                <p>Ce site vous permet d’accéder 7 jours sur 7, gratuitement et légalement, à une offre de contenus en ligne répartis en huit grands espaces : musique, cinéma, livres, presse, savoirs, événement, ados et un espace sécurisé dédié aux enfants. Pour y accéder, il suffit de vous connecter et de compléter la fiche d’inscription. Une seule condition : être inscrit dans une bibliothèque et préciser celle dont vous êtes adhérent.
-</p>
+                <p>Ce site vous permet d'accéder 7 jours sur 7, gratuitement et légalement, à une offre de contenus en ligne répartis en huit grands espaces : musique, cinéma, livres, presse, savoirs, événement, ados et un espace sécurisé dédié aux enfants. Pour y accéder, il suffit de vous connecter et de compléter la fiche d'inscription. Une seule condition : être inscrit dans une bibliothèque et préciser celle dont vous êtes adhérent.</p>
                 <p>🌐 <a href="https://www.loiretek.fr" target="_blank" rel="noopener" style="color:var(--primary-dark);">www.loiretek.fr</a></p>
             </div>
         </div>
@@ -380,15 +467,13 @@
     <div class="container">
         <h2 class="section-title">Saison Culturelle</h2>
         <div class="guide-section">
-            <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire.
-Il est accessible sur son site à l’adresse suivante :<br>
-https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
+            <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire.<br>
+            Il est accessible sur son site à l'adresse suivante :<br>
+            <a href="https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11" target="_blank" rel="noopener">https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</a></p>
             <a href="guide-saison-culturelle.pdf" target="_blank" class="btn-guide">
                 <i class="fas fa-file-pdf"></i> Télécharger le guide de la saison culturelle
             </a>
         </div>
-
-      </div>
     </div>
 </section>
 
@@ -402,7 +487,7 @@ https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
             <p>Pour connaître les associations et clubs sportifs présents dans votre commune, nous vous invitons à contacter directement votre mairie.</p>
             <p style="font-size:0.95rem; color:#555;">Les mairies disposent de la liste complète des associations locales et de leurs coordonnées.</p>
             <p style="margin-top:1rem;">
-                <a href="interlocuteurs.html#mairies" style="color:var(--primary-dark); font-weight:600;">👉 Voir les coordonnées des mairies</a>
+                <a href="interlocuteurs.html#mairies">👉 Voir les coordonnées des mairies</a>
             </p>
         </div>
     </div>
@@ -411,34 +496,36 @@ https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
 <!-- ==================== LUDOTHÈQUES ==================== -->
 <section class="section section-alt" id="ludotheques">
     <div class="container">
-        <h2 class="section-title"Jeux - Ludothèques</h2>
+        <h2 class="section-title">Jeux - Ludothèques</h2>
         <div class="cards-grid cards-grid-3">
             <div class="card" style="text-align:center;">
                 <i class="fas fa-dice" style="font-size:2.5rem; color:var(--primary-dark);"></i>
                 <h3>Bibliothèque de Bonny-sur-Loire</h3>
-                 <img src="loisirs_jeuxbonny.png" alt="JeuxBonny">
+                <img src="loisirs_jeuxbonny.png" alt="JeuxBonny" style="width:100%; height:150px; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;">
                 <p>Le 3ème vendredi de chaque mois à partir de 20h00 soirée jeux de société à la bibliothèque ou au Mille Clubs<br>
-                    Contact Maison de Pays<br>45250 Briare</p>
-                <p>📞 02 38 31 57 71</p>
-                            </div>
+                Contact Maison de Pays<br>45250 Briare</p>
+                <p>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
+            </div>
             <div class="card" style="text-align:center;">
                 <i class="fas fa-dice" style="font-size:2.5rem; color:var(--primary-dark);"></i>
                 <h3>Jeux D Boule</h3>
-                <img src="loisirs_jdb.png" alt="Jeuxdboule">
-               <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes, les animations ont lieu au premier étage du Centre-socio-culturel de Châtillon sur Loire<br>
-                    7 rue Gelée<br>45360 Châtillon-sur-Loire</p>
-                <p>📞 06 84 55 27 78<br>
-                jeuxdboule@gmail.com / Facebook : Jeux.D.boule</p>
+                <img src="loisirs_jdb.png" alt="Jeuxdboule" style="width:100%; height:150px; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;">
+                <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes, les animations ont lieu au premier étage du Centre-socio-culturel de Châtillon sur Loire<br>
+                7 rue Gelée<br>45360 Châtillon-sur-Loire</p>
+                <p>📞 <a href="tel:0684552778">06 84 55 27 78</a><br>
+                📧 <a href="mailto:jeuxdboule@gmail.com">jeuxdboule@gmail.com</a><br>
+                🌐 <a href="https://facebook.com/Jeux.D.boule" target="_blank" rel="noopener">Facebook : Jeux.D.boule</a></p>
             </div>
             <div class="card" style="text-align:center; background:var(--primary-light);">
                 <i class="fas fa-truck" style="font-size:2.5rem; color:var(--primary-dark);"></i>
                 <h3>Ludomobile</h3>
-                 <img src="loisirs ludomobile.png" alt="loisirs ludomobile.png">
-                <p>Ludothèque itinérante sur la Communauté de communes avec jeux de sociétés et jeux géants dont l’idée est de partager des moments conviviaux entre amis, voisins, inconnus… <br>
-                Fréquence : 2 fois par mois </p>
-                <p>📞 07 57 40 10 28 / evsitinerant@laligue45.fr <br>
-                Instagram : evsligue45 / Facebook : EVS-Itinérant-Berry Loire Puisaye</p>
-               
+                <img src="loisirs_ludomobile.png" alt="loisirs ludomobile.png" style="width:100%; height:150px; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;">
+                <p>Ludothèque itinérante sur la Communauté de communes avec jeux de sociétés et jeux géants dont l'idée est de partager des moments conviviaux entre amis, voisins, inconnus…<br>
+                Fréquence : 2 fois par mois</p>
+                <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a><br>
+                🌐 <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener">Instagram : evsligue45</a><br>
+                🌐 <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener">Facebook : EVS-Itinérant-Berry Loire Puisaye</a></p>
             </div>
         </div>
     </div>
@@ -448,27 +535,30 @@ https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
 <section class="section" id="microfolie">
     <div class="container">
         <h2 class="section-title">Micro-Folie de Briare</h2>
-        <div style="background: #f5f0ea; border-radius: 10px; padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
-            <div>
-                <img src="microfolie.jpg" alt="Micro-Folie Briare" style="width:100%; height:250px; object-fit:cover; border-radius:8px;">
-            </div>
-            <div>
-                <h3 style="color:var(--primary-dark); margin-top:0;">Musée numérique et espace culturel</h3>
-                <img src="loisirs_micro.png" alt="loisirs_micro.png">loisirs_logo_micro.png
-                 <img src="loisirs_logo_micro.png" alt="loisirs_logo_micro.png">    
-                <p>La Micro-Folie est un musée numérique gratuit et accessible à tous. Sur écran géant ou tablette, partez à la découverte de milliers d'oeuvres du monde entier.<br>
-                Pilotée par la Communauté de communes Berry Loire Puisaye et la ville de Briare, la Micro-Folie proposes ateliers, conférences, expositions et animations. Accompagné par un médiateur culturel, voyagez depuis Briare vers d'autres horizons, casque de réalité virtuelle sur la tête ou tablette en main.<br></p>
-                <p><strong>Horaires d'ouverture:</strong></p>
-                <ul style="padding-left:1.2rem;">
-                    <li>Mercredi de 9h45 à 11h45 et de 13h45 à 17h45</li>
-<li>Jeudi de 13h45 à 17h45</li>
-<li>Vendredi de 13h45 à 17h45</li>
-<li>Samedi de 9h45 à 11h45 et de 13h45 à 17h45</li>
-<li></li>Le premier dimanche de chaque mois de 13h45 à 17h45</li>
-                    
-                </ul>
-                <p><strong>📍 Chateau de Trousse-Barrière - 45250 Briare</strong></p>
-                <p>📞 02 38 31 20 08</p>
+        <div class="microfolie-section">
+            <div class="microfolie-grid">
+                <div class="image-col">
+                    <img src="microfolie.jpg" alt="Micro-Folie Briare">
+                    <div style="margin-top:1rem; display:flex; gap:1rem; align-items:center; justify-content:center;">
+                        <img src="loisirs_micro.png" alt="Micro-Folie" style="height:50px; width:auto;">
+                        <img src="loisirs_logo_micro.png" alt="Logo Micro-Folie" style="height:50px; width:auto;">
+                    </div>
+                </div>
+                <div class="text-col">
+                    <h3>Musée numérique et espace culturel</h3>
+                    <p>La Micro-Folie est un musée numérique gratuit et accessible à tous. Sur écran géant ou tablette, partez à la découverte de milliers d'œuvres du monde entier.</p>
+                    <p>Pilotée par la Communauté de communes Berry Loire Puisaye et la ville de Briare, la Micro-Folie propose ateliers, conférences, expositions et animations. Accompagné par un médiateur culturel, voyagez depuis Briare vers d'autres horizons, casque de réalité virtuelle sur la tête ou tablette en main.</p>
+                    <p><strong>Horaires d'ouverture :</strong></p>
+                    <ul>
+                        <li>Mercredi de 9h45 à 11h45 et de 13h45 à 17h45</li>
+                        <li>Jeudi de 13h45 à 17h45</li>
+                        <li>Vendredi de 13h45 à 17h45</li>
+                        <li>Samedi de 9h45 à 11h45 et de 13h45 à 17h45</li>
+                        <li>Le premier dimanche de chaque mois de 13h45 à 17h45</li>
+                    </ul>
+                    <p><strong>📍 Château de Trousse-Barrière - 45250 Briare</strong></p>
+                    <p>📞 <a href="tel:0238312008">02 38 31 20 08</a></p>
+                </div>
             </div>
         </div>
     </div>
@@ -489,12 +579,12 @@ https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
                     <li>Activités et animations</li>
                 </ul>
                 <p><strong>📍 2 quai de l'Abbaye - 45250 Briare</strong></p>
-                <p>📞 02 38 31 33 39</p>
-                <p>🌐 <a href="https://www.tourisme-briare.fr" target="_blank" rel="noopener" style="color:var(--primary-dark);">www.tourisme-briare.fr</a></p>
+                <p>📞 <a href="tel:0238313339">02 38 31 33 39</a></p>
+                <p>🌐 <a href="https://www.tourisme-briare.fr" target="_blank" rel="noopener">www.tourisme-briare.fr</a></p>
             </div>
             <div>
                 <img src="baludik.jpg" alt="Application Baludik" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">
-                <h4 style="color:var(--primary-dark);">Application Baludik</h4>
+                <h4 style="color:var(--primary-dark);">📱 Application Baludik</h4>
                 <p>L'application Baludik propose des parcours de découverte ludiques et interactifs du territoire. Idéal pour explorer la région en famille !</p>
                 <p>🔍 Disponible gratuitement sur Google Play et App Store</p>
             </div>
@@ -509,46 +599,44 @@ https://cc-berryloirepuisaye.fr/fr/rb/1315654/saison-culturelle-11</p>
         <div class="two-col-section">
             <div class="col">
                 <img src="loisirs_maisonpaysbonny.png" alt="Maison de Pays de Bonny">
-	
                 <h3>Maison des Pays de Bonny</h3>
-                <b>Ce qu’on aime pour les enfants</b>
-<li>Escape Game urbain “Marchez, Roulez, Découvrez” : un jeu de piste grandeur nature proposé par la Maison de Pays. Il y a des parcours adaptés aux enfants (dès 4-7 ans) et pour les adultes. C’est une façon amusante de découvrir le patrimoine de la ville tout en jouant.</li>
-<li>Heure du conte / lectures de contes : pour les petits (en général 3-7 ans), accompagnés des parents. Un moment calme et magique autour des histoires. ( à la Bibliothèque ) et tous les 3ème vendredis de chaque mois, également à la bibliothèque à partir de 20h. soirée jeux de société.</li>
-<li>Bourse aux jouets : un événement festif durant la période de Noël, où les enfants (et les familles) peuvent venir chiner des jouets, participer à l’ambiance de fête, et découvrir des objets mis en valeur dans le cadre de l’exposition de Noël.</li>
-<li>Animations artistiques / en fonction des expositions: possibilité d’atelier de modelage d’argile ou dessins animaliers, ateliers créatifs ou artistiques ponctuels. Cela permet aux enfants de voir comment ça se passe “derrière”, de toucher du doigt la création. </li>
-<br>
-<p>Horaires d’ouvertures :<br>
- Mardi à vendredi : 09h-12h / 14h-18h <br>
- Samedi : 15h-18h0 <br>
- 
-Gratuité de base pour les visites. / Accessible aux personnes à mobilité réduite.<br>
+                <p><strong>Ce qu'on aime pour les enfants :</strong></p>
+                <ul style="padding-left:1.2rem;">
+                    <li><strong>Escape Game urbain "Marchez, Roulez, Découvrez" :</strong> un jeu de piste grandeur nature proposé par la Maison de Pays. Il y a des parcours adaptés aux enfants (dès 4-7 ans) et pour les adultes. C'est une façon amusante de découvrir le patrimoine de la ville tout en jouant.</li>
+                    <li><strong>Heure du conte / lectures de contes :</strong> pour les petits (en général 3-7 ans), accompagnés des parents. Un moment calme et magique autour des histoires (à la Bibliothèque) et tous les 3ème vendredis de chaque mois, également à la bibliothèque à partir de 20h, soirée jeux de société.</li>
+                    <li><strong>Bourse aux jouets :</strong> un événement festif durant la période de Noël, où les enfants (et les familles) peuvent venir chiner des jouets, participer à l'ambiance de fête, et découvrir des objets mis en valeur dans le cadre de l'exposition de Noël.</li>
+                    <li><strong>Animations artistiques / en fonction des expositions :</strong> possibilité d'atelier de modelage d'argile ou dessins animaliers, ateliers créatifs ou artistiques ponctuels. Cela permet aux enfants de voir comment ça se passe "derrière", de toucher du doigt la création.</li>
+                </ul>
+                <p><strong>Horaires d'ouvertures :</strong><br>
+                Mardi à vendredi : 09h-12h / 14h-18h<br>
+                Samedi : 15h-18h<br>
+                Gratuité de base pour les visites. / Accessible aux personnes à mobilité réduite.</p>
                 <p><strong>📍 29 Grande Rue - 45420 Bonny-sur-Loire</strong></p>
-                <p>📞 02 38 31 57 71<br>
-                maisondepays@bonnysurloire.fr<br> https://www.bonny-sur-loire.fr/associations/maison-de-pays</p>
+                <p>📞 <a href="tel:0238315771">02 38 31 57 71</a><br>
+                📧 <a href="mailto:maisondepays@bonnysurloire.fr">maisondepays@bonnysurloire.fr</a><br>
+                🌐 <a href="https://www.bonny-sur-loire.fr/associations/maison-de-pays" target="_blank" rel="noopener">https://www.bonny-sur-loire.fr/associations/maison-de-pays</a></p>
             </div>
             <div class="col">
                 <img src="loisirs_maisonterroirbeaulieu.png" alt="Maison du Terroir de Beaulieu">
                 <h3>Maison du Terroir et d'Animations de Beaulieu-sur-Loire</h3>
-                <p>Ce qu’on aime pour les enfants
-Il y a des ateliers ludiques et pédagogiques selon les âges : 4-6 ans, 7-9 ans, 10-12 ans, +12 ans. Cela permet d’adapter selon l’âge de l’enfant. <br>
-                                    <ul style="padding-left:1.2rem;">
-
-<li>Animations saisonnières : “Animation de l’été” L’ensemble des animations proposées sont en lien avec les produits locaux et les savoir-faire des producteurs.</li>
-<li>Découvertes autour de l’alimentation, ce qui peut stimuler la curiosité des plus jeunes. Par exemple, atelier pour comprendre d’où viennent les produits transformés par les producteurs. </li>
-<li>L’environnement alentour est plaisant pour les familles : Le Jardin des 5 Sens (parc de la Maison Marret) est gratuit et offre des espaces extérieurs, verger, labyrinthes végétal etc., ce qui permet une balade après la visite.</li>
-<li>Et la fameuse Aventure en famille en partenariat avec l’Office de tourisme “le Secret de Nettir” dont les sacs sont à retirer à la Maison du Terroir pour une visite du bourg..</li></p>
-               </ul>
-                <p><strong>Horaires d'ouverture:</strong></p>
-                <p><b>Horaires d’ouvertures </b><br>
- • En période de haute saison (été et fêtes de fin d’année) de début mai au 20 septembre et du 18 novembre au 24 décembre) :<br>
- - Mercredi à samedi : 9h à 12h30 et 14h30 à 17h45 <br>
- • En période hors haute saison (de janvier à fin avril et d’octobre à fin novembre: <br>
- - Mercredi et vendredi : 9h à 12h30 et 14h30 à 17h <br>
- 
-Accessibilité : Accessible aux personnes à mobilité réduite. Visites individuelles libres en permanence.</p>
-                
-                <p><strong>📍 3 place d'Armes- 45630 Beaulieu-sur-Loire</strong></p>
-                <p>📞 06 73 36 06 60<br>maison-du-terroir@beaulieu-sur-loire.fr/ Facebook : @TerroirBeaulieusurLoire <br></p>
+                <p><strong>Ce qu'on aime pour les enfants :</strong></p>
+                <ul style="padding-left:1.2rem;">
+                    <li>Il y a des ateliers ludiques et pédagogiques selon les âges : 4-6 ans, 7-9 ans, 10-12 ans, +12 ans. Cela permet d'adapter selon l'âge de l'enfant.</li>
+                    <li><strong>Animations saisonnières :</strong> "Animation de l'été" L'ensemble des animations proposées sont en lien avec les produits locaux et les savoir-faire des producteurs.</li>
+                    <li><strong>Découvertes autour de l'alimentation :</strong> ce qui peut stimuler la curiosité des plus jeunes. Par exemple, atelier pour comprendre d'où viennent les produits transformés par les producteurs.</li>
+                    <li><strong>L'environnement alentour est plaisant pour les familles :</strong> Le Jardin des 5 Sens (parc de la Maison Marret) est gratuit et offre des espaces extérieurs, verger, labyrinthes végétal etc., ce qui permet une balade après la visite.</li>
+                    <li><strong>L'aventure en famille</strong> en partenariat avec l'Office de tourisme "le Secret de Nettir" dont les sacs sont à retirer à la Maison du Terroir pour une visite du bourg.</li>
+                </ul>
+                <p><strong>Horaires d'ouvertures :</strong></p>
+                <ul style="padding-left:1.2rem;">
+                    <li><strong>Haute saison</strong> (début mai au 20 septembre et du 18 novembre au 24 décembre) :<br>Mercredi à samedi : 9h à 12h30 et 14h30 à 17h45</li>
+                    <li><strong>Hors haute saison</strong> (janvier à fin avril et octobre à fin novembre) :<br>Mercredi et vendredi : 9h à 12h30 et 14h30 à 17h</li>
+                </ul>
+                <p>Accessibilité : Accessible aux personnes à mobilité réduite. Visites individuelles libres en permanence.</p>
+                <p><strong>📍 3 place d'Armes - 45630 Beaulieu-sur-Loire</strong></p>
+                <p>📞 <a href="tel:0673360660">06 73 36 06 60</a><br>
+                📧 <a href="mailto:maison-du-terroir@beaulieu-sur-loire.fr">maison-du-terroir@beaulieu-sur-loire.fr</a><br>
+                🌐 <a href="https://facebook.com/TerroirBeaulieusurLoire" target="_blank" rel="noopener">Facebook : @TerroirBeaulieusurLoire</a></p>
             </div>
         </div>
     </div>
@@ -667,7 +755,7 @@ Accessibilité : Accessible aux personnes à mobilité réduite. Visites individ
             <div class="footer-section">
                 <h3>Communauté de Communes Berry Loire Puisaye</h3>
                 <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                <p>📞 02 38 37 03 84<br>
+                <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
                 📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
             </div>
             <div class="footer-section">
