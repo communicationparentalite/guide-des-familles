@@ -195,6 +195,101 @@
                 text-align: center;
             }
         }
+
+        /* ===== SOUS-ACCORDÉON ACCUEIL COLLECTIF ===== */
+        .sub-accordion-header {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-weight: 600;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+        }
+
+        .sub-accordion-header:hover {
+            background: #f5f8ff;
+        }
+
+        .sub-accordion-header.open {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .sub-accordion-header.open span {
+            color: white;
+        }
+
+        .sub-accordion-icon {
+            font-size: 1.2rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .sub-accordion-header.open .sub-accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .sub-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+            padding: 0 1.2rem;
+        }
+
+        .sub-accordion-body.open {
+            max-height: 2000px;
+            padding: 0.5rem 1.2rem 1rem;
+        }
+
+        .accueil-collectif-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .accueil-collectif-wrapper:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== YOUTUBE RESPONSIVE ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-caption {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            padding: 0.3rem 0.5rem;
+            background: var(--bg-light);
+            margin: 0;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
     </style>
 </head>
 <body class="page-petite-enfance">
@@ -377,33 +472,56 @@
                                 <p>Le territoire dispose de deux structures d'accueil collectif labélisées "éveil et signes" avec un agrément délivré par la PMI. Elles accueillent des enfants âgés de 10 semaines à 4 ans révolus.</p>
                             </div>
                             <div class="full-text">
-                                <div class="photo-gallery">
-                                    <img src="petite_enfance_page-003.png" alt="Multi-accueil Briare">
-                                    <img src="petite_enfance_page-004.png" alt="Multi-accueil Châtillon">
-                                </div>
-                                <div class="cards-grid">
-                                    <div class="card">
-                                        <h3>Multi-accueil Briare "Frimousses de Loire"</h3>
+
+                                <!-- ===== BRIARE ===== -->
+                                <div class="accueil-collectif-wrapper">
+                                    <div class="sub-accordion-header" onclick="toggleSubAccordion('briare')">
+                                        <span>🏠 Multi-accueil Briare "Frimousses de Loire"</span>
+                                        <span id="briare-icon" class="sub-accordion-icon">+</span>
+                                    </div>
+                                    <div id="briare-content" class="sub-accordion-body">
+                                        <img src="petite_enfance_page-003.png" alt="Multi-accueil Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
                                         <p><strong>30 places</strong> réparties en 2 sections<br>
                                         12 bébés/moyens + 18 moyens/grands</p>
-                                        <p>3 mois - 4 ans<br>
-                                        Pôle Petite Enfance<br>
-                                        39, avenue Yver Bapterosses, Briare</p>
+                                        <p><strong>Âge :</strong> 3 mois - 4 ans</p>
+                                        <p><strong>📍 Adresse :</strong> Pôle Petite Enfance, 39 avenue Yver Bapterosses, Briare</p>
                                         <p>📞 <a href="tel:0238313862">02 38 31 38 62</a><br>
-                                        Lun-Ven : 7h30-18h30<br>
                                         📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a></p>
-                                    </div>
-                                    <div class="card">
-                                        <h3>Multi-accueil Châtillon-sur-Loire "Frimousses de Loire"</h3>
-                                        <p><strong>16 places</strong> (âge mélangé)</p>
-                                        <p>3 mois - 4 ans<br>
-                                        Centre Médico-social<br>
-                                        1, rue de la Boyaudière, Châtillon-sur-Loire</p>
-                                        <p>📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
-                                        Lun-Ven : 7h00-18h00<br>
-                                        📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
+                                        <p><strong>Horaires :</strong> Lun-Ven 7h30-18h30</p>
                                     </div>
                                 </div>
+
+                                <!-- ===== CHÂTILLON ===== -->
+                                <div class="accueil-collectif-wrapper">
+                                    <div class="sub-accordion-header" onclick="toggleSubAccordion('chatillon')">
+                                        <span>🏠 Multi-accueil Châtillon-sur-Loire "Frimousses de Loire"</span>
+                                        <span id="chatillon-icon" class="sub-accordion-icon">+</span>
+                                    </div>
+                                    <div id="chatillon-content" class="sub-accordion-body">
+                                        <img src="petite_enfance_page-004.png" alt="Multi-accueil Châtillon" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                        <p><strong>16 places</strong> (âge mélangé)</p>
+                                        <p><strong>Âge :</strong> 3 mois - 4 ans</p>
+                                        <p><strong>📍 Adresse :</strong> Centre Médico-social, 1 rue de la Boyaudière, Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
+                                        📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
+                                        <p><strong>Horaires :</strong> Lun-Ven 7h00-18h00</p>
+
+                                        <!-- ===== LECTEUR YOUTUBE ===== -->
+                                        <div style="margin-top: 1.5rem;">
+                                            <div class="video-wrapper">
+                                                <iframe 
+                                                    src="https://www.youtube.com/embed/I1MwcckqkuA" 
+                                                    title="Multi-accueil Châtillon-sur-Loire"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                            <p class="video-caption">🎥 Découvrez le Multi-accueil de Châtillon-sur-Loire en vidéo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
                         </div>
@@ -524,7 +642,7 @@
                                         <p>Selon les consultations, vous pourrez rencontrer :<br>
                                         - une infirmière puéricultrice ou une auxiliaire de puériculture <strong>pour échanger et obtenir des conseils</strong> pour votre enfant (0-6 ans)<br>
                                         - un médecin pour le <strong>suivi médical</strong> de votre enfant</p>
-                                        <img src="Consultations PMI.jpg" alt="PMI Consultations" style="width:100%; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                        <img src="Consultations PMI.jpg" alt="PMI Consultations" style="width:100%; border-radius:8px; margin:0.8rem 0; cursor:pointer;" onclick="openLightbox(this.src)">
                                         <p><strong>Consultation médicale :</strong><br>
                                         • 1er lundi de 9h00 à 17h00<br>
                                         • 3ème lundi du mois de 9h00 à 13h00<br>
@@ -537,7 +655,7 @@
                                     <div class="card">
                                         <h4>Atelier manipulation enfants-parents</h4>
                                         <p>Ce sont des <strong>ateliers gratuits</strong> : des activités de manipulation permettant aux enfants <strong>de 1 à 3 ans</strong> de découvrir, expérimenter, explorer des textures, des couleurs...</p>
-                                        <img src="Atelier manipulation enfants-parents.jpg" alt="Atelier manipulation" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                        <img src="Atelier manipulation enfants-parents.jpg" alt="Atelier manipulation" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin:0.8rem 0; cursor:pointer;" onclick="openLightbox(this.src)">
                                         <p>Les activités et les textures naturelles évoluent au fil des saisons : sable magique, semoule, terre, fleurs, eau, feuilles...</p>
                                         <p><strong>Bienfaits :</strong> Développe la confiance, la motricité fine, l'autonomie, la concentration...</p>
                                         <p><strong>Tous les 2e vendredis du mois de 9h30 à 11h30</strong><br>
@@ -563,7 +681,7 @@
                                         <div class="text">
                                             <p>Installée au cœur de la <strong>salle du Relais Petite enfance</strong> au sein du Pôle Petite enfance depuis fin 2022, <strong>la Bulle Musicale</strong> est un équipement utilisé par les professionnels des multi-accueils, du Relais Petite enfance, les accueillantes de la Marelle et les parents qui fréquentent ce lieu d'accueil enfants-parents.</p>
                                         </div>
-                                        <img src="bulle-musicale.png" alt="La Bulle Musicale">
+                                        <img src="bulle-musicale.png" alt="La Bulle Musicale" onclick="openLightbox(this.src)">
                                     </div>
                                 </div>
                                 <div class="full-text">
@@ -577,7 +695,7 @@
                                             Pôle Petite Enfance - 39, avenue Yver Bapterosses, Briare<br>
                                             📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
                                         </div>
-                                        <img src="bulle-musicale.png" alt="La Bulle Musicale">
+                                        <img src="bulle-musicale.png" alt="La Bulle Musicale" onclick="openLightbox(this.src)">
                                     </div>
                                 </div>
                                 <button class="read-more-btn" style="color:white; border-color:rgba(255,255,255,0.4);">Lire la suite</button>
@@ -782,6 +900,27 @@
                     toggleAccordion(this);
                 });
             });
+
+            // ============================================================
+            // ---- SOUS-ACCORDÉON ACCUEIL COLLECTIF ----
+            // ============================================================
+            window.toggleSubAccordion = function(id) {
+                const content = document.getElementById(id + '-content');
+                const header = content.previousElementSibling;
+                const icon = document.getElementById(id + '-icon');
+
+                if (content.classList.contains('open')) {
+                    content.classList.remove('open');
+                    header.classList.remove('open');
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.classList.add('open');
+                    header.classList.add('open');
+                    icon.textContent = '−';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            };
 
             // ============================================================
             // ---- LIRE LA SUITE ----
