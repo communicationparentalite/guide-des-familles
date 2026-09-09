@@ -367,7 +367,7 @@
             padding: 0.8rem 1.2rem 1.5rem;
         }
 
-        .read-more-btn {
+        .accordion-body .read-more-btn {
             background: none;
             border: none;
             color: var(--primary-color);
@@ -378,7 +378,7 @@
             text-decoration: underline dotted;
         }
 
-        .read-more-btn:hover {
+        .accordion-body .read-more-btn:hover {
             color: var(--primary-dark);
         }
 
@@ -467,73 +467,34 @@
             color: var(--primary-dark);
         }
 
-        /* ===== CARTES DANS ACCORDÉON ===== */
-        .accordion-card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1rem;
-            margin-top: 0.5rem;
+        /* ===== VIDEO WRAPPER ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
         }
 
-        .accordion-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--primary-color);
-            transition: transform 0.2s, box-shadow 0.2s;
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
-        .accordion-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-
-        .accordion-card h4 {
-            color: var(--primary-dark);
-            margin: 0 0 0.3rem 0;
-            font-size: 1rem;
-        }
-
-        .accordion-card p {
-            margin: 0.2rem 0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .accordion-card a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .accordion-card a:hover {
-            text-decoration: underline;
-        }
-
-        .accordion-card .badge {
-            display: inline-block;
-            background: var(--primary-light);
-            color: white;
-            font-size: 0.7rem;
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            margin-bottom: 0.3rem;
-            opacity: 0.8;
-        }
-
-        /* ===== SOCIAL LINKS ===== */
-        .social-links {
-            margin-top: 0.5rem;
-        }
-
-        .social-links a {
-            font-size: 1.3rem;
-            margin-right: 0.6rem;
-            text-decoration: none;
-        }
-
-        .social-links a:hover {
-            opacity: 0.8;
+        .video-caption {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            padding: 0.3rem 0.5rem;
+            background: var(--bg-light);
+            margin: 0;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
         }
 
         /* ===== CARTES STANDARD ===== */
@@ -558,30 +519,10 @@
             box-shadow: var(--shadow-md);
         }
 
-        .card h3 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
         .card h4 {
             color: var(--primary-dark);
             margin-bottom: 0.75rem;
             font-size: 1.1rem;
-        }
-
-        .card p {
-            margin: 0.2rem 0;
-            font-size: 0.92rem;
-            line-height: 1.6;
-        }
-
-        .card a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .card a:hover {
-            text-decoration: underline;
         }
 
         .card .card-image {
@@ -616,34 +557,34 @@
             color: var(--primary-dark);
         }
 
-        /* ===== VIDEO WRAPPER ===== */
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            background: #000;
-            border-radius: 8px;
+        .card p {
+            margin: 0.2rem 0;
+            font-size: 0.92rem;
+            line-height: 1.6;
         }
 
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+        .card a {
+            color: var(--primary-color);
+            text-decoration: none;
         }
 
-        .video-caption {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            padding: 0.3rem 0.5rem;
-            background: var(--bg-light);
-            margin: 0;
-            text-align: center;
-            border-radius: 0 0 8px 8px;
+        .card a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SOCIAL LINKS ===== */
+        .social-links {
+            margin-top: 0.5rem;
+        }
+
+        .social-links a {
+            font-size: 1.3rem;
+            margin-right: 0.6rem;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            opacity: 0.8;
         }
 
         /* ===== TER SECTION ===== */
@@ -670,6 +611,13 @@
         .ter-section .read-more-btn {
             color: white;
             border-color: rgba(255,255,255,0.4);
+            background: none;
+            border: none;
+            font-weight: 600;
+            padding: 0.2rem 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline dotted;
         }
 
         .ter-section .read-more-btn:hover {
@@ -711,9 +659,6 @@
                 height: 200px;
             }
             .cards-grid {
-                grid-template-columns: 1fr;
-            }
-            .accordion-card-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1042,25 +987,26 @@
                                         <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
                                         <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
                                         <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
-                                        <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
-                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                        📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
-                                        🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
-
-                                        <!-- ===== LECTEUR YOUTUBE ===== -->
-                                        <div style="margin-top: 1.5rem;">
-                                            <div class="video-wrapper">
-                                                <iframe 
-                                                    src="https://www.youtube.com/embed/U0OX3-ikWuk?rel=0&modestbranding=1&autoplay=0" 
-                                                    title="Collège Albert Camus - Briare"
-                                                    frameborder="0"
-                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                    referrerpolicy="strict-origin-when-cross-origin"
-                                                    allowfullscreen>
-                                                </iframe>
+                                        <div class="full-text">
+                                            <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
+                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                            📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
+                                            🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
+                                            <div style="margin-top: 1.5rem;">
+                                                <div class="video-wrapper">
+                                                    <iframe 
+                                                        src="https://www.youtube.com/embed/U0OX3-ikWuk?rel=0&modestbranding=1&autoplay=0" 
+                                                        title="Collège Albert Camus - Briare"
+                                                        frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                        referrerpolicy="strict-origin-when-cross-origin"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                </div>
+                                                <p class="video-caption">🎥 Découvrez le Collège Albert Camus en vidéo</p>
                                             </div>
-                                            <p class="video-caption">🎥 Découvrez le Collège Albert Camus en vidéo</p>
                                         </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
                                 </div>
 
@@ -1073,10 +1019,13 @@
                                     <div id="dezarnaulds-content" class="sous-accordion-body">
                                         <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
                                         <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
-                                        <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
-                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                        📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
-                                        🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
+                                        <div class="full-text">
+                                            <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
+                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                            📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
+                                            🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
                                 </div>
 
@@ -1141,9 +1090,7 @@
                                     <div class="card">
                                         <h4>Culture Ados (Bee'Mobile)</h4>
                                         <img src="jeunesse_page-009.png" alt="Culture Ados" class="card-image" onclick="openLightbox(this.src)">
-                                        <div class="short-text">
-                                            <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
-                                        </div>
+                                        <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
                                         <div class="full-text">
                                             <p>Ouvert les mercredis après-midi, deux samedis par mois et la moitié des vacances scolaires. C'est un service itinérant qui se déplace sur l'ensemble de la communauté de communes.</p>
                                             <p>Un système de ramassage grâce à un minibus permet de récupérer et déposer les jeunes chez eux en cas d'impossibilité de déplacement.</p>
@@ -1164,9 +1111,7 @@
                                     <div class="card">
                                         <h4>Maison Saint-Jean (Briare)</h4>
                                         <img src="Capture_d_ecran_MSJ.png" alt="Maison Saint-Jean" class="card-image" onclick="openLightbox(this.src)">
-                                        <div class="short-text">
-                                            <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
-                                        </div>
+                                        <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
                                         <div class="full-text">
                                             <p>Activités manuelles, artistiques, sportives, sorties, mini-séjours (camps pendant l'été), création de projets.</p>
                                             <p><strong>📍 49 Boulevard Buyser, Briare</strong></p>
@@ -1180,9 +1125,7 @@
                                     <div class="card">
                                         <h4>Séjours pédagogiques (Bee'Mobile)</h4>
                                         <img src="jeunesse_page-011.png" alt="Séjours pédagogiques" class="card-image" onclick="openLightbox(this.src)">
-                                        <div class="short-text">
-                                            <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
-                                        </div>
+                                        <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
                                         <div class="full-text">
                                             <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
                                             <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
@@ -1200,9 +1143,7 @@
                                     <div class="card">
                                         <h4>Maison des Adolescents (AMARA 45)</h4>
                                         <img src="Capture_d_ecran_amara45.png" alt="Maison des Adolescents" class="card-image" onclick="openLightbox(this.src)">
-                                        <div class="short-text">
-                                            <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
-                                        </div>
+                                        <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
                                         <div class="full-text">
                                             <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
                                             <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
@@ -1221,9 +1162,7 @@
                                     <div class="card">
                                         <h4>Mission Locale de Gien</h4>
                                         <img src="Capture_d_ecran_mission_locale.png" alt="Mission Locale de Gien" class="card-image" onclick="openLightbox(this.src)">
-                                        <div class="short-text">
-                                            <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
-                                        </div>
+                                        <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
                                         <div class="full-text">
                                             <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
                                             <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
@@ -1460,10 +1399,10 @@
             // ============================================================
             // ---- LIRE LA SUITE (générique) ----
             // ============================================================
-            document.querySelectorAll('.card .read-more-btn, .ter-section .read-more-btn, .accordion-body > .read-more-btn').forEach(function(btn) {
+            document.querySelectorAll('.card .read-more-btn, .ter-section .read-more-btn, .sous-accordion-body .read-more-btn, .accordion-body > .read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const parent = this.closest('.card') || this.closest('.ter-section') || this.closest('.accordion-body');
+                    const parent = this.closest('.card') || this.closest('.ter-section') || this.closest('.sous-accordion-body') || this.closest('.accordion-body');
                     if (!parent) return;
                     const fullText = parent.querySelector('.full-text');
                     if (!fullText) return;
