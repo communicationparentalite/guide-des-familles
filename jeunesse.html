@@ -343,13 +343,6 @@
             color: white;
         }
 
-        .accordion-header .header-logo {
-            width: 40px;
-            height: 40px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
         .accordion-icon {
             font-size: 1.6rem;
             font-weight: 300;
@@ -374,30 +367,6 @@
             padding: 0.8rem 1.2rem 1.5rem;
         }
 
-        .accordion-body-inner {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .accordion-body-inner .text {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .accordion-body-inner .text p {
-            margin: 0 0 0.6rem;
-            line-height: 1.7;
-        }
-
-        .accordion-body-inner .text .full-text {
-            display: none;
-        }
-
-        .accordion-body-inner .text .full-text.visible {
-            display: block;
-        }
-
         .read-more-btn {
             background: none;
             border: none;
@@ -413,36 +382,66 @@
             color: var(--primary-dark);
         }
 
-        .accordion-body-inner .images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: flex-start;
+        /* ===== SOUS-ACCORDÉON ===== */
+        .sous-accordion-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1rem;
         }
 
-        .accordion-body-inner .images img {
-            width: 100%;
-            max-width: 140px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 1px solid #dde2ec;
+        .sous-accordion-wrapper:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        .sous-accordion-header {
+            background: white;
+            padding: 0.8rem 1.2rem;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            flex: 0 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
-        .accordion-body-inner .images img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        .sous-accordion-header:hover {
+            background: #f5f8ff;
         }
 
-        @media (max-width: 480px) {
-            .accordion-body-inner .images img {
-                max-width: 100%;
-                height: auto;
-                aspect-ratio: 4/3;
-            }
+        .sous-accordion-header.open {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .sous-accordion-header.open span {
+            color: white;
+        }
+
+        .sous-accordion-icon {
+            font-size: 1.2rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .sous-accordion-header.open .sous-accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .sous-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+            padding: 0 1.2rem;
+        }
+
+        .sous-accordion-body.open {
+            max-height: 2000px;
+            padding: 0.5rem 1.2rem 1rem;
         }
 
         /* ===== CARTES DANS ACCORDÉON ===== */
@@ -571,26 +570,122 @@
             cursor: pointer;
         }
 
-        /* ===== IMAGE + TEXTE ===== */
-        .image-text-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            margin: 2rem 0;
+        .card .full-text {
+            display: none;
         }
 
-        .image-text-row img {
+        .card .full-text.visible {
+            display: block;
+        }
+
+        .card .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.2rem 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline dotted;
+        }
+
+        .card .read-more-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ===== VIDEO WRAPPER ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
             border-radius: 8px;
-            box-shadow: var(--shadow-md);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .video-caption {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            padding: 0.3rem 0.5rem;
+            background: var(--bg-light);
+            margin: 0;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
+        }
+
+        /* ===== TER SECTION ===== */
+        .ter-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 0;
+        }
+
+        .ter-section h3 {
+            color: white;
+        }
+
+        .ter-section .full-text {
+            display: none;
+        }
+
+        .ter-section .full-text.visible {
+            display: block;
+        }
+
+        .ter-section .read-more-btn {
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .ter-section .read-more-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .ter-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .ter-content .text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .ter-content .text p {
+            text-align: justify;
+        }
+
+        .ter-content img {
+            width: 400px;
+            max-width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
             cursor: pointer;
         }
 
         @media (max-width: 768px) {
-            .image-text-row {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            .ter-content {
+                flex-direction: column;
+            }
+            .ter-content img {
+                width: 100%;
+                height: 200px;
             }
             .cards-grid {
                 grid-template-columns: 1fr;
@@ -768,75 +863,6 @@
         p {
             margin-bottom: 1rem;
         }
-
-        .bg-light {
-            background-color: var(--bg-light);
-        }
-
-        .ter-section {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 2rem 0;
-        }
-
-        .ter-section h3 {
-            color: white;
-        }
-
-        .ter-section .full-text {
-            display: none;
-        }
-
-        .ter-section .full-text.visible {
-            display: block;
-        }
-
-        .ter-section .read-more-btn {
-            color: white;
-            border-color: rgba(255,255,255,0.4);
-        }
-
-        .ter-section .read-more-btn:hover {
-            color: rgba(255,255,255,0.8);
-        }
-
-        .ter-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .ter-content .text {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .ter-content .text p {
-            text-align: justify;
-        }
-
-        .ter-content img {
-            width: 400px;
-            max-width: 100%;
-            height: 260px;
-            object-fit: cover;
-            border-radius: 8px;
-            flex-shrink: 0;
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .ter-content {
-                flex-direction: column;
-            }
-            .ter-content img {
-                width: 100%;
-                height: 200px;
-            }
-        }
     </style>
 </head>
 <body class="page-jeunesse">
@@ -982,25 +1008,64 @@
                                 <p>Le territoire dispose de deux collèges publics qui accueillent les élèves du secteur : le Collège Albert Camus à Briare et le Collège Pierre Dézarnaulds à Châtillon-sur-Loire.</p>
                             </div>
                             <div class="full-text">
-                                <div class="accordion-card-grid">
-                                    <div class="accordion-card">
-                                        <h4>Collège Albert Camus (Briare)</h4>
-                                        <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
-                                        <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
-                                        <p>Rue du Port à Belleau, Briare</p>
-                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                        📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
-                                        🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
+
+                                <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS (avec vidéo) ===== -->
+                                <div class="sous-accordion-wrapper">
+                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
+                                        <span>🏫 Collège Albert Camus (Briare)</span>
+                                        <span id="camus-icon" class="sous-accordion-icon">+</span>
                                     </div>
-                                    <div class="accordion-card">
-                                        <h4>Collège Pierre Dézarnaulds (Châtillon-sur-Loire)</h4>
-                                        <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
-                                        <p>2 allée du Paradis, Châtillon-sur-Loire</p>
-                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                        📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
-                                        🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
+                                    <div id="camus-content" class="sous-accordion-body">
+                                        <div class="short-text">
+                                            <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                            <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
+                                            <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
+                                        </div>
+                                        <div class="full-text">
+                                            <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
+                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                            📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
+                                            🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
+
+                                            <!-- ===== LECTEUR YOUTUBE ===== -->
+                                            <div style="margin-top: 1.5rem;">
+                                                <div class="video-wrapper">
+                                                    <iframe 
+                                                        src="https://www.youtube.com/embed/U0OX3-ikWuk" 
+                                                        title="Collège Albert Camus - Briare"
+                                                        frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen>
+                                                    </iframe>
+                                                </div>
+                                                <p class="video-caption">🎥 Découvrez le Collège Albert Camus en vidéo</p>
+                                            </div>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
                                 </div>
+
+                                <!-- ===== SOUS-ACCORDÉON COLLÈGE PIERRE DÉZARNAULDS ===== -->
+                                <div class="sous-accordion-wrapper">
+                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('dezarnaulds')">
+                                        <span>🏫 Collège Pierre Dézarnaulds (Châtillon-sur-Loire)</span>
+                                        <span id="dezarnaulds-icon" class="sous-accordion-icon">+</span>
+                                    </div>
+                                    <div id="dezarnaulds-content" class="sous-accordion-body">
+                                        <div class="short-text">
+                                            <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                            <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
+                                        </div>
+                                        <div class="full-text">
+                                            <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
+                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                            📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
+                                            🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
+                                    </div>
+                                </div>
+
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
                         </div>
@@ -1013,7 +1078,7 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="ter-section" style="background-color:var(--primary-color); color:white; border-radius:8px; padding:1.5rem; margin:0;">
+                            <div class="ter-section">
                                 <div class="short-text">
                                     <div class="ter-content">
                                         <div class="text">
@@ -1045,7 +1110,7 @@
                         </div>
                     </div>
 
-                    <!-- ===== 3. STRUCTURES D'ACCUEIL ===== -->
+                    <!-- ===== 3. STRUCTURES D'ACCUEIL ET DE LOISIRS ===== -->
                     <div class="accordion-item" id="structures-loisirs">
                         <button class="accordion-header" aria-expanded="false">
                             <span>🎯 Structures d'accueil et de loisirs</span>
@@ -1057,76 +1122,103 @@
                             </div>
                             <div class="full-text">
                                 <div class="cards-grid">
+
                                     <!-- Culture Ados -->
                                     <div class="card">
                                         <h4>Culture Ados (Bee'Mobile)</h4>
                                         <img src="jeunesse_page-009.png" alt="Culture Ados" class="card-image" onclick="openLightbox(this.src)">
-                                        <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
-                                        <p>Ouvert les mercredis après-midi, deux samedis par mois et la moitié des vacances scolaires. C'est un service itinérant qui se déplace sur l'ensemble de la communauté de communes.</p>
-                                        <p>Un système de ramassage grâce à un minibus permet de récupérer et déposer les jeunes chez eux en cas d'impossibilité de déplacement.</p>
-                                        <p><strong>Horaires :</strong> Mer, Sam (2/mois) 14h-18h, vacances 10h-18h<br>
-                                        <strong>Adhésion :</strong> 15€/an</p>
-                                        <p><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
-                                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                                        <div class="social-links">
-                                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
-                                            <a href="https://instagram.com/evsligue45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                        <div class="short-text">
+                                            <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
                                         </div>
+                                        <div class="full-text">
+                                            <p>Ouvert les mercredis après-midi, deux samedis par mois et la moitié des vacances scolaires. C'est un service itinérant qui se déplace sur l'ensemble de la communauté de communes.</p>
+                                            <p>Un système de ramassage grâce à un minibus permet de récupérer et déposer les jeunes chez eux en cas d'impossibilité de déplacement.</p>
+                                            <p><strong>Horaires :</strong> Mer, Sam (2/mois) 14h-18h, vacances 10h-18h<br>
+                                            <strong>Adhésion :</strong> 15€/an</p>
+                                            <p><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
+                                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                            <div class="social-links">
+                                                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                                                <a href="https://instagram.com/evsligue45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
 
                                     <!-- Maison Saint-Jean -->
                                     <div class="card">
                                         <h4>Maison Saint-Jean (Briare)</h4>
                                         <img src="Capture_d_ecran_MSJ.png" alt="Maison Saint-Jean" class="card-image" onclick="openLightbox(this.src)">
-                                        <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
-                                        <p>Activités manuelles, artistiques, sportives, sorties, mini-séjours (camps pendant l'été), création de projets.</p>
-                                        <p><strong>📍 49 Boulevard Buyser, Briare</strong></p>
-                                        <p>📞 <a href="tel:0238371664">02 38 37 16 64</a> / <a href="tel:0764754898">07 64 75 48 98</a></p>
-                                        <p>Ouvert les mercredis, un vendredi par mois et les vacances scolaires.</p>
+                                        <div class="short-text">
+                                            <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
+                                        </div>
+                                        <div class="full-text">
+                                            <p>Activités manuelles, artistiques, sportives, sorties, mini-séjours (camps pendant l'été), création de projets.</p>
+                                            <p><strong>📍 49 Boulevard Buyser, Briare</strong></p>
+                                            <p>📞 <a href="tel:0238371664">02 38 37 16 64</a> / <a href="tel:0764754898">07 64 75 48 98</a></p>
+                                            <p>Ouvert les mercredis, un vendredi par mois et les vacances scolaires.</p>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
 
                                     <!-- Séjours pédagogiques -->
                                     <div class="card">
                                         <h4>Séjours pédagogiques (Bee'Mobile)</h4>
                                         <img src="jeunesse_page-011.png" alt="Séjours pédagogiques" class="card-image" onclick="openLightbox(this.src)">
-                                        <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
-                                        <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
-                                        <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
-                                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                                        <div class="social-links">
-                                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
-                                            <a href="https://instagram.com/evsligue45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                        <div class="short-text">
+                                            <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
                                         </div>
+                                        <div class="full-text">
+                                            <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
+                                            <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
+                                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                            <div class="social-links">
+                                                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                                                <a href="https://instagram.com/evsligue45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
 
                                     <!-- Maison des Adolescents -->
                                     <div class="card">
                                         <h4>Maison des Adolescents (AMARA 45)</h4>
                                         <img src="Capture_d_ecran_amara45.png" alt="Maison des Adolescents" class="card-image" onclick="openLightbox(this.src)">
-                                        <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
-                                        <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
-                                        <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
-                                        <p><strong>Contact :</strong><br>
-                                        📞 <a href="tel:0785766475">07 85 76 64 75</a><br>
-                                        📧 <a href="mailto:mda45@amara45.fr">mda45@amara45.fr</a></p>
-                                        <div class="social-links">
-                                            <a href="https://facebook.com/maisondesados45" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
-                                            <a href="https://instagram.com/maisondesados45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                        <div class="short-text">
+                                            <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
                                         </div>
+                                        <div class="full-text">
+                                            <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
+                                            <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
+                                            <p><strong>Contact :</strong><br>
+                                            📞 <a href="tel:0785766475">07 85 76 64 75</a><br>
+                                            📧 <a href="mailto:mda45@amara45.fr">mda45@amara45.fr</a></p>
+                                            <div class="social-links">
+                                                <a href="https://facebook.com/maisondesados45" target="_blank" style="color:#1877F2;"><i class="fa-brands fa-facebook"></i></a>
+                                                <a href="https://instagram.com/maisondesados45" target="_blank" style="color:#E1306C;"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
 
                                     <!-- Mission Locale -->
                                     <div class="card">
                                         <h4>Mission Locale de Gien</h4>
                                         <img src="Capture_d_ecran_mission_locale.png" alt="Mission Locale de Gien" class="card-image" onclick="openLightbox(this.src)">
-                                        <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
-                                        <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
-                                        <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
-                                        <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
-                                        📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
+                                        <div class="short-text">
+                                            <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
+                                        </div>
+                                        <div class="full-text">
+                                            <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
+                                            <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
+                                            <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
+                                            📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
+                                        </div>
+                                        <button class="read-more-btn">Lire la suite</button>
                                     </div>
+
                                 </div>
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
@@ -1302,7 +1394,7 @@
             });
 
             // ============================================================
-            // ---- ACCORDÉON ----
+            // ---- ACCORDÉON PRINCIPAL ----
             // ============================================================
             function toggleAccordion(header) {
                 const isOpen = header.classList.contains('open');
@@ -1331,12 +1423,33 @@
             });
 
             // ============================================================
+            // ---- SOUS-ACCORDÉON COLLÈGES ----
+            // ============================================================
+            window.toggleSousAccordion = function(id) {
+                const content = document.getElementById(id + '-content');
+                const header = content.previousElementSibling;
+                const icon = document.getElementById(id + '-icon');
+
+                if (content.classList.contains('open')) {
+                    content.classList.remove('open');
+                    header.classList.remove('open');
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.classList.add('open');
+                    header.classList.add('open');
+                    icon.textContent = '−';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            };
+
+            // ============================================================
             // ---- LIRE LA SUITE ----
             // ============================================================
-            document.querySelectorAll('.accordion-body .read-more-btn').forEach(function(btn) {
+            document.querySelectorAll('.accordion-body .read-more-btn, .sous-accordion-body .read-more-btn, .card .read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const parent = this.closest('.accordion-body');
+                    const parent = this.closest('.accordion-body') || this.closest('.sous-accordion-body') || this.closest('.card') || this.closest('.ter-section');
                     if (!parent) return;
                     const fullText = parent.querySelector('.full-text');
                     if (!fullText) return;
