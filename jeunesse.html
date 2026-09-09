@@ -444,6 +444,29 @@
             padding: 0.5rem 1.2rem 1rem;
         }
 
+        .sous-accordion-body .full-text {
+            display: none;
+        }
+
+        .sous-accordion-body .full-text.visible {
+            display: block;
+        }
+
+        .sous-accordion-body .read-more-btn {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            padding: 0.2rem 0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            text-decoration: underline dotted;
+        }
+
+        .sous-accordion-body .read-more-btn:hover {
+            color: var(--primary-dark);
+        }
+
         /* ===== CARTES DANS ACCORDÉON ===== */
         .accordion-card-grid {
             display: grid;
@@ -1009,46 +1032,38 @@
                             </div>
                             <div class="full-text">
 
-                               <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS (avec vidéo) ===== -->
-<div class="sous-accordion-wrapper">
-    <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
-        <span>🏫 Collège Albert Camus (Briare)</span>
-        <span id="camus-icon" class="sous-accordion-icon">+</span>
-    </div>
-    <div id="camus-content" class="sous-accordion-body">
-        <div class="short-text">
-            <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
-            <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
-            <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
-        </div>
-        <div class="full-text">
-            <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
-            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-            📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
-            🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
+                                <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS ===== -->
+                                <div class="sous-accordion-wrapper">
+                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
+                                        <span>🏫 Collège Albert Camus (Briare)</span>
+                                        <span id="camus-icon" class="sous-accordion-icon">+</span>
+                                    </div>
+                                    <div id="camus-content" class="sous-accordion-body">
+                                        <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                        <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
+                                        <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
+                                        <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
+                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                        📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
+                                        🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank">Site internet officiel</a></p>
 
-            <!-- ===== LECTEUR YOUTUBE - VERSION CORRIGÉE ===== -->
-            <div style="margin-top: 1.5rem;">
-                <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; max-width:100%; background:#000; border-radius:8px;">
-                    <iframe 
-                        src="https://www.youtube.com/embed/U0OX3-ikWuk?rel=0&modestbranding=1&autoplay=0" 
-                        title="Collège Albert Camus - Briare"
-                        style="position:absolute; top:0; left:0; width:100%; height:100%; border:0;"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        allowfullscreen>
-                    </iframe>
-                </div>
-                <p style="font-size:0.8rem; color:var(--text-light); padding:0.3rem 0.5rem; background:var(--bg-light); margin:0; text-align:center; border-radius:0 0 8px 8px;">
-                    🎥 Découvrez le Collège Albert Camus en vidéo
-                </p>
-            </div>
-        </div>
-        <button class="read-more-btn">Lire la suite</button>
-    </div>
-</div>
-                                  
+                                        <!-- ===== LECTEUR YOUTUBE ===== -->
+                                        <div style="margin-top: 1.5rem;">
+                                            <div class="video-wrapper">
+                                                <iframe 
+                                                    src="https://www.youtube.com/embed/U0OX3-ikWuk?rel=0&modestbranding=1&autoplay=0" 
+                                                    title="Collège Albert Camus - Briare"
+                                                    frameborder="0"
+                                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                    referrerpolicy="strict-origin-when-cross-origin"
+                                                    allowfullscreen>
+                                                </iframe>
+                                            </div>
+                                            <p class="video-caption">🎥 Découvrez le Collège Albert Camus en vidéo</p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- ===== SOUS-ACCORDÉON COLLÈGE PIERRE DÉZARNAULDS ===== -->
                                 <div class="sous-accordion-wrapper">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('dezarnaulds')">
@@ -1056,17 +1071,12 @@
                                         <span id="dezarnaulds-icon" class="sous-accordion-icon">+</span>
                                     </div>
                                     <div id="dezarnaulds-content" class="sous-accordion-body">
-                                        <div class="short-text">
-                                            <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
-                                            <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
-                                        </div>
-                                        <div class="full-text">
-                                            <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
-                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                            📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
-                                            🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
-                                        </div>
-                                        <button class="read-more-btn">Lire la suite</button>
+                                        <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                        <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
+                                        <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                        📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
+                                        🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank">Site internet officiel</a></p>
                                     </div>
                                 </div>
 
@@ -1448,12 +1458,12 @@
             };
 
             // ============================================================
-            // ---- LIRE LA SUITE ----
+            // ---- LIRE LA SUITE (générique) ----
             // ============================================================
-            document.querySelectorAll('.accordion-body .read-more-btn, .sous-accordion-body .read-more-btn, .card .read-more-btn').forEach(function(btn) {
+            document.querySelectorAll('.card .read-more-btn, .ter-section .read-more-btn, .accordion-body > .read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const parent = this.closest('.accordion-body') || this.closest('.sous-accordion-body') || this.closest('.card') || this.closest('.ter-section');
+                    const parent = this.closest('.card') || this.closest('.ter-section') || this.closest('.accordion-body');
                     if (!parent) return;
                     const fullText = parent.querySelector('.full-text');
                     if (!fullText) return;
@@ -1462,23 +1472,6 @@
                     this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
                 });
             });
-
-            // ============================================================
-            // ---- TER SECTION (bouton spécial) ----
-            // ============================================================
-            const terBtn = document.querySelector('#ter .read-more-btn');
-            if (terBtn) {
-                terBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const parent = this.closest('.ter-section');
-                    if (!parent) return;
-                    const fullText = parent.querySelector('.full-text');
-                    if (!fullText) return;
-                    const isVisible = fullText.classList.contains('visible');
-                    fullText.classList.toggle('visible');
-                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                });
-            }
 
             // ============================================================
             // ---- OUVERTURE PAR ANCRE ----
