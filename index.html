@@ -9,6 +9,97 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        /* ===== HEADER AVEC DÉGRADÉ SUBTIL DIAGONAL ===== */
+        .header {
+            background: linear-gradient(135deg,
+                #2E7D32 0%,
+                #5be485 25%,
+                #f0bb1e 50%,
+                #ff66c4 75%,
+                #1f5692 100%
+            );
+            color: white;
+            padding: 1.2rem 0 0.8rem;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
+            position: relative;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .logo h1 {
+            color: white;
+            margin-bottom: 0;
+            font-size: 3.6rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        .logo h1 a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-info {
+            position: absolute;
+            bottom: -0.2rem;
+            right: 0;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.95);
+            text-align: right;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+        }
+
+        .header-info strong {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .logo img {
+                height: 50px;
+            }
+            .logo h1 {
+                font-size: 2.6rem;
+            }
+            .header-info {
+                font-size: 0.5rem;
+                bottom: -0.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 40px;
+            }
+            .logo h1 {
+                font-size: 2.2rem;
+            }
+            .header-info {
+                font-size: 0.45rem;
+            }
+        }
+
         /* ===== STYLES SPÉCIFIQUES À L'ACCUEIL ===== */
         .hero {
             position: relative;
