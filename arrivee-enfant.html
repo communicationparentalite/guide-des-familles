@@ -65,6 +65,27 @@
         .sub-section .read-more-btn:hover {
             color: var(--primary-dark);
         }
+
+        /* ===== IMAGES DANS ACCORDÉONS - TAILLE ADAPTÉE ===== */
+        .accordion-body > img,
+        .accordion-body-inner > img {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+
+        /* Sur PC : image 2x plus petite (50% de la largeur, plafonnée à 400px) */
+        @media (min-width: 769px) {
+            .accordion-body > img,
+            .accordion-body-inner > img {
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+        }
     </style>
 </head>
 <body class="page-arrivee-enfant">
@@ -331,7 +352,7 @@
                                     <div class="full-text">
                                         <p>Il existe plusieurs centres de PMI pour être au plus proche des familles. Ils accueillent les (futurs) parents et les enfants de moins de 6 ans. On peut y faire suivre sa grossesse et bénéficier d'un accompagnement personnalisé en pré et postnatal. Après la naissance, la PMI peut également réaliser le suivi médical de l'enfant. On peut aussi participer à des ateliers en groupe organisés à la PMI.</p>
                                         <p>La sage-femme de PMI du Loiret peut :<br>• réaliser le suivi médical et psycho-social de la grossesse ainsi que les entretiens pré et postnataux précoces<br>• accompagner et soutenir la femme/le couple dans leurs vulnérabilités médico-psycho-sociales<br>• proposer des séances de préparation à la naissance et à la parentalité en individuel ou en couple<br>• accompagner la femme dans les suites de couches et proposer une contraception adaptée<br>• animer des actions organisées par la PMI (alimentation pendant la grossesse, allaitement, groupe de paroles…)<br>• établir des liens avec les partenaires pour offrir aux futurs parents une prise en charge adaptée à leur situation.</p>
-                                        <img src="arrivee_enfant_page-007.png" alt="Entretiens et consultations PMI" style="width:100%; border-radius:8px; margin-top:1rem; cursor:pointer;">
+                                        <img src="arrivee_enfant_page-007.png" alt="Entretiens et consultations PMI">
                                     </div>
                                     <button class="read-more-btn">Lire la suite</button>
                                 </div>
@@ -351,7 +372,7 @@
                                     <p style="font-size: 0.95rem; color: #666;">Suivi de grossesse, accompagnement à l'accouchement et suivi postnatal en toute confiance.</p>
                                     <div class="full-text">
                                         <p style="font-size: 0.95rem; color: #666;">La sage-femme joue un rôle crucial dans le domaine de la périnatalité, offrant un soutien essentiel aux femmes avant, pendant et après la grossesse. Sa mission ne se limite pas à l'assistance lors de l'accouchement ; elle inclut également la préparation à la naissance, l'éducation prénatale et le suivi postnatal.<br>Les sages-femmes sont formées pour reconnaître les signes de complications potentielles et pour intervenir de manière appropriée, garantissant ainsi la sécurité et le bien-être de la mère et de l'enfant.<br>De plus, elles fournissent des conseils précieux sur l'allaitement, la nutrition, et l'adaptation émotionnelle à la parentalité.</p>
-                                        <img src="arrivee_enfant_page-003.png" alt="Cabinet Sage-femme" style="width:100%; border-radius:8px; margin-top:1rem; cursor:pointer;">
+                                        <img src="arrivee_enfant_page-003.png" alt="Cabinet Sage-femme">
                                     </div>
                                     <button class="read-more-btn">Lire la suite</button>
                                 </div>
@@ -400,7 +421,7 @@
                                 <span class="accordion-icon">+</span>
                             </button>
                             <div class="accordion-body">
-                                <img src="arrivee_enfant_page-023.png" alt="Guichet Unique" style="width:100%; border-radius:8px; margin-bottom:1rem; cursor:pointer;">
+                                <img src="arrivee_enfant_page-023.png" alt="Guichet Unique">
                                 <p>Vous êtes parent ou sur le point de le devenir ? Vous recherchez un mode de garde / d'accueil pour votre enfant âgé de 0 à 4 ans ? Bénéficiez d'un accompagnement individualisé, sur rendez-vous, pour votre recherche d'un mode d'accueil.</p>
                                 <div class="full-text">
                                     <p>Le Guichet Unique de la Petite Enfance (animé par le Relais Petite Enfance) a pour mission d'informer les parents et futurs parents sur les différents modes d'accueil disponibles. Il s'engage également à les accompagner dans leurs démarches.</p>
@@ -422,7 +443,7 @@
                                 <span class="accordion-icon">+</span>
                             </button>
                             <div class="accordion-body">
-                                <img src="arrivee_enfant_page-018.png" alt="Monenfant.fr" style="width:100%; border-radius:8px; margin-bottom:1rem; cursor:pointer;">
+                                <img src="arrivee_enfant_page-018.png" alt="Monenfant.fr">
                                 <p>Monenfant.fr est le site officiel de la Caisse nationale des Allocations familiales dédié à la recherche d'un mode de garde.</p>
                                 <div class="full-text">
                                     <p>Il permet de localiser les assistants maternels et structures d'accueil près de chez soi, de vérifier leurs disponibilités en temps réel, d'estimer le coût de la garde grâce au simulateur, et de constituer son dossier de A à Z en ligne.</p>
@@ -438,7 +459,7 @@
                                 <span class="accordion-icon">+</span>
                             </button>
                             <div class="accordion-body">
-                                <img src="arrivee_enfant_page-019.png" alt="URSSAF Pajemploi" style="width:100%; border-radius:8px; margin-bottom:1rem; cursor:pointer;">
+                                <img src="arrivee_enfant_page-019.png" alt="URSSAF Pajemploi">
                                 <p>Dès lors qu'un parent emploie un assistant maternel agréé ou une garde d'enfants à domicile, il devient employeur et doit s'inscrire sur Pajemploi.</p>
                                 <div class="full-text">
                                     <p>La plateforme permet de déclarer le salarié, d'effectuer les déclarations mensuelles de salaire, de calculer et payer les cotisations sociales, et de bénéficier du versement automatique du Complément de libre choix du mode de garde (CMG) lorsque les conditions sont remplies.</p>
