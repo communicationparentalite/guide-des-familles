@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Leaflet CSS (indispensable pour que la carte s'affiche correctement) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
         /* ===== COULEURS SPÉCIFIQUES À ENFANCE (VIOLET) ===== */
         .page-enfance {
@@ -122,7 +124,7 @@
             text-decoration: underline;
         }
 
-        /* ===== CARTE LEaFLET ===== */
+        /* ===== CARTE LEAFLET ===== */
         #carte-ecoles {
             height: 480px;
             width: 100%;
@@ -130,6 +132,7 @@
             box-shadow: var(--shadow-md);
             margin: 1.5rem 0;
             z-index: 1;
+            background: #e8e8e8;
         }
 
         .ecole-tooltip {
@@ -316,6 +319,7 @@
                     <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
                     <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
                     <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
                     <li><a href="acces-droits.html#cidff">CIDFF</a></li>
                     <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
                 </ul>
@@ -343,7 +347,7 @@
                     <!-- ===== 1. SCOLARITÉ ===== -->
                     <div class="accordion-item" id="scolarite">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>📚 Scolarité</span>
+                            <span>Scolarité</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
@@ -353,7 +357,7 @@
                             <div class="full-text">
                                 <!-- Carte Leaflet -->
                                 <div id="carte-ecoles"></div>
-                                <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
+                                <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1rem; margin-bottom:1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
 
                                 <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Écoles du territoire</h4>
                                 <div class="accordion-card-grid">
@@ -444,22 +448,22 @@
                     <!-- ===== 2. CLAS ===== -->
                     <div class="accordion-item" id="clas">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>📖 CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
+                            <span>CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
                                 <p>Trop souvent confondues avec une simple aide aux devoirs, les missions du Clas vont bien au-delà. Gratuits et ouverts à tous, les Clas sont des programmes de soutien à la scolarité, de l'école élémentaire au lycée.</p>
+                                <div class="subsection" style="background:var(--bg-light); padding:1rem; border-radius:8px; border-left:4px solid var(--primary-color); margin-top:1rem;">
+                                    <h4>Bonny-sur-Loire</h4>
+                                    <p>École élémentaire et EVS Bee Mobile<br>2 avenue de la Gare<br>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
+                                </div>
                             </div>
                             <div class="full-text">
                                 <img src="enfance_clas.png" alt="CLAS" style="max-width:300px; margin-bottom:1rem; border-radius:8px;">
                                 <p>Ils sont organisés par des associations ou par les municipalités partenaires de la Caf. L'objectif est que l'enfant vive mieux sa scolarité : tout au long de l'année, les parents et les équipes enseignantes sont sollicités pour participer au suivi de l'enfant.</p>
                                 <p>Pour le moment, une seule commune de la Communauté de communes s'est engagé dans la démarche.</p>
                                 <p><strong>"Le CLAS, c'est un accompagnement pour aider votre enfant à mieux réussir à l'école, mais aussi un soutien pour vous, parents, dans le suivi scolaire."</strong></p>
-                                <div class="subsection" style="background:var(--bg-light); padding:1rem; border-radius:8px; border-left:4px solid var(--primary-color); margin-top:1rem;">
-                                    <h4>Bonny-sur-Loire</h4>
-                                    <p>École élémentaire et EVS Bee Mobile<br>2 avenue de la Gare<br>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
-                                </div>
                                 <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
@@ -469,7 +473,7 @@
                     <!-- ===== 3. ACCUEIL PÉRISCOLAIRE ===== -->
                     <div class="accordion-item" id="accueils-periscolaires">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>⏰ Accueil périscolaire</span>
+                            <span>Accueil périscolaire</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
@@ -533,12 +537,12 @@
                     <!-- ===== 4. ACCUEIL DE LOISIRS ===== -->
                     <div class="accordion-item" id="accueils-loisirs">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>🎯 Accueil de loisirs</span>
+                            <span>Accueil de loisirs</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
-                                <p>Le territoire propose 6 accueils de loisirs pour les enfants, avec des activités variées pendant les vacances scolaires et les mercredis.</p>
+                                <p>Le territoire propose 7 accueils de loisirs pour les enfants, avec des activités variées pendant les vacances scolaires et les mercredis.</p>
                             </div>
                             <div class="full-text">
                                 <div class="accordion-card-grid">
@@ -612,9 +616,9 @@
                 <div class="footer-section">
                     <h3>Liens utiles</h3>
                     <ul>
-                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                        <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                        <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
+                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                        <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -693,18 +697,12 @@
             // ---- FERMETURE DU SOUS-MENU ----
             // ============================================================
             document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) {
-                            parentDropdown.classList.remove('open');
-                        }
-                        if (navList) {
-                            navList.classList.remove('active');
-                        }
-                        if (menuToggle) {
-                            menuToggle.classList.remove('active');
-                        }
+                        if (parentDropdown) parentDropdown.classList.remove('open');
+                        if (navList) navList.classList.remove('active');
+                        if (menuToggle) menuToggle.classList.remove('active');
                     }
                 });
             });
@@ -727,13 +725,15 @@
             const lightboxImg = document.getElementById('lightboxImg');
             const closeBtn = document.getElementById('lightboxClose');
 
-            function openLightbox(src) {
+            window.openLightbox = function(src) {
+                if (!lightbox || !lightboxImg) return;
                 lightboxImg.src = src;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
-            }
+            };
 
             function closeLightbox() {
+                if (!lightbox) return;
                 lightbox.classList.remove('active');
                 document.body.style.overflow = '';
             }
@@ -741,16 +741,20 @@
             document.querySelectorAll('.section img:not(.hero-bg)').forEach(function(img) {
                 img.addEventListener('click', function(e) {
                     if (this.closest('.hero')) return;
+                    if (this.closest('.video-wrapper')) return;
+                    if (this.closest('#carte-ecoles')) return;
                     e.stopPropagation();
                     const src = this.getAttribute('src');
                     if (src) openLightbox(src);
                 });
             });
 
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
-            });
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeLightbox();
             });
@@ -775,6 +779,10 @@
                     header.classList.add('open');
                     header.setAttribute('aria-expanded', 'true');
                     body.classList.add('open');
+                    // Redimensionner la carte Leaflet quand l'accordéon s'ouvre
+                    if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
+                        setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
+                    }
                 }
             }
 
@@ -787,16 +795,27 @@
             // ============================================================
             // ---- LIRE LA SUITE ----
             // ============================================================
-            document.querySelectorAll('.accordion-body .read-more-btn').forEach(function(btn) {
+            document.querySelectorAll('.read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const parent = this.closest('.accordion-body');
+                    const parent = this.closest('.accordion-body')
+                                || this.closest('.sous-accordion-body')
+                                || this.closest('.sub-section')
+                                || this.closest('.card')
+                                || this.parentElement;
                     if (!parent) return;
+
                     const fullText = parent.querySelector('.full-text');
                     if (!fullText) return;
+
                     const isVisible = fullText.classList.contains('visible');
                     fullText.classList.toggle('visible');
                     this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+
+                    // Redimensionner la carte si on vient d'ouvrir scolarité
+                    if (!isVisible && window.__carteEcoles) {
+                        setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
+                    }
                 });
             });
 
@@ -819,7 +838,8 @@
                         header.nextElementSibling.classList.add('open');
                         setTimeout(function() {
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 200);
+                            if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
+                        }, 250);
                     }
                 }
             }
@@ -945,37 +965,47 @@
             }];
 
             const mapEcolesEl = document.getElementById('carte-ecoles');
-            if (mapEcolesEl) {
-                const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.75], 11);
+            if (mapEcolesEl && typeof L !== 'undefined') {
+                try {
+                    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.75], 11);
+                    window.__carteEcoles = mapEcoles;
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 19,
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                }).addTo(mapEcoles);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19,
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                    }).addTo(mapEcoles);
 
-                ecolesData.forEach(function(ecole) {
-                    const marker = L.marker([ecole.lat, ecole.lng]).addTo(mapEcoles);
+                    ecolesData.forEach(function(ecole) {
+                        const marker = L.marker([ecole.lat, ecole.lng]).addTo(mapEcoles);
 
-                    const emailLigne = ecole.email ?
-                        '<span class="ecole-detail">✉️ ' + ecole.email + '</span>' :
-                        '<span class="ecole-detail" style="color:#999; font-style:italic;">✉️ non communiqué</span>';
+                        const emailLigne = ecole.email ?
+                            '<span class="ecole-detail">✉️ ' + ecole.email + '</span>' :
+                            '<span class="ecole-detail" style="color:#999; font-style:italic;">✉️ non communiqué</span>';
 
-                    const contenu =
-                        '<div class="ecole-tooltip">' +
-                        '<span class="ecole-commune">' + ecole.commune + '</span>' +
-                        '<span class="ecole-nom">' + ecole.nom + '</span>' +
-                        '<span class="ecole-detail">📍 ' + ecole.adresse + '</span>' +
-                        '<span class="ecole-detail">📞 ' + ecole.telephone + '</span>' +
-                        emailLigne +
-                        '</div>';
+                        const contenu =
+                            '<div class="ecole-tooltip">' +
+                            '<span class="ecole-commune">' + ecole.commune + '</span>' +
+                            '<span class="ecole-nom">' + ecole.nom + '</span>' +
+                            '<span class="ecole-detail">📍 ' + ecole.adresse + '</span>' +
+                            '<span class="ecole-detail">📞 ' + ecole.telephone + '</span>' +
+                            emailLigne +
+                            '</div>';
 
-                    marker.bindTooltip(contenu, {
-                        direction: 'top',
-                        offset: [0, -30],
-                        className: 'ecole-tooltip-wrapper',
-                        opacity: 1
+                        marker.bindTooltip(contenu, {
+                            direction: 'top',
+                            offset: [0, -30],
+                            className: 'ecole-tooltip-wrapper',
+                            opacity: 1
+                        });
                     });
-                });
+
+                    // Redimensionner la carte après un court délai (au cas où l'accordéon serait déjà ouvert)
+                    setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
+
+                } catch (err) {
+                    console.error('Erreur initialisation carte Leaflet :', err);
+                    mapEcolesEl.innerHTML = '<p style="padding:1rem; text-align:center; color:#777;">La carte n\'a pas pu être chargée. Vérifiez votre connexion internet.</p>';
+                }
             }
 
         })();
