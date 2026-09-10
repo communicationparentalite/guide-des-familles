@@ -26,7 +26,6 @@
 }
 
 /* === COULEURS SPÉCIFIQUES PAR PAGE === */
-/* Page Interlocuteurs (Bleu) */
 .page-interlocuteurs {
     --primary-color: #1f5692;
     --primary-light: #4A7FB5;
@@ -35,7 +34,6 @@
     --secondary-light: #5B92C4;
 }
 
-/* Page Arrivée d'un enfant (Vert comme Accueil) */
 .page-arrivee-enfant {
     --primary-color: #2E7D32;
     --primary-light: #66BB6A;
@@ -44,7 +42,6 @@
     --secondary-light: #4DB6AC;
 }
 
-/* Page Petite enfance (Vert clair) */
 .page-petite-enfance {
     --primary-color: #5be485;
     --primary-light: #8AEDA9;
@@ -53,7 +50,6 @@
     --secondary-light: #7DDD9C;
 }
 
-/* Page Enfance (Violet) */
 .page-enfance {
     --primary-color: #686be7;
     --primary-light: #8B8DEF;
@@ -62,7 +58,6 @@
     --secondary-light: #8280E0;
 }
 
-/* Page Jeunesse (Orange) */
 .page-jeunesse {
     --primary-color: #c75f35;
     --primary-light: #D98A69;
@@ -71,7 +66,6 @@
     --secondary-light: #CC9670;
 }
 
-/* Page Parentalité (Gris) */
 .page-parentalite {
     --primary-color: #585e70;
     --primary-light: #7D8296;
@@ -80,7 +74,6 @@
     --secondary-light: #9A9FAD;
 }
 
-/* Page Loisirs (Crème / Beige) */
 .page-loisirs {
     --primary-color: #b7a88e;
     --primary-light: #D2C8B4;
@@ -89,7 +82,6 @@
     --secondary-light: #C8BEA5;
 }
 
-/* Page Vivre ensemble (Orangé) */
 .page-vivre-ensemble {
     --primary-color: #f0bb1e;
     --primary-light: #F7CE5A;
@@ -98,7 +90,6 @@
     --secondary-light: #F5C850;
 }
 
-/* Page Accès aux droits (Rose) */
 .page-acces-droits {
     --primary-color: #ff66c4;
     --primary-light: #FF96D7;
@@ -1156,7 +1147,6 @@ li { margin-bottom: 0.5rem; }
     margin-bottom: 2rem;
 }
 
-/* Footer spécifique à l'accueil (2 colonnes) */
 .footer-content-accueil {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1259,7 +1249,6 @@ li { margin-bottom: 0.5rem; }
         padding: 0 15px;
     }
 
-    /* Header */
     .header {
         padding: 0.8rem 0;
     }
@@ -1280,7 +1269,6 @@ li { margin-bottom: 0.5rem; }
         position: static;
     }
 
-    /* Navigation mobile */
     .menu-toggle {
         display: block;
         background: var(--primary-color);
@@ -1344,7 +1332,6 @@ li { margin-bottom: 0.5rem; }
         border-bottom: 1px solid var(--border-color);
     }
 
-    /* Sections */
     .section {
         padding: 1.5rem 0;
     }
@@ -1405,4 +1392,176 @@ li { margin-bottom: 0.5rem; }
         padding: 0.6rem 1rem;
     }
 
-    .photo-g
+    .photo-gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+    .photo-gallery img {
+        height: 150px;
+    }
+
+    .accordion-body-inner .images img {
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
+    }
+
+    .accordion-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .partner-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .subsection-with-image {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .subsection-with-image .image-wrapper {
+        flex: 0 0 auto;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .subsection-with-image .image-wrapper img {
+        max-width: 250px;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer-content-accueil {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .footer {
+        padding: 2rem 0 1rem;
+    }
+
+    .scroll-top {
+        width: 45px;
+        height: 45px;
+        bottom: 1rem;
+        right: 1rem;
+        font-size: 1.3rem;
+    }
+
+    table {
+        font-size: 0.85rem;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    th, td {
+        padding: 0.5rem;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        height: 40px;
+    }
+    .logo h1 {
+        font-size: 2.2rem;
+    }
+    .header-info {
+        font-size: 0.45rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+    h3 {
+        font-size: 1.15rem;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.3rem;
+    }
+
+    .menu-toggle {
+        font-size: 1rem;
+    }
+
+    .photo-gallery {
+        grid-template-columns: 1fr;
+    }
+    .photo-gallery img {
+        height: 200px;
+    }
+
+    .accordion-header {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.85rem;
+        flex-wrap: wrap;
+    }
+
+    .accordion-icon {
+        font-size: 1.3rem;
+    }
+
+    .accordion-body.open {
+        padding: 0.6rem 0.9rem 1.2rem;
+    }
+
+    .sub-accordion-header {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================================ */
+/* ===== PRINT ===== */
+/* ============================================================ */
+
+@media print {
+    .nav,
+    .scroll-top,
+    .menu-toggle {
+        display: none;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+
+    .accordion-body {
+        max-height: none !important;
+        padding: 0.5rem 0 !important;
+        overflow: visible !important;
+    }
+
+    .accordion-body.open {
+        max-height: none !important;
+        padding: 0.5rem 0 !important;
+    }
+
+    .accordion-header.open {
+        background: white !important;
+        color: black !important;
+    }
+
+    .accordion-header.open h3 {
+        color: black !important;
+    }
+
+    .accordion-icon {
+        display: none;
+    }
+
+    .lightbox {
+        display: none !important;
+    }
+}
