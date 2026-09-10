@@ -725,6 +725,38 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
+/* === LIENS SITES INTERNET - STYLE BADGE UNIFORME === */
+/* Le badge prend automatiquement la couleur dominante de la page */
+.accordion-body a[target="_blank"]:not(.social-links a),
+.sous-accordion-body a[target="_blank"]:not(.social-links a),
+.accordion-card a[target="_blank"],
+.card a[target="_blank"]:not(.social-links a),
+.partner-content a[target="_blank"]:not(.social-links a) {
+    display: inline-block;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 20px;
+    margin: 0.2rem 0;
+    opacity: 0.9;
+    text-decoration: none;
+    transition: background 0.2s, opacity 0.2s;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.accordion-body a[target="_blank"]:not(.social-links a):hover,
+.sous-accordion-body a[target="_blank"]:not(.social-links a):hover,
+.accordion-card a[target="_blank"]:hover,
+.card a[target="_blank"]:not(.social-links a):hover,
+.partner-content a[target="_blank"]:not(.social-links a):hover {
+    background: var(--primary-dark);
+    opacity: 1;
+    text-decoration: none;
+    color: white;
+}
+
 /* === CARTES STANDARD === */
 .cards-grid {
     display: grid;
