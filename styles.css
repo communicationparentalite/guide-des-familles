@@ -23,6 +23,7 @@
     --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
     --radius: 12px;
     --transition: all 0.3s ease;
+    --font-main: 'Nunito', sans-serif;
 }
 
 /* === COULEURS SPÉCIFIQUES PAR PAGE === */
@@ -110,12 +111,120 @@ html {
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     line-height: 1.6;
     color: var(--text-dark);
     background-color: var(--bg-lighter);
 }
 
+/* ============================================================ */
+/* ===== HÉRITAGE GLOBAL DE LA POLICE NUNITO ===== */
+/* Garantit que TOUS les éléments textuels utilisent Nunito,    */
+/* y compris les accordéons, sous-accordéons, cartes, badges.  */
+/* N'affecte PAS les icônes Font Awesome (<i class="fa-...">).  */
+/* ============================================================ */
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, a, span, li, ul, ol, blockquote, figure, figcaption,
+button, input, textarea, select, label, legend,
+table, th, td, caption,
+.accordion,
+.accordion-item,
+.accordion-header,
+.accordion-header h3,
+.accordion-header span,
+.accordion-header .count,
+.accordion-icon,
+.accordion-body,
+.accordion-body p,
+.accordion-body h3,
+.accordion-body h4,
+.accordion-body h5,
+.accordion-body-inner,
+.accordion-body-inner .text,
+.accordion-body-inner .text p,
+.accordion-card,
+.accordion-card h3,
+.accordion-card h4,
+.accordion-card p,
+.accordion-card .badge,
+.accordion-card .website,
+.sous-accordion-wrapper,
+.sous-accordion-header,
+.sous-accordion-header span,
+.sous-accordion-body,
+.sous-accordion-body h4,
+.sous-accordion-body h5,
+.sous-accordion-body p,
+.sous-accordion-body .full-text,
+.sub-section,
+.sub-section h5,
+.sub-section p,
+.read-more-btn,
+.quote,
+.section-title,
+.card,
+.card h3,
+.card h4,
+.card p,
+.card .address,
+.card .phone,
+.ecole-card,
+.ecole-card h3,
+.ecole-card h4,
+.ecole-card p,
+.ecole-card .badge,
+.subsection,
+.subsection h3,
+.subsection h4,
+.subsection h5,
+.subsection p,
+.subsection-with-image,
+.subsection-with-image h3,
+.subsection-with-image h4,
+.subsection-with-image p,
+.partner-content,
+.partner-content p,
+.partner-content h4,
+.partner-content .full-text,
+.partner-coords,
+.badge,
+.count,
+.ter-section,
+.ter-section h3,
+.ter-section p,
+.bulle-musicale,
+.bulle-musicale h3,
+.bulle-musicale p,
+.item-expandable summary,
+.item-expandable .item-content,
+.video-caption,
+.footer,
+.footer h3,
+.footer p,
+.footer a,
+.footer-section,
+.footer-section ul,
+.footer-section li,
+.footer-bottom,
+.menu-toggle,
+.nav-list a,
+.nav-dropdown-menu a,
+.header-info,
+.logo h1,
+.lightbox,
+.lightbox-close {
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Exception : les icônes Font Awesome gardent leur police dédiée */
+.fa, .fas, .far, .fal, .fab, .fa-solid, .fa-regular, .fa-brands,
+[class*="fa-"]::before {
+    font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Pro" !important;
+}
+
+/* === CONTAINER === */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -331,6 +440,7 @@ li { margin-bottom: 0.5rem; }
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .section-title {
@@ -623,6 +733,56 @@ li { margin-bottom: 0.5rem; }
     color: var(--primary-dark);
 }
 
+/* === SOUS-SECTION (utilisé dans arrivee-enfant.html) === */
+.sub-section {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-light);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.sub-section:last-child {
+    margin-bottom: 0;
+}
+
+.sub-section h5 {
+    color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.sub-section p {
+    margin: 0 0 0.6rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.sub-section .full-text {
+    display: none;
+}
+
+.sub-section .full-text.visible {
+    display: block;
+}
+
+.sub-section .read-more-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    padding: 0.2rem 0;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: underline dotted;
+}
+
+.sub-section .read-more-btn:hover {
+    color: var(--primary-dark);
+}
+
 /* === LIRE LA SUITE (générique) === */
 .read-more-btn {
     background: none;
@@ -901,6 +1061,7 @@ li { margin-bottom: 0.5rem; }
     width: 100%;
     height: auto;
     border-radius: 6px;
+    cursor: pointer;
 }
 
 .subsection-with-image .text-wrapper {
@@ -939,6 +1100,7 @@ li { margin-bottom: 0.5rem; }
     border-radius: 8px;
     box-shadow: var(--shadow-md);
     width: 100%;
+    cursor: pointer;
 }
 
 /* === PHOTO GALLERY === */
@@ -1079,6 +1241,11 @@ li { margin-bottom: 0.5rem; }
 .social-links a:hover {
     opacity: 0.8;
 }
+
+.social-links a[href*="facebook"] { color: #1877F2; }
+.social-links a[href*="instagram"] { color: #E1306C; }
+.social-links a[href*="tiktok"] { color: #000000; }
+.social-links a[href*="youtube"] { color: #FF0000; }
 
 /* === ITEM EXPANDABLE (details/summary) === */
 .item-expandable {
@@ -1548,7 +1715,7 @@ li { margin-bottom: 0.5rem; }
         padding: 0.6rem 0.9rem 1.2rem;
     }
 
-    .sub-accordion-header {
+    .sous-accordion-header {
         padding: 0.5rem 0.8rem;
         font-size: 0.8rem;
     }
