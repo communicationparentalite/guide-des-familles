@@ -9,7 +9,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== HEADER AVEC DÉGRADÉ SUBTIL DIAGONAL ===== */
+        /* ===== COULEURS DE LA PAGE ACCUEIL ===== */
+        .page-accueil {
+            --primary-color: #2E7D32;
+            --primary-light: #66BB6A;
+            --primary-dark: #1B5E20;
+            --secondary-color: #00897B;
+            --secondary-light: #4DB6AC;
+        }
+
+        /* ===== HEADER AVEC DÉGRADÉ 5 COULEURS ===== */
         .header {
             background: linear-gradient(135deg,
                 #2E7D32 0%,
@@ -76,31 +85,18 @@
         }
 
         @media (max-width: 768px) {
-            .logo img {
-                height: 50px;
-            }
-            .logo h1 {
-                font-size: 2.6rem;
-            }
-            .header-info {
-                font-size: 0.5rem;
-                bottom: -0.1rem;
-            }
+            .logo img { height: 50px; }
+            .logo h1 { font-size: 2.6rem; }
+            .header-info { font-size: 0.5rem; bottom: -0.1rem; }
         }
 
         @media (max-width: 480px) {
-            .logo img {
-                height: 40px;
-            }
-            .logo h1 {
-                font-size: 2.2rem;
-            }
-            .header-info {
-                font-size: 0.45rem;
-            }
+            .logo img { height: 40px; }
+            .logo h1 { font-size: 2.2rem; }
+            .header-info { font-size: 0.45rem; }
         }
 
-        /* ===== STYLES SPÉCIFIQUES À L'ACCUEIL ===== */
+        /* ===== HERO ===== */
         .hero {
             position: relative;
             min-height: 400px;
@@ -190,6 +186,7 @@
             transition: all 0.3s;
             text-shadow: none;
             backdrop-filter: blur(4px);
+            font-family: 'Nunito', sans-serif;
         }
 
         .hero .toggle-btn:hover {
@@ -218,6 +215,7 @@
             border-radius: var(--radius);
             box-shadow: var(--shadow-md);
             width: 100%;
+            cursor: pointer;
         }
 
         /* ===== NAVIGATION RAPIDE ===== */
@@ -293,99 +291,34 @@
         }
 
         @media (max-width: 768px) {
-            .hero {
-                min-height: 300px;
-            }
-            .hero.expanded {
-                min-height: 700px;
-            }
-            .hero h2 {
-                font-size: 1.5rem;
-                text-align: center;
-            }
-            .hero .message-text {
-                font-size: 0.95rem;
-            }
-            .hero .message-text .signature {
-                font-size: 0.85rem;
-            }
-            .hero .toggle-btn {
-                font-size: 0.8rem;
-                padding: 0.4rem 1.2rem;
-            }
-            .hero-content {
-                padding: 1.5rem;
-            }
+            .hero { min-height: 300px; }
+            .hero.expanded { min-height: 700px; }
+            .hero h2 { font-size: 1.5rem; text-align: center; }
+            .hero .message-text { font-size: 0.95rem; }
+            .hero .message-text .signature { font-size: 0.85rem; }
+            .hero .toggle-btn { font-size: 0.8rem; padding: 0.4rem 1.2rem; }
+            .hero-content { padding: 1.5rem; }
 
-            .guide-collaboratif {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+            .guide-collaboratif { grid-template-columns: 1fr; gap: 1rem; }
+            .guide-collaboratif .image-wrapper img { max-height: 200px; object-fit: cover; }
 
-            .guide-collaboratif .image-wrapper img {
-                max-height: 200px;
-                object-fit: cover;
-            }
-
-            .quick-access-nav {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-            .quick-access-nav .nav-card {
-                height: 140px;
-                padding: 1rem;
-                align-items: center;
-                justify-content: center;
-            }
-            .quick-access-nav .nav-card .card-content {
-                width: 100%;
-                text-align: center;
-            }
-            .quick-access-nav .nav-card .card-content h3 {
-                font-size: 0.9rem;
-            }
-            .quick-access-nav .nav-card .card-content p {
-                font-size: 0.7rem;
-            }
+            .quick-access-nav { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+            .quick-access-nav .nav-card { height: 140px; padding: 1rem; }
+            .quick-access-nav .nav-card .card-content h3 { font-size: 0.9rem; }
+            .quick-access-nav .nav-card .card-content p { font-size: 0.7rem; }
         }
 
         @media (max-width: 480px) {
-            .hero {
-                min-height: 250px;
-            }
-            .hero.expanded {
-                min-height: 650px;
-            }
-            .hero .message-text {
-                font-size: 0.85rem;
-            }
-            .hero .message-text .signature {
-                font-size: 0.75rem;
-            }
-            .hero-content {
-                padding: 1rem;
-            }
+            .hero { min-height: 250px; }
+            .hero.expanded { min-height: 650px; }
+            .hero .message-text { font-size: 0.85rem; }
+            .hero .message-text .signature { font-size: 0.75rem; }
+            .hero-content { padding: 1rem; }
 
-            .quick-access-nav {
-                grid-template-columns: 1fr 1fr;
-                gap: 0.8rem;
-            }
-            .quick-access-nav .nav-card {
-                height: 120px;
-                padding: 0.8rem;
-                align-items: center;
-                justify-content: center;
-            }
-            .quick-access-nav .nav-card .card-content {
-                width: 100%;
-                text-align: center;
-            }
-            .quick-access-nav .nav-card .card-content h3 {
-                font-size: 0.8rem;
-            }
-            .quick-access-nav .nav-card .card-content p {
-                font-size: 0.65rem;
-            }
+            .quick-access-nav { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .quick-access-nav .nav-card { height: 120px; padding: 0.8rem; }
+            .quick-access-nav .nav-card .card-content h3 { font-size: 0.8rem; }
+            .quick-access-nav .nav-card .card-content p { font-size: 0.65rem; }
         }
 
         /* ===== FOOTER SPÉCIFIQUE ACCUEIL (2 COLONNES) ===== */
@@ -407,7 +340,7 @@
         }
     </style>
 </head>
-<body>
+<body class="page-accueil">
 
     <!-- ===== HEADER ===== -->
     <header class="header">
@@ -428,9 +361,10 @@
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
-            <li><a href="index.html" class="active">Accueil</a></li>
+            <li><a href="index.html" class="nav-link-accueil active">Accueil</a></li>
+
             <li class="nav-dropdown">
-                <a href="interlocuteurs.html">Interlocuteurs ▾</a>
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
                     <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
@@ -439,16 +373,18 @@
                     <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="arrivee-enfant.html">Arrivée d'un enfant ▾</a>
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
                     <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
                     <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="petite-enfance.html">Petite enfance ▾</a>
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
                     <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
@@ -459,8 +395,9 @@
                     <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="enfance.html">Enfance ▾</a>
+                <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="enfance.html#scolarite">Scolarité</a></li>
                     <li><a href="enfance.html#clas">CLAS</a></li>
@@ -468,16 +405,18 @@
                     <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="jeunesse.html">Jeunesse ▾</a>
+                <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="jeunesse.html#colleges">Collèges</a></li>
                     <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
                     <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="parentalite.html">Parentalité ▾</a>
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
                     <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
@@ -489,8 +428,9 @@
                     <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="loisirs.html">Loisirs ▾</a>
+                <a href="loisirs.html" class="nav-link-loisirs">Loisirs ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
                     <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
@@ -503,20 +443,23 @@
                     <li><a href="loisirs.html#city-skate">City-stades</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="vivre-ensemble.html">Vivre ensemble ▾</a>
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
                     <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
                     <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
                 </ul>
             </li>
+
             <li class="nav-dropdown">
-                <a href="acces-droits.html">Accès aux droits ▾</a>
+                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
                 <ul class="nav-dropdown-menu">
                     <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
                     <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
                     <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
                     <li><a href="acces-droits.html#cidff">CIDFF</a></li>
                     <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
                 </ul>
@@ -670,9 +613,9 @@
                 <div class="footer-section">
                     <h3>Liens utiles</h3>
                     <ul>
-                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank">Site de la Communauté de Communes</a></li>
-                        <li><a href="https://www.caf.fr" target="_blank">CAF du Loiret</a></li>
-                        <li><a href="https://www.service-public.fr" target="_blank">Service Public</a></li>
+                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                        <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
                     </ul>
                 </div>
             </div>
@@ -703,7 +646,7 @@
             }
 
             // ============================================================
-            // ---- SOUS-MENU DÉROULANT SUR MOBILE AVEC DOUBLE-CLIC ----
+            // ---- SOUS-MENU DÉROULANT SUR MOBILE ----
             // ============================================================
             document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
                 let clickTimer = null;
@@ -739,18 +682,12 @@
             // ---- FERMETURE DU SOUS-MENU ----
             // ============================================================
             document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
+                link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
                         const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) {
-                            parentDropdown.classList.remove('open');
-                        }
-                        if (navList) {
-                            navList.classList.remove('active');
-                        }
-                        if (menuToggle) {
-                            menuToggle.classList.remove('active');
-                        }
+                        if (parentDropdown) parentDropdown.classList.remove('open');
+                        if (navList) navList.classList.remove('active');
+                        if (menuToggle) menuToggle.classList.remove('active');
                     }
                 });
             });
@@ -774,12 +711,14 @@
             const closeBtn = document.getElementById('lightboxClose');
 
             function openLightbox(src) {
+                if (!lightbox || !lightboxImg) return;
                 lightboxImg.src = src;
                 lightbox.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
 
             function closeLightbox() {
+                if (!lightbox) return;
                 lightbox.classList.remove('active');
                 document.body.style.overflow = '';
             }
@@ -793,10 +732,12 @@
                 });
             });
 
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
-            });
+            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+            if (lightbox) {
+                lightbox.addEventListener('click', function(e) {
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeLightbox();
             });
@@ -808,13 +749,13 @@
             const heroToggleBtn = document.getElementById('togglePresidentBtn');
             const heroSection = document.getElementById('heroSection');
 
-            if (heroToggleBtn) {
+            if (heroToggleBtn && heroFullText) {
                 heroToggleBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const isVisible = heroFullText.classList.contains('visible');
                     heroFullText.classList.toggle('visible');
                     heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                    heroSection.classList.toggle('expanded');
+                    if (heroSection) heroSection.classList.toggle('expanded');
                 });
             }
 
@@ -824,7 +765,7 @@
             const guideFullText = document.querySelector('.guide-collaboratif .full-text');
             const guideToggleBtn = document.getElementById('guideReadMore');
 
-            if (guideToggleBtn) {
+            if (guideToggleBtn && guideFullText) {
                 guideToggleBtn.addEventListener('click', function(e) {
                     e.stopPropagation();
                     const isVisible = guideFullText.classList.contains('visible');
