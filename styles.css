@@ -359,12 +359,6 @@ li { margin-bottom: 0.5rem; }
     border-bottom: none;
 }
 
-/* Au survol individuel : couleur de la page active */
-.nav-dropdown-menu li a:hover {
-    background-color: var(--bg-light);
-    color: var(--primary-color);
-}
-
 /* ============================================================ */
 /* ===== COULEURS DES LIENS DE NAVIGATION PAR PAGE ===== */
 /* ============================================================ */
@@ -383,10 +377,10 @@ li { margin-bottom: 0.5rem; }
 .nav-list > li > a.nav-link-accueil::after {
     content: "";
     position: absolute;
-    bottom: -2px;          /* ← aligné avec le bord extérieur */
+    bottom: -2px;
     left: 0;
     width: 100%;
-    height: 2px;           /* ← épaisseur 2px */
+    height: 2px;
     background: linear-gradient(90deg,
         #2E7D32 0%,
         #5be485 25%,
@@ -468,6 +462,68 @@ li { margin-bottom: 0.5rem; }
 .nav-list > li > a.nav-link-acces-droits:hover,
 .nav-list > li > a.nav-link-acces-droits.active {
     border-bottom-color: #ff66c4;
+    color: #C83296;
+}
+
+/* ============================================================ */
+/* ===== COULEUR DES SOUS-MENUS PAR RUBRIQUE ===== */
+/* Chaque sous-menu garde SA couleur au survol de ses items,   */
+/* quelle que soit la page active.                             */
+/* Nécessite une classe sur le <li class="nav-dropdown"> :     */
+/* dropdown-interlocuteurs, dropdown-enfance, etc.            */
+/* ============================================================ */
+
+/* Interlocuteurs - bleu */
+.dropdown-interlocuteurs .nav-dropdown-menu li a:hover {
+    background-color: #eef3fa;
+    color: #1f5692;
+}
+
+/* Arrivée d'un enfant - vert foncé */
+.dropdown-arrivee-enfant .nav-dropdown-menu li a:hover {
+    background-color: #eef7ef;
+    color: #2E7D32;
+}
+
+/* Petite enfance - vert clair */
+.dropdown-petite-enfance .nav-dropdown-menu li a:hover {
+    background-color: #eefaf1;
+    color: #33B85D;
+}
+
+/* Enfance - violet */
+.dropdown-enfance .nav-dropdown-menu li a:hover {
+    background-color: #f0f0fd;
+    color: #686be7;
+}
+
+/* Jeunesse - orange */
+.dropdown-jeunesse .nav-dropdown-menu li a:hover {
+    background-color: #fdf1ec;
+    color: #c75f35;
+}
+
+/* Parentalité - gris */
+.dropdown-parentalite .nav-dropdown-menu li a:hover {
+    background-color: #f0f1f4;
+    color: #585e70;
+}
+
+/* Loisirs - beige */
+.dropdown-loisirs .nav-dropdown-menu li a:hover {
+    background-color: #f7f5f0;
+    color: #8C7D64;
+}
+
+/* Vivre ensemble - jaune */
+.dropdown-vivre-ensemble .nav-dropdown-menu li a:hover {
+    background-color: #fdf8ea;
+    color: #B4820A;
+}
+
+/* Accès aux droits - rose */
+.dropdown-acces-droits .nav-dropdown-menu li a:hover {
+    background-color: #fdf0f8;
     color: #C83296;
 }
 
@@ -1605,7 +1661,7 @@ li { margin-bottom: 0.5rem; }
         font-weight: 600;
     }
 
-    /* Sur mobile : on désactive le dégradé (rendu bizarre) */
+    /* Sur mobile : on désactive le dégradé */
     .nav-list > li > a.nav-link-accueil::after {
         display: none;
     }
@@ -1651,9 +1707,42 @@ li { margin-bottom: 0.5rem; }
         color: var(--text-dark);
     }
 
-    .nav-dropdown-menu li a:hover {
-        background-color: var(--bg-light);
-        color: var(--primary-color);
+    /* Sur mobile : couleurs des sous-menus cohérentes */
+    .dropdown-interlocuteurs .nav-dropdown-menu li a:hover {
+        background-color: #eef3fa;
+        color: #1f5692;
+    }
+    .dropdown-arrivee-enfant .nav-dropdown-menu li a:hover {
+        background-color: #eef7ef;
+        color: #2E7D32;
+    }
+    .dropdown-petite-enfance .nav-dropdown-menu li a:hover {
+        background-color: #eefaf1;
+        color: #33B85D;
+    }
+    .dropdown-enfance .nav-dropdown-menu li a:hover {
+        background-color: #f0f0fd;
+        color: #686be7;
+    }
+    .dropdown-jeunesse .nav-dropdown-menu li a:hover {
+        background-color: #fdf1ec;
+        color: #c75f35;
+    }
+    .dropdown-parentalite .nav-dropdown-menu li a:hover {
+        background-color: #f0f1f4;
+        color: #585e70;
+    }
+    .dropdown-loisirs .nav-dropdown-menu li a:hover {
+        background-color: #f7f5f0;
+        color: #8C7D64;
+    }
+    .dropdown-vivre-ensemble .nav-dropdown-menu li a:hover {
+        background-color: #fdf8ea;
+        color: #B4820A;
+    }
+    .dropdown-acces-droits .nav-dropdown-menu li a:hover {
+        background-color: #fdf0f8;
+        color: #C83296;
     }
 
     .section { padding: 1.5rem 0; }
