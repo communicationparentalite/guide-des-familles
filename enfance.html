@@ -209,6 +209,14 @@
             width: 14px;
             height: 14px;
         }
+        .carte-legende-pastille.epci {
+            background: transparent;
+            border: 2px dashed #4A4DBD;
+            box-shadow: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 2px;
+        }
 
         .ecole-tooltip .ecole-badge {
             display: inline-block;
@@ -440,6 +448,10 @@
                                     <div class="carte-legende-item">
                                         <span class="carte-legende-pastille" style="background:#fff; border:2px dashed #4A4DBD; box-shadow:none; width:12px; height:12px;"></span>
                                         <span>Commune rattachée à un RPI</span>
+                                    </div>
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille epci"></span>
+                                        <span>Communauté de Communes</span>
                                     </div>
                                 </div>
 
@@ -1085,8 +1097,6 @@
             ];
 
             // --- 2) Communes rattachées à un RPI SANS école sur place ---
-            // Géocodage demandé : on cible la MAIRIE pour chaque commune.
-            // Si l'API ne trouve pas, on retombe sur les coordonnées de secours.
             const communesRattachees = [
                 {
                     rpiId: "rpi-chatillon",
@@ -1141,6 +1151,67 @@
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(mapEcoles);
 
+                    // ============================================================
+                    // ---- CONTOURS ADMINISTRATIFS (communes + EPCI) ----
+                    // Chargés AVANT les marqueurs pour rester en arrière-plan.
+                    // Les fichiers sont à la racine du dépôt GitHub.
+                    // ============================================================
+
+                    // --- Contour de la Communauté de Communes (EPCI) ---
+                    var styleEPCI = {
+                        color: "#4A4DBD",
+                        weight: 3,
+                        opacity: 0.9,
+                        fillColor: "#686be7",
+                        fillOpacity: 0.03,
+                        dashArray: "8, 5"
+                    };
+
+                    fetch('epci-ccblp.geojson')
+                        .then(function(response) {
+                            if (!response.ok) throw new Error('Fichier EPCI non trouvé (HTTP ' + response.status + ')');
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            L.geoJSON(data, {
+                                style: styleEPCI,
+                                interactive: false
+                            }).addTo(mapEcoles);
+                            console.log('✅ Contour EPCI chargé');
+                        })
+                        .catch(function(err) {
+                            console.warn('⚠️ Erreur contour EPCI :', err);
+                        });
+
+                    // --- Contours des communes ---
+                    var styleCommunes = {
+                        color: "#8B8DEF",
+                        weight: 1.2,
+                        opacity: 0.6,
+                        fillColor: "#686be7",
+                        fillOpacity: 0.02
+                    };
+
+                    fetch('communes-berry.geojson')
+                        .then(function(response) {
+                            if (!response.ok) throw new Error('Fichier communes non trouvé (HTTP ' + response.status + ')');
+                            return response.json();
+                        })
+                        .then(function(data) {
+                            L.geoJSON(data, {
+                                style: styleCommunes,
+                                interactive: false
+                            }).addTo(mapEcoles);
+                            console.log('✅ Contours des communes chargés');
+                        })
+                        .catch(function(err) {
+                            console.warn('⚠️ Erreur contours communes :', err);
+                        });
+
+                    // ============================================================
+                    // ---- MARQUEURS ----
+                    // ============================================================
+
                     const styleParType = {
                         "college":      { couleur: "#e85d2c", rayon: 11, bordure: "#fff" },
                         "ecole":        { couleur: "#686be7", rayon: 8,  bordure: "#fff" },
@@ -1181,8 +1252,8 @@
                     });
 
                     // ---- Marqueurs ----
-                    const markersByEtab = []; // pour géocodage établissements
-                    const markersCommunes = []; // pour géocodage mairies
+                    const markersByEtab = [];
+                    const markersCommunes = [];
 
                     // Établissements
                     etablissementsData.forEach(function(etab) {
@@ -1276,7 +1347,6 @@
                         let requetesEnCours = 0;
                         let derniereRequete = 0;
 
-                        // On construit une file unique avec les deux types
                         const file = markersByEtab.map(function(item) {
                             return {
                                 etab: item.etab,
@@ -1361,7 +1431,6 @@
                             etab.lat = coords.lat;
                             etab.lng = coords.lng;
 
-                            // Mise à jour de la ligne RPI
                             if (etab.rpiId && rpiLines[etab.rpiId]) {
                                 const entites = rpiGroupes[etab.rpiId];
                                 setTimeout(function() {
