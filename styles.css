@@ -378,10 +378,10 @@ li { margin-bottom: 0.5rem; }
 .nav-list > li > a.nav-link-accueil::after {
     content: "";
     position: absolute;
-    bottom: -3px;          /* ← aligné avec le bord extérieur des autres liserés */
+    bottom: -2px;          /* ← aligné avec le bord extérieur des autres liserés */
     left: 0;
     width: 100%;
-    height: 3px;
+    height: 2px;
     background: linear-gradient(90deg,
         #2E7D32 0%,
         #5be485 25%,
