@@ -265,7 +265,10 @@ li { margin-bottom: 0.5rem; }
     font-weight: 600;
 }
 
+/* ============================================================ */
 /* === NAVIGATION === */
+/* ============================================================ */
+
 .nav {
     background-color: var(--bg-white);
     box-shadow: var(--shadow-sm);
@@ -287,17 +290,20 @@ li { margin-bottom: 0.5rem; }
     margin: 0;
 }
 
-.nav-list a {
+/* Base des liens de nav */
+.nav-list > li > a {
     display: block;
     padding: 1rem 1.25rem;
     color: var(--text-dark);
     font-weight: 500;
     border-bottom: 3px solid transparent;
-    transition: var(--transition);
+    position: relative;
+    transition: background-color 0.3s ease, color 0.3s ease, border-bottom-color 0.3s ease;
 }
 
-.nav-list a:hover,
-.nav-list a.active {
+/* Survol générique : couleur primaire de la page */
+.nav-list > li > a:hover,
+.nav-list > li > a.active {
     background-color: var(--bg-light);
     border-bottom-color: var(--primary-color);
     color: var(--primary-color);
@@ -343,6 +349,7 @@ li { margin-bottom: 0.5rem; }
     font-size: 0.9rem;
     border-bottom: 1px solid var(--border-color);
     border-left: none;
+    position: static;
 }
 
 .nav-dropdown-menu li:last-child a {
@@ -355,86 +362,106 @@ li { margin-bottom: 0.5rem; }
 
 /* ============================================================ */
 /* ===== COULEURS DES LIENS DE NAVIGATION PAR PAGE ===== */
-/* Chaque lien du menu prend la couleur de sa page cible au    */
-/* survol et quand il est actif.                               */
 /* ============================================================ */
 
-/* Accueil - dégradé 5 couleurs (rappel du header d'accueil) */
-.nav-list a.nav-link-accueil:hover,
-.nav-list a.nav-link-accueil.active {
-    border-bottom: none;
-    background-image: linear-gradient(90deg,
+/* ----- ACCUEIL : liseré dégradé 5 couleurs ----- */
+
+/* 1. Neutraliser la bordure générique + reset des couleurs */
+.nav-list > li > a.nav-link-accueil:hover,
+.nav-list > li > a.nav-link-accueil.active {
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    border-bottom-color: transparent;
+}
+
+/* 2. Créer le liseré dégradé via pseudo-élément (parfaitement aligné) */
+.nav-list > li > a.nav-link-accueil::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg,
         #2E7D32 0%,
         #5be485 25%,
         #f0bb1e 50%,
         #ff66c4 75%,
         #1f5692 100%
     );
-    background-repeat: no-repeat;
-    background-position: bottom left;
-    background-size: 100% 3px;
-    color: var(--text-dark);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    pointer-events: none;
 }
 
+/* 3. Étirer le liseré au survol / page active */
+.nav-list > li > a.nav-link-accueil:hover::after,
+.nav-list > li > a.nav-link-accueil.active::after {
+    transform: scaleX(1);
+}
+
+/* ----- AUTRES PAGES : couleur unie ----- */
+
 /* Interlocuteurs - bleu */
-.nav-list a.nav-link-interlocuteurs:hover,
-.nav-list a.nav-link-interlocuteurs.active {
+.nav-list > li > a.nav-link-interlocuteurs:hover,
+.nav-list > li > a.nav-link-interlocuteurs.active {
     border-bottom-color: #1f5692;
     color: #1f5692;
 }
 
 /* Arrivée d'un enfant - vert foncé */
-.nav-list a.nav-link-arrivee-enfant:hover,
-.nav-list a.nav-link-arrivee-enfant.active {
+.nav-list > li > a.nav-link-arrivee-enfant:hover,
+.nav-list > li > a.nav-link-arrivee-enfant.active {
     border-bottom-color: #2E7D32;
     color: #2E7D32;
 }
 
 /* Petite enfance - vert clair */
-.nav-list a.nav-link-petite-enfance:hover,
-.nav-list a.nav-link-petite-enfance.active {
+.nav-list > li > a.nav-link-petite-enfance:hover,
+.nav-list > li > a.nav-link-petite-enfance.active {
     border-bottom-color: #5be485;
     color: #33B85D;
 }
 
 /* Enfance - violet */
-.nav-list a.nav-link-enfance:hover,
-.nav-list a.nav-link-enfance.active {
+.nav-list > li > a.nav-link-enfance:hover,
+.nav-list > li > a.nav-link-enfance.active {
     border-bottom-color: #686be7;
     color: #686be7;
 }
 
 /* Jeunesse - orange */
-.nav-list a.nav-link-jeunesse:hover,
-.nav-list a.nav-link-jeunesse.active {
+.nav-list > li > a.nav-link-jeunesse:hover,
+.nav-list > li > a.nav-link-jeunesse.active {
     border-bottom-color: #c75f35;
     color: #c75f35;
 }
 
 /* Parentalité - gris */
-.nav-list a.nav-link-parentalite:hover,
-.nav-list a.nav-link-parentalite.active {
+.nav-list > li > a.nav-link-parentalite:hover,
+.nav-list > li > a.nav-link-parentalite.active {
     border-bottom-color: #585e70;
     color: #585e70;
 }
 
 /* Loisirs - beige */
-.nav-list a.nav-link-loisirs:hover,
-.nav-list a.nav-link-loisirs.active {
+.nav-list > li > a.nav-link-loisirs:hover,
+.nav-list > li > a.nav-link-loisirs.active {
     border-bottom-color: #b7a88e;
     color: #8C7D64;
 }
 
 /* Vivre ensemble - jaune */
-.nav-list a.nav-link-vivre-ensemble:hover,
-.nav-list a.nav-link-vivre-ensemble.active {
+.nav-list > li > a.nav-link-vivre-ensemble:hover,
+.nav-list > li > a.nav-link-vivre-ensemble.active {
     border-bottom-color: #f0bb1e;
     color: #B4820A;
 }
 
 /* Accès aux droits - rose */
-.nav-list a.nav-link-acces-droits:hover,
-.nav-list a.nav-link-acces-droits.active {
+.nav-list > li > a.nav-link-acces-droits:hover,
+.nav-list > li > a.nav-link-acces-droits.active {
     border-bottom-color: #ff66c4;
     color: #C83296;
 }
@@ -1560,26 +1587,44 @@ li { margin-bottom: 0.5rem; }
         margin: 0;
     }
 
-    .nav-list a {
+    .nav-list > li > a {
         text-align: center;
         border-bottom: 1px solid var(--border-color);
         padding: 0.75rem 1rem;
         border-left: none;
     }
 
-    .nav-list a.active {
+    .nav-list > li > a.active {
         background-color: var(--primary-light);
         color: white;
         font-weight: 600;
     }
 
-    /* Sur mobile, on désactive le dégradé pour éviter le rendu bizarre */
-    .nav-list a.nav-link-accueil:hover,
-    .nav-list a.nav-link-accueil.active {
-        background-image: none;
-        border-bottom: 1px solid var(--border-color);
+    /* Sur mobile : on désactive le dégradé (rendu bizarre) */
+    .nav-list > li > a.nav-link-accueil::after {
+        display: none;
+    }
+
+    .nav-list > li > a.nav-link-accueil:hover,
+    .nav-list > li > a.nav-link-accueil.active {
         background-color: var(--primary-light);
         color: white;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    /* Sur mobile : tous les liens actifs ont le fond coloré uni */
+    .nav-list > li > a.nav-link-interlocuteurs.active,
+    .nav-list > li > a.nav-link-arrivee-enfant.active,
+    .nav-list > li > a.nav-link-petite-enfance.active,
+    .nav-list > li > a.nav-link-enfance.active,
+    .nav-list > li > a.nav-link-jeunesse.active,
+    .nav-list > li > a.nav-link-parentalite.active,
+    .nav-list > li > a.nav-link-loisirs.active,
+    .nav-list > li > a.nav-link-vivre-ensemble.active,
+    .nav-list > li > a.nav-link-acces-droits.active {
+        background-color: var(--primary-light);
+        color: white;
+        font-weight: 600;
     }
 
     .nav-dropdown-menu {
