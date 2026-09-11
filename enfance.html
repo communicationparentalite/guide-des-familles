@@ -69,7 +69,6 @@
         /* ===== CARTES ÉCOLES DÉPLIABLES SUR MOBILE ===== */
         /* ============================================================ */
 
-        /* Sur PC : nom court masqué, contenu toujours visible */
         .ecole-card .ecole-nom-court {
             display: none;
         }
@@ -82,7 +81,6 @@
             display: block;
         }
 
-        /* Sur mobile : cartes compactes dépliables */
         @media (max-width: 768px) {
             .ecole-card {
                 cursor: pointer;
@@ -96,14 +94,12 @@
                 background-color: #f5f7ff;
             }
 
-            /* Titre principal (Ville) */
             .ecole-card h4 {
                 font-size: 1rem;
                 margin-bottom: 0.15rem;
                 color: var(--primary-dark);
             }
 
-            /* Sous-titre : nom court de l'école */
             .ecole-card .ecole-nom-court {
                 display: block;
                 font-size: 0.85rem;
@@ -111,7 +107,6 @@
                 margin-bottom: 0.3rem;
             }
 
-            /* Coordonnées masquées par défaut */
             .ecole-card .ecole-details {
                 display: none;
                 margin-top: 0.6rem;
@@ -119,12 +114,10 @@
                 border-top: 1px dashed var(--border-color);
             }
 
-            /* Coordonnées affichées si la carte est ouverte */
             .ecole-card.open .ecole-details {
                 display: block;
             }
 
-            /* Icône + / − sur la droite */
             .ecole-card .ecole-toggle-icon {
                 display: block;
                 position: absolute;
@@ -142,7 +135,6 @@
                 transform: rotate(45deg);
             }
 
-            /* Fond de la carte dépliée */
             .ecole-card.open {
                 background-color: #fafbff;
                 box-shadow: 0 4px 12px rgba(104, 107, 231, 0.15);
@@ -543,32 +535,6 @@
 
                                 <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Établissements du territoire</h4>
                                 <div class="accordion-card-grid">
-                                    <!-- COLLÈGE ALBERT CAMUS -->
-                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">Collège Albert Camus</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
-                                            <p>Rue du Port à Belleau, Briare</p>
-                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                            ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- COLLÈGE PIERRE DÉZARNAULDS -->
-                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Châtillon-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Collège Pierre Dézarnaulds</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
-                                            <p>2 allée du Paradis, Châtillon-sur-Loire</p>
-                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                            ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
                                     <!-- AUTRY-LE-CHÂTEL -->
                                     <div class="ecole-card">
                                         <h4>Autry-le-Châtel</h4>
@@ -609,7 +575,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- BRIARE - MARCEL GAIME -->
+                                    <!-- BRIARE : ÉCOLES -->
                                     <div class="ecole-card">
                                         <h4>Briare</h4>
                                         <span class="ecole-nom-court">École Marcel Gaime (maternelle)</span>
@@ -621,7 +587,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- BRIARE - CENTRE -->
                                     <div class="ecole-card">
                                         <h4>Briare</h4>
                                         <span class="ecole-nom-court">École du Centre (élémentaire)</span>
@@ -633,7 +598,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- BRIARE - GUSTAVE EIFFEL -->
                                     <div class="ecole-card">
                                         <h4>Briare</h4>
                                         <span class="ecole-nom-court">École Gustave Eiffel</span>
@@ -645,7 +609,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- BRIARE - SAINTE-ANNE -->
                                     <div class="ecole-card" style="border-left-color:#888;">
                                         <h4>Briare</h4>
                                         <span class="ecole-nom-court">École Sainte-Anne (privée)</span>
@@ -658,7 +621,20 @@
                                         </div>
                                     </div>
 
-                                    <!-- CHÂTILLON-SUR-LOIRE -->
+                                    <!-- BRIARE : COLLÈGE -->
+                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">Collège Albert Camus</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
+                                            <p>Rue du Port à Belleau, Briare</p>
+                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                            ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- CHÂTILLON-SUR-LOIRE : ÉCOLE -->
                                     <div class="ecole-card">
                                         <h4>Châtillon-sur-Loire</h4>
                                         <span class="ecole-nom-court">Maternelle et élémentaire</span>
@@ -668,6 +644,19 @@
                                             <p>📞 <a href="tel:+33238314074">02 38 31 40 74</a></p>
                                             <p>✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
                                             <span class="badge">RPI</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- CHÂTILLON-SUR-LOIRE : COLLÈGE -->
+                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <span class="ecole-nom-court">Collège Pierre Dézarnaulds</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
+                                            <p>2 allée du Paradis, Châtillon-sur-Loire</p>
+                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                            ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
                                         </div>
                                     </div>
 
@@ -1173,7 +1162,6 @@
                     carte.dataset.depliable = 'true';
 
                     carte.addEventListener('click', function(e) {
-                        // Ne pas déclencher si on clique sur un lien (téléphone, mail)
                         if (e.target.closest('a')) return;
                         this.classList.toggle('open');
                     });
@@ -1182,7 +1170,6 @@
 
             window.addEventListener('DOMContentLoaded', initCartesDepliables);
 
-            // Réinitialiser si on redimensionne (passage PC ↔ mobile)
             let resizeTimerCarte;
             window.addEventListener('resize', function() {
                 clearTimeout(resizeTimerCarte);
@@ -1198,7 +1185,7 @@
             });
 
             // ============================================================
-            // ---- CARTE LEAFLET (géocodage hybride + RPI étendus) ----
+            // ---- CARTE LEAFLET ----
             // ============================================================
 
             const etablissementsData = [
@@ -1483,20 +1470,72 @@
                         rpiGroupes[c.rpiId].push(c);
                     });
 
+                    // ---- Lignes RPI en étoile (départ depuis l'école centrale) ----
                     const rpiLines = {};
+
                     Object.keys(rpiGroupes).forEach(function(rpiId) {
                         const entites = rpiGroupes[rpiId];
+
+                        const ecolesCentrales = entites.filter(function(e) {
+                            return e.type === "ecole" || e.type === "rpi";
+                        });
+                        const communesRatt = entites.filter(function(e) {
+                            return e.type !== "ecole" && e.type !== "rpi";
+                        });
+
                         if (entites.length >= 2) {
-                            const ligne = L.polyline(
-                                entites.map(function(e) { return [e.lat, e.lng]; }),
-                                {
-                                    color: "#4A4DBD",
-                                    weight: 2,
-                                    dashArray: "4, 6",
-                                    opacity: 0.55
+                            const lignes = [];
+
+                            if (ecolesCentrales.length > 0) {
+                                // Lignes en étoile depuis la première école centrale
+                                const ecole = ecolesCentrales[0];
+
+                                communesRatt.forEach(function(commune) {
+                                    const ligne = L.polyline(
+                                        [[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
+                                        {
+                                            color: "#4A4DBD",
+                                            weight: 2,
+                                            dashArray: "4, 6",
+                                            opacity: 0.55
+                                        }
+                                    ).addTo(mapEcoles);
+                                    lignes.push(ligne);
+                                });
+
+                                // Si plusieurs écoles centrales, on les relie entre elles
+                                if (ecolesCentrales.length > 1) {
+                                    for (let i = 0; i < ecolesCentrales.length - 1; i++) {
+                                        const ligne = L.polyline(
+                                            [
+                                                [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
+                                                [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
+                                            ],
+                                            {
+                                                color: "#4A4DBD",
+                                                weight: 2,
+                                                dashArray: "4, 6",
+                                                opacity: 0.55
+                                            }
+                                        ).addTo(mapEcoles);
+                                        lignes.push(ligne);
+                                    }
                                 }
-                            ).addTo(mapEcoles);
-                            rpiLines[rpiId] = ligne;
+                            } else {
+                                // Cas de secours : pas d'école identifiée
+                                const ligne = L.polyline(
+                                    entites.map(function(e) { return [e.lat, e.lng]; }),
+                                    {
+                                        color: "#4A4DBD",
+                                        weight: 2,
+                                        dashArray: "4, 6",
+                                        opacity: 0.55
+                                    }
+                                ).addTo(mapEcoles);
+                                lignes.push(ligne);
+                            }
+
+                            rpiLines[rpiId] = lignes;
                         }
                     });
 
@@ -1676,11 +1715,62 @@
                             etab.lat = coords.lat;
                             etab.lng = coords.lng;
 
+                            // Mise à jour des lignes RPI en étoile
                             if (etab.rpiId && rpiLines[etab.rpiId]) {
-                                const entites = rpiGroupes[etab.rpiId];
                                 setTimeout(function() {
-                                    const pts = entites.map(function(e) { return [e.lat, e.lng]; });
-                                    rpiLines[etab.rpiId].setLatLngs(pts);
+                                    const entites = rpiGroupes[etab.rpiId];
+
+                                    const ecolesCentrales = entites.filter(function(e) {
+                                        return e.type === "ecole" || e.type === "rpi";
+                                    });
+                                    const communesRatt = entites.filter(function(e) {
+                                        return e.type !== "ecole" && e.type !== "rpi";
+                                    });
+
+                                    // Supprimer les anciennes lignes
+                                    rpiLines[etab.rpiId].forEach(function(l) {
+                                        mapEcoles.removeLayer(l);
+                                    });
+
+                                    // Recréer les lignes en étoile
+                                    const nouvellesLignes = [];
+
+                                    if (ecolesCentrales.length > 0) {
+                                        const ecole = ecolesCentrales[0];
+
+                                        communesRatt.forEach(function(commune) {
+                                            const ligne = L.polyline(
+                                                [[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
+                                                {
+                                                    color: "#4A4DBD",
+                                                    weight: 2,
+                                                    dashArray: "4, 6",
+                                                    opacity: 0.55
+                                                }
+                                            ).addTo(mapEcoles);
+                                            nouvellesLignes.push(ligne);
+                                        });
+
+                                        if (ecolesCentrales.length > 1) {
+                                            for (let i = 0; i < ecolesCentrales.length - 1; i++) {
+                                                const ligne = L.polyline(
+                                                    [
+                                                        [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
+                                                        [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
+                                                    ],
+                                                    {
+                                                        color: "#4A4DBD",
+                                                        weight: 2,
+                                                        dashArray: "4, 6",
+                                                        opacity: 0.55
+                                                    }
+                                                ).addTo(mapEcoles);
+                                                nouvellesLignes.push(ligne);
+                                            }
+                                        }
+                                    }
+
+                                    rpiLines[etab.rpiId] = nouvellesLignes;
                                 }, duree + 50);
                             }
                         }
