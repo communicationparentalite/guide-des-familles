@@ -119,9 +119,6 @@ body {
 
 /* ============================================================ */
 /* ===== HÉRITAGE GLOBAL DE LA POLICE NUNITO ===== */
-/* Garantit que TOUS les éléments textuels utilisent Nunito,    */
-/* y compris les accordéons, sous-accordéons, cartes, badges.  */
-/* N'affecte PAS les icônes Font Awesome (<i class="fa-...">).  */
 /* ============================================================ */
 
 body,
@@ -129,93 +126,35 @@ h1, h2, h3, h4, h5, h6,
 p, a, span, li, ul, ol, blockquote, figure, figcaption,
 button, input, textarea, select, label, legend,
 table, th, td, caption,
-.accordion,
-.accordion-item,
-.accordion-header,
-.accordion-header h3,
-.accordion-header span,
-.accordion-header .count,
-.accordion-icon,
-.accordion-body,
-.accordion-body p,
-.accordion-body h3,
-.accordion-body h4,
-.accordion-body h5,
-.accordion-body-inner,
-.accordion-body-inner .text,
-.accordion-body-inner .text p,
-.accordion-card,
-.accordion-card h3,
-.accordion-card h4,
-.accordion-card p,
-.accordion-card .badge,
-.accordion-card .website,
-.sous-accordion-wrapper,
-.sous-accordion-header,
-.sous-accordion-header span,
-.sous-accordion-body,
-.sous-accordion-body h4,
-.sous-accordion-body h5,
-.sous-accordion-body p,
-.sous-accordion-body .full-text,
-.sub-section,
-.sub-section h5,
-.sub-section p,
-.read-more-btn,
-.quote,
-.section-title,
-.card,
-.card h3,
-.card h4,
-.card p,
-.card .address,
-.card .phone,
-.ecole-card,
-.ecole-card h3,
-.ecole-card h4,
-.ecole-card p,
-.ecole-card .badge,
-.subsection,
-.subsection h3,
-.subsection h4,
-.subsection h5,
-.subsection p,
-.subsection-with-image,
-.subsection-with-image h3,
-.subsection-with-image h4,
-.subsection-with-image p,
-.partner-content,
-.partner-content p,
-.partner-content h4,
-.partner-content .full-text,
-.partner-coords,
-.badge,
-.count,
-.ter-section,
-.ter-section h3,
-.ter-section p,
-.bulle-musicale,
-.bulle-musicale h3,
-.bulle-musicale p,
-.item-expandable summary,
-.item-expandable .item-content,
-.video-caption,
-.video-credit,
-.footer,
-.footer h3,
-.footer p,
-.footer a,
-.footer-section,
-.footer-section ul,
-.footer-section li,
-.footer-bottom,
-.menu-toggle,
-.nav-list a,
-.nav-dropdown-menu a,
-.header-info,
-.logo h1,
-.lightbox,
-.lightbox-close {
+.accordion, .accordion-item, .accordion-header,
+.accordion-header h3, .accordion-header span, .accordion-header .count,
+.accordion-icon, .accordion-body, .accordion-body p,
+.accordion-body h3, .accordion-body h4, .accordion-body h5,
+.accordion-body-inner, .accordion-body-inner .text, .accordion-body-inner .text p,
+.accordion-card, .accordion-card h3, .accordion-card h4, .accordion-card p,
+.accordion-card .badge, .accordion-card .website,
+.sous-accordion-wrapper, .sous-accordion-header, .sous-accordion-header span,
+.sous-accordion-body, .sous-accordion-body h4, .sous-accordion-body h5,
+.sous-accordion-body p, .sous-accordion-body .full-text,
+.sub-section, .sub-section h5, .sub-section p,
+.read-more-btn, .quote, .section-title,
+.card, .card h3, .card h4, .card p, .card .address, .card .phone,
+.ecole-card, .ecole-card h3, .ecole-card h4, .ecole-card p, .ecole-card .badge,
+.subsection, .subsection h3, .subsection h4, .subsection h5, .subsection p,
+.subsection-with-image, .subsection-with-image h3,
+.subsection-with-image h4, .subsection-with-image p,
+.partner-content, .partner-content p, .partner-content h4,
+.partner-content .full-text, .partner-coords,
+.badge, .count,
+.ter-section, .ter-section h3, .ter-section p,
+.bulle-musicale, .bulle-musicale h3, .bulle-musicale p,
+.item-expandable summary, .item-expandable .item-content,
+.video-caption, .video-credit,
+.footer, .footer h3, .footer p, .footer a,
+.footer-section, .footer-section ul, .footer-section li, .footer-bottom,
+.menu-toggle, .nav-list a, .nav-dropdown-menu a,
+.header-info, .logo h1,
+.lightbox, .lightbox-close {
     font-family: 'Nunito', sans-serif;
 }
 
@@ -248,12 +187,7 @@ a:hover {
     color: var(--primary-dark);
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
     line-height: 1.3;
     margin-bottom: 1rem;
@@ -417,6 +351,82 @@ li { margin-bottom: 0.5rem; }
 
 .nav-dropdown-menu li a:hover {
     background-color: var(--bg-light);
+}
+
+/* ============================================================ */
+/* ===== COULEURS DES LIENS DE NAVIGATION PAR PAGE ===== */
+/* Chaque lien du menu prend la couleur de sa page cible au    */
+/* survol et quand il est actif.                               */
+/* ============================================================ */
+
+/* Accueil - vert par défaut */
+.nav-list a.nav-link-accueil:hover,
+.nav-list a.nav-link-accueil.active {
+    border-bottom-color: #2E7D32;
+    color: #2E7D32;
+}
+
+/* Interlocuteurs - bleu */
+.nav-list a.nav-link-interlocuteurs:hover,
+.nav-list a.nav-link-interlocuteurs.active {
+    border-bottom-color: #1f5692;
+    color: #1f5692;
+}
+
+/* Arrivée d'un enfant - vert foncé */
+.nav-list a.nav-link-arrivee-enfant:hover,
+.nav-list a.nav-link-arrivee-enfant.active {
+    border-bottom-color: #2E7D32;
+    color: #2E7D32;
+}
+
+/* Petite enfance - vert clair */
+.nav-list a.nav-link-petite-enfance:hover,
+.nav-list a.nav-link-petite-enfance.active {
+    border-bottom-color: #5be485;
+    color: #33B85D;
+}
+
+/* Enfance - violet */
+.nav-list a.nav-link-enfance:hover,
+.nav-list a.nav-link-enfance.active {
+    border-bottom-color: #686be7;
+    color: #686be7;
+}
+
+/* Jeunesse - orange */
+.nav-list a.nav-link-jeunesse:hover,
+.nav-list a.nav-link-jeunesse.active {
+    border-bottom-color: #c75f35;
+    color: #c75f35;
+}
+
+/* Parentalité - gris */
+.nav-list a.nav-link-parentalite:hover,
+.nav-list a.nav-link-parentalite.active {
+    border-bottom-color: #585e70;
+    color: #585e70;
+}
+
+/* Loisirs - beige */
+.nav-list a.nav-link-loisirs:hover,
+.nav-list a.nav-link-loisirs.active {
+    border-bottom-color: #b7a88e;
+    color: #8C7D64;
+}
+
+/* Vivre ensemble - jaune */
+.nav-list a.nav-link-vivre-ensemble:hover,
+.nav-list a.nav-link-vivre-ensemble.active {
+    border-bottom-color: #f0bb1e;
+    color: #B4820A;
+}
+
+/* Accès aux droits - rose */
+.nav-list a.nav-link-acces-droits:hover,
+.nav-list a.nav-link-acces-droits.active {
+    border-bottom-color: #ff66c4;
+    color: #C83296;
 }
 
 /* === SECTION === */
@@ -758,7 +768,7 @@ li { margin-bottom: 0.5rem; }
     color: var(--primary-dark);
 }
 
-/* === SOUS-SECTION (utilisé dans arrivee-enfant.html) === */
+/* === SOUS-SECTION === */
 .sub-section {
     background: white;
     border-radius: 10px;
@@ -911,7 +921,6 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* === LIENS SITES INTERNET - STYLE BADGE UNIFORME === */
-/* Le badge prend automatiquement la couleur dominante de la page */
 .accordion-body a[target="_blank"]:not(.social-links a),
 .sous-accordion-body a[target="_blank"]:not(.social-links a),
 .accordion-card a[target="_blank"],
@@ -950,17 +959,9 @@ li { margin-bottom: 0.5rem; }
     margin: 2rem 0;
 }
 
-.cards-grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.cards-grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.cards-grid-4 {
-    grid-template-columns: repeat(4, 1fr);
-}
+.cards-grid-2 { grid-template-columns: repeat(2, 1fr); }
+.cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
 
 .card {
     background: white;
@@ -1016,13 +1017,8 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
 }
 
-.card .full-text {
-    display: none;
-}
-
-.card .full-text.visible {
-    display: block;
-}
+.card .full-text { display: none; }
+.card .full-text.visible { display: block; }
 
 .card .read-more-btn {
     background: none;
@@ -1305,7 +1301,7 @@ li { margin-bottom: 0.5rem; }
 .social-links a[href*="tiktok"] { color: #000000; }
 .social-links a[href*="youtube"] { color: #FF0000; }
 
-/* === ITEM EXPANDABLE (details/summary) === */
+/* === ITEM EXPANDABLE === */
 .item-expandable {
     margin-bottom: 0.8rem;
     border: 1px solid var(--border-color);
@@ -1481,12 +1477,8 @@ li { margin-bottom: 0.5rem; }
 /* ============================================================ */
 
 @media (max-width: 992px) {
-    .cards-grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .cards-grid-4 {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
     .nav-list > li > a {
         font-size: 0.72rem;
         padding: 0.3rem 0.5rem;
@@ -1589,72 +1581,45 @@ li { margin-bottom: 0.5rem; }
         border-bottom: 1px solid var(--border-color);
     }
 
-    .section {
-        padding: 1.5rem 0;
-    }
-    .section-title {
-        font-size: 1.5rem;
-    }
-    .section-header {
-        height: 200px;
-        margin-bottom: 1rem;
-    }
+    .section { padding: 1.5rem 0; }
+    .section-title { font-size: 1.5rem; }
+    .section-header { height: 200px; margin-bottom: 1rem; }
 
-    .cards-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+    .cards-grid,
     .cards-grid-2,
     .cards-grid-3,
     .cards-grid-4 {
         grid-template-columns: 1fr;
+        gap: 1rem;
     }
 
-    .card {
-        padding: 1rem;
-    }
+    .card { padding: 1rem; }
 
     .image-text-row {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
-    .ecoles-grid {
-        grid-template-columns: 1fr;
-    }
+    .ecoles-grid { grid-template-columns: 1fr; }
 
     .logos-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1rem;
     }
 
-    .logo-item {
-        padding: 0.75rem;
-    }
+    .logo-item { padding: 0.75rem; }
 
-    .content-box {
-        padding: 1rem;
-    }
-
-    .subsection {
-        padding: 1rem;
-    }
-
-    .subsections {
-        gap: 1rem;
-    }
+    .content-box { padding: 1rem; }
+    .subsection { padding: 1rem; }
+    .subsections { gap: 1rem; }
 
     .quote {
         font-size: 0.9rem;
         padding: 0.6rem 1rem;
     }
 
-    .photo-gallery {
-        grid-template-columns: 1fr 1fr;
-    }
-    .photo-gallery img {
-        height: 150px;
-    }
+    .photo-gallery { grid-template-columns: 1fr 1fr; }
+    .photo-gallery img { height: 150px; }
 
     .accordion-body-inner .images img {
         max-width: 100%;
@@ -1662,9 +1627,7 @@ li { margin-bottom: 0.5rem; }
         aspect-ratio: 4/3;
     }
 
-    .accordion-card-grid {
-        grid-template-columns: 1fr;
-    }
+    .accordion-card-grid { grid-template-columns: 1fr; }
 
     .partner-item {
         flex-direction: column;
@@ -1689,19 +1652,9 @@ li { margin-bottom: 0.5rem; }
         margin: 0 auto;
     }
 
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .footer-content-accueil {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .footer {
-        padding: 2rem 0 1rem;
-    }
+    .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer-content-accueil { grid-template-columns: 1fr; gap: 1.5rem; }
+    .footer { padding: 2rem 0 1rem; }
 
     .scroll-top {
         width: 45px;
@@ -1725,39 +1678,19 @@ li { margin-bottom: 0.5rem; }
 }
 
 @media (max-width: 480px) {
-    .logo img {
-        height: 40px;
-    }
-    .logo h1 {
-        font-size: 2.2rem;
-    }
-    .header-info {
-        font-size: 0.45rem;
-    }
+    .logo img { height: 40px; }
+    .logo h1 { font-size: 2.2rem; }
+    .header-info { font-size: 0.45rem; }
 
-    h2 {
-        font-size: 1.3rem;
-    }
-    h3 {
-        font-size: 1.15rem;
-    }
-    h4 {
-        font-size: 1rem;
-    }
-    .section-title {
-        font-size: 1.3rem;
-    }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.15rem; }
+    h4 { font-size: 1rem; }
+    .section-title { font-size: 1.3rem; }
 
-    .menu-toggle {
-        font-size: 1rem;
-    }
+    .menu-toggle { font-size: 1rem; }
 
-    .photo-gallery {
-        grid-template-columns: 1fr;
-    }
-    .photo-gallery img {
-        height: 200px;
-    }
+    .photo-gallery { grid-template-columns: 1fr; }
+    .photo-gallery img { height: 200px; }
 
     .accordion-header {
         padding: 0.7rem 0.9rem;
@@ -1765,9 +1698,7 @@ li { margin-bottom: 0.5rem; }
         flex-wrap: wrap;
     }
 
-    .accordion-icon {
-        font-size: 1.3rem;
-    }
+    .accordion-icon { font-size: 1.3rem; }
 
     .accordion-body.open {
         padding: 0.6rem 0.9rem 1.2rem;
@@ -1790,9 +1721,7 @@ li { margin-bottom: 0.5rem; }
         display: none;
     }
 
-    .section {
-        page-break-inside: avoid;
-    }
+    .section { page-break-inside: avoid; }
 
     .accordion-body {
         max-height: none !important;
@@ -1810,15 +1739,9 @@ li { margin-bottom: 0.5rem; }
         color: black !important;
     }
 
-    .accordion-header.open h3 {
-        color: black !important;
-    }
+    .accordion-header.open h3 { color: black !important; }
 
-    .accordion-icon {
-        display: none;
-    }
+    .accordion-icon { display: none; }
 
-    .lightbox {
-        display: none !important;
-    }
+    .lightbox { display: none !important; }
 }
