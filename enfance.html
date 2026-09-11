@@ -65,6 +65,90 @@
             opacity: 0.8;
         }
 
+        /* ============================================================ */
+        /* ===== CARTES ÉCOLES DÉPLIABLES SUR MOBILE ===== */
+        /* ============================================================ */
+
+        /* Sur PC : nom court masqué, contenu toujours visible */
+        .ecole-card .ecole-nom-court {
+            display: none;
+        }
+
+        .ecole-card .ecole-toggle-icon {
+            display: none;
+        }
+
+        .ecole-card .ecole-details {
+            display: block;
+        }
+
+        /* Sur mobile : cartes compactes dépliables */
+        @media (max-width: 768px) {
+            .ecole-card {
+                cursor: pointer;
+                position: relative;
+                padding-right: 2.5rem;
+                transition: background-color 0.2s ease, box-shadow 0.2s ease;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .ecole-card:hover {
+                background-color: #f5f7ff;
+            }
+
+            /* Titre principal (Ville) */
+            .ecole-card h4 {
+                font-size: 1rem;
+                margin-bottom: 0.15rem;
+                color: var(--primary-dark);
+            }
+
+            /* Sous-titre : nom court de l'école */
+            .ecole-card .ecole-nom-court {
+                display: block;
+                font-size: 0.85rem;
+                color: var(--text-medium);
+                margin-bottom: 0.3rem;
+            }
+
+            /* Coordonnées masquées par défaut */
+            .ecole-card .ecole-details {
+                display: none;
+                margin-top: 0.6rem;
+                padding-top: 0.6rem;
+                border-top: 1px dashed var(--border-color);
+            }
+
+            /* Coordonnées affichées si la carte est ouverte */
+            .ecole-card.open .ecole-details {
+                display: block;
+            }
+
+            /* Icône + / − sur la droite */
+            .ecole-card .ecole-toggle-icon {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 0.8rem;
+                font-size: 1.4rem;
+                font-weight: 300;
+                color: var(--primary-color);
+                transition: transform 0.3s ease;
+                pointer-events: none;
+                line-height: 1;
+            }
+
+            .ecole-card.open .ecole-toggle-icon {
+                transform: rotate(45deg);
+            }
+
+            /* Fond de la carte dépliée */
+            .ecole-card.open {
+                background-color: #fafbff;
+                box-shadow: 0 4px 12px rgba(104, 107, 231, 0.15);
+            }
+        }
+
         .accordion-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -459,99 +543,181 @@
 
                                 <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Établissements du territoire</h4>
                                 <div class="accordion-card-grid">
+                                    <!-- COLLÈGE ALBERT CAMUS -->
                                     <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Collège Albert Camus</h4>
-                                        <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
-                                        <p>Rue du Port à Belleau, Briare</p>
-                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                        ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
-                                    </div>
-                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Collège Pierre Dézarnaulds</h4>
-                                        <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
-                                        <p>2 allée du Paradis, Châtillon-sur-Loire</p>
-                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                        ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">Collège Albert Camus</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
+                                            <p>Rue du Port à Belleau, Briare</p>
+                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                            ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
 
+                                    <!-- COLLÈGE PIERRE DÉZARNAULDS -->
+                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <span class="ecole-nom-court">Collège Pierre Dézarnaulds</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
+                                            <p>2 allée du Paradis, Châtillon-sur-Loire</p>
+                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                            ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- AUTRY-LE-CHÂTEL -->
                                     <div class="ecole-card">
                                         <h4>Autry-le-Châtel</h4>
-                                        <p>Maternelle et élémentaire<br>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)</p>
-                                        <p>📞 <a href="tel:+33238368262">02 38 36 82 62</a> (élém.)<br>
-                                        📞 <a href="tel:+33238368188">02 38 36 81 88</a> (mat.)</p>
-                                        <p>✉️ <a href="mailto:ce.0450195T@ac-orleans-tours.fr">ce.0450195T@ac-orleans-tours.fr</a> (élém.)<br>
-                                        ✉️ <a href="mailto:ce.0450749V@ac-orleans-tours.fr">ce.0450749V@ac-orleans-tours.fr</a> (mat.)</p>
+                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)</p>
+                                            <p>📞 <a href="tel:+33238368262">02 38 36 82 62</a> (élém.)<br>
+                                            📞 <a href="tel:+33238368188">02 38 36 81 88</a> (mat.)</p>
+                                            <p>✉️ <a href="mailto:ce.0450195T@ac-orleans-tours.fr">ce.0450195T@ac-orleans-tours.fr</a> (élém.)<br>
+                                            ✉️ <a href="mailto:ce.0450749V@ac-orleans-tours.fr">ce.0450749V@ac-orleans-tours.fr</a> (mat.)</p>
+                                        </div>
                                     </div>
+
+                                    <!-- BEAULIEU-SUR-LOIRE -->
                                     <div class="ecole-card">
                                         <h4>Beaulieu-sur-Loire</h4>
-                                        <p>Maternelle et élémentaire<br>15 rue de Châtillon (élémentaire)<br>17 rue de Châtillon (maternelle)</p>
-                                        <p>📞 <a href="tel:+33219004986">02.19.00.49.86</a><br>
-                                        📞 <a href="tel:+33238358535">02.38.35.85.35</a></p>
-                                        <p>✉️ <a href="mailto:ce.0451398A@ac-orleans-tours.fr">ce.0451398A@ac-orleans-tours.fr</a></p>
+                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>15 rue de Châtillon (élémentaire)<br>17 rue de Châtillon (maternelle)</p>
+                                            <p>📞 <a href="tel:+33219004986">02.19.00.49.86</a><br>
+                                            📞 <a href="tel:+33238358535">02.38.35.85.35</a></p>
+                                            <p>✉️ <a href="mailto:ce.0451398A@ac-orleans-tours.fr">ce.0451398A@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- BONNY-SUR-LOIRE -->
                                     <div class="ecole-card">
                                         <h4>Bonny-sur-Loire</h4>
-                                        <p>Maternelle et élémentaire<br>2 avenue de la Gare</p>
-                                        <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450182D@ac-orleans-tours.fr">ce.0450182D@ac-orleans-tours.fr</a></p>
-                                        <span class="badge">RPI</span>
+                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>2 avenue de la Gare</p>
+                                            <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450182D@ac-orleans-tours.fr">ce.0450182D@ac-orleans-tours.fr</a></p>
+                                            <span class="badge">RPI</span>
+                                        </div>
                                     </div>
+
+                                    <!-- BRIARE - MARCEL GAIME -->
                                     <div class="ecole-card">
-                                        <h4>Briare - Marcel Gaime</h4>
-                                        <p>Maternelle<br>place Saint Roch</p>
-                                        <p>📞 <a href="tel:+33238312585">02 38 31 25 85</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450167M@ac-orleans-tours.fr">ce.0450167M@ac-orleans-tours.fr</a></p>
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">École Marcel Gaime (maternelle)</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>place Saint Roch</p>
+                                            <p>📞 <a href="tel:+33238312585">02 38 31 25 85</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450167M@ac-orleans-tours.fr">ce.0450167M@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- BRIARE - CENTRE -->
                                     <div class="ecole-card">
-                                        <h4>Briare - Centre</h4>
-                                        <p>Élémentaire<br>3 square Foch</p>
-                                        <p>📞 <a href="tel:+33238312649">02 38 31 26 49</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450869A@ac-orleans-tours.fr">ce.0450869A@ac-orleans-tours.fr</a></p>
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">École du Centre (élémentaire)</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>3 square Foch</p>
+                                            <p>📞 <a href="tel:+33238312649">02 38 31 26 49</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450869A@ac-orleans-tours.fr">ce.0450869A@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- BRIARE - GUSTAVE EIFFEL -->
                                     <div class="ecole-card">
-                                        <h4>Briare - Gustave Eiffel</h4>
-                                        <p>Maternelle et élémentaire<br>7, rue de l'Espérance</p>
-                                        <p>📞 <a href="tel:+33238312534">02 38 31 25 34</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">École Gustave Eiffel</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Maternelle et élémentaire<br>7, rue de l'Espérance</p>
+                                            <p>📞 <a href="tel:+33238312534">02 38 31 25 34</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- BRIARE - SAINTE-ANNE -->
                                     <div class="ecole-card" style="border-left-color:#888;">
-                                        <h4>Briare - Sainte-Anne</h4>
-                                        <p>Maternelle et élémentaire (privée)<br>5, rue des Grands Jardins</p>
-                                        <p>📞 <a href="tel:+33238312648">02 38 31 26 48</a></p>
-                                        <p>✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
-                                        <span class="badge" style="background:#888;">Privée</span>
+                                        <h4>Briare</h4>
+                                        <span class="ecole-nom-court">École Sainte-Anne (privée)</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Maternelle et élémentaire<br>5, rue des Grands Jardins</p>
+                                            <p>📞 <a href="tel:+33238312648">02 38 31 26 48</a></p>
+                                            <p>✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
+                                            <span class="badge" style="background:#888;">Privée</span>
+                                        </div>
                                     </div>
+
+                                    <!-- CHÂTILLON-SUR-LOIRE -->
                                     <div class="ecole-card">
                                         <h4>Châtillon-sur-Loire</h4>
-                                        <p>Maternelle et élémentaire<br>place du Champ de Foire</p>
-                                        <p>📞 <a href="tel:+33238314074">02 38 31 40 74</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
-                                        <span class="badge">RPI</span>
+                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>place du Champ de Foire</p>
+                                            <p>📞 <a href="tel:+33238314074">02 38 31 40 74</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
+                                            <span class="badge">RPI</span>
+                                        </div>
                                     </div>
+
+                                    <!-- OUSSON-SUR-LOIRE -->
                                     <div class="ecole-card">
                                         <h4>Ousson-sur-Loire</h4>
-                                        <p>École primaire George Sand<br>11 rue de l'Abreuvoir (élémentaire)<br>2 bis rue des Marronniers (maternelle)</p>
-                                        <p>📞 <a href="tel:+33238310051">02 38 31 00 51</a></p>
-                                        <p>✉️ <a href="mailto:ce.0450189L@ac-orleans-tours.fr">ce.0450189L@ac-orleans-tours.fr</a></p>
+                                        <span class="ecole-nom-court">École George Sand</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Élémentaire et maternelle<br>11 rue de l'Abreuvoir (élémentaire)<br>2 bis rue des Marronniers (maternelle)</p>
+                                            <p>📞 <a href="tel:+33238310051">02 38 31 00 51</a></p>
+                                            <p>✉️ <a href="mailto:ce.0450189L@ac-orleans-tours.fr">ce.0450189L@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- OUZOUËR-SUR-TRÉZÉE -->
                                     <div class="ecole-card">
                                         <h4>Ouzouër-sur-Trézée</h4>
-                                        <p>École Jacques Prévert - Maternelle et élémentaire<br>14 rue de la Flamandière (élémentaire)<br>1 rue du Stade (maternelle)</p>
-                                        <p>📞 <a href="tel:+33238319747">02 38 31 97 47</a><br>
-                                        📞 <a href="tel:+33238319289">02 38 31 92 89</a></p>
-                                        <p>✉️ <a href="mailto:ce.0451269K@ac-orleans-tours.fr">ce.0451269K@ac-orleans-tours.fr</a></p>
+                                        <span class="ecole-nom-court">École Jacques Prévert</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Maternelle et élémentaire<br>14 rue de la Flamandière (élémentaire)<br>1 rue du Stade (maternelle)</p>
+                                            <p>📞 <a href="tel:+33238319747">02 38 31 97 47</a><br>
+                                            📞 <a href="tel:+33238319289">02 38 31 92 89</a></p>
+                                            <p>✉️ <a href="mailto:ce.0451269K@ac-orleans-tours.fr">ce.0451269K@ac-orleans-tours.fr</a></p>
+                                        </div>
                                     </div>
+
+                                    <!-- SIIS CERNOY / PIERREFITTE -->
                                     <div class="ecole-card">
-                                        <h4>SIIS Cernoy-en-Berry / Pierrefitte</h4>
-                                        <p><strong>Cernoy-en-Berry :</strong> Maternelle, 5 rue d'Autry<br>📞 <a href="tel:+33238310100">02 38 31 01 00</a><br>✉️ <a href="mailto:ec-cernoy-en-berry@ac-orleans-tours.fr">ec-cernoy-en-berry@ac-orleans-tours.fr</a></p>
-                                        <p><strong>Pierrefitte-ès-Bois :</strong> Élémentaire, 7 rue de la Mairie<br>📞 <a href="tel:+33238310813">02 38 31 08 13</a><br>✉️ <a href="mailto:ec-pierrefitte-es-bois@ac-orleans-tours.fr">ec-pierrefitte-es-bois@ac-orleans-tours.fr</a></p>
-                                        <span class="badge">RPI</span>
+                                        <h4>Cernoy-en-Berry / Pierrefitte</h4>
+                                        <span class="ecole-nom-court">SIIS Cernoy / Pierrefitte</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><strong>Cernoy-en-Berry :</strong> Maternelle, 5 rue d'Autry<br>📞 <a href="tel:+33238310100">02 38 31 01 00</a><br>✉️ <a href="mailto:ec-cernoy-en-berry@ac-orleans-tours.fr">ec-cernoy-en-berry@ac-orleans-tours.fr</a></p>
+                                            <p><strong>Pierrefitte-ès-Bois :</strong> Élémentaire, 7 rue de la Mairie<br>📞 <a href="tel:+33238310813">02 38 31 08 13</a><br>✉️ <a href="mailto:ec-pierrefitte-es-bois@ac-orleans-tours.fr">ec-pierrefitte-es-bois@ac-orleans-tours.fr</a></p>
+                                            <span class="badge">RPI</span>
+                                        </div>
                                     </div>
+
+                                    <!-- SIIS ADON / LA BUSSIÈRE -->
                                     <div class="ecole-card">
-                                        <h4>SIIS Adon / La Bussière</h4>
-                                        <p><strong>Adon :</strong> 13 route de la Bussière<br>📞 <a href="tel:+33238359469">02 38 35 94 69</a><br>✉️ <a href="mailto:ce.0450175W@ac-orleans-tours.fr">ce.0450175W@ac-orleans-tours.fr</a></p>
-                                        <p><strong>La Bussière :</strong> rue d'Ouzouer<br>📞 <a href="tel:+33238359068">02 38 35 90 68</a><br>✉️ <a href="mailto:ce.0450184F@ac-orleans-tours.fr">ce.0450184F@ac-orleans-tours.fr</a></p>
-                                        <span class="badge">RPI</span>
+                                        <h4>Adon / La Bussière</h4>
+                                        <span class="ecole-nom-court">SIIS Adon / La Bussière</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><strong>Adon :</strong> 13 route de la Bussière<br>📞 <a href="tel:+33238359469">02 38 35 94 69</a><br>✉️ <a href="mailto:ce.0450175W@ac-orleans-tours.fr">ce.0450175W@ac-orleans-tours.fr</a></p>
+                                            <p><strong>La Bussière :</strong> rue d'Ouzouer<br>📞 <a href="tel:+33238359068">02 38 35 90 68</a><br>✉️ <a href="mailto:ce.0450184F@ac-orleans-tours.fr">ce.0450184F@ac-orleans-tours.fr</a></p>
+                                            <span class="badge">RPI</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -598,49 +764,85 @@
                                 <div class="accordion-card-grid">
                                     <div class="ecole-card">
                                         <h4>Autry-le-Châtel</h4>
-                                        <p>Contact en mairie les après-midis<br>Lun, mar, jeu, ven de 7h15 à 8h45 et de 16h30 à 18h30</p>
-                                        <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie les après-midis<br>Lun, mar, jeu, ven de 7h15 à 8h45 et de 16h30 à 18h30</p>
+                                            <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Beaulieu-sur-Loire</h4>
-                                        <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
-                                        <p>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h15 à 18h30 / Mer de 7h30 à 18h30</p>
-                                        <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
+                                        <span class="ecole-nom-court">Les Crayons de couleurs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
+                                            <p>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h15 à 18h30 / Mer de 7h30 à 18h30</p>
+                                            <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Bonny-sur-Loire</h4>
-                                        <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h30 à 8h50 et de 16h30 à 18h30</p>
-                                        <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h30 à 8h50 et de 16h30 à 18h30</p>
+                                            <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Briare</h4>
-                                        <p>L'inscription se fait par le portail famille<br>Lun, mar, jeu, ven 7h00 à 8h40 et de 16h20 à 18h00</p>
-                                        <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>L'inscription se fait par le portail famille<br>Lun, mar, jeu, ven 7h00 à 8h40 et de 16h20 à 18h00</p>
+                                            <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Châtillon-sur-Loire</h4>
-                                        <p>Permanence au bureau jusqu'à 10h30<br>Lun., mar., jeu. et vend. de 7h00 à 8h45 et de 16h30 à 18h30</p>
-                                        <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Permanence au bureau jusqu'à 10h30<br>Lun., mar., jeu. et vend. de 7h00 à 8h45 et de 16h30 à 18h30</p>
+                                            <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Ousson-sur-Loire</h4>
-                                        <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
-                                        <p>2 bis rue des Marronniers<br>📞 <a href="tel:0238314456">02 38 31 44 56</a><br>📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
+                                            <p>2 bis rue des Marronniers<br>📞 <a href="tel:0238314456">02 38 31 44 56</a><br>📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Ouzouër-sur-Loire</h4>
-                                        <p>Contact en mairie<br>Garderie sans inscription sauf le mercredi<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
-                                        <p>📞 <a href="tel:0238319390">02 38 31 93 90</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil périscolaire</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>Garderie sans inscription sauf le mercredi<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
+                                            <p>📞 <a href="tel:0238319390">02 38 31 93 90</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
-                                        <h4>SIIS Adon - La Bussière</h4>
-                                        <p>Regroupement sur La Bussière. Contact en mairie<br>Lun, mar, jeu, ven de 7h15 à 8h30 et de 16h30 à 18h30 - Mer de 7h15 à 18h30</p>
-                                        <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
+                                        <h4>Adon / La Bussière</h4>
+                                        <span class="ecole-nom-court">SIIS Adon - La Bussière</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Regroupement sur La Bussière. Contact en mairie<br>Lun, mar, jeu, ven de 7h15 à 8h30 et de 16h30 à 18h30 - Mer de 7h15 à 18h30</p>
+                                            <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
-                                        <h4>SIIS Cernoy-en-Berry / Pierrefitte</h4>
-                                        <p>Regroupement sur Cernoy-en-Berry. Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 19h00</p>
-                                        <p>2 rue de Concressault<br>📞 <a href="tel:0238314702">02 38 31 47 02</a><br>📧 <a href="mailto:siriscernoypierrefitte@cernoy-en-berry.fr">siriscernoypierrefitte@cernoy-en-berry.fr</a></p>
+                                        <h4>Cernoy-en-Berry / Pierrefitte</h4>
+                                        <span class="ecole-nom-court">SIIS Cernoy - Pierrefitte</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Regroupement sur Cernoy-en-Berry. Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 19h00</p>
+                                            <p>2 rue de Concressault<br>📞 <a href="tel:0238314702">02 38 31 47 02</a><br>📧 <a href="mailto:siriscernoypierrefitte@cernoy-en-berry.fr">siriscernoypierrefitte@cernoy-en-berry.fr</a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -662,39 +864,67 @@
                                 <div class="accordion-card-grid">
                                     <div class="ecole-card">
                                         <h4>Autry-le-Châtel</h4>
-                                        <p>Contact en mairie les après-midis<br>4 semaines en juillet de 7h00 à 18h30</p>
-                                        <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie les après-midis<br>4 semaines en juillet de 7h00 à 18h30</p>
+                                            <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Beaulieu-sur-Loire</h4>
-                                        <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
-                                        <p>Chaque vacances scolaires (sauf Noël) de 7h30 à 18h30</p>
-                                        <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
+                                        <span class="ecole-nom-court">Les Crayons de couleurs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
+                                            <p>Chaque vacances scolaires (sauf Noël) de 7h30 à 18h30</p>
+                                            <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Bonny-sur-Loire</h4>
-                                        <p>Contact en mairie<br>1ère semaine des petites vacances (sauf Noël) du lundi au vendredi<br>Le 1er mois d'été de 8h00 à 18h00</p>
-                                        <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>1ère semaine des petites vacances (sauf Noël) du lundi au vendredi<br>Le 1er mois d'été de 8h00 à 18h00</p>
+                                            <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Briare</h4>
-                                        <p>Inscription par le portail famille<br>Mercredis et petites vacances : à la journée<br>Grandes vacances : à la semaine</p>
-                                        <p>📞 <a href="tel:0238316755">02 38 31 67 55</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Inscription par le portail famille<br>Mercredis et petites vacances : à la journée<br>Grandes vacances : à la semaine</p>
+                                            <p>📞 <a href="tel:0238316755">02 38 31 67 55</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Châtillon-sur-Loire</h4>
-                                        <p>Permanence au bureau jusqu'à 10h30<br>Mercredis : 7h00 à 18h00<br>Petites vacances : du lundi au vendredi, 7h00 à 18h00<br>Grandes vacances : du lundi au vendredi, 7h30 à 18h00</p>
-                                        <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Permanence au bureau jusqu'à 10h30<br>Mercredis : 7h00 à 18h00<br>Petites vacances : du lundi au vendredi, 7h00 à 18h00<br>Grandes vacances : du lundi au vendredi, 7h30 à 18h00</p>
+                                            <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Ouzouër-sur-Loire</h4>
-                                        <p>Contact en mairie<br>Mercredis de 7h00 à 18h30 - Inscription par ½ journée</p>
-                                        <p>📞 <a href="tel:0238319289">02 38 31 92 89</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>Mercredis de 7h00 à 18h30 - Inscription par ½ journée</p>
+                                            <p>📞 <a href="tel:0238319289">02 38 31 92 89</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
+                                        </div>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>La Bussière</h4>
-                                        <p>Contact en mairie<br>Mercredis de 7h15 à 18h30<br>Vacances de la Toussaint, hiver et printemps (1ère semaine) de 7h30 à 18h00</p>
-                                        <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
+                                        <span class="ecole-nom-court">Accueil de loisirs</span>
+                                        <span class="ecole-toggle-icon">+</span>
+                                        <div class="ecole-details">
+                                            <p>Contact en mairie<br>Mercredis de 7h15 à 18h30<br>Vacances de la Toussaint, hiver et printemps (1ère semaine) de 7h30 à 18h00</p>
+                                            <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -933,10 +1163,44 @@
             window.addEventListener('hashchange', openAccordionFromHash);
 
             // ============================================================
+            // ---- CARTES ÉCOLES DÉPLIABLES SUR MOBILE ----
+            // ============================================================
+            function initCartesDepliables() {
+                if (window.innerWidth > 768) return;
+
+                document.querySelectorAll('.ecole-card').forEach(function(carte) {
+                    if (carte.dataset.depliable === 'true') return;
+                    carte.dataset.depliable = 'true';
+
+                    carte.addEventListener('click', function(e) {
+                        // Ne pas déclencher si on clique sur un lien (téléphone, mail)
+                        if (e.target.closest('a')) return;
+                        this.classList.toggle('open');
+                    });
+                });
+            }
+
+            window.addEventListener('DOMContentLoaded', initCartesDepliables);
+
+            // Réinitialiser si on redimensionne (passage PC ↔ mobile)
+            let resizeTimerCarte;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimerCarte);
+                resizeTimerCarte = setTimeout(function() {
+                    if (window.innerWidth > 768) {
+                        document.querySelectorAll('.ecole-card.open').forEach(function(c) {
+                            c.classList.remove('open');
+                        });
+                    } else {
+                        initCartesDepliables();
+                    }
+                }, 200);
+            });
+
+            // ============================================================
             // ---- CARTE LEAFLET (géocodage hybride + RPI étendus) ----
             // ============================================================
 
-            // --- 1) Établissements avec école ---
             const etablissementsData = [
                 {
                     type: "college",
@@ -1096,8 +1360,6 @@
                 }
             ];
 
-            // --- 2) Communes rattachées à un RPI SANS école sur place ---
-            // Note : Thou a adresseRecherche: null pour figer sa position sur la mairie
             const communesRattachees = [
                 {
                     rpiId: "rpi-chatillon",
@@ -1152,10 +1414,6 @@
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(mapEcoles);
 
-                    // ============================================================
-                    // ---- CONTOURS ADMINISTRATIFS (communes + EPCI) ----
-                    // ============================================================
-
                     var styleEPCI = {
                         color: "#4A4DBD",
                         weight: 3,
@@ -1204,10 +1462,6 @@
                         .catch(function(err) {
                             console.warn('⚠️ Erreur contours communes :', err);
                         });
-
-                    // ============================================================
-                    // ---- MARQUEURS ----
-                    // ============================================================
 
                     const styleParType = {
                         "college":      { couleur: "#e85d2c", rayon: 11, bordure: "#fff" },
@@ -1326,9 +1580,6 @@
 
                     setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
 
-                    // ============================================================
-                    // ---- GÉOCODAGE HYBRIDE (API Adresse du gouvernement) ----
-                    // ============================================================
                     (function geocodageHybride() {
                         const API_URL = 'https://api-adresse.data.gouv.fr/search/';
                         const cache = new Map();
@@ -1347,7 +1598,6 @@
                                 requete: item.etab.adresse
                             };
                         }).concat(markersCommunes.filter(function(item) {
-                            // On ne géocode QUE les communes avec une adresse de recherche
                             return item.etab.adresseRecherche !== null && item.etab.adresseRecherche !== undefined;
                         }).map(function(item) {
                             return {
