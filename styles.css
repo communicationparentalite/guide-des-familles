@@ -359,11 +359,21 @@ li { margin-bottom: 0.5rem; }
 /* survol et quand il est actif.                               */
 /* ============================================================ */
 
-/* Accueil - vert par défaut */
+/* Accueil - dégradé 5 couleurs (rappel du header d'accueil) */
 .nav-list a.nav-link-accueil:hover,
 .nav-list a.nav-link-accueil.active {
-    border-bottom-color: #2E7D32;
-    color: #2E7D32;
+    border-bottom: none;
+    background-image: linear-gradient(90deg,
+        #2E7D32 0%,
+        #5be485 25%,
+        #f0bb1e 50%,
+        #ff66c4 75%,
+        #1f5692 100%
+    );
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 100% 3px;
+    color: var(--text-dark);
 }
 
 /* Interlocuteurs - bleu */
@@ -1561,6 +1571,15 @@ li { margin-bottom: 0.5rem; }
         background-color: var(--primary-light);
         color: white;
         font-weight: 600;
+    }
+
+    /* Sur mobile, on désactive le dégradé pour éviter le rendu bizarre */
+    .nav-list a.nav-link-accueil:hover,
+    .nav-list a.nav-link-accueil.active {
+        background-image: none;
+        border-bottom: 1px solid var(--border-color);
+        background-color: var(--primary-light);
+        color: white;
     }
 
     .nav-dropdown-menu {
