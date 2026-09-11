@@ -342,22 +342,27 @@ li { margin-bottom: 0.5rem; }
     margin: 0;
 }
 
+/* Sous-menu : couleur neutre gris foncé par défaut */
 .nav-dropdown-menu li a {
     padding: 0.75rem 1.25rem;
     display: block;
     font-weight: 400;
     font-size: 0.9rem;
+    color: var(--text-dark);
     border-bottom: 1px solid var(--border-color);
     border-left: none;
     position: static;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .nav-dropdown-menu li:last-child a {
     border-bottom: none;
 }
 
+/* Au survol individuel : couleur de la page active */
 .nav-dropdown-menu li a:hover {
     background-color: var(--bg-light);
+    color: var(--primary-color);
 }
 
 /* ============================================================ */
@@ -378,10 +383,10 @@ li { margin-bottom: 0.5rem; }
 .nav-list > li > a.nav-link-accueil::after {
     content: "";
     position: absolute;
-    bottom: -2px;          /* ← aligné avec le bord extérieur des autres liserés */
+    bottom: -2px;          /* ← aligné avec le bord extérieur */
     left: 0;
     width: 100%;
-    height: 2px;
+    height: 2px;           /* ← épaisseur 2px */
     background: linear-gradient(90deg,
         #2E7D32 0%,
         #5be485 25%,
@@ -391,7 +396,7 @@ li { margin-bottom: 0.5rem; }
     );
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.1s ease;
+    transition: transform 0.3s ease;
     pointer-events: none;
 }
 
@@ -1643,6 +1648,12 @@ li { margin-bottom: 0.5rem; }
         padding-left: 2.5rem;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
+        color: var(--text-dark);
+    }
+
+    .nav-dropdown-menu li a:hover {
+        background-color: var(--bg-light);
+        color: var(--primary-color);
     }
 
     .section { padding: 1.5rem 0; }
