@@ -1097,6 +1097,7 @@
             ];
 
             // --- 2) Communes rattachées à un RPI SANS école sur place ---
+            // Note : Thou a adresseRecherche: null pour figer sa position sur la mairie
             const communesRattachees = [
                 {
                     rpiId: "rpi-chatillon",
@@ -1127,8 +1128,8 @@
                     commune: "Thou",
                     nom: "Commune rattachée au RPI de Bonny-sur-Loire",
                     info: "Les élèves de Thou sont scolarisés à l'école de Bonny-sur-Loire.",
-                    adresseRecherche: "mairie 45420 Thou",
-                    lat: 47.5772, lng: 2.9289
+                    adresseRecherche: null,
+                    lat: 47.5837, lng: 2.9294
                 },
                 {
                     rpiId: "rpi-bonny",
@@ -1153,11 +1154,8 @@
 
                     // ============================================================
                     // ---- CONTOURS ADMINISTRATIFS (communes + EPCI) ----
-                    // Chargés AVANT les marqueurs pour rester en arrière-plan.
-                    // Les fichiers sont à la racine du dépôt GitHub.
                     // ============================================================
 
-                    // --- Contour de la Communauté de Communes (EPCI) ---
                     var styleEPCI = {
                         color: "#4A4DBD",
                         weight: 3,
@@ -1183,7 +1181,6 @@
                             console.warn('⚠️ Erreur contour EPCI :', err);
                         });
 
-                    // --- Contours des communes ---
                     var styleCommunes = {
                         color: "#8B8DEF",
                         weight: 1.2,
@@ -1220,7 +1217,6 @@
                         "commune-rpi":  { couleur: "#ffffff", rayon: 5,  bordure: "#4A4DBD" }
                     };
 
-                    // ---- Regroupement par RPI (écoles + communes rattachées) ----
                     const rpiGroupes = {};
                     etablissementsData.forEach(function(etab) {
                         if (etab.rpiId) {
@@ -1233,7 +1229,6 @@
                         rpiGroupes[c.rpiId].push(c);
                     });
 
-                    // ---- Lignes pointillées RPI ----
                     const rpiLines = {};
                     Object.keys(rpiGroupes).forEach(function(rpiId) {
                         const entites = rpiGroupes[rpiId];
@@ -1251,11 +1246,9 @@
                         }
                     });
 
-                    // ---- Marqueurs ----
                     const markersByEtab = [];
                     const markersCommunes = [];
 
-                    // Établissements
                     etablissementsData.forEach(function(etab) {
                         const style = styleParType[etab.type] || styleParType["ecole"];
 
@@ -1300,7 +1293,6 @@
                         markersByEtab.push({ etab: etab, marker: marker });
                     });
 
-                    // Communes rattachées (petits points)
                     communesRattachees.forEach(function(c) {
                         const style = styleParType["commune-rpi"];
 
@@ -1354,7 +1346,10 @@
                                 typeRequete: 'etablissement',
                                 requete: item.etab.adresse
                             };
-                        }).concat(markersCommunes.map(function(item) {
+                        }).concat(markersCommunes.filter(function(item) {
+                            // On ne géocode QUE les communes avec une adresse de recherche
+                            return item.etab.adresseRecherche !== null && item.etab.adresseRecherche !== undefined;
+                        }).map(function(item) {
                             return {
                                 etab: item.etab,
                                 marker: item.marker,
