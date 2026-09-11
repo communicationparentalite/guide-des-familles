@@ -391,7 +391,7 @@ li { margin-bottom: 0.5rem; }
     );
     transform: scaleX(0);
     transform-origin: left;
-    transition: transform 0.3s ease;
+    transition: transform 0.1s ease;
     pointer-events: none;
 }
 
