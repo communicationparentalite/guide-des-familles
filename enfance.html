@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!-- Leaflet CSS (indispensable pour que la carte s'affiche correctement) -->
+    <!-- Leaflet CSS (indispensable pour la carte) -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
         /* ===== COULEURS SPÉCIFIQUES À ENFANCE (VIOLET) ===== */
@@ -177,6 +177,71 @@
 
         .leaflet-tooltip.ecole-tooltip-wrapper::before {
             border-top-color: #fff;
+        }
+
+        /* ===== LÉGENDE DE LA CARTE ===== */
+        .carte-legende {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+            justify-content: center;
+            margin: 0.8rem 0 1.5rem 0;
+            padding: 0.8rem 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            font-size: 0.85rem;
+        }
+        .carte-legende-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .carte-legende-pastille {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(0,0,0,0.1);
+        }
+        .carte-legende-pastille.college { background: #e85d2c; }
+        .carte-legende-pastille.dispositif { background: #2e8b57; }
+        .carte-legende-pastille.ecole { background: var(--primary-color); }
+        .carte-legende-pastille.privee { background: #888; }
+        .carte-legende-pastille.rpi {
+            background: var(--primary-light);
+            border: 2px dashed var(--primary-dark);
+            box-shadow: none;
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Info-bulles enrichies avec badge */
+        .ecole-tooltip .ecole-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+        .ecole-tooltip .ecole-badge.college { background: #e85d2c; }
+        .ecole-tooltip .ecole-badge.dispositif { background: #2e8b57; }
+        .ecole-tooltip .ecole-badge.rpi { background: var(--primary-dark); }
+        .ecole-tooltip .ecole-badge.privee { background: #888; }
+
+        .ecole-tooltip .ecole-rpi-info {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--primary-dark);
+            font-style: italic;
+            margin-top: 0.3rem;
+            padding-top: 0.3rem;
+            border-top: 1px dashed var(--border-color);
         }
 
         /* ===== IMAGE + TEXTE ===== */
@@ -352,15 +417,57 @@
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
-                                <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2.</p>
+                                <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2. Deux dispositifs d'inclusion (ULIS) et une SEGPA complètent l'offre éducative du territoire.</p>
                             </div>
                             <div class="full-text">
                                 <!-- Carte Leaflet -->
                                 <div id="carte-ecoles"></div>
+
+                                <!-- Légende -->
+                                <div class="carte-legende">
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille college"></span>
+                                        <span>Collèges</span>
+                                    </div>
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille dispositif"></span>
+                                        <span>ULIS / SEGPA</span>
+                                    </div>
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille ecole"></span>
+                                        <span>Écoles publiques</span>
+                                    </div>
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille privee"></span>
+                                        <span>École privée</span>
+                                    </div>
+                                    <div class="carte-legende-item">
+                                        <span class="carte-legende-pastille rpi"></span>
+                                        <span>Écoles en RPI</span>
+                                    </div>
+                                </div>
+
                                 <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1rem; margin-bottom:1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
 
-                                <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Écoles du territoire</h4>
+                                <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Établissements du territoire</h4>
                                 <div class="accordion-card-grid">
+                                    <!-- COLLÈGES -->
+                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
+                                        <h4>Collège Albert Camus</h4>
+                                        <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
+                                        <p>Rue du Port à Belleau, Briare</p>
+                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                        ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
+                                    </div>
+                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
+                                        <h4>Collège Pierre Dézarnaulds</h4>
+                                        <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
+                                        <p>2 allée du Paradis, Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                        ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
+                                    </div>
+
+                                    <!-- ÉCOLES PUBLIQUES -->
                                     <div class="ecole-card">
                                         <h4>Autry-le-Châtel</h4>
                                         <p>Maternelle et élémentaire<br>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)</p>
@@ -401,12 +508,12 @@
                                         <p>📞 <a href="tel:+33238312534">02 38 31 25 34</a></p>
                                         <p>✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
                                     </div>
-                                    <div class="ecole-card">
+                                    <div class="ecole-card" style="border-left-color:#888;">
                                         <h4>Briare - Sainte-Anne</h4>
                                         <p>Maternelle et élémentaire (privée)<br>5, rue des Grands Jardins</p>
                                         <p>📞 <a href="tel:+33238312648">02 38 31 26 48</a></p>
                                         <p>✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
-                                        <span class="badge">Privée</span>
+                                        <span class="badge" style="background:#888;">Privée</span>
                                     </div>
                                     <div class="ecole-card">
                                         <h4>Châtillon-sur-Loire</h4>
@@ -779,7 +886,6 @@
                     header.classList.add('open');
                     header.setAttribute('aria-expanded', 'true');
                     body.classList.add('open');
-                    // Redimensionner la carte Leaflet quand l'accordéon s'ouvre
                     if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
                         setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
                     }
@@ -812,7 +918,6 @@
                     fullText.classList.toggle('visible');
                     this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
 
-                    // Redimensionner la carte si on vient d'ouvrir scolarité
                     if (!isVisible && window.__carteEcoles) {
                         setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
                     }
@@ -850,124 +955,190 @@
             // ============================================================
             // ---- CARTE LEAFLET ----
             // ============================================================
-            const ecolesData = [{
-                commune: "Autry-le-Châtel",
-                nom: "École maternelle et élémentaire",
-                adresse: "14 rue de l'École / route de Châtillon, 45500 Autry-le-Châtel",
-                telephone: "02 38 36 82 62 / 02 38 36 81 88",
-                email: "ce.0450195T@ac-orleans-tours.fr (élém.) / ce.0450749V@ac-orleans-tours.fr (mat.)",
-                lat: 47.598875,
-                lng: 2.604867
-            }, {
-                commune: "Beaulieu-sur-Loire",
-                nom: "École maternelle et élémentaire",
-                adresse: "15-17 rue de Châtillon, 45630 Beaulieu-sur-Loire",
-                telephone: "02.19.00.49.86 / 02.38.35.85.35",
-                email: "ce.0451398A@ac-orleans-tours.fr",
-                lat: 47.544626,
-                lng: 2.812810
-            }, {
-                commune: "Ousson-sur-Loire",
-                nom: "École élémentaire George Sand",
-                adresse: "11 rue de l'Abreuvoir / 2 bis rue des Marronniers, 45250 Ousson-sur-Loire",
-                telephone: "02 38 31 00 51",
-                email: "ce.0450189L@ac-orleans-tours.fr",
-                lat: 47.588507,
-                lng: 2.786550
-            }, {
-                commune: "Briare",
-                nom: "École Marcel Gaime (maternelle)",
-                adresse: "place Saint Roch, 45250 Briare",
-                telephone: "02 38 31 25 85",
-                email: "ce.0450167M@ac-orleans-tours.fr",
-                lat: 47.637205,
-                lng: 2.738436
-            }, {
-                commune: "Briare",
-                nom: "École du Centre (élémentaire)",
-                adresse: "3 square Foch, 45250 Briare",
-                telephone: "02 38 31 26 49",
-                email: "ce.0450869A@ac-orleans-tours.fr",
-                lat: 47.640598,
-                lng: 2.737694
-            }, {
-                commune: "Briare",
-                nom: "École Gustave Eiffel (maternelle et élémentaire)",
-                adresse: "7 rue de l'Espérance, 45250 Briare",
-                telephone: "02 38 31 25 34",
-                email: "ce.0450178Z@ac-orleans-tours.fr",
-                lat: 47.631652,
-                lng: 2.743530
-            }, {
-                commune: "Briare",
-                nom: "École Sainte-Anne (privée, maternelle et élémentaire)",
-                adresse: "5 rue des Grands Jardins, 45250 Briare",
-                telephone: "02 38 31 26 48",
-                email: "ce.0451522K@ac-orleans-tours.fr",
-                lat: 47.637611,
-                lng: 2.736503
-            }, {
-                commune: "Bonny-sur-Loire",
-                nom: "École maternelle et élémentaire",
-                adresse: "2 avenue de la Gare, 45420 Bonny-sur-Loire",
-                telephone: "02 38 31 63 57",
-                email: "ce.0450182D@ac-orleans-tours.fr",
-                lat: 47.559345,
-                lng: 2.842596
-            }, {
-                commune: "Châtillon-sur-Loire",
-                nom: "École maternelle et élémentaire",
-                adresse: "place du Champ de Foire, 45360 Châtillon-sur-Loire",
-                telephone: "02 38 31 40 74",
-                email: "ce.0450881N@ac-orleans-tours.fr",
-                lat: 47.591146,
-                lng: 2.748100
-            }, {
-                commune: "Ouzouër-sur-Trézée",
-                nom: "École Jacques Prévert (maternelle et élémentaire)",
-                adresse: "14 rue de la Flamandière / 1 rue du Stade, 45250 Ouzouër-sur-Trézée",
-                telephone: "02 38 31 97 47 / 02 38 31 92 89",
-                email: "ce.0451269K@ac-orleans-tours.fr",
-                lat: 47.670537,
-                lng: 2.807115
-            }, {
-                commune: "Cernoy-en-Berry",
-                nom: "École maternelle (RPI Cernoy / Pierrefitte)",
-                adresse: "5 rue d'Autry, 45360 Cernoy-en-Berry",
-                telephone: "02 38 31 01 00",
-                email: "ec-cernoy-en-berry@ac-orleans-tours.fr",
-                lat: 47.541448,
-                lng: 2.660588
-            }, {
-                commune: "Pierrefitte-ès-Bois",
-                nom: "École élémentaire (RPI Cernoy / Pierrefitte)",
-                adresse: "7 rue de la Mairie, 45360 Pierrefitte-ès-Bois",
-                telephone: "02 38 31 08 13",
-                email: "ec-pierrefitte-es-bois@ac-orleans-tours.fr",
-                lat: 47.507527,
-                lng: 2.717887
-            }, {
-                commune: "Adon",
-                nom: "École élémentaire (SIIS Adon / La Bussière)",
-                adresse: "13 route de la Bussière, 45230 Adon",
-                telephone: "02 38 35 94 69",
-                email: "ce.0450175W@ac-orleans-tours.fr",
-                lat: 47.763036,
-                lng: 2.795527
-            }, {
-                commune: "La Bussière",
-                nom: "École primaire (SIIS Adon / La Bussière)",
-                adresse: "rue d'Ouzouer, 45230 La Bussière",
-                telephone: "02 38 35 90 68",
-                email: "ce.0450184F@ac-orleans-tours.fr",
-                lat: 47.744547,
-                lng: 2.749711
-            }];
+            const etablissementsData = [
+                // ========== COLLÈGES (rouge orangé) ==========
+                {
+                    type: "college",
+                    commune: "Briare",
+                    nom: "Collège Albert Camus",
+                    adresse: "Rue du Port à Belleau, 45250 Briare",
+                    telephone: "02 38 37 02 83",
+                    email: "ce0450008p@ac-orleans-tours.fr",
+                    dispositifs: "SEGPA + ULIS",
+                    lat: 47.6378,
+                    lng: 2.7373
+                },
+                {
+                    type: "college",
+                    commune: "Châtillon-sur-Loire",
+                    nom: "Collège Pierre Dézarnaulds",
+                    adresse: "2 allée du Paradis, 45360 Châtillon-sur-Loire",
+                    telephone: "02 38 31 42 49",
+                    email: "ce0450017z@ac-orleans-tours.fr",
+                    dispositifs: "ULIS",
+                    lat: 47.5905,
+                    lng: 2.7485
+                },
+
+                // ========== ÉCOLES PUBLIQUES ==========
+                {
+                    type: "ecole",
+                    commune: "Autry-le-Châtel",
+                    nom: "École maternelle et élémentaire",
+                    adresse: "14 rue de l'École / route de Châtillon, 45500 Autry-le-Châtel",
+                    telephone: "02 38 36 82 62 / 02 38 36 81 88",
+                    email: "ce.0450195T@ac-orleans-tours.fr",
+                    lat: 47.598875,
+                    lng: 2.604867
+                },
+                {
+                    type: "ecole",
+                    commune: "Beaulieu-sur-Loire",
+                    nom: "École maternelle et élémentaire",
+                    adresse: "15-17 rue de Châtillon, 45630 Beaulieu-sur-Loire",
+                    telephone: "02.19.00.49.86 / 02.38.35.85.35",
+                    email: "ce.0451398A@ac-orleans-tours.fr",
+                    lat: 47.544626,
+                    lng: 2.812810
+                },
+                {
+                    type: "ecole",
+                    commune: "Ousson-sur-Loire",
+                    nom: "École élémentaire George Sand",
+                    adresse: "11 rue de l'Abreuvoir / 2 bis rue des Marronniers, 45250 Ousson-sur-Loire",
+                    telephone: "02 38 31 00 51",
+                    email: "ce.0450189L@ac-orleans-tours.fr",
+                    lat: 47.588507,
+                    lng: 2.786550
+                },
+                {
+                    type: "ecole",
+                    commune: "Briare",
+                    nom: "École Marcel Gaime (maternelle)",
+                    adresse: "place Saint Roch, 45250 Briare",
+                    telephone: "02 38 31 25 85",
+                    email: "ce.0450167M@ac-orleans-tours.fr",
+                    lat: 47.637205,
+                    lng: 2.738436
+                },
+                {
+                    type: "ecole",
+                    commune: "Briare",
+                    nom: "École du Centre (élémentaire)",
+                    adresse: "3 square Foch, 45250 Briare",
+                    telephone: "02 38 31 26 49",
+                    email: "ce.0450869A@ac-orleans-tours.fr",
+                    lat: 47.640598,
+                    lng: 2.737694
+                },
+                {
+                    type: "ecole",
+                    commune: "Briare",
+                    nom: "École Gustave Eiffel (maternelle et élémentaire)",
+                    adresse: "7 rue de l'Espérance, 45250 Briare",
+                    telephone: "02 38 31 25 34",
+                    email: "ce.0450178Z@ac-orleans-tours.fr",
+                    lat: 47.631652,
+                    lng: 2.743530
+                },
+                {
+                    type: "ecole-privee",
+                    commune: "Briare",
+                    nom: "École Sainte-Anne (privée)",
+                    adresse: "5 rue des Grands Jardins, 45250 Briare",
+                    telephone: "02 38 31 26 48",
+                    email: "ce.0451522K@ac-orleans-tours.fr",
+                    lat: 47.637611,
+                    lng: 2.736503
+                },
+                {
+                    type: "ecole",
+                    commune: "Bonny-sur-Loire",
+                    nom: "École maternelle et élémentaire",
+                    adresse: "2 avenue de la Gare, 45420 Bonny-sur-Loire",
+                    telephone: "02 38 31 63 57",
+                    email: "ce.0450182D@ac-orleans-tours.fr",
+                    lat: 47.559345,
+                    lng: 2.842596
+                },
+                {
+                    type: "ecole",
+                    commune: "Châtillon-sur-Loire",
+                    nom: "École maternelle et élémentaire",
+                    adresse: "place du Champ de Foire, 45360 Châtillon-sur-Loire",
+                    telephone: "02 38 31 40 74",
+                    email: "ce.0450881N@ac-orleans-tours.fr",
+                    lat: 47.591146,
+                    lng: 2.748100
+                },
+                {
+                    type: "ecole",
+                    commune: "Ouzouër-sur-Trézée",
+                    nom: "École Jacques Prévert",
+                    adresse: "14 rue de la Flamandière / 1 rue du Stade, 45250 Ouzouër-sur-Trézée",
+                    telephone: "02 38 31 97 47 / 02 38 31 92 89",
+                    email: "ce.0451269K@ac-orleans-tours.fr",
+                    lat: 47.670537,
+                    lng: 2.807115
+                },
+
+                // ========== RPI CERNOY / PIERREFITTE ==========
+                {
+                    type: "rpi",
+                    rpiId: "rpi-cernoy-pierrefitte",
+                    commune: "Cernoy-en-Berry",
+                    nom: "École maternelle (RPI Cernoy / Pierrefitte)",
+                    adresse: "5 rue d'Autry, 45360 Cernoy-en-Berry",
+                    telephone: "02 38 31 01 00",
+                    email: "ec-cernoy-en-berry@ac-orleans-tours.fr",
+                    rpiInfo: "RPI Cernoy / Pierrefitte — Maternelle à Cernoy, élémentaire à Pierrefitte",
+                    lat: 47.541448,
+                    lng: 2.660588
+                },
+                {
+                    type: "rpi",
+                    rpiId: "rpi-cernoy-pierrefitte",
+                    commune: "Pierrefitte-ès-Bois",
+                    nom: "École élémentaire (RPI Cernoy / Pierrefitte)",
+                    adresse: "7 rue de la Mairie, 45360 Pierrefitte-ès-Bois",
+                    telephone: "02 38 31 08 13",
+                    email: "ec-pierrefitte-es-bois@ac-orleans-tours.fr",
+                    rpiInfo: "RPI Cernoy / Pierrefitte — Maternelle à Cernoy, élémentaire à Pierrefitte",
+                    lat: 47.507527,
+                    lng: 2.717887
+                },
+
+                // ========== SIIS ADON / LA BUSSIÈRE ==========
+                {
+                    type: "rpi",
+                    rpiId: "rpi-adon-bussiere",
+                    commune: "Adon",
+                    nom: "École élémentaire (SIIS Adon / La Bussière)",
+                    adresse: "13 route de la Bussière, 45230 Adon",
+                    telephone: "02 38 35 94 69",
+                    email: "ce.0450175W@ac-orleans-tours.fr",
+                    rpiInfo: "SIIS Adon / La Bussière — Élémentaire à Adon, maternelle à La Bussière",
+                    lat: 47.763036,
+                    lng: 2.795527
+                },
+                {
+                    type: "rpi",
+                    rpiId: "rpi-adon-bussiere",
+                    commune: "La Bussière",
+                    nom: "École primaire (SIIS Adon / La Bussière)",
+                    adresse: "rue d'Ouzouer, 45230 La Bussière",
+                    telephone: "02 38 35 90 68",
+                    email: "ce.0450184F@ac-orleans-tours.fr",
+                    rpiInfo: "SIIS Adon / La Bussière — Élémentaire à Adon, maternelle à La Bussière",
+                    lat: 47.744547,
+                    lng: 2.749711
+                }
+            ];
 
             const mapEcolesEl = document.getElementById('carte-ecoles');
             if (mapEcolesEl && typeof L !== 'undefined') {
                 try {
-                    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.75], 11);
+                    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.78], 11);
                     window.__carteEcoles = mapEcoles;
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -975,31 +1146,76 @@
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(mapEcoles);
 
-                    ecolesData.forEach(function(ecole) {
-                        const marker = L.marker([ecole.lat, ecole.lng]).addTo(mapEcoles);
+                    const styleParType = {
+                        "college":      { couleur: "#e85d2c", rayon: 11, bordure: "#fff" },
+                        "ecole":        { couleur: "#686be7", rayon: 8,  bordure: "#fff" },
+                        "ecole-privee": { couleur: "#888888", rayon: 8,  bordure: "#fff" },
+                        "rpi":          { couleur: "#8B8DEF", rayon: 8,  bordure: "#4A4DBD" }
+                    };
 
-                        const emailLigne = ecole.email ?
-                            '<span class="ecole-detail">✉️ ' + ecole.email + '</span>' :
-                            '<span class="ecole-detail" style="color:#999; font-style:italic;">✉️ non communiqué</span>';
+                    // ---- Lignes pointillées pour les RPI ----
+                    const rpiGroupes = {};
+                    etablissementsData.forEach(function(etab) {
+                        if (etab.type === "rpi" && etab.rpiId) {
+                            if (!rpiGroupes[etab.rpiId]) rpiGroupes[etab.rpiId] = [];
+                            rpiGroupes[etab.rpiId].push([etab.lat, etab.lng]);
+                        }
+                    });
+
+                    Object.values(rpiGroupes).forEach(function(points) {
+                        if (points.length >= 2) {
+                            L.polyline(points, {
+                                color: "#4A4DBD",
+                                weight: 2,
+                                dashArray: "6, 8",
+                                opacity: 0.6
+                            }).addTo(mapEcoles);
+                        }
+                    });
+
+                    // ---- Marqueurs ----
+                    etablissementsData.forEach(function(etab) {
+                        const style = styleParType[etab.type] || styleParType["ecole"];
+
+                        const marker = L.circleMarker([etab.lat, etab.lng], {
+                            radius: style.rayon,
+                            fillColor: style.couleur,
+                            color: style.bordure,
+                            weight: etab.type === "rpi" ? 3 : 2,
+                            dashArray: etab.type === "rpi" ? "4, 3" : null,
+                            opacity: 1,
+                            fillOpacity: 0.9
+                        }).addTo(mapEcoles);
+
+                        let badge = "";
+                        if (etab.type === "college") {
+                            badge = '<span class="ecole-badge college">Collège' +
+                                    (etab.dispositifs ? ' • ' + etab.dispositifs : '') + '</span>';
+                        } else if (etab.type === "rpi") {
+                            badge = '<span class="ecole-badge rpi">RPI</span>';
+                        } else if (etab.type === "ecole-privee") {
+                            badge = '<span class="ecole-badge privee">Privée</span>';
+                        }
 
                         const contenu =
                             '<div class="ecole-tooltip">' +
-                            '<span class="ecole-commune">' + ecole.commune + '</span>' +
-                            '<span class="ecole-nom">' + ecole.nom + '</span>' +
-                            '<span class="ecole-detail">📍 ' + ecole.adresse + '</span>' +
-                            '<span class="ecole-detail">📞 ' + ecole.telephone + '</span>' +
-                            emailLigne +
+                            badge +
+                            '<span class="ecole-commune">' + etab.commune + '</span>' +
+                            '<span class="ecole-nom">' + etab.nom + '</span>' +
+                            '<span class="ecole-detail">📍 ' + etab.adresse + '</span>' +
+                            '<span class="ecole-detail">📞 ' + etab.telephone + '</span>' +
+                            (etab.email ? '<span class="ecole-detail">✉️ ' + etab.email + '</span>' : '') +
+                            (etab.rpiInfo ? '<span class="ecole-rpi-info">' + etab.rpiInfo + '</span>' : '') +
                             '</div>';
 
                         marker.bindTooltip(contenu, {
                             direction: 'top',
-                            offset: [0, -30],
+                            offset: [0, -10],
                             className: 'ecole-tooltip-wrapper',
                             opacity: 1
                         });
                     });
 
-                    // Redimensionner la carte après un court délai (au cas où l'accordéon serait déjà ouvert)
                     setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
 
                 } catch (err) {
