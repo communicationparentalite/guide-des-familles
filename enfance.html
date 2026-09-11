@@ -962,7 +962,7 @@
             window.addEventListener('hashchange', openAccordionFromHash);
 
             // ============================================================
-            // ---- CARTE LEAFLET ----
+            // ---- CARTE LEAFLET (avec géocodage hybride) ----
             // ============================================================
             const etablissementsData = [
                 // ========== COLLÈGES (rouge orangé) ==========
@@ -994,7 +994,7 @@
                     type: "ecole",
                     commune: "Autry-le-Châtel",
                     nom: "École maternelle et élémentaire",
-                    adresse: "14 rue de l'École / route de Châtillon, 45500 Autry-le-Châtel",
+                    adresse: "14 rue de l'École, 45500 Autry-le-Châtel",
                     telephone: "02 38 36 82 62 / 02 38 36 81 88",
                     email: "ce.0450195T@ac-orleans-tours.fr",
                     lat: 47.598875,
@@ -1004,7 +1004,7 @@
                     type: "ecole",
                     commune: "Beaulieu-sur-Loire",
                     nom: "École maternelle et élémentaire",
-                    adresse: "15-17 rue de Châtillon, 45630 Beaulieu-sur-Loire",
+                    adresse: "15 rue de Châtillon, 45630 Beaulieu-sur-Loire",
                     telephone: "02.19.00.49.86 / 02.38.35.85.35",
                     email: "ce.0451398A@ac-orleans-tours.fr",
                     lat: 47.544626,
@@ -1014,7 +1014,7 @@
                     type: "ecole",
                     commune: "Ousson-sur-Loire",
                     nom: "École élémentaire George Sand",
-                    adresse: "11 rue de l'Abreuvoir / 2 bis rue des Marronniers, 45250 Ousson-sur-Loire",
+                    adresse: "11 rue de l'Abreuvoir, 45250 Ousson-sur-Loire",
                     telephone: "02 38 31 00 51",
                     email: "ce.0450189L@ac-orleans-tours.fr",
                     lat: 47.588507,
@@ -1084,7 +1084,7 @@
                     type: "ecole",
                     commune: "Ouzouër-sur-Trézée",
                     nom: "École Jacques Prévert",
-                    adresse: "14 rue de la Flamandière / 1 rue du Stade, 45250 Ouzouër-sur-Trézée",
+                    adresse: "14 rue de la Flamandière, 45250 Ouzouër-sur-Trézée",
                     telephone: "02 38 31 97 47 / 02 38 31 92 89",
                     email: "ce.0451269K@ac-orleans-tours.fr",
                     lat: 47.670537,
@@ -1162,27 +1162,36 @@
                         "rpi":          { couleur: "#8B8DEF", rayon: 8,  bordure: "#4A4DBD" }
                     };
 
-                    // ---- Lignes pointillées pour les RPI ----
+                    // ---- Regroupement des RPI ----
                     const rpiGroupes = {};
                     etablissementsData.forEach(function(etab) {
                         if (etab.type === "rpi" && etab.rpiId) {
                             if (!rpiGroupes[etab.rpiId]) rpiGroupes[etab.rpiId] = [];
-                            rpiGroupes[etab.rpiId].push([etab.lat, etab.lng]);
+                            rpiGroupes[etab.rpiId].push(etab);
                         }
                     });
 
-                    Object.values(rpiGroupes).forEach(function(points) {
-                        if (points.length >= 2) {
-                            L.polyline(points, {
-                                color: "#4A4DBD",
-                                weight: 2,
-                                dashArray: "6, 8",
-                                opacity: 0.6
-                            }).addTo(mapEcoles);
+                    // ---- Lignes pointillées RPI (positions initiales) ----
+                    const rpiLines = {};
+                    Object.keys(rpiGroupes).forEach(function(rpiId) {
+                        const etabs = rpiGroupes[rpiId];
+                        if (etabs.length >= 2) {
+                            const line = L.polyline(
+                                etabs.map(function(e) { return [e.lat, e.lng]; }),
+                                {
+                                    color: "#4A4DBD",
+                                    weight: 2,
+                                    dashArray: "6, 8",
+                                    opacity: 0.6
+                                }
+                            ).addTo(mapEcoles);
+                            rpiLines[rpiId] = line;
                         }
                     });
 
-                    // ---- Marqueurs ----
+                    // ---- Marqueurs + info-bulles ----
+                    const markersByEtab = [];
+
                     etablissementsData.forEach(function(etab) {
                         const style = styleParType[etab.type] || styleParType["ecole"];
 
@@ -1223,9 +1232,154 @@
                             className: 'ecole-tooltip-wrapper',
                             opacity: 1
                         });
+
+                        markersByEtab.push({ etab: etab, marker: marker });
                     });
 
                     setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
+
+                    // ============================================================
+                    // ---- GÉOCODAGE HYBRIDE (API Adresse du gouvernement) ----
+                    // ============================================================
+                    (function geocodageHybride() {
+                        const API_URL = 'https://api-adresse.data.gouv.fr/search/';
+                        const cache = new Map();
+                        const MAX_PARALLELE = 2;
+                        const DELAI_ENTRE_REQUETES = 250;
+                        const SCORE_MIN = 0.5;
+
+                        let requetesEnCours = 0;
+                        let derniereRequete = 0;
+                        const file = markersByEtab.slice();
+
+                        function normaliserAdresse(adresse) {
+                            return adresse
+                                .replace(/\s+/g, ' ')
+                                .replace(/,\s*/g, ' ')
+                                .trim();
+                        }
+
+                        function fetchAdresse(adresse) {
+                            const cpMatch = adresse.match(/\b\d{5}\b/);
+                            const postcode = cpMatch ? cpMatch[0] : '';
+
+                            const url = API_URL + '?' +
+                                'q=' + encodeURIComponent(normaliserAdresse(adresse)) +
+                                '&limit=1' +
+                                (postcode ? '&postcode=' + postcode : '');
+
+                            return new Promise(function(resolve) {
+                                const controller = new AbortController();
+                                const timeoutId = setTimeout(function() {
+                                    controller.abort();
+                                }, 5000);
+
+                                fetch(url, { signal: controller.signal })
+                                    .then(function(r) {
+                                        clearTimeout(timeoutId);
+                                        if (!r.ok) throw new Error('HTTP ' + r.status);
+                                        return r.json();
+                                    })
+                                    .then(function(data) {
+                                        if (data.features && data.features.length > 0) {
+                                            const f = data.features[0];
+                                            const coords = f.geometry.coordinates;
+                                            resolve({
+                                                lat: coords[1],
+                                                lng: coords[0],
+                                                score: f.properties.score,
+                                                label: f.properties.label
+                                            });
+                                        } else {
+                                            resolve(null);
+                                        }
+                                    })
+                                    .catch(function() {
+                                        clearTimeout(timeoutId);
+                                        resolve(null);
+                                    });
+                            });
+                        }
+
+                        function deplacerMarqueur(item, coords) {
+                            const etab = item.etab;
+                            const marker = item.marker;
+
+                            const anciennePos = marker.getLatLng();
+                            const nouvellePos = L.latLng(coords.lat, coords.lng);
+
+                            const duree = 600;
+                            const debut = performance.now();
+                            const deltaLat = nouvellePos.lat - anciennePos.lat;
+                            const deltaLng = nouvellePos.lng - anciennePos.lng;
+
+                            function animer(t) {
+                                const p = Math.min(1, (t - debut) / duree);
+                                const ease = p < 0.5
+                                    ? 2 * p * p
+                                    : 1 - Math.pow(-2 * p + 2, 2) / 2;
+                                marker.setLatLng([
+                                    anciennePos.lat + deltaLat * ease,
+                                    anciennePos.lng + deltaLng * ease
+                                ]);
+                                if (p < 1) requestAnimationFrame(animer);
+                            }
+                            requestAnimationFrame(animer);
+
+                            etab.lat = coords.lat;
+                            etab.lng = coords.lng;
+
+                            if (etab.type === "rpi" && etab.rpiId && rpiLines[etab.rpiId]) {
+                                const etabs = rpiGroupes[etab.rpiId];
+                                setTimeout(function() {
+                                    const pts = etabs.map(function(e) { return [e.lat, e.lng]; });
+                                    rpiLines[etab.rpiId].setLatLngs(pts);
+                                }, duree + 50);
+                            }
+                        }
+
+                        function traiterSuivant() {
+                            if (file.length === 0) return;
+
+                            const maintenant = Date.now();
+                            const attente = Math.max(0, DELAI_ENTRE_REQUETES - (maintenant - derniereRequete));
+
+                            setTimeout(function() {
+                                if (file.length === 0) return;
+
+                                const item = file.shift();
+                                const adresse = item.etab.adresse;
+
+                                if (cache.has(adresse)) {
+                                    const coords = cache.get(adresse);
+                                    if (coords && coords.score >= SCORE_MIN) {
+                                        deplacerMarqueur(item, coords);
+                                    }
+                                    traiterSuivant();
+                                    return;
+                                }
+
+                                derniereRequete = Date.now();
+                                requetesEnCours++;
+
+                                fetchAdresse(adresse).then(function(coords) {
+                                    requetesEnCours--;
+                                    cache.set(adresse, coords);
+
+                                    if (coords && coords.score >= SCORE_MIN) {
+                                        deplacerMarqueur(item, coords);
+                                    }
+
+                                    if (requetesEnCours < MAX_PARALLELE && file.length > 0) {
+                                        traiterSuivant();
+                                    }
+                                });
+                            }, attente);
+                        }
+
+                        // Démarrage après le chargement initial
+                        setTimeout(traiterSuivant, 800);
+                    })();
 
                 } catch (err) {
                     console.error('Erreur initialisation carte Leaflet :', err);
