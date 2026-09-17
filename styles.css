@@ -156,7 +156,8 @@ table, th, td, caption,
 .header-info, .logo h1,
 .lightbox, .lightbox-close,
 .print-checkbox, .print-float-btn, .print-float-btn button,
-.print-header, .print-footer {
+.print-header, .print-footer, .print-hint,
+.print-select-row, .print-checkbox-label {
     font-family: 'Nunito', sans-serif;
 }
 
@@ -313,7 +314,6 @@ li { margin-bottom: 0.5rem; }
     display: none;
 }
 
-/* === Sous-menu déroulant === */
 .nav-dropdown {
     position: relative;
 }
@@ -358,9 +358,7 @@ li { margin-bottom: 0.5rem; }
     border-bottom: none;
 }
 
-/* ============================================================ */
-/* ===== COULEURS DES LIENS DE NAVIGATION PAR PAGE ===== */
-/* ============================================================ */
+/* === Couleurs des liens de navigation par page === */
 
 .nav-list > li > a.nav-link-accueil:hover,
 .nav-list > li > a.nav-link-accueil.active {
@@ -377,12 +375,7 @@ li { margin-bottom: 0.5rem; }
     width: 100%;
     height: 2px;
     background: linear-gradient(90deg,
-        #2E7D32 0%,
-        #5be485 25%,
-        #f0bb1e 50%,
-        #ff66c4 75%,
-        #1f5692 100%
-    );
+        #2E7D32 0%, #5be485 25%, #f0bb1e 50%, #ff66c4 75%, #1f5692 100%);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.05s ease;
@@ -448,9 +441,7 @@ li { margin-bottom: 0.5rem; }
     color: #C83296;
 }
 
-/* ============================================================ */
-/* ===== COULEUR DES SOUS-MENUS PAR RUBRIQUE ===== */
-/* ============================================================ */
+/* === Couleur des sous-menus par rubrique === */
 
 .dropdown-interlocuteurs .nav-dropdown-menu li a:hover {
     background-color: #eef3fa;
@@ -561,7 +552,7 @@ li { margin-bottom: 0.5rem; }
     background: white;
     box-shadow: var(--shadow-sm);
     overflow: hidden;
-    transition: box-shadow 0.2s;
+    transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .accordion-item:hover {
@@ -932,12 +923,7 @@ li { margin-bottom: 0.5rem; }
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.accordion-card h3 {
-    color: var(--primary-dark);
-    margin: 0 0 0.3rem 0;
-    font-size: 1rem;
-}
-
+.accordion-card h3,
 .accordion-card h4 {
     color: var(--primary-dark);
     margin: 0 0 0.3rem 0;
@@ -1541,17 +1527,39 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================ */
-/* ===== IMPRESSION SÉLECTIVE - CASES À COCHER ===== */
+/* ===== IMPRESSION SÉLECTIVE - LIGNE DANS LE CONTENU ===== */
 /* ============================================================ */
 
-.print-checkbox-wrapper {
+/* Ligne de sélection au début de chaque accordéon ouvert */
+.print-select-row {
     display: flex;
     align-items: center;
-    flex-shrink: 0;
-    margin-right: 4px;
+    gap: 0.6rem;
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 1rem;
+    background: #f8f9ff;
+    border: 1px dashed var(--primary-light);
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: var(--text-medium);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.print-checkbox {
+.print-select-row:hover {
+    background: #f0f2ff;
+    border-color: var(--primary-color);
+}
+
+.print-select-row .print-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    cursor: pointer;
+    flex: 1;
+}
+
+.print-select-row .print-checkbox {
     width: 18px;
     height: 18px;
     cursor: pointer;
@@ -1560,11 +1568,41 @@ li { margin-bottom: 0.5rem; }
     margin: 0;
 }
 
-.print-checkbox-wrapper label {
-    display: flex;
-    align-items: center;
+.print-select-row .print-checkbox-label {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--text-light);
     cursor: pointer;
-    padding: 4px;
+    user-select: none;
+}
+
+.print-select-row .print-checkbox:checked + .print-checkbox-label {
+    font-weight: 700;
+    font-style: normal;
+    color: var(--primary-color);
+}
+
+/* Quand la case est cochée : marquer l'accordéon entier */
+.accordion-item.print-selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.accordion-item.print-selected .print-select-row {
+    background: #eef7ef;
+    border-color: var(--primary-color);
+    border-style: solid;
+}
+
+@media (max-width: 768px) {
+    .print-select-row {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .print-select-row .print-checkbox-label {
+        font-size: 0.75rem;
+    }
 }
 
 /* ============================================================ */
@@ -1581,6 +1619,38 @@ li { margin-bottom: 0.5rem; }
     gap: 0.5rem;
     align-items: flex-end;
     font-family: 'Nunito', sans-serif;
+}
+
+/* Phrase d'aide discrète */
+.print-float-btn .print-hint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    color: var(--text-medium);
+    padding: 0.5rem 0.9rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-style: italic;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border-color);
+    max-width: 260px;
+    line-height: 1.3;
+    text-align: left;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.print-float-btn .print-hint i {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* Au survol du groupe : la phrase disparaît */
+.print-float-btn:hover .print-hint {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
 }
 
 .print-float-btn button {
@@ -1648,6 +1718,12 @@ li { margin-bottom: 0.5rem; }
         right: 1rem;
     }
 
+    .print-float-btn .print-hint {
+        font-size: 0.7rem;
+        max-width: 220px;
+        padding: 0.4rem 0.7rem;
+    }
+
     .print-float-btn button {
         padding: 0.75rem 1.1rem;
         font-size: 0.85rem;
@@ -1671,6 +1747,11 @@ li { margin-bottom: 0.5rem; }
 
     .print-float-btn button .print-label-short {
         display: inline;
+    }
+
+    /* Sur très petit écran : on masque la phrase d'aide (trop encombrante) */
+    .print-float-btn .print-hint {
+        display: none;
     }
 }
 
@@ -1991,6 +2072,8 @@ li { margin-bottom: 0.5rem; }
     .footer,
     .lightbox,
     .print-float-btn,
+    .print-hint,
+    .print-select-row,
     .print-checkbox-wrapper,
     .section-header,
     .quick-access-nav,
@@ -2136,6 +2219,7 @@ li { margin-bottom: 0.5rem; }
         page-break-inside: avoid;
     }
 
+    /* Impression sélective : masquer les sections non cochées */
     body.print-has-selection .accordion-item:not(.print-selected),
     body.print-has-selection .content-box:not(.print-selected),
     body.print-has-selection .sub-section:not(.print-selected) {
