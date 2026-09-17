@@ -37,6 +37,64 @@
             border: 0;
         }
 
+        /* ===== MINIATURE VIDÉO CLIQUABLE ===== */
+        .video-wrapper.video-loaded {
+            padding-bottom: 0;
+            height: auto;
+        }
+
+        .video-thumb {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            background: #000;
+            line-height: 0;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .video-thumb:hover img {
+            transform: scale(1.04);
+            opacity: 0.88;
+        }
+
+        .video-thumb .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.65);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        .video-thumb:hover .play-btn {
+            background: rgba(199, 95, 53, 0.95);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .video-thumb .play-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: #fff;
+            margin-left: 4px;
+        }
+
         .video-caption {
             font-size: 0.8rem;
             color: var(--text-light);
@@ -292,19 +350,20 @@
                                             📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
                                             🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank" rel="noopener">Site internet officiel</a></p>
 
-                                            <!-- ===== LECTEUR YOUTUBE ===== -->
+                                            <!-- ===== LECTEUR YOUTUBE (miniature cliquable) ===== -->
                                             <div style="margin-top: 1.5rem;">
-                                                <div class="video-wrapper">
-                                                    <iframe 
-                                                        src="https://www.youtube.com/embed/U0OX3-ikWuk?rel=0&modestbranding=1&autoplay=0" 
-                                                        title="Collège Albert Camus - Briare"
-                                                        frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                                        referrerpolicy="strict-origin-when-cross-origin"
-                                                        allowfullscreen>
-                                                    </iframe>
+                                                <div class="video-wrapper" id="video-camus">
+                                                    <div class="video-thumb" onclick="loadVideo('video-camus', 'U0OX3-ikWuk', 'Collège Albert Camus - Briare')">
+                                                        <img src="https://img.youtube.com/vi/U0OX3-ikWuk/maxresdefault.jpg"
+                                                             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/U0OX3-ikWuk/hqdefault.jpg';"
+                                                             alt="Collège Albert Camus - Briare">
+                                                        <span class="play-btn" aria-hidden="true">
+                                                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                                 <p class="video-caption">Découvrez le Collège Albert Camus en vidéo</p>
+                                                <p class="video-credit">Film réalisé par <a href="https://romainbeaumont.com" target="_blank" rel="noopener">Romain Beaumont, photographe industriel</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -652,6 +711,7 @@
                 img.addEventListener('click', function(e) {
                     if (this.closest('.hero')) return;
                     if (this.closest('.video-wrapper')) return;
+                    if (this.closest('.video-thumb')) return;
                     e.stopPropagation();
                     const src = this.getAttribute('src');
                     if (src) openLightbox(src);
@@ -667,6 +727,23 @@
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') closeLightbox();
             });
+
+            // ============================================================
+            // ---- CHARGEMENT DE LA VIDÉO AU CLIC SUR LA MINIATURE ----
+            // ============================================================
+            window.loadVideo = function(wrapperId, videoId, title) {
+                const wrapper = document.getElementById(wrapperId);
+                if (!wrapper) return;
+                wrapper.classList.add('video-loaded');
+                wrapper.innerHTML =
+                    '<iframe src="https://www.youtube.com/embed/' + videoId +
+                    '?rel=0&modestbranding=1&autoplay=1" ' +
+                    'title="' + title + '" ' +
+                    'frameborder="0" ' +
+                    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+                    'referrerpolicy="strict-origin-when-cross-origin" ' +
+                    'allowfullscreen></iframe>';
+            };
 
             // ---- ACCORDÉON PRINCIPAL ----
             function toggleAccordion(header) {
