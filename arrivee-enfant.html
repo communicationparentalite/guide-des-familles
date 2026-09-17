@@ -833,10 +833,11 @@
                     });
                 }
 
-                function updateSelection() {
+                              function updateSelection() {
                     const checkboxes = document.querySelectorAll('.print-checkbox');
                     let count = 0;
 
+                    // Nettoyer tous les marquages
                     document.querySelectorAll('.print-selected').forEach(function(el) {
                         el.classList.remove('print-selected');
                     });
@@ -848,7 +849,14 @@
                             if (targetId) {
                                 const target = document.getElementById(targetId);
                                 if (target) {
+                                    // Marquer l'accordéon
                                     target.classList.add('print-selected');
+
+                                    // Marquer aussi le content-box parent
+                                    const parentContentBox = target.closest('.content-box');
+                                    if (parentContentBox) {
+                                        parentContentBox.classList.add('print-selected');
+                                    }
                                 }
                             }
                         }
@@ -856,6 +864,26 @@
 
                     document.body.classList.toggle('print-has-selection', count > 0);
 
+                    if (printCount) {
+                        if (count > 0) {
+                            printCount.textContent = count;
+                            printCount.style.display = 'inline-block';
+                        } else {
+                            printCount.style.display = 'none';
+                        }
+                    }
+
+                    if (printSelectAll) {
+                        const label = printSelectAll.querySelector('span:not(.print-count)');
+                        if (label) {
+                            if (count === checkboxes.length && checkboxes.length > 0) {
+                                label.textContent = 'Tout désélectionner';
+                            } else {
+                                label.textContent = 'Tout sélectionner';
+                            }
+                        }
+                    }
+                }
                     if (printCount) {
                         if (count > 0) {
                             printCount.textContent = count;
