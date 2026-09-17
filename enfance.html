@@ -3,151 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Enfance (3-11 ans) - Guide des Familles Berry Loire Puisaye</title>
+    <title>Petite enfance (0-5 ans) - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <style>
-        .page-enfance {
-            --primary-color: #686be7;
-            --primary-light: #8B8DEF;
-            --primary-dark: #4A4DBD;
-            --secondary-color: #5754D6;
-            --secondary-light: #8280E0;
+        /* ===== COULEURS SPÉCIFIQUES À PETITE ENFANCE (VERT CLAIR) ===== */
+        .page-petite-enfance {
+            --primary-color: #5be485;
+            --primary-light: #8AEDA9;
+            --primary-dark: #33B85D;
+            --secondary-color: #3FCB6C;
+            --secondary-light: #7DDD9C;
         }
 
-        .ecole-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1rem;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-            border-left: 4px solid var(--primary-color);
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-bottom: 0.5rem;
-        }
-
-        .ecole-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-
-        .ecole-card h4 {
-            color: var(--primary-dark);
-            margin: 0 0 0.3rem 0;
-            font-size: 1rem;
-        }
-
-        .ecole-card p {
-            margin: 0.2rem 0;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .ecole-card a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .ecole-card a:hover {
-            text-decoration: underline;
-        }
-
-        .ecole-card .badge {
-            display: inline-block;
-            background: var(--primary-light);
-            color: white;
-            font-size: 0.7rem;
-            padding: 0.15rem 0.6rem;
-            border-radius: 20px;
-            margin-bottom: 0.3rem;
-            opacity: 0.8;
-        }
-
-        /* ============================================================ */
-        /* ===== CARTES ÉCOLES DÉPLIABLES SUR MOBILE ===== */
-        /* ============================================================ */
-
-        .ecole-card .ecole-nom-court {
-            display: none;
-        }
-
-        .ecole-card .ecole-toggle-icon {
-            display: none;
-        }
-
-        .ecole-card .ecole-details {
-            display: block;
-        }
-
-        @media (max-width: 768px) {
-            .ecole-card {
-                cursor: pointer;
-                position: relative;
-                padding-right: 2.5rem;
-                transition: background-color 0.2s ease, box-shadow 0.2s ease;
-                -webkit-tap-highlight-color: transparent;
-            }
-
-            .ecole-card:hover {
-                background-color: #f5f7ff;
-            }
-
-            .ecole-card h4 {
-                font-size: 1rem;
-                margin-bottom: 0.15rem;
-                color: var(--primary-dark);
-            }
-
-            .ecole-card .ecole-nom-court {
-                display: block;
-                font-size: 0.85rem;
-                color: var(--text-medium);
-                margin-bottom: 0.3rem;
-            }
-
-            .ecole-card .ecole-details {
-                display: none;
-                margin-top: 0.6rem;
-                padding-top: 0.6rem;
-                border-top: 1px dashed var(--border-color);
-            }
-
-            .ecole-card.open .ecole-details {
-                display: block;
-            }
-
-            .ecole-card .ecole-toggle-icon {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 0.8rem;
-                font-size: 1.4rem;
-                font-weight: 300;
-                color: var(--primary-color);
-                transition: transform 0.3s ease;
-                pointer-events: none;
-                line-height: 1;
-            }
-
-            .ecole-card.open .ecole-toggle-icon {
-                transform: rotate(45deg);
-            }
-
-            .ecole-card.open {
-                background-color: #fafbff;
-                box-shadow: 0 4px 12px rgba(104, 107, 231, 0.15);
-            }
-        }
-
-        .accordion-card-grid {
+        /* ===== PHOTO GALLERY ===== */
+        .photo-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1rem;
-            margin-top: 0.5rem;
+            margin: 2rem 0;
         }
 
+        .photo-gallery img {
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ===== CARTES ===== */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -195,132 +88,7 @@
             text-decoration: underline;
         }
 
-        #carte-ecoles {
-            height: 480px;
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            margin: 1.5rem 0;
-            z-index: 1;
-            background: #e8e8e8;
-        }
-
-        .ecole-tooltip {
-            font-family: 'Nunito', sans-serif;
-            line-height: 1.5;
-        }
-
-        .ecole-tooltip .ecole-commune {
-            display: block;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
-            color: var(--primary-light);
-            font-weight: 700;
-            margin-bottom: 0.15rem;
-        }
-
-        .ecole-tooltip .ecole-nom {
-            display: block;
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary-dark);
-            margin-bottom: 0.35rem;
-        }
-
-        .ecole-tooltip .ecole-detail {
-            display: block;
-            font-size: 0.85rem;
-            color: #333;
-            white-space: nowrap;
-        }
-
-        .leaflet-tooltip.ecole-tooltip-wrapper {
-            background: #fff;
-            border: none;
-            border-radius: 8px;
-            box-shadow: var(--shadow-md);
-            padding: 0.75rem 1.1rem;
-            max-width: none;
-            white-space: nowrap;
-        }
-
-        .leaflet-tooltip.ecole-tooltip-wrapper::before {
-            border-top-color: #fff;
-        }
-
-        .carte-legende {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem 1.5rem;
-            justify-content: center;
-            margin: 0.8rem 0 1.5rem 0;
-            padding: 0.8rem 1rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            font-size: 0.85rem;
-        }
-        .carte-legende-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .carte-legende-pastille {
-            display: inline-block;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            box-shadow: 0 0 0 2px white, 0 0 0 3px rgba(0,0,0,0.1);
-        }
-        .carte-legende-pastille.college { background: #e85d2c; }
-        .carte-legende-pastille.dispositif { background: #2e8b57; }
-        .carte-legende-pastille.ecole { background: var(--primary-color); }
-        .carte-legende-pastille.privee { background: #888; }
-        .carte-legende-pastille.rpi {
-            background: var(--primary-light);
-            border: 2px dashed var(--primary-dark);
-            box-shadow: none;
-            width: 14px;
-            height: 14px;
-        }
-        .carte-legende-pastille.epci {
-            background: transparent;
-            border: 2px dashed #4A4DBD;
-            box-shadow: none;
-            width: 14px;
-            height: 14px;
-            border-radius: 2px;
-        }
-
-        .ecole-tooltip .ecole-badge {
-            display: inline-block;
-            font-size: 0.65rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            padding: 0.15rem 0.5rem;
-            border-radius: 20px;
-            color: white;
-            margin-bottom: 0.3rem;
-        }
-        .ecole-tooltip .ecole-badge.college { background: #e85d2c; }
-        .ecole-tooltip .ecole-badge.dispositif { background: #2e8b57; }
-        .ecole-tooltip .ecole-badge.rpi { background: var(--primary-dark); }
-        .ecole-tooltip .ecole-badge.privee { background: #888; }
-        .ecole-tooltip .ecole-badge.commune-rpi { background: #6c757d; }
-
-        .ecole-tooltip .ecole-rpi-info {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--primary-dark);
-            font-style: italic;
-            margin-top: 0.3rem;
-            padding-top: 0.3rem;
-            border-top: 1px dashed var(--border-color);
-        }
-
+        /* ===== IMAGE + TEXTE ===== */
         .image-text-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -341,17 +109,241 @@
                 grid-template-columns: 1fr;
                 gap: 1rem;
             }
-            #carte-ecoles {
-                height: 350px;
+        }
+
+        /* ===== CONTENU SPÉCIFIQUE ===== */
+        .pmi-logo {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+        }
+
+        .pmi-logo img {
+            width: 100px;
+            flex-shrink: 0;
+        }
+
+        .pmi-logo p {
+            text-align: justify;
+            margin: 0;
+        }
+
+        .bulle-musicale {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .bulle-musicale h3 {
+            color: white;
+        }
+
+        .bulle-musicale .full-text {
+            display: none;
+        }
+
+        .bulle-musicale .full-text.visible {
+            display: block;
+        }
+
+        .bulle-musicale .read-more-btn {
+            color: white;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .bulle-musicale .read-more-btn:hover {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .bulle-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .bulle-content .text {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .bulle-content img {
+            width: 500px;
+            max-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .bulle-content {
+                flex-direction: column;
             }
-            .accordion-card-grid {
-                grid-template-columns: 1fr;
+            .bulle-content img {
+                width: 100%;
+                height: 200px;
             }
+            .pmi-logo {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        }
+
+        /* ===== SOUS-ACCORDÉON ACCUEIL COLLECTIF ===== */
+        .sub-accordion-header {
+            background: white;
+            padding: 0.8rem 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+            font-weight: 700;
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .sub-accordion-header:hover {
+            background: #f5f8ff;
+        }
+
+        .sub-accordion-header.open {
+            background: var(--primary-light);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .sub-accordion-header.open span {
+            color: white;
+        }
+
+        .sub-accordion-icon {
+            font-size: 1.2rem;
+            font-weight: 300;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+            margin-left: auto;
+        }
+
+        .sub-accordion-header.open .sub-accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        .sub-accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            background: #fafbff;
+            padding: 0 1.2rem;
+        }
+
+        .sub-accordion-body.open {
+            max-height: 2000px;
+            padding: 0.5rem 1.2rem 1rem;
+        }
+
+        .accueil-collectif-wrapper {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+        }
+
+        .accueil-collectif-wrapper:last-child {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== YOUTUBE RESPONSIVE ===== */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            background: #000;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ===== MINIATURE VIDÉO CLIQUABLE ===== */
+        .video-wrapper.video-loaded {
+            padding-bottom: 0;
+            height: auto;
+        }
+
+        .video-thumb {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            background: #000;
+            line-height: 0;
+        }
+
+        .video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .video-thumb:hover img {
+            transform: scale(1.04);
+            opacity: 0.88;
+        }
+
+        .video-thumb .play-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 72px;
+            height: 50px;
+            background: rgba(0, 0, 0, 0.65);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease, transform 0.2s ease;
+            pointer-events: none;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+
+        .video-thumb:hover .play-btn {
+            background: rgba(91, 228, 133, 0.95);
+            transform: translate(-50%, -50%) scale(1.08);
+        }
+
+        .video-thumb .play-btn svg {
+            width: 26px;
+            height: 26px;
+            fill: #fff;
+            margin-left: 4px;
         }
     </style>
 </head>
-<body class="page-enfance">
+<body class="page-petite-enfance">
 
+    <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container">
             <div class="header-content">
@@ -366,6 +358,7 @@
         </div>
     </header>
 
+    <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
@@ -392,7 +385,7 @@
     </li>
 
     <li class="nav-dropdown dropdown-petite-enfance">
-        <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
+        <a href="petite-enfance.html" class="nav-link-petite-enfance active">Petite enfance ▾</a>
         <ul class="nav-dropdown-menu">
             <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
             <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
@@ -405,7 +398,7 @@
     </li>
 
     <li class="nav-dropdown dropdown-enfance">
-        <a href="enfance.html" class="nav-link-enfance active">Enfance ▾</a>
+        <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
         <ul class="nav-dropdown-menu">
             <li><a href="enfance.html#scolarite">Scolarité</a></li>
             <li><a href="enfance.html#clas">CLAS</a></li>
@@ -475,238 +468,180 @@
 </ul>
     </nav>
 
+    <!-- ===== MAIN ===== -->
     <main>
-        <section class="section section-alt">
+        <section class="section">
             <div class="container">
+                <!-- Bannière -->
                 <div class="section-header">
-                    <img src="enfance_page-000.png" alt="Enfance">
+                    <img src="petite_enfance_page-000.png" alt="Petite enfance">
                 </div>
-                <h2 class="section-title">Enfance (3-11 ans)</h2>
+                <h2 class="section-title">Petite enfance (0-5 ans)</h2>
 
-                <p class="quote">"L'important c'est qu'un enfant puisse toujours dire ce dont il a envie, mais pas toujours le faire." - Françoise Dolto</p>
+                <p class="quote">"Il faut tout un village pour élever un enfant." - Proverbe africain</p>
+                <p class="quote">"J'avance à mon propre rythme et je développe toutes mes facultés en même temps : pour moi, tout est langage, corps, jeu, expérience." - Charte nationale pour l'accueil du jeune enfant</p>
 
+                <!-- ============================================================ -->
+                <!-- ===== ACCORDÉON ===== -->
+                <!-- ============================================================ -->
                 <div class="accordion">
 
-                    <!-- ===== 1. SCOLARITÉ ===== -->
-                    <div class="accordion-item" id="scolarite">
+                    <!-- ===== 1. GUICHET UNIQUE ===== -->
+                    <div class="accordion-item" id="guichet-unique">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>Scolarité</span>
+                            <span>Guichet Unique de la Petite Enfance</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="accordion-body-inner">
+                                <div class="images">
+                                    <img src="arrivee_enfant_page-023.png" alt="Guichet Unique">
+                                </div>
+                                <div class="text">
+                                    <div class="short-text">
+                                        <p>Vous êtes parent ou sur le point de le devenir ? Vous recherchez un mode de garde / d'accueil pour votre enfant âgé de 0 à 4 ans ? Bénéficiez d'un accompagnement individualisé, sur rendez-vous, pour votre recherche d'un mode d'accueil.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Le Guichet Unique de la Petite Enfance (animé par le Relais Petite Enfance) a pour mission d'informer les parents et futurs parents sur les différents modes d'accueil disponibles. Il s'engage également à les accompagner dans leurs démarches.</p>
+                                        <p style="margin: 0.8rem 0 0.3rem 0;">
+                                        <strong>Permanences :</strong><br>
+                                        Mar, Jeu 13h30-17h, Mer 9h-12h30 au Pôle Petite Enfance<br>
+                                        39 avenue Yver-Bapterosses, 45250 Briare<br>
+                                        📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
+                                        <p>
+                                        Lun, Ven 13h30-16h30, au Centre Médico-Social<br>
+                                        1 rue de la Boyaudière, 45360 Châtillon-sur-Loire<br>
+                                        📞 <a href="tel:0238372374">02 38 37 23 74</a><br>
+                                        📧 <a href="mailto:guichetunique.pe@cc-berryloirepuisaye.fr">guichetunique.pe@cc-berryloirepuisaye.fr</a></p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 2. ACCUEIL COLLECTIF ===== -->
+                    <div class="accordion-item" id="accueil-collectif">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Accueil collectif</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
-                                <p>La Communauté de Communes Berry Loire Puisaye réunit 2 collèges (Briare et Châtillon-sur-Loire), 13 écoles publiques et une école privée, accueillant les élèves de la petite section au CM2. Deux dispositifs d'inclusion (ULIS) et une SEGPA complètent l'offre éducative du territoire.</p>
+                                <p>Le territoire dispose de deux structures d'accueil collectif labélisées "éveil et signes" avec un agrément délivré par la PMI. Elles accueillent des enfants âgés de 10 semaines à 4 ans révolus.</p>
                             </div>
                             <div class="full-text">
-                                <div id="carte-ecoles"></div>
 
-                                <div class="carte-legende">
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille college"></span>
-                                        <span>Collèges</span>
+                                <!-- ===== BRIARE ===== -->
+                                <div class="accueil-collectif-wrapper">
+                                    <div class="sub-accordion-header" onclick="toggleSubAccordion('briare')">
+                                        <span>Multi-accueil Briare "Frimousses de Loire"</span>
+                                        <span id="briare-icon" class="sub-accordion-icon">+</span>
                                     </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille dispositif"></span>
-                                        <span>ULIS / SEGPA</span>
-                                    </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille ecole"></span>
-                                        <span>Écoles publiques</span>
-                                    </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille privee"></span>
-                                        <span>École privée</span>
-                                    </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille rpi"></span>
-                                        <span>Écoles en RPI</span>
-                                    </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille" style="background:#fff; border:2px dashed #4A4DBD; box-shadow:none; width:12px; height:12px;"></span>
-                                        <span>Commune rattachée à un RPI</span>
-                                    </div>
-                                    <div class="carte-legende-item">
-                                        <span class="carte-legende-pastille epci"></span>
-                                        <span>Communauté de Communes</span>
+                                    <div id="briare-content" class="sub-accordion-body">
+                                        <img src="petite_enfance_page-003.png" alt="Multi-accueil Briare" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                        <p><strong>30 places</strong> réparties en 2 sections<br>
+                                        12 bébés/moyens + 18 moyens/grands</p>
+                                        <p><strong>Âge :</strong> 3 mois - 4 ans</p>
+                                        <p><strong>📍 Adresse :</strong> Pôle Petite Enfance, 39 avenue Yver Bapterosses, Briare</p>
+                                        <p>📞 <a href="tel:0238313862">02 38 31 38 62</a><br>
+                                        📧 <a href="mailto:multiaccueil.briare@cc-berryloirepuisaye.fr">multiaccueil.briare@cc-berryloirepuisaye.fr</a></p>
+                                        <p><strong>Horaires :</strong> Lun-Ven 7h30-18h30</p>
                                     </div>
                                 </div>
 
-                                <p style="font-size:0.85rem; color:#777; text-align:center; margin-top:-1rem; margin-bottom:1.5rem;">Survolez un repère pour afficher les coordonnées de l'établissement.</p>
+                                <!-- ===== CHÂTILLON ===== -->
+                                <div class="accueil-collectif-wrapper">
+                                    <div class="sub-accordion-header" onclick="toggleSubAccordion('chatillon')">
+                                        <span>Multi-accueil Châtillon-sur-Loire "Frimousses de Loire"</span>
+                                        <span id="chatillon-icon" class="sub-accordion-icon">+</span>
+                                    </div>
+                                    <div id="chatillon-content" class="sub-accordion-body">
+                                        <img src="petite_enfance_page-004.png" alt="Multi-accueil Châtillon" style="width:100%; border-radius:8px; margin-bottom:1rem; box-shadow:var(--shadow-sm); cursor:pointer;" onclick="openLightbox(this.src)">
+                                        <p><strong>16 places</strong> (âge mélangé)</p>
+                                        <p><strong>Âge :</strong> 3 mois - 4 ans</p>
+                                        <p><strong>📍 Adresse :</strong> Centre Médico-social, 1 rue de la Boyaudière, Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238311525">02 38 31 15 25</a><br>
+                                        📧 <a href="mailto:multiaccueil.chatillon@cc-berryloirepuisaye.fr">multiaccueil.chatillon@cc-berryloirepuisaye.fr</a></p>
+                                        <p><strong>Horaires :</strong> Lun-Ven 7h00-18h00</p>
 
-                                <h4 style="color:var(--primary-dark); margin-top:1.5rem;">Établissements du territoire</h4>
-                                <div class="accordion-card-grid">
-                                    <!-- AUTRY-LE-CHÂTEL -->
-                                    <div class="ecole-card">
-                                        <h4>Autry-le-Châtel</h4>
-                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>14 rue de l'École (élémentaire)<br>route de Châtillon (maternelle)</p>
-                                            <p>📞 <a href="tel:+33238368262">02 38 36 82 62</a> (élém.)<br>
-                                            📞 <a href="tel:+33238368188">02 38 36 81 88</a> (mat.)</p>
-                                            <p>✉️ <a href="mailto:ce.0450195T@ac-orleans-tours.fr">ce.0450195T@ac-orleans-tours.fr</a> (élém.)<br>
-                                            ✉️ <a href="mailto:ce.0450749V@ac-orleans-tours.fr">ce.0450749V@ac-orleans-tours.fr</a> (mat.)</p>
+                                        <!-- ===== LECTEUR YOUTUBE (miniature cliquable) + CRÉDIT RÉALISATEUR ===== -->
+                                        <div style="margin-top: 1.5rem;">
+                                            <div class="video-wrapper" id="video-chatillon">
+                                                <div class="video-thumb" onclick="loadVideo('video-chatillon', 'I1MwcckqkuA', 'Multi-accueil de Châtillon-sur-Loire - Film de Romain Beaumont')">
+                                                    <img src="https://img.youtube.com/vi/I1MwcckqkuA/maxresdefault.jpg"
+                                                         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/I1MwcckqkuA/hqdefault.jpg';"
+                                                         alt="Multi-accueil de Châtillon-sur-Loire">
+                                                    <span class="play-btn" aria-hidden="true">
+                                                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <p class="video-caption">Découvrez le Multi-accueil de Châtillon-sur-Loire en vidéo</p>
+                                            <p class="video-credit">Film réalisé par <a href="https://romainbeaumont.com" target="_blank" rel="noopener">Romain Beaumont, photographe industriel</a></p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- BEAULIEU-SUR-LOIRE -->
-                                    <div class="ecole-card">
-                                        <h4>Beaulieu-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>15 rue de Châtillon (élémentaire)<br>17 rue de Châtillon (maternelle)</p>
-                                            <p>📞 <a href="tel:+33219004986">02.19.00.49.86</a><br>
-                                            📞 <a href="tel:+33238358535">02.38.35.85.35</a></p>
-                                            <p>✉️ <a href="mailto:ce.0451398A@ac-orleans-tours.fr">ce.0451398A@ac-orleans-tours.fr</a></p>
-                                        </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 3. MAM ===== -->
+                    <div class="accordion-item" id="mam">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Maison d'Assistantes Maternelles (MAM)</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="short-text">
+                                <p>Le territoire dispose d'une MAM (Maison d'Assistantes Maternelles) associative sur la commune de La Bussière.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="photo-gallery">
+                                    <img src="petite_enfance_page-005.png" alt="Rayons de Soleil">
+                                </div>
+                                <div class="subsection">
+                                    <h4>MAM "Rayons de Soleil" - La Bussière</h4>
+                                    <p>Deux assistantes maternelles agréées par la PMI vous accueillent du lundi au vendredi dans un local refait à neuf et adapté à un petit groupe d'enfants.</p>
+                                    <p><strong>📍 Adresse :</strong> 11, route d'Escrignelles, 45230 LA BUSSIÈRE</p>
+                                    <p><strong>👥 Contacts :</strong><br>
+                                    Nathalie Depardieu : 📞 <a href="tel:0650153575">06 50 15 35 75</a><br>
+                                    Julie Aufrère : 📞 <a href="tel:0659765709">06 59 76 57 09</a><br>
+                                    📧 <a href="mailto:mamrayonsdesoleil@gmail.fr">mamrayonsdesoleil@gmail.fr</a></p>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 4. ACCUEIL INDIVIDUEL ===== -->
+                    <div class="accordion-item" id="accueil-individuel">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Accueil individuel avec le Relais Petite Enfance (RPE)</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="short-text">
+                                <p>Orientation, information et animation pour les parents et les assistants maternels. Le RPE vous accompagne dans la recherche d'assistants maternels agréés.</p>
+                            </div>
+                            <div class="full-text">
+                                <p>L'accueil est dit individuel lorsque votre enfant est accueilli chez un assistant maternel ou confié à un assistant parental (anciennement garde à domicile).</p>
+                                <p><strong>L'assistant maternel</strong><br>
+                                L'assistant maternel employé par un particulier est une personne agréée, suivie et formée par le Conseil départemental via la PMI pour l'accueil simultané de quatre enfants maximum à son domicile.<br>
+                                Il y a environ 60 professionnels agréés sur les vingt communes du territoire.</p>
+                                <p>La liste des assistants maternels agréés est disponible sur demande au Relais Petite Enfance, sur le site de la Communauté de communes <a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">www.cc-berryloirepuisaye.fr</a> et sur <a href="https://www.monenfant.fr" target="_blank" rel="noopener">www.monenfant.fr</a></p>
+                                <p><strong>L'assistant parental</strong> - Les gardes à domicile<br>
+                                L'assistant parental est un employé de maison qui garde le ou les enfants au domicile des parents. Il peut s'agir d'une seule famille ou de plusieurs familles se regroupant pour partager les frais (garde partagée).</p>
+                                <div class="cards-grid">
+                                    <div class="card">
+                                        <h4>Permanence Briare</h4>
+                                        <p>Mardi au jeudi de 13h30 à 17h30<br>Pôle Petite Enfance<br>39, avenue Yver Bapterosses<br>📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
                                     </div>
-
-                                    <!-- BONNY-SUR-LOIRE -->
-                                    <div class="ecole-card">
-                                        <h4>Bonny-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>2 avenue de la Gare</p>
-                                            <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450182D@ac-orleans-tours.fr">ce.0450182D@ac-orleans-tours.fr</a></p>
-                                            <span class="badge">RPI</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- BRIARE : ÉCOLES -->
-                                    <div class="ecole-card">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">École Marcel Gaime (maternelle)</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>place Saint Roch</p>
-                                            <p>📞 <a href="tel:+33238312585">02 38 31 25 85</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450167M@ac-orleans-tours.fr">ce.0450167M@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="ecole-card">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">École du Centre (élémentaire)</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>3 square Foch</p>
-                                            <p>📞 <a href="tel:+33238312649">02 38 31 26 49</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450869A@ac-orleans-tours.fr">ce.0450869A@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="ecole-card">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">École Gustave Eiffel</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Maternelle et élémentaire<br>7, rue de l'Espérance</p>
-                                            <p>📞 <a href="tel:+33238312534">02 38 31 25 34</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450178Z@ac-orleans-tours.fr">ce.0450178Z@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <div class="ecole-card" style="border-left-color:#888;">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">École Sainte-Anne (privée)</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Maternelle et élémentaire<br>5, rue des Grands Jardins</p>
-                                            <p>📞 <a href="tel:+33238312648">02 38 31 26 48</a></p>
-                                            <p>✉️ <a href="mailto:ce.0451522K@ac-orleans-tours.fr">ce.0451522K@ac-orleans-tours.fr</a></p>
-                                            <span class="badge" style="background:#888;">Privée</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- BRIARE : COLLÈGE -->
-                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">Collège Albert Camus</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><span class="badge" style="background:#e85d2c;">Collège + SEGPA + ULIS</span></p>
-                                            <p>Rue du Port à Belleau, Briare</p>
-                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                            ✉️ <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- CHÂTILLON-SUR-LOIRE : ÉCOLE -->
-                                    <div class="ecole-card">
-                                        <h4>Châtillon-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Maternelle et élémentaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>place du Champ de Foire</p>
-                                            <p>📞 <a href="tel:+33238314074">02 38 31 40 74</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450881N@ac-orleans-tours.fr">ce.0450881N@ac-orleans-tours.fr</a></p>
-                                            <span class="badge">RPI</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- CHÂTILLON-SUR-LOIRE : COLLÈGE -->
-                                    <div class="ecole-card" style="border-left-color:#e85d2c;">
-                                        <h4>Châtillon-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Collège Pierre Dézarnaulds</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><span class="badge" style="background:#e85d2c;">Collège + ULIS</span></p>
-                                            <p>2 allée du Paradis, Châtillon-sur-Loire</p>
-                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                            ✉️ <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- OUSSON-SUR-LOIRE -->
-                                    <div class="ecole-card">
-                                        <h4>Ousson-sur-Loire</h4>
-                                        <span class="ecole-nom-court">École George Sand</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Élémentaire et maternelle<br>11 rue de l'Abreuvoir (élémentaire)<br>2 bis rue des Marronniers (maternelle)</p>
-                                            <p>📞 <a href="tel:+33238310051">02 38 31 00 51</a></p>
-                                            <p>✉️ <a href="mailto:ce.0450189L@ac-orleans-tours.fr">ce.0450189L@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- OUZOUËR-SUR-TRÉZÉE -->
-                                    <div class="ecole-card">
-                                        <h4>Ouzouër-sur-Trézée</h4>
-                                        <span class="ecole-nom-court">École Jacques Prévert</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Maternelle et élémentaire<br>14 rue de la Flamandière (élémentaire)<br>1 rue du Stade (maternelle)</p>
-                                            <p>📞 <a href="tel:+33238319747">02 38 31 97 47</a><br>
-                                            📞 <a href="tel:+33238319289">02 38 31 92 89</a></p>
-                                            <p>✉️ <a href="mailto:ce.0451269K@ac-orleans-tours.fr">ce.0451269K@ac-orleans-tours.fr</a></p>
-                                        </div>
-                                    </div>
-
-                                    <!-- SIIS CERNOY / PIERREFITTE -->
-                                    <div class="ecole-card">
-                                        <h4>Cernoy-en-Berry / Pierrefitte</h4>
-                                        <span class="ecole-nom-court">SIIS Cernoy / Pierrefitte</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><strong>Cernoy-en-Berry :</strong> Maternelle, 5 rue d'Autry<br>📞 <a href="tel:+33238310100">02 38 31 01 00</a><br>✉️ <a href="mailto:ec-cernoy-en-berry@ac-orleans-tours.fr">ec-cernoy-en-berry@ac-orleans-tours.fr</a></p>
-                                            <p><strong>Pierrefitte-ès-Bois :</strong> Élémentaire, 7 rue de la Mairie<br>📞 <a href="tel:+33238310813">02 38 31 08 13</a><br>✉️ <a href="mailto:ec-pierrefitte-es-bois@ac-orleans-tours.fr">ec-pierrefitte-es-bois@ac-orleans-tours.fr</a></p>
-                                            <span class="badge">RPI</span>
-                                        </div>
-                                    </div>
-
-                                    <!-- SIIS ADON / LA BUSSIÈRE -->
-                                    <div class="ecole-card">
-                                        <h4>Adon / La Bussière</h4>
-                                        <span class="ecole-nom-court">SIIS Adon / La Bussière</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><strong>Adon :</strong> 13 route de la Bussière<br>📞 <a href="tel:+33238359469">02 38 35 94 69</a><br>✉️ <a href="mailto:ce.0450175W@ac-orleans-tours.fr">ce.0450175W@ac-orleans-tours.fr</a></p>
-                                            <p><strong>La Bussière :</strong> rue d'Ouzouer<br>📞 <a href="tel:+33238359068">02 38 35 90 68</a><br>✉️ <a href="mailto:ce.0450184F@ac-orleans-tours.fr">ce.0450184F@ac-orleans-tours.fr</a></p>
-                                            <span class="badge">RPI</span>
-                                        </div>
+                                    <div class="card">
+                                        <h4>Permanence Châtillon-sur-Loire</h4>
+                                        <p>Lundi et vendredi de 13h30 à 16h30<br>Centre Médico-social<br>1, rue de la Boyaudière<br>📞 <a href="tel:0238372374">02 38 37 23 74</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -714,124 +649,79 @@
                         </div>
                     </div>
 
-                    <!-- ===== 2. CLAS ===== -->
-                    <div class="accordion-item" id="clas">
+                    <!-- ===== 5. LA MARELLE ===== -->
+                    <div class="accordion-item" id="la-marelle">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
+                            <span>La Marelle - Lieu d'accueil enfants-parents (LAEP)</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
-                                <p>Trop souvent confondues avec une simple aide aux devoirs, les missions du Clas vont bien au-delà. Gratuits et ouverts à tous, les Clas sont des programmes de soutien à la scolarité, de l'école élémentaire au lycée.</p>
-                                <div class="subsection" style="background:var(--bg-light); padding:1rem; border-radius:8px; border-left:4px solid var(--primary-color); margin-top:1rem;">
-                                    <h4>Bonny-sur-Loire</h4>
-                                    <p>École élémentaire et EVS Bee Mobile<br>2 avenue de la Gare<br>📞 <a href="tel:+33238316357">02 38 31 63 57</a></p>
-                                </div>
+                                <p>Un espace convivial et ludique pour les enfants de moins de six ans accompagnés d'un parent ou d'un adulte référent. Idéal pour le jeu et la socialisation des enfants, il est aussi un espace de paroles gratuit et anonyme pour les parents.</p>
                             </div>
                             <div class="full-text">
-                                <img src="enfance_clas.png" alt="CLAS" style="max-width:300px; margin-bottom:1rem; border-radius:8px;">
-                                <p>Ils sont organisés par des associations ou par les municipalités partenaires de la Caf. L'objectif est que l'enfant vive mieux sa scolarité : tout au long de l'année, les parents et les équipes enseignantes sont sollicités pour participer au suivi de l'enfant.</p>
-                                <p>Pour le moment, une seule commune de la Communauté de communes s'est engagé dans la démarche.</p>
-                                <p><strong>"Le CLAS, c'est un accompagnement pour aider votre enfant à mieux réussir à l'école, mais aussi un soutien pour vous, parents, dans le suivi scolaire."</strong></p>
-                                <p style="margin-top:1rem; font-style:italic;">Un accompagnement pour aider votre enfant à mieux réussir à l'école et un soutien pour les parents dans le suivi scolaire.</p>
+                                <div class="cards-grid">
+                                    <div class="card">
+                                        <p><strong>Tous les mercredis de 9h15 à 11h45</strong><br>au Pôle Petite Enfance à Briare</p>
+                                    </div>
+                                    <div class="card">
+                                        <p><strong>Tous les mercredis de 15h00 à 17h30</strong><br>à la salle des Fêtes d'Ouzouër-sur-Trézée</p>
+                                    </div>
+                                    <div class="card">
+                                        <p><strong>Tous les jeudis de 15h00 à 17h30</strong><br>au Centre médico-social à Châtillon-sur-Loire</p>
+                                    </div>
+                                </div>
+                                <div class="photo-gallery">
+                                    <img src="Marelle Briare.png" alt="Marelle Briare">
+                                    <img src="Marelle Ouzouer.png" alt="Marelle Ouzouer">
+                                    <img src="Marelle Chatillon.png" alt="Marelle Chatillon">
+                                </div>
+                                <p style="margin-top:1.5rem;">📧 <a href="mailto:laep@cc-berryloirepuisaye.fr">laep@cc-berryloirepuisaye.fr</a> - 📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
                         </div>
                     </div>
 
-                    <!-- ===== 3. ACCUEIL PÉRISCOLAIRE ===== -->
-                    <div class="accordion-item" id="accueils-periscolaires">
+                    <!-- ===== 6. PMI ===== -->
+                    <div class="accordion-item" id="pmi">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>Accueil périscolaire</span>
+                            <span>PMI - Consultations et ateliers</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
                             <div class="short-text">
-                                <p>L'organisation de l'année et des vacances scolaires peut vous conduire à rechercher un mode d'accueil pour votre enfant en dehors des heures d'école. Le territoire Berry Loire Puisaye est riche de 9 accueils périscolaires.</p>
+                                <div class="pmi-logo">
+                                    <img src="interlocuteurs_page-052.png" alt="Logo Département du Loiret">
+                                    <p>Au sein de chaque ADS, les équipes du service de Protection Maternelle et Infantile (PMI) <strong>assurent des missions de promotion de la santé et de prévention</strong> auprès des femmes enceintes, des enfants jusqu'à 6 ans, et de leur famille.</p>
+                                </div>
                             </div>
                             <div class="full-text">
-                                <div class="accordion-card-grid">
-                                    <div class="ecole-card">
-                                        <h4>Autry-le-Châtel</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie les après-midis<br>Lun, mar, jeu, ven de 7h15 à 8h45 et de 16h30 à 18h30</p>
-                                            <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
-                                        </div>
+                                <p>La PMI est en outre chargée du suivi des modes d'accueil du jeune enfant et assure également les bilans de santé en école maternelle.</p>
+                                <div class="cards-grid">
+                                    <div class="card">
+                                        <h4>Consultations médicales et de puériculture</h4>
+                                        <p>Selon les consultations, vous pourrez rencontrer :<br>
+                                        - une infirmière puéricultrice ou une auxiliaire de puériculture <strong>pour échanger et obtenir des conseils</strong> pour votre enfant (0-6 ans)<br>
+                                        - un médecin pour le <strong>suivi médical</strong> de votre enfant</p>
+                                        <img src="Consultations PMI.jpg" alt="PMI Consultations" style="width:100%; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                        <p><strong>Consultation médicale :</strong><br>
+                                        • 1er lundi de 9h00 à 17h00<br>
+                                        • 3ème lundi du mois de 9h00 à 13h00<br>
+                                        au Centre Médico-social de Briare (6 rue des Grands Jardins)</p>
+                                        <p><strong>Permanence de puéricultrice :</strong><br>
+                                        • 2ème vendredi de 9h00 à 11h30 au Centre Médico-social de Briare<br>
+                                        • 4ème vendredi de 9h00 à 11h30 à la Maison Médicale de Bonny-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238052365">02 38 05 23 65</a></p>
                                     </div>
-                                    <div class="ecole-card">
-                                        <h4>Beaulieu-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Les Crayons de couleurs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
-                                            <p>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h15 à 18h30 / Mer de 7h30 à 18h30</p>
-                                            <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Bonny-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h30 à 8h50 et de 16h30 à 18h30</p>
-                                            <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>L'inscription se fait par le portail famille<br>Lun, mar, jeu, ven 7h00 à 8h40 et de 16h20 à 18h00</p>
-                                            <p>📞 <a href="tel:+33238316357">02 38 31 63 57</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Châtillon-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Permanence au bureau jusqu'à 10h30<br>Lun., mar., jeu. et vend. de 7h00 à 8h45 et de 16h30 à 18h30</p>
-                                            <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Ousson-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
-                                            <p>2 bis rue des Marronniers<br>📞 <a href="tel:0238314456">02 38 31 44 56</a><br>📧 <a href="mailto:mairie@oussonsurloire.fr">mairie@oussonsurloire.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Ouzouër-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil périscolaire</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>Garderie sans inscription sauf le mercredi<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 18h30</p>
-                                            <p>📞 <a href="tel:0238319390">02 38 31 93 90</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Adon / La Bussière</h4>
-                                        <span class="ecole-nom-court">SIIS Adon - La Bussière</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Regroupement sur La Bussière. Contact en mairie<br>Lun, mar, jeu, ven de 7h15 à 8h30 et de 16h30 à 18h30 - Mer de 7h15 à 18h30</p>
-                                            <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Cernoy-en-Berry / Pierrefitte</h4>
-                                        <span class="ecole-nom-court">SIIS Cernoy - Pierrefitte</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Regroupement sur Cernoy-en-Berry. Contact en mairie<br>Lun, mar, jeu, ven de 7h00 à 9h00 et de 16h30 à 19h00</p>
-                                            <p>2 rue de Concressault<br>📞 <a href="tel:0238314702">02 38 31 47 02</a><br>📧 <a href="mailto:siriscernoypierrefitte@cernoy-en-berry.fr">siriscernoypierrefitte@cernoy-en-berry.fr</a></p>
-                                        </div>
+                                    <div class="card">
+                                        <h4>Atelier manipulation enfants-parents</h4>
+                                        <p>Ce sont des <strong>ateliers gratuits</strong> : des activités de manipulation permettant aux enfants <strong>de 1 à 3 ans</strong> de découvrir, expérimenter, explorer des textures, des couleurs...</p>
+                                        <img src="Atelier manipulation enfants-parents.jpg" alt="Atelier manipulation" style="width:100%; height:200px; object-fit:cover; border-radius:8px; margin:0.8rem 0; cursor:pointer;">
+                                        <p>Les activités et les textures naturelles évoluent au fil des saisons : sable magique, semoule, terre, fleurs, eau, feuilles...</p>
+                                        <p><strong>Bienfaits :</strong> Développe la confiance, la motricité fine, l'autonomie, la concentration...</p>
+                                        <p><strong>Tous les 2e vendredis du mois de 9h30 à 11h30</strong><br>
+                                        Au Pôle Petite enfance - 39 avenue Yver Bapterosses, Briare<br>
+                                        📞 <a href="tel:0623597328">06 23 59 73 28</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -839,94 +729,49 @@
                         </div>
                     </div>
 
-                    <!-- ===== 4. ACCUEIL DE LOISIRS ===== -->
-                    <div class="accordion-item" id="accueils-loisirs">
+                    <!-- ===== 7. BULLE MUSICALE ===== -->
+                    <div class="accordion-item" id="bulle-musicale">
                         <button class="accordion-header" aria-expanded="false">
-                            <span>Accueil de loisirs</span>
+                            <span>Focus sur La Bulle Musicale</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="short-text">
-                                <p>Le territoire propose 7 accueils de loisirs pour les enfants, avec des activités variées pendant les vacances scolaires et les mercredis.</p>
-                            </div>
-                            <div class="full-text">
-                                <div class="accordion-card-grid">
-                                    <div class="ecole-card">
-                                        <h4>Autry-le-Châtel</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie les après-midis<br>4 semaines en juillet de 7h00 à 18h30</p>
-                                            <p>8 rue de la Mairie<br>📞 <a href="tel:0238368059">02 38 36 80 59</a><br>📧 <a href="mailto:secretariat.mairie@autrylechatel.fr">secretariat.mairie@autrylechatel.fr</a></p>
+                            <div class="bulle-musicale">
+                                <div class="short-text">
+                                    <div class="bulle-content">
+                                        <div class="text">
+                                            <p>Installée au cœur de la <strong>salle du Relais Petite enfance</strong> au sein du Pôle Petite enfance depuis fin 2022, <strong>la Bulle Musicale</strong> est un équipement utilisé par les professionnels des multi-accueils, du Relais Petite enfance, les accueillantes de la Marelle et les parents qui fréquentent ce lieu d'accueil enfants-parents.</p>
                                         </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Beaulieu-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Les Crayons de couleurs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p><strong>Les Crayons de couleurs</strong><br>Association Familles Rurales</p>
-                                            <p>Chaque vacances scolaires (sauf Noël) de 7h30 à 18h30</p>
-                                            <p>15 route de Châtillon<br>📞 <a href="tel:0238050384">02 38 05 03 84</a><br>📧 <a href="mailto:lescrayonsdecouleurs@gmail.com">lescrayonsdecouleurs@gmail.com</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Bonny-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>1ère semaine des petites vacances (sauf Noël) du lundi au vendredi<br>Le 1er mois d'été de 8h00 à 18h00</p>
-                                            <p>avenue de la gare<br>📞 <a href="tel:0238295900">02 38 29 59 00</a><br>📧 <a href="mailto:mairie@bonnysurloire.fr">mairie@bonnysurloire.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Briare</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Inscription par le portail famille<br>Mercredis et petites vacances : à la journée<br>Grandes vacances : à la semaine</p>
-                                            <p>📞 <a href="tel:0238316755">02 38 31 67 55</a><br>📧 <a href="mailto:guichetunique@villedebriare.fr">guichetunique@villedebriare.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Châtillon-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Permanence au bureau jusqu'à 10h30<br>Mercredis : 7h00 à 18h00<br>Petites vacances : du lundi au vendredi, 7h00 à 18h00<br>Grandes vacances : du lundi au vendredi, 7h30 à 18h00</p>
-                                            <p>place du Champ de Foire<br>📞 <a href="tel:0632085479">06 32 08 54 79</a><br>📧 <a href="mailto:centredeloisirs@chatillonsurloire.fr">centredeloisirs@chatillonsurloire.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>Ouzouër-sur-Loire</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>Mercredis de 7h00 à 18h30 - Inscription par ½ journée</p>
-                                            <p>📞 <a href="tel:0238319289">02 38 31 92 89</a> (mairie)<br>📞 <a href="tel:0238356952">02 38 35 69 52</a> (garderie)<br>📧 <a href="mailto:mairie-secretariatg@ouzouer-trezee.fr">mairie-secretariatg@ouzouer-trezee.fr</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="ecole-card">
-                                        <h4>La Bussière</h4>
-                                        <span class="ecole-nom-court">Accueil de loisirs</span>
-                                        <span class="ecole-toggle-icon">+</span>
-                                        <div class="ecole-details">
-                                            <p>Contact en mairie<br>Mercredis de 7h15 à 18h30<br>Vacances de la Toussaint, hiver et printemps (1ère semaine) de 7h30 à 18h00</p>
-                                            <p>1 route de Briare<br>📞 <a href="tel:0238359068">02 38 35 90 68</a><br>📧 <a href="mailto:contact@labussiere45.fr">contact@labussiere45.fr</a></p>
-                                        </div>
+                                        <img src="bulle-musicale.png" alt="La Bulle Musicale">
                                     </div>
                                 </div>
+                                <div class="full-text">
+                                    <div class="bulle-content">
+                                        <div class="text">
+                                            <p>Véritable <strong>cocon</strong>, c'est un endroit que les enfants aiment explorer seuls ou accompagnés, pour se défouler ou se ressourcer.</p>
+                                            <p>L'ensemble des équipes du service Petite enfance a été formé pour exploiter la plus-value de cette Bulle dont <strong>le principe est de créer des rituels et du langage</strong> autour de ces rituels.</p>
+                                            <p>Découverte musicale, contes musicaux, lotos sonores et autres possibilités de s'enregistrer pour entendre sa voix ou celles rassurantes des gens qu'on aime, la Bulle est avant tout <strong>un lieu d'exploration et de réconfort.</strong></p>
+                                            <p><strong>Pour les enfants de moins de 7 ans - GRATUIT</strong><br>
+                                            Mercredis de 9h15 à 11h45<br>
+                                            Pôle Petite Enfance - 39, avenue Yver Bapterosses, Briare<br>
+                                            📞 <a href="tel:0238367873">02 38 36 78 73</a></p>
+                                        </div>
+                                        <img src="bulle-musicale.png" alt="La Bulle Musicale">
+                                    </div>
+                                </div>
+                                <button class="read-more-btn">Lire la suite</button>
                             </div>
-                            <button class="read-more-btn">Lire la suite</button>
                         </div>
                     </div>
 
                 </div>
+                <!-- ===== FIN ACCORDÉON ===== -->
 
             </div>
         </section>
     </main>
 
+    <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-close" id="lightboxClose">&times;</button>
@@ -934,6 +779,7 @@
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -968,10 +814,10 @@
         </div>
     </footer>
 
+    <!-- ===== SCROLL TOP ===== -->
     <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
     <!-- ===== SCRIPTS ===== -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script>
         (function() {
             // ============================================================
@@ -988,8 +834,12 @@
                 });
             }
 
+            // ============================================================
+            // ---- SOUS-MENU DÉROULANT SUR MOBILE AVEC DOUBLE-CLIC ----
+            // ============================================================
             document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
                 let clickTimer = null;
+
                 link.addEventListener('click', function(e) {
                     if (window.innerWidth <= 768) {
                         if (clickTimer) {
@@ -997,18 +847,29 @@
                             clickTimer = null;
                             return;
                         }
+
                         e.preventDefault();
                         const parent = this.parentElement;
                         const wasOpen = parent.classList.contains('open');
+
                         document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
                             item.classList.remove('open');
                         });
-                        if (!wasOpen) parent.classList.add('open');
-                        clickTimer = setTimeout(function() { clickTimer = null; }, 300);
+
+                        if (!wasOpen) {
+                            parent.classList.add('open');
+                        }
+
+                        clickTimer = setTimeout(function() {
+                            clickTimer = null;
+                        }, 300);
                     }
                 });
             });
 
+            // ============================================================
+            // ---- FERMETURE DU SOUS-MENU ----
+            // ============================================================
             document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
@@ -1055,7 +916,7 @@
                 img.addEventListener('click', function(e) {
                     if (this.closest('.hero')) return;
                     if (this.closest('.video-wrapper')) return;
-                    if (this.closest('#carte-ecoles')) return;
+                    if (this.closest('.video-thumb')) return;
                     e.stopPropagation();
                     const src = this.getAttribute('src');
                     if (src) openLightbox(src);
@@ -1073,11 +934,29 @@
             });
 
             // ============================================================
+            // ---- CHARGEMENT DE LA VIDÉO AU CLIC SUR LA MINIATURE ----
+            // ============================================================
+            window.loadVideo = function(wrapperId, videoId, title) {
+                const wrapper = document.getElementById(wrapperId);
+                if (!wrapper) return;
+                wrapper.classList.add('video-loaded');
+                wrapper.innerHTML =
+                    '<iframe src="https://www.youtube.com/embed/' + videoId +
+                    '?rel=0&modestbranding=1&autoplay=1" ' +
+                    'title="' + title + '" ' +
+                    'frameborder="0" ' +
+                    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+                    'referrerpolicy="strict-origin-when-cross-origin" ' +
+                    'allowfullscreen></iframe>';
+            };
+
+            // ============================================================
             // ---- ACCORDÉON ----
             // ============================================================
             function toggleAccordion(header) {
                 const isOpen = header.classList.contains('open');
                 const body = header.nextElementSibling;
+
                 if (isOpen) {
                     header.classList.remove('open');
                     header.setAttribute('aria-expanded', 'false');
@@ -1091,36 +970,57 @@
                     header.classList.add('open');
                     header.setAttribute('aria-expanded', 'true');
                     body.classList.add('open');
-                    if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
-                        setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
-                    }
                 }
             }
 
             document.querySelectorAll('.accordion-header').forEach(function(header) {
-                header.addEventListener('click', function() { toggleAccordion(this); });
+                header.addEventListener('click', function() {
+                    toggleAccordion(this);
+                });
             });
 
             // ============================================================
-            // ---- LIRE LA SUITE ----
+            // ---- SOUS-ACCORDÉON ACCUEIL COLLECTIF ----
+            // ============================================================
+            window.toggleSubAccordion = function(id) {
+                const content = document.getElementById(id + '-content');
+                const header = content.previousElementSibling;
+                const icon = document.getElementById(id + '-icon');
+
+                if (content.classList.contains('open')) {
+                    content.classList.remove('open');
+                    header.classList.remove('open');
+                    icon.textContent = '+';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.classList.add('open');
+                    header.classList.add('open');
+                    icon.textContent = '−';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            };
+
+            // ============================================================
+            // ---- LIRE LA SUITE (tous les types) ----
             // ============================================================
             document.querySelectorAll('.read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
-                    const parent = this.closest('.accordion-body')
+
+                    const parent = this.closest('.bulle-musicale')
+                                || this.closest('.accordion-body')
                                 || this.closest('.sous-accordion-body')
                                 || this.closest('.sub-section')
                                 || this.closest('.card')
                                 || this.parentElement;
                     if (!parent) return;
+
                     const fullText = parent.querySelector('.full-text');
                     if (!fullText) return;
+
                     const isVisible = fullText.classList.contains('visible');
                     fullText.classList.toggle('visible');
                     this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                    if (!isVisible && window.__carteEcoles) {
-                        setTimeout(function() { window.__carteEcoles.invalidateSize(); }, 350);
-                    }
                 });
             });
 
@@ -1143,677 +1043,13 @@
                         header.nextElementSibling.classList.add('open');
                         setTimeout(function() {
                             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
-                        }, 250);
+                        }, 200);
                     }
                 }
             }
+
             window.addEventListener('DOMContentLoaded', openAccordionFromHash);
             window.addEventListener('hashchange', openAccordionFromHash);
-
-            // ============================================================
-            // ---- CARTES ÉCOLES DÉPLIABLES SUR MOBILE ----
-            // ============================================================
-            function initCartesDepliables() {
-                if (window.innerWidth > 768) return;
-
-                document.querySelectorAll('.ecole-card').forEach(function(carte) {
-                    if (carte.dataset.depliable === 'true') return;
-                    carte.dataset.depliable = 'true';
-
-                    carte.addEventListener('click', function(e) {
-                        if (e.target.closest('a')) return;
-                        this.classList.toggle('open');
-                    });
-                });
-            }
-
-            window.addEventListener('DOMContentLoaded', initCartesDepliables);
-
-            let resizeTimerCarte;
-            window.addEventListener('resize', function() {
-                clearTimeout(resizeTimerCarte);
-                resizeTimerCarte = setTimeout(function() {
-                    if (window.innerWidth > 768) {
-                        document.querySelectorAll('.ecole-card.open').forEach(function(c) {
-                            c.classList.remove('open');
-                        });
-                    } else {
-                        initCartesDepliables();
-                    }
-                }, 200);
-            });
-
-            // ============================================================
-            // ---- CARTE LEAFLET ----
-            // ============================================================
-
-            const etablissementsData = [
-                {
-                    type: "college",
-                    commune: "Briare",
-                    nom: "Collège Albert Camus",
-                    adresse: "Rue du Port à Belleau, 45250 Briare",
-                    telephone: "02 38 37 02 83",
-                    email: "ce0450008p@ac-orleans-tours.fr",
-                    dispositifs: "SEGPA + ULIS",
-                    lat: 47.6378, lng: 2.7373
-                },
-                {
-                    type: "college",
-                    commune: "Châtillon-sur-Loire",
-                    nom: "Collège Pierre Dézarnaulds",
-                    adresse: "2 allée du Paradis, 45360 Châtillon-sur-Loire",
-                    telephone: "02 38 31 42 49",
-                    email: "ce0450017z@ac-orleans-tours.fr",
-                    dispositifs: "ULIS",
-                    lat: 47.5905, lng: 2.7485
-                },
-                {
-                    type: "ecole",
-                    rpiId: "rpi-chatillon",
-                    commune: "Châtillon-sur-Loire",
-                    nom: "École maternelle et élémentaire",
-                    adresse: "place du Champ de Foire, 45360 Châtillon-sur-Loire",
-                    telephone: "02 38 31 40 74",
-                    email: "ce.0450881N@ac-orleans-tours.fr",
-                    lat: 47.591146, lng: 2.748100
-                },
-                {
-                    type: "ecole",
-                    rpiId: "rpi-bonny",
-                    commune: "Bonny-sur-Loire",
-                    nom: "École maternelle et élémentaire",
-                    adresse: "2 avenue de la Gare, 45420 Bonny-sur-Loire",
-                    telephone: "02 38 31 63 57",
-                    email: "ce.0450182D@ac-orleans-tours.fr",
-                    lat: 47.559345, lng: 2.842596
-                },
-                {
-                    type: "ecole",
-                    commune: "Autry-le-Châtel",
-                    nom: "École maternelle et élémentaire",
-                    adresse: "14 rue de l'École, 45500 Autry-le-Châtel",
-                    telephone: "02 38 36 82 62 / 02 38 36 81 88",
-                    email: "ce.0450195T@ac-orleans-tours.fr",
-                    lat: 47.598875, lng: 2.604867
-                },
-                {
-                    type: "ecole",
-                    commune: "Beaulieu-sur-Loire",
-                    nom: "École maternelle et élémentaire",
-                    adresse: "15 rue de Châtillon, 45630 Beaulieu-sur-Loire",
-                    telephone: "02.19.00.49.86 / 02.38.35.85.35",
-                    email: "ce.0451398A@ac-orleans-tours.fr",
-                    lat: 47.544626, lng: 2.812810
-                },
-                {
-                    type: "ecole",
-                    commune: "Ousson-sur-Loire",
-                    nom: "École élémentaire George Sand",
-                    adresse: "11 rue de l'Abreuvoir, 45250 Ousson-sur-Loire",
-                    telephone: "02 38 31 00 51",
-                    email: "ce.0450189L@ac-orleans-tours.fr",
-                    lat: 47.588507, lng: 2.786550
-                },
-                {
-                    type: "ecole",
-                    commune: "Briare",
-                    nom: "École Marcel Gaime (maternelle)",
-                    adresse: "place Saint Roch, 45250 Briare",
-                    telephone: "02 38 31 25 85",
-                    email: "ce.0450167M@ac-orleans-tours.fr",
-                    lat: 47.637205, lng: 2.738436
-                },
-                {
-                    type: "ecole",
-                    commune: "Briare",
-                    nom: "École du Centre (élémentaire)",
-                    adresse: "3 square Foch, 45250 Briare",
-                    telephone: "02 38 31 26 49",
-                    email: "ce.0450869A@ac-orleans-tours.fr",
-                    lat: 47.640598, lng: 2.737694
-                },
-                {
-                    type: "ecole",
-                    commune: "Briare",
-                    nom: "École Gustave Eiffel (maternelle et élémentaire)",
-                    adresse: "7 rue de l'Espérance, 45250 Briare",
-                    telephone: "02 38 31 25 34",
-                    email: "ce.0450178Z@ac-orleans-tours.fr",
-                    lat: 47.631652, lng: 2.743530
-                },
-                {
-                    type: "ecole-privee",
-                    commune: "Briare",
-                    nom: "École Sainte-Anne (privée)",
-                    adresse: "5 rue des Grands Jardins, 45250 Briare",
-                    telephone: "02 38 31 26 48",
-                    email: "ce.0451522K@ac-orleans-tours.fr",
-                    lat: 47.637611, lng: 2.736503
-                },
-                {
-                    type: "ecole",
-                    commune: "Ouzouër-sur-Trézée",
-                    nom: "École Jacques Prévert",
-                    adresse: "14 rue de la Flamandière, 45250 Ouzouër-sur-Trézée",
-                    telephone: "02 38 31 97 47 / 02 38 31 92 89",
-                    email: "ce.0451269K@ac-orleans-tours.fr",
-                    lat: 47.670537, lng: 2.807115
-                },
-                {
-                    type: "rpi",
-                    rpiId: "rpi-cernoy-pierrefitte",
-                    commune: "Cernoy-en-Berry",
-                    nom: "École maternelle (RPI Cernoy / Pierrefitte)",
-                    adresse: "5 rue d'Autry, 45360 Cernoy-en-Berry",
-                    telephone: "02 38 31 01 00",
-                    email: "ec-cernoy-en-berry@ac-orleans-tours.fr",
-                    rpiInfo: "RPI Cernoy / Pierrefitte — Maternelle à Cernoy, élémentaire à Pierrefitte",
-                    lat: 47.541448, lng: 2.660588
-                },
-                {
-                    type: "rpi",
-                    rpiId: "rpi-cernoy-pierrefitte",
-                    commune: "Pierrefitte-ès-Bois",
-                    nom: "École élémentaire (RPI Cernoy / Pierrefitte)",
-                    adresse: "7 rue de la Mairie, 45360 Pierrefitte-ès-Bois",
-                    telephone: "02 38 31 08 13",
-                    email: "ec-pierrefitte-es-bois@ac-orleans-tours.fr",
-                    rpiInfo: "RPI Cernoy / Pierrefitte — Maternelle à Cernoy, élémentaire à Pierrefitte",
-                    lat: 47.507527, lng: 2.717887
-                },
-                {
-                    type: "rpi",
-                    rpiId: "rpi-adon-bussiere",
-                    commune: "Adon",
-                    nom: "École élémentaire (SIIS Adon / La Bussière)",
-                    adresse: "13 route de la Bussière, 45230 Adon",
-                    telephone: "02 38 35 94 69",
-                    email: "ce.0450175W@ac-orleans-tours.fr",
-                    rpiInfo: "SIIS Adon / La Bussière — Élémentaire à Adon, maternelle à La Bussière",
-                    lat: 47.763036, lng: 2.795527
-                },
-                {
-                    type: "rpi",
-                    rpiId: "rpi-adon-bussiere",
-                    commune: "La Bussière",
-                    nom: "École primaire (SIIS Adon / La Bussière)",
-                    adresse: "rue d'Ouzouer, 45230 La Bussière",
-                    telephone: "02 38 35 90 68",
-                    email: "ce.0450184F@ac-orleans-tours.fr",
-                    rpiInfo: "SIIS Adon / La Bussière — Élémentaire à Adon, maternelle à La Bussière",
-                    lat: 47.744547, lng: 2.749711
-                }
-            ];
-
-            const communesRattachees = [
-                {
-                    rpiId: "rpi-chatillon",
-                    commune: "Saint-Firmin-sur-Loire",
-                    nom: "Commune rattachée au RPI de Châtillon-sur-Loire",
-                    info: "Les élèves de Saint-Firmin-sur-Loire sont scolarisés à l'école de Châtillon-sur-Loire.",
-                    adresseRecherche: "mairie 45360 Saint-Firmin-sur-Loire",
-                    lat: 47.5972, lng: 2.6972
-                },
-                {
-                    rpiId: "rpi-bonny",
-                    commune: "Dammarie-en-Puisaye",
-                    nom: "Commune rattachée au RPI de Bonny-sur-Loire",
-                    info: "Les élèves de Dammarie-en-Puisaye sont scolarisés à l'école de Bonny-sur-Loire.",
-                    adresseRecherche: "mairie 45420 Dammarie-en-Puisaye",
-                    lat: 47.5906, lng: 2.8969
-                },
-                {
-                    rpiId: "rpi-bonny",
-                    commune: "Batilly-en-Puisaye",
-                    nom: "Commune rattachée au RPI de Bonny-sur-Loire",
-                    info: "Les élèves de Batilly-en-Puisaye sont scolarisés à l'école de Bonny-sur-Loire.",
-                    adresseRecherche: "mairie 45420 Batilly-en-Puisaye",
-                    lat: 47.5911, lng: 2.9361
-                },
-                {
-                    rpiId: "rpi-bonny",
-                    commune: "Thou",
-                    nom: "Commune rattachée au RPI de Bonny-sur-Loire",
-                    info: "Les élèves de Thou sont scolarisés à l'école de Bonny-sur-Loire.",
-                    adresseRecherche: null,
-                    lat: 47.58117028224872, lng: 2.9113765058614773
-                },
-                {
-                    rpiId: "rpi-bonny",
-                    commune: "Faverelles",
-                    nom: "Commune rattachée au RPI de Bonny-sur-Loire",
-                    info: "Les élèves de Faverelles sont scolarisés à l'école de Bonny-sur-Loire.",
-                    adresseRecherche: "mairie 45420 Faverelles",
-                    lat: 47.6167, lng: 2.9167
-                }
-            ];
-
-            const mapEcolesEl = document.getElementById('carte-ecoles');
-            if (mapEcolesEl && typeof L !== 'undefined') {
-                try {
-                    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.78], 11);
-                    window.__carteEcoles = mapEcoles;
-
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 19,
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                    }).addTo(mapEcoles);
-
-                    var styleEPCI = {
-                        color: "#4A4DBD",
-                        weight: 3,
-                        opacity: 0.9,
-                        fillColor: "#686be7",
-                        fillOpacity: 0.03,
-                        dashArray: "8, 5"
-                    };
-
-                    fetch('epci-ccblp.geojson')
-                        .then(function(response) {
-                            if (!response.ok) throw new Error('Fichier EPCI non trouvé (HTTP ' + response.status + ')');
-                            return response.json();
-                        })
-                        .then(function(data) {
-                            L.geoJSON(data, {
-                                style: styleEPCI,
-                                interactive: false
-                            }).addTo(mapEcoles);
-                            console.log('✅ Contour EPCI chargé');
-                        })
-                        .catch(function(err) {
-                            console.warn('⚠️ Erreur contour EPCI :', err);
-                        });
-
-                    var styleCommunes = {
-                        color: "#8B8DEF",
-                        weight: 1.2,
-                        opacity: 0.6,
-                        fillColor: "#686be7",
-                        fillOpacity: 0.02
-                    };
-
-                    fetch('communes-berry.geojson')
-                        .then(function(response) {
-                            if (!response.ok) throw new Error('Fichier communes non trouvé (HTTP ' + response.status + ')');
-                            return response.json();
-                        })
-                        .then(function(data) {
-                            L.geoJSON(data, {
-                                style: styleCommunes,
-                                interactive: false
-                            }).addTo(mapEcoles);
-                            console.log('✅ Contours des communes chargés');
-                        })
-                        .catch(function(err) {
-                            console.warn('⚠️ Erreur contours communes :', err);
-                        });
-
-                    const styleParType = {
-                        "college":      { couleur: "#e85d2c", rayon: 11, bordure: "#fff" },
-                        "ecole":        { couleur: "#686be7", rayon: 8,  bordure: "#fff" },
-                        "ecole-privee": { couleur: "#888888", rayon: 8,  bordure: "#fff" },
-                        "rpi":          { couleur: "#8B8DEF", rayon: 8,  bordure: "#4A4DBD" },
-                        "commune-rpi":  { couleur: "#ffffff", rayon: 5,  bordure: "#4A4DBD" }
-                    };
-
-                    const rpiGroupes = {};
-                    etablissementsData.forEach(function(etab) {
-                        if (etab.rpiId) {
-                            if (!rpiGroupes[etab.rpiId]) rpiGroupes[etab.rpiId] = [];
-                            rpiGroupes[etab.rpiId].push(etab);
-                        }
-                    });
-                    communesRattachees.forEach(function(c) {
-                        if (!rpiGroupes[c.rpiId]) rpiGroupes[c.rpiId] = [];
-                        rpiGroupes[c.rpiId].push(c);
-                    });
-
-                    // ---- Lignes RPI en étoile (départ depuis l'école centrale) ----
-                    const rpiLines = {};
-
-                    Object.keys(rpiGroupes).forEach(function(rpiId) {
-                        const entites = rpiGroupes[rpiId];
-
-                        const ecolesCentrales = entites.filter(function(e) {
-                            return e.type === "ecole" || e.type === "rpi";
-                        });
-                        const communesRatt = entites.filter(function(e) {
-                            return e.type !== "ecole" && e.type !== "rpi";
-                        });
-
-                        if (entites.length >= 2) {
-                            const lignes = [];
-
-                            if (ecolesCentrales.length > 0) {
-                                // Lignes en étoile depuis la première école centrale
-                                const ecole = ecolesCentrales[0];
-
-                                communesRatt.forEach(function(commune) {
-                                    const ligne = L.polyline(
-                                        [[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
-                                        {
-                                            color: "#4A4DBD",
-                                            weight: 2,
-                                            dashArray: "4, 6",
-                                            opacity: 0.55
-                                        }
-                                    ).addTo(mapEcoles);
-                                    lignes.push(ligne);
-                                });
-
-                                // Si plusieurs écoles centrales, on les relie entre elles
-                                if (ecolesCentrales.length > 1) {
-                                    for (let i = 0; i < ecolesCentrales.length - 1; i++) {
-                                        const ligne = L.polyline(
-                                            [
-                                                [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
-                                                [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
-                                            ],
-                                            {
-                                                color: "#4A4DBD",
-                                                weight: 2,
-                                                dashArray: "4, 6",
-                                                opacity: 0.55
-                                            }
-                                        ).addTo(mapEcoles);
-                                        lignes.push(ligne);
-                                    }
-                                }
-                            } else {
-                                // Cas de secours : pas d'école identifiée
-                                const ligne = L.polyline(
-                                    entites.map(function(e) { return [e.lat, e.lng]; }),
-                                    {
-                                        color: "#4A4DBD",
-                                        weight: 2,
-                                        dashArray: "4, 6",
-                                        opacity: 0.55
-                                    }
-                                ).addTo(mapEcoles);
-                                lignes.push(ligne);
-                            }
-
-                            rpiLines[rpiId] = lignes;
-                        }
-                    });
-
-                    const markersByEtab = [];
-                    const markersCommunes = [];
-
-                    etablissementsData.forEach(function(etab) {
-                        const style = styleParType[etab.type] || styleParType["ecole"];
-
-                        const marker = L.circleMarker([etab.lat, etab.lng], {
-                            radius: style.rayon,
-                            fillColor: style.couleur,
-                            color: style.bordure,
-                            weight: etab.type === "rpi" ? 3 : 2,
-                            dashArray: etab.type === "rpi" ? "4, 3" : null,
-                            opacity: 1,
-                            fillOpacity: 0.9
-                        }).addTo(mapEcoles);
-
-                        let badge = "";
-                        if (etab.type === "college") {
-                            badge = '<span class="ecole-badge college">Collège' +
-                                    (etab.dispositifs ? ' • ' + etab.dispositifs : '') + '</span>';
-                        } else if (etab.type === "rpi") {
-                            badge = '<span class="ecole-badge rpi">RPI</span>';
-                        } else if (etab.type === "ecole-privee") {
-                            badge = '<span class="ecole-badge privee">Privée</span>';
-                        }
-
-                        const contenu =
-                            '<div class="ecole-tooltip">' +
-                            badge +
-                            '<span class="ecole-commune">' + etab.commune + '</span>' +
-                            '<span class="ecole-nom">' + etab.nom + '</span>' +
-                            '<span class="ecole-detail">📍 ' + etab.adresse + '</span>' +
-                            '<span class="ecole-detail">📞 ' + etab.telephone + '</span>' +
-                            (etab.email ? '<span class="ecole-detail">✉️ ' + etab.email + '</span>' : '') +
-                            (etab.rpiInfo ? '<span class="ecole-rpi-info">' + etab.rpiInfo + '</span>' : '') +
-                            '</div>';
-
-                        marker.bindTooltip(contenu, {
-                            direction: 'top',
-                            offset: [0, -10],
-                            className: 'ecole-tooltip-wrapper',
-                            opacity: 1
-                        });
-
-                        markersByEtab.push({ etab: etab, marker: marker });
-                    });
-
-                    communesRattachees.forEach(function(c) {
-                        const style = styleParType["commune-rpi"];
-
-                        const marker = L.circleMarker([c.lat, c.lng], {
-                            radius: style.rayon,
-                            fillColor: style.couleur,
-                            color: style.bordure,
-                            weight: 2,
-                            dashArray: "2, 2",
-                            opacity: 1,
-                            fillOpacity: 1
-                        }).addTo(mapEcoles);
-
-                        const contenu =
-                            '<div class="ecole-tooltip">' +
-                            '<span class="ecole-badge commune-rpi">Commune du RPI</span>' +
-                            '<span class="ecole-commune">' + c.commune + '</span>' +
-                            '<span class="ecole-nom">' + c.nom + '</span>' +
-                            '<span class="ecole-rpi-info">' + c.info + '</span>' +
-                            '</div>';
-
-                        marker.bindTooltip(contenu, {
-                            direction: 'top',
-                            offset: [0, -10],
-                            className: 'ecole-tooltip-wrapper',
-                            opacity: 1
-                        });
-
-                        markersCommunes.push({ etab: c, marker: marker });
-                    });
-
-                    setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
-
-                    (function geocodageHybride() {
-                        const API_URL = 'https://api-adresse.data.gouv.fr/search/';
-                        const cache = new Map();
-                        const MAX_PARALLELE = 2;
-                        const DELAI_ENTRE_REQUETES = 250;
-                        const SCORE_MIN = 0.5;
-
-                        let requetesEnCours = 0;
-                        let derniereRequete = 0;
-
-                        const file = markersByEtab.map(function(item) {
-                            return {
-                                etab: item.etab,
-                                marker: item.marker,
-                                typeRequete: 'etablissement',
-                                requete: item.etab.adresse
-                            };
-                        }).concat(markersCommunes.filter(function(item) {
-                            return item.etab.adresseRecherche !== null && item.etab.adresseRecherche !== undefined;
-                        }).map(function(item) {
-                            return {
-                                etab: item.etab,
-                                marker: item.marker,
-                                typeRequete: 'commune',
-                                requete: item.etab.adresseRecherche
-                            };
-                        }));
-
-                        function normaliser(texte) {
-                            return texte.replace(/\s+/g, ' ').replace(/,\s*/g, ' ').trim();
-                        }
-
-                        function fetchAdresse(texte) {
-                            const cpMatch = texte.match(/\b\d{5}\b/);
-                            const postcode = cpMatch ? cpMatch[0] : '';
-                            const url = API_URL + '?' +
-                                'q=' + encodeURIComponent(normaliser(texte)) +
-                                '&limit=1' +
-                                (postcode ? '&postcode=' + postcode : '');
-
-                            return new Promise(function(resolve) {
-                                const controller = new AbortController();
-                                const timeoutId = setTimeout(function() { controller.abort(); }, 5000);
-
-                                fetch(url, { signal: controller.signal })
-                                    .then(function(r) {
-                                        clearTimeout(timeoutId);
-                                        if (!r.ok) throw new Error('HTTP ' + r.status);
-                                        return r.json();
-                                    })
-                                    .then(function(data) {
-                                        if (data.features && data.features.length > 0) {
-                                            const f = data.features[0];
-                                            const coords = f.geometry.coordinates;
-                                            resolve({
-                                                lat: coords[1],
-                                                lng: coords[0],
-                                                score: f.properties.score,
-                                                label: f.properties.label
-                                            });
-                                        } else {
-                                            resolve(null);
-                                        }
-                                    })
-                                    .catch(function() {
-                                        clearTimeout(timeoutId);
-                                        resolve(null);
-                                    });
-                            });
-                        }
-
-                        function deplacerMarqueur(item, coords) {
-                            const etab = item.etab;
-                            const marker = item.marker;
-                            const anciennePos = marker.getLatLng();
-                            const nouvellePos = L.latLng(coords.lat, coords.lng);
-
-                            const duree = 600;
-                            const debut = performance.now();
-                            const deltaLat = nouvellePos.lat - anciennePos.lat;
-                            const deltaLng = nouvellePos.lng - anciennePos.lng;
-
-                            function animer(t) {
-                                const p = Math.min(1, (t - debut) / duree);
-                                const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-                                marker.setLatLng([
-                                    anciennePos.lat + deltaLat * ease,
-                                    anciennePos.lng + deltaLng * ease
-                                ]);
-                                if (p < 1) requestAnimationFrame(animer);
-                            }
-                            requestAnimationFrame(animer);
-
-                            etab.lat = coords.lat;
-                            etab.lng = coords.lng;
-
-                            // Mise à jour des lignes RPI en étoile
-                            if (etab.rpiId && rpiLines[etab.rpiId]) {
-                                setTimeout(function() {
-                                    const entites = rpiGroupes[etab.rpiId];
-
-                                    const ecolesCentrales = entites.filter(function(e) {
-                                        return e.type === "ecole" || e.type === "rpi";
-                                    });
-                                    const communesRatt = entites.filter(function(e) {
-                                        return e.type !== "ecole" && e.type !== "rpi";
-                                    });
-
-                                    // Supprimer les anciennes lignes
-                                    rpiLines[etab.rpiId].forEach(function(l) {
-                                        mapEcoles.removeLayer(l);
-                                    });
-
-                                    // Recréer les lignes en étoile
-                                    const nouvellesLignes = [];
-
-                                    if (ecolesCentrales.length > 0) {
-                                        const ecole = ecolesCentrales[0];
-
-                                        communesRatt.forEach(function(commune) {
-                                            const ligne = L.polyline(
-                                                [[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
-                                                {
-                                                    color: "#4A4DBD",
-                                                    weight: 2,
-                                                    dashArray: "4, 6",
-                                                    opacity: 0.55
-                                                }
-                                            ).addTo(mapEcoles);
-                                            nouvellesLignes.push(ligne);
-                                        });
-
-                                        if (ecolesCentrales.length > 1) {
-                                            for (let i = 0; i < ecolesCentrales.length - 1; i++) {
-                                                const ligne = L.polyline(
-                                                    [
-                                                        [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
-                                                        [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
-                                                    ],
-                                                    {
-                                                        color: "#4A4DBD",
-                                                        weight: 2,
-                                                        dashArray: "4, 6",
-                                                        opacity: 0.55
-                                                    }
-                                                ).addTo(mapEcoles);
-                                                nouvellesLignes.push(ligne);
-                                            }
-                                        }
-                                    }
-
-                                    rpiLines[etab.rpiId] = nouvellesLignes;
-                                }, duree + 50);
-                            }
-                        }
-
-                        function traiterSuivant() {
-                            if (file.length === 0) return;
-                            const maintenant = Date.now();
-                            const attente = Math.max(0, DELAI_ENTRE_REQUETES - (maintenant - derniereRequete));
-
-                            setTimeout(function() {
-                                if (file.length === 0) return;
-                                const item = file.shift();
-                                const requete = item.requete;
-
-                                if (cache.has(requete)) {
-                                    const coords = cache.get(requete);
-                                    if (coords && coords.score >= SCORE_MIN) deplacerMarqueur(item, coords);
-                                    traiterSuivant();
-                                    return;
-                                }
-
-                                derniereRequete = Date.now();
-                                requetesEnCours++;
-
-                                fetchAdresse(requete).then(function(coords) {
-                                    requetesEnCours--;
-                                    cache.set(requete, coords);
-
-                                    if (coords && coords.score >= SCORE_MIN) deplacerMarqueur(item, coords);
-
-                                    if (requetesEnCours < MAX_PARALLELE && file.length > 0) traiterSuivant();
-                                });
-                            }, attente);
-                        }
-
-                        setTimeout(traiterSuivant, 800);
-                    })();
-
-                } catch (err) {
-                    console.error('Erreur initialisation carte Leaflet :', err);
-                    mapEcolesEl.innerHTML = '<p style="padding:1rem; text-align:center; color:#777;">La carte n\'a pas pu être chargée. Vérifiez votre connexion internet.</p>';
-                }
-            }
 
         })();
     </script>
