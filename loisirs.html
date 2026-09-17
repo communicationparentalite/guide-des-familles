@@ -18,238 +18,139 @@
             --secondary-light: #C8BEA5;
         }
 
-        /* ===== GRILLES DE CARTES ===== */
-        .cards-grid {
+        /* ===== MICRO-FOLIE (mise en page spécifique) ===== */
+        .microfolie-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 380px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+            margin-top: 1rem;
         }
-        .cards-grid-2 { grid-template-columns: repeat(2, 1fr); }
-        .cards-grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .cards-grid-4 { grid-template-columns: repeat(4, 1fr); }
-
-        .card {
-            background: white;
+        .microfolie-grid .image-col img {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
-            padding: 1.2rem;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-top: 4px solid var(--primary-color);
-        }
-        .card:hover {
-            transform: translateY(-4px);
             box-shadow: var(--shadow-md);
-        }
-        .card h3 {
-            color: var(--primary-dark);
-            margin-top: 0;
-            font-size: 1.05rem;
-        }
-        .card p {
-            margin: 0.3rem 0;
-            font-size: 0.92rem;
-            line-height: 1.5;
-        }
-        .card .card-image {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-bottom: 0.8rem;
             cursor: pointer;
         }
-        .card a {
-            color: var(--primary-dark);
-            text-decoration: none;
-        }
-        .card a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== SECTION À 2 COLONNES ===== */
-        .two-col-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        .two-col-section .col {
+        .microfolie-grid .text-col .microfolie-logo {
+            float: left;
+            height: 70px;
+            width: auto;
+            object-fit: contain;
             background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
+            border-radius: 8px;
+            padding: 0.5rem 0.8rem;
+            margin: 0 1.2rem 0.6rem 0;
             box-shadow: var(--shadow-sm);
         }
-        .two-col-section .col img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            cursor: pointer;
+        .microfolie-grid .text-col ul {
+            padding-left: 1.2rem;
+            line-height: 1.5;
+            margin: 0.2rem 0 0.6rem;
         }
-        .two-col-section .col h3 {
-            color: var(--primary-dark);
-            margin-top: 0;
+        .microfolie-grid .text-col ul li {
+            margin-bottom: 0.15rem;
         }
-        .two-col-section .col a {
-            color: var(--primary-dark);
-            text-decoration: none;
-        }
-        .two-col-section .col a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== ENCART ASSOCIATIONS ===== */
-        .associations-encart {
-            background: var(--primary-light);
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .associations-encart h3 {
-            color: var(--primary-dark);
-            margin-top: 0;
-        }
-        .associations-encart a {
-            color: var(--primary-dark);
-            text-decoration: none;
-            font-weight: 600;
-        }
-        .associations-encart a:hover {
-            text-decoration: underline;
+        @media (max-width: 900px) {
+            .microfolie-grid {
+                grid-template-columns: 1fr;
+            }
+            .microfolie-grid .text-col .microfolie-logo {
+                float: none;
+                display: block;
+                margin: 0 0 1rem 0;
+            }
         }
 
-        /* ===== GUIDE SAISON CULTURELLE ===== */
-        .guide-section {
-            background: #f5f0ea;
-            border-radius: 10px;
-            padding: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        .guide-section .btn-guide {
+        /* ===== BOUTON GUIDE PDF ===== */
+        .btn-guide {
             display: inline-block;
             background: var(--primary-dark);
-            color: white;
-            padding: 0.8rem 2rem;
+            color: white !important;
+            padding: 0.8rem 1.6rem;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             margin-top: 1rem;
             transition: background 0.3s;
+            font-family: 'Nunito', sans-serif;
         }
-        .guide-section .btn-guide:hover {
+        .btn-guide:hover {
             background: #6d5f4a;
-            color: white;
-        }
-        .guide-section a {
-            color: var(--primary-dark);
-        }
-        .guide-section a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== FOCUS OFFICE TOURISME ===== */
-        .focus-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            background: #f5f0ea;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .focus-section .focus-text h3 { color: var(--primary-dark); margin-top: 0; }
-        .focus-section .focus-image img,
-        .focus-section img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .focus-section a {
-            color: var(--primary-dark);
+            color: white !important;
             text-decoration: none;
         }
-        .focus-section a:hover {
-            text-decoration: underline;
-        }
 
-        /* ===== MICRO-FOLIE ===== */
-        .microfolie-section {
-            background: #f5f0ea;
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .microfolie-grid {
-            display: grid;
-            grid-template-columns: 380px 1fr;
-            gap: 2.5rem;
-            align-items: center;
-        }
-        .microfolie-grid .image-col img {
+        /* ===== IMAGES DANS L'ACCORDÉON ===== */
+        .accordion-body .inline-image {
             width: 100%;
-            height: 340px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: var(--shadow-md);
-            cursor: pointer;
-        }
-        .microfolie-grid .text-col {
-            display: flow-root;
-        }
-        .microfolie-grid .text-col h3 {
-            color: var(--primary-dark);
-            margin-top: 0;
-        }
-        .microfolie-grid .text-col .microfolie-logo {
-            float: left;
-            height: 80px;
-            width: auto;
-            object-fit: contain;
-            background: white;
+            max-width: 400px;
             border-radius: 8px;
-            padding: 0.5rem 0.9rem;
-            margin: 0 1.2rem 0.8rem 0;
-            box-shadow: var(--shadow-sm);
-        }
-        .microfolie-grid .text-col ul {
-            padding-left: 1.2rem;
-            line-height: 1.4;
-            margin-top: 0.2rem;
-            margin-bottom: 0.6rem;
-        }
-        .microfolie-grid .text-col ul li {
-            margin-bottom: 0.15rem;
-        }
-        .microfolie-grid .text-col a {
-            color: var(--primary-dark);
-            text-decoration: none;
-        }
-        .microfolie-grid .text-col a:hover {
-            text-decoration: underline;
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 992px) {
-            .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
-            .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
-            .two-col-section { grid-template-columns: 1fr; }
-            .microfolie-grid { grid-template-columns: 1fr; }
-            .microfolie-grid .image-col img { height: 220px; }
-            .microfolie-grid .text-col .microfolie-logo { float: none; display: block; margin: 0 0 1rem 0; }
+            margin: 0.8rem 0;
+            cursor: pointer;
+            display: block;
         }
         @media (max-width: 768px) {
-            .cards-grid, .cards-grid-2, .cards-grid-3, .cards-grid-4 { grid-template-columns: 1fr; }
-            .focus-section { grid-template-columns: 1fr; }
+            .accordion-body .inline-image {
+                max-width: 100%;
+            }
+        }
+
+        /* ===== GRILLE DE CARTES DANS ACCORDÉON ===== */
+        .accordion-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .accordion-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--primary-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .accordion-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+        .accordion-card h4 {
+            color: var(--primary-dark);
+            margin: 0 0 0.3rem 0;
+            font-size: 1rem;
+        }
+        .accordion-card p {
+            margin: 0.2rem 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .accordion-card a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .accordion-card a:hover {
+            text-decoration: underline;
+        }
+        .accordion-card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 0.6rem;
+            cursor: pointer;
         }
     </style>
 </head>
 <body class="page-loisirs">
+
+    <!-- ===== EN-TÊTE D'IMPRESSION (caché à l'écran) ===== -->
+    <div class="print-header" style="display: none;">
+        <h1>Guide des Familles - Loisirs & Culture</h1>
+        <p>Communauté de Communes Berry Loire Puisaye</p>
+        <p>Imprimé le <span id="print-date"></span></p>
+    </div>
 
     <!-- ===== HEADER ===== -->
     <header class="header">
@@ -270,476 +171,591 @@
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
-    <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
+            <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
 
-    <li class="nav-dropdown dropdown-interlocuteurs">
-        <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-            <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-            <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-            <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-            <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-interlocuteurs">
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-arrivee-enfant">
-        <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
-            <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-            <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-arrivee-enfant">
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-petite-enfance">
-        <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-            <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
-            <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
-            <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
-            <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
-            <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
-            <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-petite-enfance">
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
+                    <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
+                    <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
+                    <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-enfance">
-        <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="enfance.html#scolarite">Scolarité</a></li>
-            <li><a href="enfance.html#clas">CLAS</a></li>
-            <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-            <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-enfance">
+                <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                    <li><a href="enfance.html#clas">CLAS</a></li>
+                    <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-jeunesse">
-        <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="jeunesse.html#colleges">Collèges</a></li>
-            <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-            <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-jeunesse">
+                <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-parentalite">
-        <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-            <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-            <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-            <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-            <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-            <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-            <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-            <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-parentalite">
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-loisirs">
-        <a href="loisirs.html" class="nav-link-loisirs active">Loisirs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-            <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-            <li><a href="loisirs.html#associations">Associations</a></li>
-            <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-            <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-            <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-            <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-            <li><a href="loisirs.html#squares">Squares</a></li>
-            <li><a href="loisirs.html#city-skate">City-stades</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-loisirs">
+                <a href="loisirs.html" class="nav-link-loisirs active">Loisirs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="#associations">Associations</a></li>
+                    <li><a href="#ludotheques">Ludothèques</a></li>
+                    <li><a href="#microfolie">Micro-Folie</a></li>
+                    <li><a href="#tourisme">Office de Tourisme</a></li>
+                    <li><a href="#patrimoine">Patrimoine</a></li>
+                    <li><a href="#squares">Squares</a></li>
+                    <li><a href="#city-skate">City-stades</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-vivre-ensemble">
-        <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-            <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-            <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-vivre-ensemble">
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-acces-droits">
-        <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-            <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-            <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-            <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
-            <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-            <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+            <li class="nav-dropdown dropdown-acces-droits">
+                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
         </ul>
-    </li>
-</ul>
     </nav>
 
     <!-- ===== MAIN ===== -->
     <main>
-
-        <!-- ==================== BIBLIOTHÈQUES ==================== -->
-        <section class="section" id="bibliotheques">
+        <section class="section">
             <div class="container">
+                <!-- Bannière -->
                 <div class="section-header">
                     <img src="Loisirs1.png" alt="Loisirs et culture">
                 </div>
-                <h2 class="section-title">Bibliothèques</h2>
-                <p class="quote">Réseau de bibliothèques de la Communauté de communes Berry Loire Puisaye</p>
+                <h2 class="section-title">Loisirs, Culture & Détente</h2>
+                <p class="quote">"Le jeu est le travail de l'enfant." - Maria Montessori</p>
 
-                <div class="cards-grid cards-grid-4">
-                    <div class="card">
-                        <h3>Autry-le-Châtel</h3>
-                        <p>Mar, ven de 16h30 à 18h30<br>Rue du 8 mai 195<br>45630 Beaulieu-sur-Loire</p>
-                        <p>📞 <a href="tel:0238368059">02 38 36 80 59</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Beaulieu-sur-Loire</h3>
-                        <p>Mer, sam de 10h00 à 12h00<br>10 place de l'Église<br>45630 Beaulieu-sur-Loire</p>
-                        <p>📞 <a href="tel:0238351369">02 38 35 13 69</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Bonny-sur-Loire</h3>
-                        <p>Mar de 16h00 à 18h00, mer et sam de 10h00 à 12h00 hors périodes scolaires<br>rue de Bicêtre<br>45420 Bonny-sur-Loire</p>
-                        <p>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Briare</h3>
-                        <p>Mar de 16h00 à 18h00, mer de 14h30 à 17h00, ven de 9h00 à 11h00 et sam de 14h30 à 16h30<br>Square Pierre Armand Thiébaut<br>45250 Briare</p>
-                        <p>📞 <a href="tel:0238312245">02 38 31 22 45</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Châtillon-sur-Loire</h3>
-                        <p>Lun de 16h00 à 18h00, mer de 14h30 à 17h30, jeu de 10h00 à 11h30 et sam de 10h00 à 12h00<br>Rue du Cormier<br>45360 Châtillon-sur-Loire</p>
-                        <p>📞 <a href="tel:0238319965">02 38 31 99 65</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Dammarie-en-Puisaye</h3>
-                        <p>Sam de 10h30 à 12h00<br>3 rue de la Mairie<br>45420 Dammarie-en-Puisaye</p>
-                        <p>📞 <a href="tel:0238319226">02 38 31 92 26</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>La Bussière</h3>
-                        <p>Mar, ven de 17h00 à 19h00<br>9, rue de Lyon<br>45230 La Bussière</p>
-                        <p>📞 <a href="tel:0238359892">02 38 35 98 92</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Ousson-sur-Loire</h3>
-                        <p>Mar et 1er ven de 15h30 à 17h00<br>7 rue du 14 juillet<br>45250 Ousson-sur-Loire</p>
-                        <p>📞 <a href="tel:0238360825">02 38 36 08 25</a></p>
-                    </div>
-                    <div class="card">
-                        <h3>Ouzouër-sur-Trézee</h3>
-                        <p>3 rue Saint-Roch<br>45250 Ouzouër-sur-Trézee</p>
-                        <p>📞 <a href="tel:0641960902">06 41 96 09 02</a></p>
-                    </div>
-                    <div class="card" style="background: var(--primary-light);">
-                        <h3>💻 Médiathèque Départementale du Loiret - Loirétek</h3>
-                        <p>Ce site vous permet d'accéder 7 jours sur 7, gratuitement et légalement, à une offre de contenus en ligne répartis en huit grands espaces : musique, cinéma, livres, presse, savoirs, événement, ados et un espace sécurisé dédié aux enfants.</p>
-                        <p>🌐 <a href="https://www.loiretek.fr" target="_blank" rel="noopener">www.loiretek.fr</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
+                <!-- ============================================================ -->
+                <!-- ===== ACCORDÉON PRINCIPAL ===== -->
+                <!-- ============================================================ -->
+                <div class="accordion">
 
-        <!-- ==================== SAISON CULTURELLE ==================== -->
-        <section class="section section-alt" id="saison-culturelle">
-            <div class="container">
-                <h2 class="section-title">Saison Culturelle</h2>
-                <div class="guide-section">
-                    <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire.<br>
-                    <a href="https://www.calameo.com/read/0054159831602da4c20cc" target="_blank" rel="noopener">Vous pouvez le lire en cliquant ici</a></p>
-                    <a href="guide-saison-culturelle.pdf" target="_blank" rel="noopener" class="btn-guide">
-                        <i class="fas fa-file-pdf"></i> Télécharger le guide de la saison culturelle
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== ASSOCIATIONS ==================== -->
-        <section class="section" id="associations">
-            <div class="container">
-                <h2 class="section-title">Associations et Clubs sportifs</h2>
-                <div class="associations-encart">
-                    <i class="fas fa-users" style="font-size:2.5rem; color:var(--primary-dark);"></i>
-                    <h3>De nombreuses associations sur le territoire</h3>
-                    <p>Pour connaître les associations et clubs sportifs présents dans votre commune, nous vous invitons à contacter directement votre mairie.</p>
-                    <p style="font-size:0.95rem; color:#555;">Les mairies disposent de la liste complète des associations locales et de leurs coordonnées.</p>
-                    <p style="margin-top:1rem;">
-                        <a href="interlocuteurs.html#mairies">👉 Voir les coordonnées des mairies</a>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== LUDOTHÈQUES ==================== -->
-        <section class="section section-alt" id="ludotheques">
-            <div class="container">
-                <h2 class="section-title">Jeux - Ludothèques</h2>
-                <div class="cards-grid cards-grid-3">
-                    <div class="card" style="text-align:center;">
-                        <i class="fas fa-dice" style="font-size:2.5rem; color:var(--primary-dark);"></i>
-                        <h3>Bibliothèque de Bonny-sur-Loire</h3>
-                        <img src="loisirs_jeuxbonny.png" alt="Jeux Bonny" class="card-image">
-                        <p>Le 3ème vendredi de chaque mois à partir de 20h00 soirée jeux de société à la bibliothèque ou au Mille Clubs<br>Contact Maison de Pays</p>
-                        <p>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
-                    </div>
-                    <div class="card" style="text-align:center;">
-                        <i class="fas fa-dice" style="font-size:2.5rem; color:var(--primary-dark);"></i>
-                        <h3>Jeux D Boule</h3>
-                        <img src="loisirs_jdb.png" alt="Jeux D Boule" class="card-image">
-                        <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes<br>7 rue Gelée<br>45360 Châtillon-sur-Loire</p>
-                        <p>📞 <a href="tel:0684552778">06 84 55 27 78</a><br>
-                        📧 <a href="mailto:jeuxdboule@gmail.com">jeuxdboule@gmail.com</a></p>
-                        <div class="social-links">
-                            <a href="https://facebook.com/Jeux.D.boule" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <!-- ===== 1. BIBLIOTHÈQUES ===== -->
+                    <div class="accordion-item" id="bibliotheques">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Bibliothèques</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="bibliotheques">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Le réseau de bibliothèques de la Communauté de communes Berry Loire Puisaye vous accueille dans 9 communes du territoire. Empruntez livres, revues et CD gratuitement, participez à des animations et profitez de l'espace numérique Loirétek.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="accordion-card">
+                                        <h4>Autry-le-Châtel</h4>
+                                        <p>Mar, ven de 16h30 à 18h30<br>Rue du 8 mai 195<br>45630 Beaulieu-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238368059">02 38 36 80 59</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Beaulieu-sur-Loire</h4>
+                                        <p>Mer, sam de 10h00 à 12h00<br>10 place de l'Église<br>45630 Beaulieu-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238351369">02 38 35 13 69</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Bonny-sur-Loire</h4>
+                                        <p>Mar 16h-18h, mer et sam 10h-12h hors périodes scolaires<br>rue de Bicêtre<br>45420 Bonny-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Briare</h4>
+                                        <p>Mar 16h-18h, mer 14h30-17h, ven 9h-11h et sam 14h30-16h30<br>Square Pierre Armand Thiébaut<br>45250 Briare</p>
+                                        <p>📞 <a href="tel:0238312245">02 38 31 22 45</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <p>Lun 16h-18h, mer 14h30-17h30, jeu 10h-11h30 et sam 10h-12h<br>Rue du Cormier<br>45360 Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238319965">02 38 31 99 65</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Dammarie-en-Puisaye</h4>
+                                        <p>Sam de 10h30 à 12h00<br>3 rue de la Mairie<br>45420 Dammarie-en-Puisaye</p>
+                                        <p>📞 <a href="tel:0238319226">02 38 31 92 26</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>La Bussière</h4>
+                                        <p>Mar, ven de 17h00 à 19h00<br>9, rue de Lyon<br>45230 La Bussière</p>
+                                        <p>📞 <a href="tel:0238359892">02 38 35 98 92</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Ousson-sur-Loire</h4>
+                                        <p>Mar et 1er ven de 15h30 à 17h00<br>7 rue du 14 juillet<br>45250 Ousson-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238360825">02 38 36 08 25</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Ouzouër-sur-Trézée</h4>
+                                        <p>3 rue Saint-Roch<br>45250 Ouzouër-sur-Trézée</p>
+                                        <p>📞 <a href="tel:0641960902">06 41 96 09 02</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Médiathèque Départementale du Loiret - Loirétek</h4>
+                                        <p>Accédez 7j/7, gratuitement et légalement, à une offre de contenus en ligne : musique, cinéma, livres, presse, savoirs, jeunesse... Une seule condition : être inscrit dans une bibliothèque du réseau.</p>
+                                        <a href="https://www.loiretek.fr" target="_blank" rel="noopener">www.loiretek.fr</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
                         </div>
                     </div>
-                    <div class="card" style="text-align:center; background:var(--primary-light);">
-                        <i class="fas fa-truck" style="font-size:2.5rem; color:var(--primary-dark);"></i>
-                        <h3>Ludomobile</h3>
-                        <img src="loisirs_ludomobile.png" alt="Ludomobile" class="card-image">
-                        <p>Ludothèque itinérante sur la Communauté de communes avec jeux de sociétés et jeux géants<br>Fréquence : 2 fois par mois</p>
-                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                        <div class="social-links">
-                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+
+                    <!-- ===== 2. SAISON CULTURELLE ===== -->
+                    <div class="accordion-item" id="saison-culturelle">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Saison Culturelle</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="saison-culturelle">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire.</p>
+                            </div>
+                            <div class="full-text">
+                                <p>Ce livret recense l'ensemble des spectacles, concerts, expositions et animations proposés sur les communes du territoire pour la saison en cours. Il est disponible en version numérique sur Calameo et en version PDF téléchargeable.</p>
+                                <p>🌐 <a href="https://www.calameo.com/read/0054159831602da4c20cc" target="_blank" rel="noopener">Consulter le livret en ligne</a></p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                            <p style="margin-top: 1rem;">
+                                <a href="guide-saison-culturelle.pdf" target="_blank" rel="noopener" class="btn-guide">
+                                    <i class="fas fa-file-pdf"></i> Télécharger le guide de la saison culturelle
+                                </a>
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ==================== MICRO-FOLIE ==================== -->
-        <section class="section" id="microfolie">
-            <div class="container">
-                <h2 class="section-title">Micro-Folie de Briare</h2>
-                <div class="microfolie-section">
-                    <div class="microfolie-grid">
-                        <div class="image-col">
-                            <img src="loisirs_micro.png" alt="Micro-Folie Briare">
-                        </div>
-                        <div class="text-col">
-                            <img src="loisirs_logo_micro.png" alt="Logo Micro-Folie" class="microfolie-logo">
-                            <h3>Musée numérique et espace culturel</h3>
-                            <p>La Micro-Folie est un musée numérique gratuit et accessible à tous. Sur écran géant ou tablette, partez à la découverte de milliers d'œuvres du monde entier.</p>
-                            <p>Pilotée par la Communauté de communes Berry Loire Puisaye et la ville de Briare, la Micro-Folie propose ateliers, conférences, expositions et animations. Accompagné par un médiateur culturel, voyagez depuis Briare vers d'autres horizons, casque de réalité virtuelle sur la tête ou tablette en main.</p>
-                            <p><strong>Horaires d'ouverture :</strong></p>
-                            <ul>
-                                <li>Mercredi de 9h45 à 11h45 et de 13h45 à 17h45</li>
-                                <li>Jeudi de 13h45 à 17h45</li>
-                                <li>Vendredi de 13h45 à 17h45</li>
-                                <li>Samedi de 9h45 à 11h45 et de 13h45 à 17h45</li>
-                                <li>Le premier dimanche de chaque mois de 13h45 à 17h45</li>
-                            </ul>
-                            <p><strong>📍 Château de Trousse-Barrière - 45250 Briare</strong></p>
-                            <p>📞 <a href="tel:0238312008">02 38 31 20 08</a></p>
+                    <!-- ===== 3. ASSOCIATIONS ===== -->
+                    <div class="accordion-item" id="associations">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Associations et Clubs sportifs</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="associations">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Le territoire Berry Loire Puisaye compte de nombreuses associations sportives, culturelles et de loisirs. Pour découvrir celles présentes dans votre commune, contactez directement votre mairie.</p>
+                            </div>
+                            <div class="full-text">
+                                <p>Les mairies disposent de la liste complète des associations locales, de leurs coordonnées et de leurs activités. N'hésitez pas à les solliciter pour vous orienter vers la structure qui correspond à vos envies ou à celles de vos enfants.</p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                            <p style="margin-top: 1rem;">
+                                <a href="interlocuteurs.html#mairies">Voir les coordonnées des mairies</a>
+                            </p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ==================== OFFICE DE TOURISME ET BALUDIK ==================== -->
-        <section class="section section-alt" id="tourisme">
-            <div class="container">
-                <h2 class="section-title">Office de Tourisme et Baludik</h2>
-                <div class="focus-section">
-                    <div>
-                        <h3>Office de Tourisme Terre de Loire et Canaux</h3>
-                        <img src="llosirs_otlc.png" alt="Office de Tourisme de Briare">
-                        <p>C'est une mine d'informations pour retrouver l'ensemble des animations par thématique ou par date. Une liste de diffusion existe sur son site et les réseaux sociaux :</p>
-                        <p><strong>📍 1 Place Charles de Gaulle - 45250 Briare</strong></p>
-                        <p>📞 <a href="tel:0238312451">02 38 31 24 51</a></p>
-                        <p>🌐 <a href="https://www.terresdeloireetcanaux.com/pratique/nous-contacter/" target="_blank" rel="noopener">www.terresdeloireetcanaux.com</a></p>
-                        <div class="social-links">
-                            <a href="https://www.instagram.com/terresdeloireetcanaux/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://www.facebook.com/terresdeloireetcanaux" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                            <a href="https://www.tiktok.com/@terresdeloireetcanaux" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    <!-- ===== 4. LUDOTHÈQUES ===== -->
+                    <div class="accordion-item" id="ludotheques">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Jeux - Ludothèques</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="ludotheques">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Plusieurs espaces de jeu et ludothèques vous accueillent sur le territoire : la bibliothèque de Bonny-sur-Loire, l'association Jeux D Boule à Châtillon-sur-Loire, et la Ludomobile itinérante.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="accordion-card">
+                                        <h4>Bibliothèque de Bonny-sur-Loire</h4>
+                                        <p>Le 3ème vendredi de chaque mois à partir de 20h00, soirée jeux de société à la bibliothèque ou au Mille Clubs.</p>
+                                        <p>Contact Maison de Pays<br>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Jeux D Boule (Châtillon-sur-Loire)</h4>
+                                        <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes.<br>7 rue Gelée, 45360 Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0684552778">06 84 55 27 78</a><br>
+                                        📧 <a href="mailto:jeuxdboule@gmail.com">jeuxdboule@gmail.com</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/Jeux.D.boule" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <h4>Ludomobile</h4>
+                                        <p>Ludothèque itinérante sur la Communauté de communes avec jeux de société et jeux géants. Fréquence : 2 fois par mois.</p>
+                                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
                         </div>
                     </div>
-                    <div>
-                        <img src="loisirs_baludikotlc.png" alt="Application Baludik">
-                        <h4 style="color:var(--primary-dark);">📱 Application Baludik</h4>
-                        <p>Baludik est une application mobile — gratuite — de jeux de piste / balades interactives. Elle permet de découvrir le territoire en s'amusant, à travers des énigmes, des indices, des étapes à trouver, des défis à relever.<br>
-                        À Briare, le jeu proposé s'intitule Le Médaillon de Bapterosses!</p>
-                        <p><strong>Infos pratiques pour en profiter :</strong></p>
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Point de départ :</strong> Office de Tourisme de Briare, 1 Place Charles de Gaulle.</li>
-                            <li><strong>Durée estimée :</strong> environ 1h30.</li>
-                            <li><strong>Distance / difficulté :</strong> ~ 3 km, adapté pour enfants.</li>
-                            <li><strong>Coût :</strong> Gratuit.</li>
-                            <li><strong>Langue / accessibilité :</strong> version française. Niveau de compréhension adapté selon les âges.</li>
-                        </ul>
-                        <p>🔍 Disponible gratuitement sur <a href="https://play.google.com" target="_blank" rel="noopener">Google Play</a> et <a href="https://www.apple.com/fr/app-store/" target="_blank" rel="noopener">App Store</a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- ==================== PATRIMOINE ==================== -->
-        <section class="section" id="patrimoine">
-            <div class="container">
-                <h2 class="section-title">Patrimoine et Terroir</h2>
-                <div class="two-col-section">
-                    <div class="col">
-                        <img src="loisirs_maisonpaysbonny.png" alt="Maison de Pays de Bonny">
-                        <h3>Maison de Pays de Bonny</h3>
-                        <p><strong>Ce qu'on aime pour les enfants :</strong></p>
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Escape Game urbain "Marchez, Roulez, Découvrez" :</strong> un jeu de piste grandeur nature. Parcours adaptés aux enfants (dès 4-7 ans) et pour les adultes.</li>
-                            <li><strong>Heure du conte / lectures de contes :</strong> pour les petits (3-7 ans), à la Bibliothèque et tous les 3ème vendredis de chaque mois, soirée jeux de société à partir de 20h.</li>
-                            <li><strong>Bourse aux jouets :</strong> un événement festif durant la période de Noël.</li>
-                            <li><strong>Animations artistiques :</strong> ateliers de modelage d'argile, dessins animaliers, ateliers créatifs ponctuels.</li>
-                        </ul>
-                        <p><strong>Horaires d'ouvertures :</strong><br>
-                        Mardi à vendredi : 09h-12h / 14h-18h<br>
-                        Samedi : 15h-18h<br>
-                        Gratuité de base pour les visites. Accessible PMR.</p>
-                        <p><strong>📍 29 Grande Rue - 45420 Bonny-sur-Loire</strong></p>
-                        <p>📞 <a href="tel:0238315771">02 38 31 57 71</a><br>
-                        📧 <a href="mailto:maisondepays@bonnysurloire.fr">maisondepays@bonnysurloire.fr</a><br>
-                        🌐 <a href="https://www.bonny-sur-loire.fr/associations/maison-de-pays" target="_blank" rel="noopener">www.bonny-sur-loire.fr</a></p>
-                    </div>
-                    <div class="col">
-                        <img src="loisirs_maisonterroirbeaulieu.png" alt="Maison du Terroir de Beaulieu">
-                        <h3>Maison du Terroir et d'Animations de Beaulieu-sur-Loire</h3>
-                        <p><strong>Ce qu'on aime pour les enfants :</strong></p>
-                        <ul style="padding-left:1.2rem;">
-                            <li>Ateliers ludiques et pédagogiques par tranches d'âge : 4-6 ans, 7-9 ans, 10-12 ans, +12 ans.</li>
-                            <li><strong>Animations saisonnières :</strong> "Animation de l'été" en lien avec les produits locaux et savoir-faire des producteurs.</li>
-                            <li><strong>Découvertes autour de l'alimentation :</strong> ateliers pour comprendre d'où viennent les produits transformés.</li>
-                            <li><strong>Jardin des 5 Sens</strong> (parc de la Maison Marret) : gratuit, verger, labyrinthe végétal.</li>
-                            <li><strong>L'aventure en famille</strong> avec l'Office de tourisme "le Secret de Nettir".</li>
-                        </ul>
-                        <p><strong>Horaires d'ouvertures :</strong></p>
-                        <ul style="padding-left:1.2rem;">
-                            <li><strong>Haute saison</strong> (début mai au 20 sept. et du 18 nov. au 24 déc.) :<br>Mercredi à samedi : 9h à 12h30 et 14h30 à 17h45</li>
-                            <li><strong>Hors haute saison</strong> (janv. à fin avril et oct. à fin nov.) :<br>Mercredi et vendredi : 9h à 12h30 et 14h30 à 17h</li>
-                        </ul>
-                        <p>Accessible PMR. Visites individuelles libres en permanence.</p>
-                        <p><strong>📍 3 place d'Armes - 45630 Beaulieu-sur-Loire</strong></p>
-                        <p>📞 <a href="tel:0673360660">06 73 36 06 60</a><br>
-                        📧 <a href="mailto:maison-du-terroir@beaulieu-sur-loire.fr">maison-du-terroir@beaulieu-sur-loire.fr</a></p>
-                        <div class="social-links">
-                            <a href="https://facebook.com/TerroirBeaulieusurLoire" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <!-- ===== 5. MICRO-FOLIE ===== -->
+                    <div class="accordion-item" id="microfolie">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Micro-Folie de Briare</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="microfolie">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="microfolie-grid">
+                                <div class="image-col">
+                                    <img src="loisirs_micro.png" alt="Micro-Folie Briare">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <img src="loisirs_logo_micro.png" alt="Logo Micro-Folie" class="microfolie-logo">
+                                        <p>La Micro-Folie est un musée numérique gratuit et accessible à tous. Sur écran géant ou tablette, partez à la découverte de milliers d'œuvres du monde entier.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Pilotée par la Communauté de communes Berry Loire Puisaye et la ville de Briare, la Micro-Folie propose ateliers, conférences, expositions et animations. Accompagné par un médiateur culturel, voyagez depuis Briare vers d'autres horizons, casque de réalité virtuelle sur la tête ou tablette en main.</p>
+                                        <p><strong>Horaires d'ouverture :</strong></p>
+                                        <ul>
+                                            <li>Mercredi de 9h45 à 11h45 et de 13h45 à 17h45</li>
+                                            <li>Jeudi de 13h45 à 17h45</li>
+                                            <li>Vendredi de 13h45 à 17h45</li>
+                                            <li>Samedi de 9h45 à 11h45 et de 13h45 à 17h45</li>
+                                            <li>Le premier dimanche de chaque mois de 13h45 à 17h45</li>
+                                        </ul>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Château de Trousse-Barrière - 45250 Briare</strong><br>
+                                    📞 <a href="tel:0238312008">02 38 31 20 08</a></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <!-- ===== 6. OFFICE DE TOURISME ===== -->
+                    <div class="accordion-item" id="tourisme">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Office de Tourisme et Baludik</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="tourisme">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>L'Office de Tourisme Terre de Loire et Canaux est une mine d'informations pour retrouver l'ensemble des animations par thématique ou par date. Une liste de diffusion existe sur son site et les réseaux sociaux.</p>
+                            </div>
+                            <div class="full-text">
+                                <img src="llosirs_otlc.png" alt="Office de Tourisme de Briare" class="inline-image">
+                                <p><strong>Application Baludik :</strong> Baludik est une application mobile gratuite de jeux de piste / balades interactives. Elle permet de découvrir le territoire en s'amusant, à travers des énigmes, des indices, des étapes à trouver et des défis à relever.</p>
+                                <p>À Briare, le jeu proposé s'intitule <strong>Le Médaillon de Bapterosses !</strong></p>
+                                <p><strong>Infos pratiques pour en profiter :</strong></p>
+                                <ul>
+                                    <li><strong>Point de départ :</strong> Office de Tourisme de Briare, 1 Place Charles de Gaulle.</li>
+                                    <li><strong>Durée estimée :</strong> environ 1h30.</li>
+                                    <li><strong>Distance / difficulté :</strong> ~ 3 km, adapté pour enfants.</li>
+                                    <li><strong>Coût :</strong> Gratuit.</li>
+                                    <li><strong>Langue / accessibilité :</strong> version française. Niveau de compréhension adapté selon les âges.</li>
+                                </ul>
+                                <p>Disponible gratuitement sur <a href="https://play.google.com" target="_blank" rel="noopener">Google Play</a> et <a href="https://www.apple.com/fr/app-store/" target="_blank" rel="noopener">App Store</a></p>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                            <p style="margin-top: 1rem;"><strong>📍 1 Place Charles de Gaulle - 45250 Briare</strong><br>
+                            📞 <a href="tel:0238312451">02 38 31 24 51</a><br>
+                            🌐 <a href="https://www.terresdeloireetcanaux.com/pratique/nous-contacter/" target="_blank" rel="noopener">www.terresdeloireetcanaux.com</a></p>
+                            <div class="social-links">
+                                <a href="https://www.instagram.com/terresdeloireetcanaux/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="https://www.facebook.com/terresdeloireetcanaux" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                <a href="https://www.tiktok.com/@terresdeloireetcanaux" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 7. PATRIMOINE ===== -->
+                    <div class="accordion-item" id="patrimoine">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Patrimoine et Terroir</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="patrimoine">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Deux lieux incontournables pour découvrir le patrimoine et le terroir local en famille : la Maison de Pays de Bonny-sur-Loire et la Maison du Terroir de Beaulieu-sur-Loire.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="accordion-card">
+                                        <img src="loisirs_maisonpaysbonny.png" alt="Maison de Pays de Bonny">
+                                        <h4>Maison de Pays de Bonny</h4>
+                                        <p><strong>Ce qu'on aime pour les enfants :</strong></p>
+                                        <ul>
+                                            <li><strong>Escape Game urbain "Marchez, Roulez, Découvrez" :</strong> un jeu de piste grandeur nature. Parcours adaptés aux enfants (dès 4-7 ans) et pour les adultes.</li>
+                                            <li><strong>Heure du conte :</strong> pour les petits (3-7 ans), à la Bibliothèque, et tous les 3ème vendredis de chaque mois, soirée jeux de société à partir de 20h.</li>
+                                            <li><strong>Bourse aux jouets :</strong> un événement festif durant la période de Noël.</li>
+                                            <li><strong>Animations artistiques :</strong> ateliers de modelage d'argile, dessins animaliers, ateliers créatifs ponctuels.</li>
+                                        </ul>
+                                        <p><strong>Horaires :</strong> Mar-Ven 9h-12h / 14h-18h ; Sam 15h-18h. Gratuit. Accessible PMR.</p>
+                                        <p><strong>📍 29 Grande Rue - 45420 Bonny-sur-Loire</strong><br>
+                                        📞 <a href="tel:0238315771">02 38 31 57 71</a><br>
+                                        📧 <a href="mailto:maisondepays@bonnysurloire.fr">maisondepays@bonnysurloire.fr</a><br>
+                                        🌐 <a href="https://www.bonny-sur-loire.fr/associations/maison-de-pays" target="_blank" rel="noopener">www.bonny-sur-loire.fr</a></p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="loisirs_maisonterroirbeaulieu.png" alt="Maison du Terroir de Beaulieu">
+                                        <h4>Maison du Terroir et d'Animations de Beaulieu-sur-Loire</h4>
+                                        <p><strong>Ce qu'on aime pour les enfants :</strong></p>
+                                        <ul>
+                                            <li>Ateliers ludiques et pédagogiques par tranches d'âge : 4-6 ans, 7-9 ans, 10-12 ans, +12 ans.</li>
+                                            <li><strong>Animations saisonnières :</strong> "Animation de l'été" en lien avec les produits locaux et savoir-faire des producteurs.</li>
+                                            <li><strong>Découvertes autour de l'alimentation :</strong> ateliers pour comprendre d'où viennent les produits transformés.</li>
+                                            <li><strong>Jardin des 5 Sens</strong> (parc de la Maison Marret) : gratuit, verger, labyrinthe végétal.</li>
+                                            <li><strong>L'aventure en famille</strong> avec l'Office de tourisme "le Secret de Nettir".</li>
+                                        </ul>
+                                        <p><strong>Horaires haute saison :</strong> Mer-Sam 9h-12h30 / 14h30-17h45<br>
+                                        <strong>Hors haute saison :</strong> Mer et Ven 9h-12h30 / 14h30-17h</p>
+                                        <p>Accessible PMR. Visites individuelles libres en permanence.</p>
+                                        <p><strong>📍 3 place d'Armes - 45630 Beaulieu-sur-Loire</strong><br>
+                                        📞 <a href="tel:0673360660">06 73 36 06 60</a><br>
+                                        📧 <a href="mailto:maison-du-terroir@beaulieu-sur-loire.fr">maison-du-terroir@beaulieu-sur-loire.fr</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/TerroirBeaulieusurLoire" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 8. SQUARES ===== -->
+                    <div class="accordion-item" id="squares">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Squares</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="squares">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Espaces de jeux et de détente dans les communes du territoire. Retrouvez ci-dessous les squares et aires de jeux disponibles.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="accordion-card">
+                                        <img src="square_adon.png" alt="Square Adon">
+                                        <h4>Adon</h4>
+                                        <p>Aire de jeux, Etang communal d'Adon</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_autry.png" alt="Square Autry">
+                                        <h4>Autry-le-Châtel</h4>
+                                        <p>Aire de Jeux 9, rue des Vallées</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_beaulieu.png" alt="Square Beaulieu">
+                                        <h4>Beaulieu-sur-Loire</h4>
+                                        <p>Espace jeux Parc Marret, place du 11 novembre</p>
+                                        <p>Espace jeux du Canal, D926</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_bonny.png" alt="Square Bonny">
+                                        <h4>Bonny-sur-Loire</h4>
+                                        <p>chemin de la Cheuille (3-15 ans)</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_briare.png" alt="Square Briare">
+                                        <h4>Briare</h4>
+                                        <p>Square de la Mairie, 3 route d'Ouzouer</p>
+                                        <p>Square Frédéric Bapterosse, 6 bd Loreau</p>
+                                        <p>Jardin du Baraban, 22 rue des Grandes Allées</p>
+                                        <p>Jardin des Vignes, rue du Pont des Vignes</p>
+                                        <p>Aire du port aux pierres</p>
+                                        <p>Parc de Troussebois, D 952 – rond-point nord</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_chatillon.png" alt="Square Châtillon">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <p>Square du Port, rue de la Passerelle (3-12 ans)</p>
+                                        <p>Square, rue du Stade (3-6 ans)</p>
+                                        <p>Square, rue de la Source (3-6 ans)</p>
+                                        <p>Square, rue du Glacis (3-8 ans)</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_dammarie.png" alt="Square Dammarie">
+                                        <h4>Dammarie-en-Puisaye</h4>
+                                        <p>Aire de jeux, chemin de la Garenne</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_bussiere.png" alt="Square La Bussière">
+                                        <h4>La Bussière</h4>
+                                        <p>Aire pour enfants des Choux, rue de Dampierre</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square-ousson.png" alt="Square Ousson">
+                                        <h4>Ousson-sur-Loire</h4>
+                                        <p>Square Solange Pillard, rue de la Loire</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_ouzouer.png" alt="Square Ouzouer">
+                                        <h4>Ouzouër-sur-Trézée</h4>
+                                        <p>Square du Canal, rue Saint Roch</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="square_stfirmin.png" alt="Square StFirmin">
+                                        <h4>Saint-Firmin-sur-Loire</h4>
+                                        <p>Aire de pique-nique et de jeu, 32 Grande Rue</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
+                    <!-- ===== 9. CITY-STADES ===== -->
+                    <div class="accordion-item" id="city-skate">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>City-stades et Skate-parks</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="city-skate">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                            <div class="short-text">
+                                <p>Équipements sportifs de plein air répartis sur le territoire : city-stades et skate-parks accessibles à tous.</p>
+                            </div>
+                            <div class="full-text">
+                                <div class="accordion-card-grid">
+                                    <div class="accordion-card">
+                                        <img src="city_bonny.png" alt="City-stade Bonny">
+                                        <h4>Bonny-sur-Loire</h4>
+                                        <p>City-stade, 8 rue de la Gare</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="city_briare.png" alt="City-stade Briare">
+                                        <h4>Briare</h4>
+                                        <p>Complexe sportif, rue des Sports - 45250 Briare</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="skate_briare.png" alt="Skatepark Briare">
+                                        <h4>Briare</h4>
+                                        <p>Skatepark, allée du Paradis</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="skate_chatillon.png" alt="Skatepark Châtillon">
+                                        <h4>Châtillon-sur-Loire</h4>
+                                        <p>Complexe sportif, rue des Sports - 45360 Châtillon-sur-Loire</p>
+                                    </div>
+                                    <div class="accordion-card">
+                                        <img src="city_ouzouer.png" alt="City-stade Ouzouer">
+                                        <h4>Ouzouër-sur-Trézée</h4>
+                                        <p>City-stade, rue du Stade</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                        </div>
+                    </div>
+
                 </div>
+                <!-- ===== FIN ACCORDÉON ===== -->
+
             </div>
         </section>
-
-        <!-- ==================== SQUARES ==================== -->
-        <section class="section section-alt" id="squares">
-            <div class="container">
-                <h2 class="section-title">Squares</h2>
-                <p class="quote">Espaces de jeux et de détente dans les communes du territoire</p>
-                <div class="cards-grid cards-grid-4">
-                    <div class="card">
-                        <img src="square_adon.png" alt="Square Adon" class="card-image">
-                        <h3>Adon</h3>
-                        <p>📍 Aire de jeux, Etang communal d'Adon</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_autry.png" alt="Square Autry" class="card-image">
-                        <h3>Autry-le-Châtel</h3>
-                        <p>📍 Aire de Jeux 9, rue des Vallées</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_beaulieu.png" alt="Square Beaulieu" class="card-image">
-                        <h3>Beaulieu-sur-Loire</h3>
-                        <p>📍 Espace jeux Parc Marret, place du 11 novembre</p>
-                        <p>📍 Espace jeux du Canal, D926</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_bonny.png" alt="Square Bonny" class="card-image">
-                        <h3>Bonny-sur-Loire</h3>
-                        <p>📍 chemin de la Cheuille (3-15 ans)</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_briare.png" alt="Square Briare" class="card-image">
-                        <h3>Briare</h3>
-                        <p>📍 Square de la Mairie, 3 route d'Ouzouer</p>
-                        <p>📍 Square Frédéric Bapterosse, 6 bd Loreau</p>
-                        <p>📍 Jardin du Baraban, 22 rue des Grandes Allées</p>
-                        <p>📍 Jardin des Vignes, rue du Pont des Vignes</p>
-                        <p>📍 Aire du port aux pierres</p>
-                        <p>📍 Parc de Troussebois, D 952 – rond-point nord</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_chatillon.png" alt="Square Châtillon" class="card-image">
-                        <h3>Châtillon-sur-Loire</h3>
-                        <p>📍 Square du Port, rue de la Passerelle (3-12 ans)</p>
-                        <p>📍 Square, rue du Stade (3-6 ans)</p>
-                        <p>📍 Square, rue de la Source (3-6 ans)</p>
-                        <p>📍 Square, rue du Glacis (3-8 ans)</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_dammarie.png" alt="Square Dammarie" class="card-image">
-                        <h3>Dammarie-en-Puisaye</h3>
-                        <p>📍 Aire de jeux, chemin de la Garenne</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_bussiere.png" alt="Square La Bussière" class="card-image">
-                        <h3>La Bussière</h3>
-                        <p>📍 Aire pour enfants des Choux, rue de Dampierre</p>
-                    </div>
-                    <div class="card">
-                        <img src="square-ousson.png" alt="Square Ousson" class="card-image">
-                        <h3>Ousson-sur-Loire</h3>
-                        <p>📍 Square Solange Pillard, rue de la Loire</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_ouzouer.png" alt="Square Ouzouer" class="card-image">
-                        <h3>Ouzouër-sur-Trézée</h3>
-                        <p>📍 Square du Canal, rue Saint Roch</p>
-                    </div>
-                    <div class="card">
-                        <img src="square_stfirmin.png" alt="Square StFirmin" class="card-image">
-                        <h3>Saint-Firmin-sur-Loire</h3>
-                        <p>📍 Aire de pique-nique et de jeu, 32 Grande Rue</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== CITY-STADES ==================== -->
-        <section class="section" id="city-skate">
-            <div class="container">
-                <h2 class="section-title">City-stades et Skate-parks</h2>
-                <p class="quote">Équipements sportifs de plein air</p>
-                <div class="cards-grid cards-grid-3">
-                    <div class="card">
-                        <img src="city_bonny.png" alt="City-stade Bonny" class="card-image">
-                        <h3>Bonny-sur-Loire</h3>
-                        <p>📍 City-stade, 8 rue de la Gare</p>
-                    </div>
-                    <div class="card">
-                        <img src="city_briare.png" alt="City-stade Briare" class="card-image">
-                        <h3>Briare</h3>
-                        <p>📍 Complexe sportif, rue des Sports - 45250 Briare</p>
-                    </div>
-                    <div class="card">
-                        <img src="skate_briare.png" alt="Skatepark Briare" class="card-image">
-                        <h3>Briare</h3>
-                        <p>📍 Skatepark, allée du Paradis</p>
-                    </div>
-                    <div class="card">
-                        <img src="skate_chatillon.png" alt="Skatepark Châtillon" class="card-image">
-                        <h3>Châtillon-sur-Loire</h3>
-                        <p>📍 Complexe sportif, rue des Sports - 45360 Châtillon-sur-Loire</p>
-                    </div>
-                    <div class="card">
-                        <img src="city_ouzouer.png" alt="City-stade Ouzouer" class="card-image">
-                        <h3>Ouzouër-sur-Trézée</h3>
-                        <p>📍 City-stade, rue du Stade</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
     <!-- ===== LIGHTBOX ===== -->
@@ -785,13 +801,40 @@
         </div>
     </footer>
 
+    <!-- ===== PIED DE PAGE D'IMPRESSION (caché à l'écran) ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
     <!-- ===== SCROLL TOP ===== -->
     <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
+            // ============================================================
             // ---- MENU MOBILE ----
+            // ============================================================
             const menuToggle = document.getElementById('menuToggle');
             const navList = document.getElementById('navList');
 
@@ -873,7 +916,7 @@
                 document.body.style.overflow = '';
             }
 
-            document.querySelectorAll('.section img:not(.hero-bg), .card-image').forEach(function(img) {
+            document.querySelectorAll('.section img:not(.hero-bg), .card-image, .accordion-card img, .inline-image').forEach(function(img) {
                 img.addEventListener('click', function(e) {
                     if (this.closest('.hero')) return;
                     e.stopPropagation();
@@ -892,18 +935,177 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ---- OUVERTURE PAR ANCRE ----
-            function scrollToHash() {
-                if (!window.location.hash) return;
-                const target = document.querySelector(window.location.hash);
-                if (target) {
-                    setTimeout(function() {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 150);
+            // ---- ACCORDÉON ----
+            function toggleAccordion(header) {
+                const isOpen = header.classList.contains('open');
+                const body = header.nextElementSibling;
+
+                if (isOpen) {
+                    header.classList.remove('open');
+                    header.setAttribute('aria-expanded', 'false');
+                    body.classList.remove('open');
+                } else {
+                    document.querySelectorAll('.accordion-header').forEach(function(h) {
+                        h.classList.remove('open');
+                        h.setAttribute('aria-expanded', 'false');
+                        h.nextElementSibling.classList.remove('open');
+                    });
+                    header.classList.add('open');
+                    header.setAttribute('aria-expanded', 'true');
+                    body.classList.add('open');
                 }
             }
-            window.addEventListener('DOMContentLoaded', scrollToHash);
-            window.addEventListener('hashchange', scrollToHash);
+
+            document.querySelectorAll('.accordion-header').forEach(function(header) {
+                header.addEventListener('click', function() {
+                    toggleAccordion(this);
+                });
+            });
+
+            // ---- LIRE LA SUITE ----
+            document.querySelectorAll('.read-more-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const parent = this.closest('.accordion-body')
+                                || this.closest('.sous-accordion-body')
+                                || this.closest('.sub-section')
+                                || this.closest('.card')
+                                || this.parentElement;
+                    if (!parent) return;
+                    const fullText = parent.querySelector('.full-text');
+                    if (!fullText) return;
+                    const isVisible = fullText.classList.contains('visible');
+                    fullText.classList.toggle('visible');
+                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+                });
+            });
+
+            // ---- OUVERTURE PAR ANCRE ----
+            function openAccordionFromHash() {
+                if (!window.location.hash) return;
+                const target = document.querySelector(window.location.hash);
+                if (target && target.classList.contains('accordion-item')) {
+                    const header = target.querySelector('.accordion-header');
+                    if (header) {
+                        document.querySelectorAll('.accordion-header').forEach(function(h) {
+                            h.classList.remove('open');
+                            h.setAttribute('aria-expanded', 'false');
+                            h.nextElementSibling.classList.remove('open');
+                        });
+                        header.classList.add('open');
+                        header.setAttribute('aria-expanded', 'true');
+                        header.nextElementSibling.classList.add('open');
+                        setTimeout(function() {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 200);
+                    }
+                }
+            }
+            window.addEventListener('DOMContentLoaded', openAccordionFromHash);
+            window.addEventListener('hashchange', openAccordionFromHash);
+
+            // ============================================================
+            // ---- IMPRESSION SÉLECTIVE ----
+            // ============================================================
+            (function() {
+                const printBtn = document.getElementById('printBtn');
+                const printSelectAll = document.getElementById('printSelectAll');
+                const printCount = document.getElementById('printCount');
+                const printDate = document.getElementById('print-date');
+
+                if (!printBtn) return;
+
+                if (printDate) {
+                    const now = new Date();
+                    printDate.textContent = now.toLocaleDateString('fr-FR', {
+                        day: '2-digit',
+                        month: 'long',
+                        year: 'numeric'
+                    });
+                }
+
+                function updateSelection() {
+                    const checkboxes = document.querySelectorAll('.print-checkbox');
+                    let count = 0;
+
+                    document.querySelectorAll('.print-selected').forEach(function(el) {
+                        el.classList.remove('print-selected');
+                    });
+
+                    checkboxes.forEach(function(cb) {
+                        if (cb.checked) {
+                            count++;
+                            const targetId = cb.dataset.printTarget;
+                            if (targetId) {
+                                const target = document.getElementById(targetId);
+                                if (target) {
+                                    target.classList.add('print-selected');
+                                }
+                            }
+                        }
+                    });
+
+                    document.body.classList.toggle('print-has-selection', count > 0);
+
+                    if (printCount) {
+                        if (count > 0) {
+                            printCount.textContent = count;
+                            printCount.style.display = 'inline-block';
+                        } else {
+                            printCount.style.display = 'none';
+                        }
+                    }
+
+                    if (printSelectAll) {
+                        const label = printSelectAll.querySelector('span:not(.print-count)');
+                        if (label) {
+                            if (count === checkboxes.length && checkboxes.length > 0) {
+                                label.textContent = 'Tout désélectionner';
+                            } else {
+                                label.textContent = 'Tout sélectionner';
+                            }
+                        }
+                    }
+                }
+
+                document.querySelectorAll('.print-checkbox').forEach(function(cb) {
+                    cb.addEventListener('change', updateSelection);
+                });
+
+                if (printSelectAll) {
+                    printSelectAll.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const checkboxes = document.querySelectorAll('.print-checkbox');
+                        const allChecked = Array.from(checkboxes).every(function(cb) { return cb.checked; });
+
+                        checkboxes.forEach(function(cb) {
+                            cb.checked = !allChecked;
+                        });
+
+                        updateSelection();
+                    });
+                }
+
+                if (printBtn) {
+                    printBtn.addEventListener('click', function(e) {
+                        e.preventDefault();
+
+                        document.querySelectorAll('.accordion-body').forEach(function(b) {
+                            b.classList.add('open');
+                        });
+
+                        document.querySelectorAll('.full-text').forEach(function(ft) {
+                            ft.classList.add('visible');
+                        });
+
+                        setTimeout(function() {
+                            window.print();
+                        }, 200);
+                    });
+                }
+
+                updateSelection();
+            })();
 
         })();
     </script>
