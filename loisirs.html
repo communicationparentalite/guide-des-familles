@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== COULEURS SPÉCIFIQUES À LOISIRS (BEIGE) ===== */
         .page-loisirs {
             --primary-color: #b7a88e;
             --primary-light: #D2C8B4;
@@ -18,7 +17,6 @@
             --secondary-light: #C8BEA5;
         }
 
-        /* ===== MICRO-FOLIE (mise en page spécifique) ===== */
         .microfolie-grid {
             display: grid;
             grid-template-columns: 380px 1fr;
@@ -63,7 +61,6 @@
             }
         }
 
-        /* ===== BOUTON GUIDE PDF ===== */
         .btn-guide {
             display: inline-block;
             background: var(--primary-dark);
@@ -82,7 +79,6 @@
             text-decoration: none;
         }
 
-        /* ===== IMAGES DANS L'ACCORDÉON ===== */
         .accordion-body .inline-image {
             width: 100%;
             max-width: 400px;
@@ -97,7 +93,6 @@
             }
         }
 
-        /* ===== GRILLE DE CARTES DANS ACCORDÉON ===== */
         .accordion-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -140,6 +135,44 @@
             border-radius: 6px;
             margin-bottom: 0.6rem;
             cursor: pointer;
+        }
+
+        /* ============================================================ */
+        /* ===== LECTEUR CALAMEO (Saison culturelle) ===== */
+        /* ============================================================ */
+
+        .calameo-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 66.67%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            background: #f0f0f0;
+            margin: 1rem 0;
+        }
+
+        .calameo-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .calameo-wrapper {
+                padding-bottom: 100%;
+            }
+        }
+
+        @media print {
+            .calameo-wrapper {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -281,16 +314,12 @@
     <main>
         <section class="section">
             <div class="container">
-                <!-- Bannière -->
                 <div class="section-header">
                     <img src="Loisirs1.png" alt="Loisirs et culture">
                 </div>
                 <h2 class="section-title">Loisirs, Culture & Détente</h2>
                 <p class="quote">"Le jeu est le travail de l'enfant." - Maria Montessori</p>
 
-                <!-- ============================================================ -->
-                <!-- ===== ACCORDÉON PRINCIPAL ===== -->
-                <!-- ============================================================ -->
                 <div class="accordion">
 
                     <!-- ===== 1. BIBLIOTHÈQUES ===== -->
@@ -306,6 +335,7 @@
                                     <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
                                 </label>
                             </div>
+                            <img src="loisirs_biblio.png" alt="Bibliothèques du territoire" class="inline-image">
                             <div class="short-text">
                                 <p>Le réseau de bibliothèques de la Communauté de communes Berry Loire Puisaye vous accueille dans 9 communes du territoire. Empruntez livres, revues et CD gratuitement, participez à des animations et profitez de l'espace numérique Loirétek.</p>
                             </div>
@@ -380,12 +410,35 @@
                                     <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
                                 </label>
                             </div>
+                            <img src="loisirs_saisonculturelle.png" alt="Saison culturelle" class="inline-image">
                             <div class="short-text">
-                                <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire.</p>
+                                <p>Deux fois par an, la Communauté de communes Berry Loire Puisaye édite un programme des animations culturelles et spectacles de notre territoire. Feuilletez le livret directement ci-dessous ou consultez-le en plein écran.</p>
                             </div>
                             <div class="full-text">
-                                <p>Ce livret recense l'ensemble des spectacles, concerts, expositions et animations proposés sur les communes du territoire pour la saison en cours. Il est disponible en version numérique sur Calameo et en version PDF téléchargeable.</p>
-                                <p>🌐 <a href="https://www.calameo.com/read/0054159831602da4c20cc" target="_blank" rel="noopener">Consulter le livret en ligne</a></p>
+
+                                <!-- Lecteur Calameo intégré -->
+                                <div class="calameo-wrapper">
+                                    <iframe
+                                        src="https://v.calameo.com/?bkcode=0054159831602da4c20cc&mode=view&view=scroll"
+                                        title="Livret de la saison culturelle - Communauté de communes Berry Loire Puisaye"
+                                        allowfullscreen
+                                        allow="clipboard-write; fullscreen"
+                                        frameborder="0">
+                                    </iframe>
+                                </div>
+
+                                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-light); font-style: italic;">
+                                    Si le lecteur ne s'affiche pas, vous pouvez
+                                    <a href="https://www.calameo.com/read/0054159831602da4c20cc" target="_blank" rel="noopener">ouvrir le livret directement sur Calameo</a>.
+                                </p>
+
+                                <p>Ce livret recense l'ensemble des spectacles, concerts, expositions et animations proposés sur les communes du territoire pour la saison en cours.</p>
+
+                                <p style="margin-top: 1rem;">
+                                    <a href="https://www.calameo.com/read/0054159831602da4c20cc" target="_blank" rel="noopener" class="btn-guide">
+                                        <i class="fas fa-book-open"></i> Feuilleter en plein écran
+                                    </a>
+                                </p>
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
                             <p style="margin-top: 1rem;">
@@ -409,6 +462,7 @@
                                     <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
                                 </label>
                             </div>
+                            <img src="loisirs_sports.png" alt="Associations et clubs sportifs" class="inline-image">
                             <div class="short-text">
                                 <p>Le territoire Berry Loire Puisaye compte de nombreuses associations sportives, culturelles et de loisirs. Pour découvrir celles présentes dans votre commune, contactez directement votre mairie.</p>
                             </div>
@@ -441,11 +495,13 @@
                             <div class="full-text">
                                 <div class="accordion-card-grid">
                                     <div class="accordion-card">
+                                        <img src="loisirs_jeuxbonny.png" alt="Jeux Bonny">
                                         <h4>Bibliothèque de Bonny-sur-Loire</h4>
                                         <p>Le 3ème vendredi de chaque mois à partir de 20h00, soirée jeux de société à la bibliothèque ou au Mille Clubs.</p>
                                         <p>Contact Maison de Pays<br>📞 <a href="tel:0238315771">02 38 31 57 71</a></p>
                                     </div>
                                     <div class="accordion-card">
+                                        <img src="loisirs_jdb.png" alt="Jeux D Boule">
                                         <h4>Jeux D Boule (Châtillon-sur-Loire)</h4>
                                         <p>Un samedi par mois pour les familles de 14h30 à 18h et le vendredi soir de 20h à minuit avant les vacances pour une soirée entre adultes.<br>7 rue Gelée, 45360 Châtillon-sur-Loire</p>
                                         <p>📞 <a href="tel:0684552778">06 84 55 27 78</a><br>
@@ -455,6 +511,7 @@
                                         </div>
                                     </div>
                                     <div class="accordion-card">
+                                        <img src="loisirs_ludomobile.png" alt="Ludomobile">
                                         <h4>Ludomobile</h4>
                                         <p>Ludothèque itinérante sur la Communauté de communes avec jeux de société et jeux géants. Fréquence : 2 fois par mois.</p>
                                         <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
@@ -528,7 +585,8 @@
                                 <p>L'Office de Tourisme Terre de Loire et Canaux est une mine d'informations pour retrouver l'ensemble des animations par thématique ou par date. Une liste de diffusion existe sur son site et les réseaux sociaux.</p>
                             </div>
                             <div class="full-text">
-                                <img src="llosirs_otlc.png" alt="Office de Tourisme de Briare" class="inline-image">
+                                <img src="loisirs_otlc.png" alt="Office de Tourisme de Briare" class="inline-image">
+                                <img src="loisirs_baludikotlc.png" alt="Application Baludik" class="inline-image">
                                 <p><strong>Application Baludik :</strong> Baludik est une application mobile gratuite de jeux de piste / balades interactives. Elle permet de découvrir le territoire en s'amusant, à travers des énigmes, des indices, des étapes à trouver et des défis à relever.</p>
                                 <p>À Briare, le jeu proposé s'intitule <strong>Le Médaillon de Bapterosses !</strong></p>
                                 <p><strong>Infos pratiques pour en profiter :</strong></p>
@@ -832,9 +890,6 @@
     <!-- ===== SCRIPTS ===== -->
     <script>
         (function() {
-            // ============================================================
-            // ---- MENU MOBILE ----
-            // ============================================================
             const menuToggle = document.getElementById('menuToggle');
             const navList = document.getElementById('navList');
 
@@ -846,7 +901,6 @@
                 });
             }
 
-            // ---- SOUS-MENU DÉROULANT SUR MOBILE ----
             document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
                 let clickTimer = null;
 
@@ -877,7 +931,6 @@
                 });
             });
 
-            // ---- FERMETURE DU SOUS-MENU ----
             document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 768) {
@@ -889,7 +942,6 @@
                 });
             });
 
-            // ---- SCROLL TOP ----
             const scrollBtn = document.getElementById('scrollTop');
             window.addEventListener('scroll', function() {
                 scrollBtn.classList.toggle('visible', window.scrollY > 300);
@@ -898,7 +950,6 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            // ---- LIGHTBOX ----
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const closeBtn = document.getElementById('lightboxClose');
@@ -935,7 +986,6 @@
                 if (e.key === 'Escape') closeLightbox();
             });
 
-            // ---- ACCORDÉON ----
             function toggleAccordion(header) {
                 const isOpen = header.classList.contains('open');
                 const body = header.nextElementSibling;
@@ -962,7 +1012,6 @@
                 });
             });
 
-            // ---- LIRE LA SUITE ----
             document.querySelectorAll('.read-more-btn').forEach(function(btn) {
                 btn.addEventListener('click', function(e) {
                     e.stopPropagation();
@@ -980,7 +1029,6 @@
                 });
             });
 
-            // ---- OUVERTURE PAR ANCRE ----
             function openAccordionFromHash() {
                 if (!window.location.hash) return;
                 const target = document.querySelector(window.location.hash);
@@ -1004,9 +1052,6 @@
             window.addEventListener('DOMContentLoaded', openAccordionFromHash);
             window.addEventListener('hashchange', openAccordionFromHash);
 
-            // ============================================================
-            // ---- IMPRESSION SÉLECTIVE ----
-            // ============================================================
             (function() {
                 const printBtn = document.getElementById('printBtn');
                 const printSelectAll = document.getElementById('printSelectAll');
