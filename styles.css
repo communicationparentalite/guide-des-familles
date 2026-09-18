@@ -2,34 +2,6 @@
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Feuille de styles partagée - styles.css
    Version unifiée - Septembre 2026
-   ------------------------------------------------------------
-   Organisation :
-   1.  Variables CSS (défaut + par page)
-   2.  Reset & base
-   3.  Container & éléments de base
-   4.  Header
-   5.  Navigation
-   6.  Sections & contenu
-   7.  Accordéons
-   8.  Sous-accordéons
-   9.  "Lire la suite"
-   10. Cartes dans accordéon
-   11. Cartes standard
-   12. Sous-sections
-   13. Sous-section avec image
-   14. Image + texte
-   15. Galeries
-   16. Ecoles grid & logos
-   17. Vidéo
-   18. Liens sociaux
-   19. Item expandable
-   20. Lightbox
-   21. Footer
-   22. Scroll top
-   23. Impression sélective
-   24. Bouton d'impression flottant
-   25. Responsive
-   26. Print
    ============================================================ */
 
 /* ============================================================
@@ -534,7 +506,6 @@ li { margin-bottom: 0.5rem; }
 
 .accordion-item:hover { box-shadow: var(--shadow-md); }
 
-/* ✅ CORRIGÉ : passé de 0.95rem à 1rem */
 .accordion-header {
     width: 100%;
     background: white;
@@ -611,7 +582,6 @@ li { margin-bottom: 0.5rem; }
     background: transparent;
 }
 
-/* ✅ CORRIGÉ : passé de 0.95rem à 1rem */
 .accordion-header h3 {
     margin: 0;
     font-size: 1rem;
@@ -685,7 +655,6 @@ li { margin-bottom: 0.5rem; }
 
 .sous-accordion-wrapper:last-child { margin-bottom: 0.5rem; }
 
-/* ✅ CORRIGÉ : font-size: 1rem explicite */
 .sous-accordion-header {
     background: white;
     padding: 0.8rem 1.2rem;
@@ -738,7 +707,7 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   9. "LIRE LA SUITE" (générique)
+   9. "LIRE LA SUITE"
    ============================================================ */
 
 .read-more-btn {
@@ -758,7 +727,7 @@ li { margin-bottom: 0.5rem; }
 .full-text.visible { display: block; }
 
 /* ============================================================
-   10. CARTES DANS ACCORDÉON (.accordion-card)
+   10. CARTES DANS ACCORDÉON
    ============================================================ */
 
 .accordion-card-grid {
@@ -863,7 +832,7 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   11. CARTES STANDARD (.card)
+   11. CARTES STANDARD
    ============================================================ */
 
 .cards-grid {
@@ -1634,7 +1603,6 @@ li { margin-bottom: 0.5rem; }
    25. RESPONSIVE
    ============================================================ */
 
-/* ✅ CORRIGÉ : règle isolée à la tablette uniquement (769px à 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
     .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
     .cards-grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -1648,6 +1616,26 @@ li { margin-bottom: 0.5rem; }
     * { -webkit-text-size-adjust: 100%; }
     body { font-size: 16px; }
     .container { padding: 0 15px; }
+
+    /* ===== NAV : désactive sticky en mobile pour permettre le scroll interne ===== */
+    .nav {
+        position: relative;
+    }
+
+    /* ===== Désactive le menu contextuel à TOUS les niveaux du menu principal =====
+       (mais on le garde sur .nav-dropdown-menu pour pouvoir partager/copier un lien) */
+    .nav-list,
+    .nav-list > li,
+    .nav-list > li > a,
+    .nav-list > li > a * {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
 
     /* ===== HEADER ===== */
     .header { padding: 0.8rem 0; }
@@ -1686,12 +1674,14 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
+    /* Menu actif : scroll interne + hauteur limitée à l'écran */
     .nav-list.active {
         display: flex;
-        max-height: calc(100vh - 120px);
+        max-height: calc(100vh - 80px);
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+        touch-action: pan-y;
     }
 
     .nav-list li { width: 100%; margin: 0; }
@@ -1704,10 +1694,6 @@ li { margin-bottom: 0.5rem; }
         border-left: none;
         font-size: 1rem;
         font-weight: 600;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
     }
 
     .nav-list > li > a.active {
@@ -1906,13 +1892,11 @@ li { margin-bottom: 0.5rem; }
 
     .menu-toggle { font-size: 1rem; }
 
-    /* Rubriques principales */
     .nav-list > li > a {
         font-size: 0.95rem;
         padding: 0.8rem 1rem;
     }
 
-    /* Sous-rubriques */
     .nav-dropdown-menu li a {
         font-size: 0.85rem;
         padding: 0.7rem 1rem 0.7rem 2rem;
@@ -1921,7 +1905,6 @@ li { margin-bottom: 0.5rem; }
     .photo-gallery { grid-template-columns: 1fr; }
     .photo-gallery img { height: 200px; }
 
-    /* ✅ CORRIGÉ : aligné sur 0.95rem (accordéon ET sous-accordéon) */
     .accordion-header {
         padding: 0.7rem 0.9rem;
         font-size: 0.95rem;
@@ -1937,14 +1920,12 @@ li { margin-bottom: 0.5rem; }
         font-size: 0.95rem;
     }
 
-    /* ===== SCROLL TOP (petit mobile) : à GAUCHE ===== */
     .scroll-top {
         bottom: 0.8rem;
         left: 0.8rem;
         right: auto;
     }
 
-    /* ===== BOUTON D'IMPRESSION (petit mobile) : à DROITE ===== */
     .print-float-btn {
         bottom: 0.8rem;
         right: 0.8rem;
