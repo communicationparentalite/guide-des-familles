@@ -19,6 +19,13 @@
                 e.stopPropagation();
                 navList.classList.toggle('active');
                 menuToggle.classList.toggle('active');
+
+                // ✅ Ajoute/retire une classe sur <body> pour bloquer le scroll de la page
+                if (navList.classList.contains('active')) {
+                    document.body.classList.add('nav-open');
+                } else {
+                    document.body.classList.remove('nav-open');
+                }
             });
         }
 
@@ -45,7 +52,7 @@
             });
         });
 
-        // ✅ NOUVEAU : Bloque le menu contextuel (appui long) sur les rubriques principales
+        // ✅ Bloque le menu contextuel (appui long) sur les rubriques principales
         // Fonctionne sur Firefox mobile, Chrome Android, Safari iOS, Edge
         document.querySelectorAll('.nav-list > li > a').forEach(function (link) {
             link.addEventListener('contextmenu', function (e) {
@@ -64,6 +71,7 @@
                 if (parentDropdown) parentDropdown.classList.remove('open');
                 if (navList) navList.classList.remove('active');
                 if (menuToggle) menuToggle.classList.remove('active');
+                document.body.classList.remove('nav-open');
             });
         });
     }
@@ -452,6 +460,7 @@
                     document.querySelectorAll('.ecole-card.open').forEach(function (c) {
                         c.classList.remove('open');
                     });
+                    document.body.classList.remove('nav-open');
                 } else {
                     initCartesDepliables();
                 }
