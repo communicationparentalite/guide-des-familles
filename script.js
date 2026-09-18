@@ -1,12 +1,6 @@
 /* ============================================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Script JS unifié - Septembre 2026
-   ------------------------------------------------------------
-   Ce fichier remplace TOUT le JavaScript inline des 9 pages.
-   Il gère : menu, sous-menus, scroll-top, lightbox, accordéons,
-   sous-accordéons, "Lire la suite", ouverture par ancre,
-   vidéo YouTube, impression sélective, cartes école et mairies
-   dépliables, bouton hero de l'accueil.
    ============================================================ */
 
 (function () {
@@ -28,30 +22,26 @@
             });
         }
 
-        // Double-clic sur mobile pour ouvrir un sous-menu
+        // Gestion des clics sur les rubriques principales
         document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-            let clickTimer = null;
-
             link.addEventListener('click', function (e) {
+                // Desktop : on laisse le hover CSS gérer
                 if (window.innerWidth > 768) return;
 
-                if (clickTimer) {
-                    clearTimeout(clickTimer);
-                    clickTimer = null;
-                    return;
-                }
-
                 e.preventDefault();
+
                 const parent = this.parentElement;
                 const wasOpen = parent.classList.contains('open');
 
+                // Fermer tous les sous-menus ouverts
                 document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
                     item.classList.remove('open');
                 });
 
-                if (!wasOpen) parent.classList.add('open');
-
-                clickTimer = setTimeout(function () { clickTimer = null; }, 300);
+                // Si celui-ci était fermé, on l'ouvre. Sinon il reste fermé.
+                if (!wasOpen) {
+                    parent.classList.add('open');
+                }
             });
         });
 
@@ -84,7 +74,7 @@
     }
 
     /* ============================================================
-       3. LIGHTBOX (agrandissement des images)
+       3. LIGHTBOX
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
@@ -92,7 +82,6 @@
         const closeBtn = document.getElementById('lightboxClose');
         if (!lightbox || !lightboxImg) return;
 
-        // Fonction globale (utilisée par onclick="openLightbox(...)" dans le HTML)
         window.openLightbox = function (src) {
             if (!src) return;
             lightboxImg.src = src;
@@ -105,7 +94,6 @@
             document.body.style.overflow = '';
         }
 
-        // Clic sur les images : on exclut hero, vidéo, carte Leaflet
         document.querySelectorAll(
             '.section img:not(.hero-bg):not(.video-thumb img):not(#carte-ecoles img), ' +
             '.accordion-card img, .inline-image, .accordion-image, ' +
@@ -153,7 +141,6 @@
             header.setAttribute('aria-expanded', 'true');
             body.classList.add('open');
 
-            // Si la carte Leaflet est dans cette section, on la rafraîchit
             if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
                 setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
             }
@@ -167,7 +154,7 @@
     }
 
     /* ============================================================
-       5. SOUS-ACCORDÉONS (petite-enfance et jeunesse)
+       5. SOUS-ACCORDÉONS
        ============================================================ */
     window.toggleSubAccordion = function (id) {
         const content = document.getElementById(id + '-content');
@@ -186,18 +173,16 @@
         }
     };
 
-    // Alias (certaines pages utilisent toggleSousAccordion)
     window.toggleSousAccordion = window.toggleSubAccordion;
 
     /* ============================================================
-       6. "LIRE LA SUITE" — VERSION UNIFIÉE ET CORRIGÉE
+       6. "LIRE LA SUITE"
        ============================================================ */
     function initReadMore() {
         document.querySelectorAll('.read-more-btn').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
 
-                // Conteneurs possibles, du plus spécifique au plus générique
                 const conteneurs = [
                     '.bulle-musicale',
                     '.ter-section',
@@ -225,7 +210,6 @@
                 fullText.classList.toggle('visible');
                 this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
 
-                // Rafraîchir Leaflet si nécessaire
                 if (!isVisible && window.__carteEcoles) {
                     setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
                 }
@@ -234,14 +218,13 @@
     }
 
     /* ============================================================
-       7. OUVERTURE PAR ANCRE (#section)
+       7. OUVERTURE PAR ANCRE
        ============================================================ */
     function openAccordionFromHash() {
         if (!window.location.hash) return;
         const target = document.querySelector(window.location.hash);
         if (!target) return;
 
-        // Cas 1 : content-box → ouvrir le premier accordéon qu'il contient
         if (target.classList.contains('content-box')) {
             const firstAccordion = target.querySelector('.accordion-item');
             if (firstAccordion) {
@@ -263,7 +246,6 @@
             }
         }
 
-        // Cas 2 : accordion-item → ouvrir cet accordéon
         if (target.classList.contains('accordion-item')) {
             const header = target.querySelector('.accordion-header');
             if (header && !header.classList.contains('open')) {
@@ -284,7 +266,7 @@
     }
 
     /* ============================================================
-       8. VIDÉO YOUTUBE — Chargement au clic (miniature cliquable)
+       8. VIDÉO YOUTUBE
        ============================================================ */
     window.loadVideo = function (wrapperId, videoId, title) {
         const wrapper = document.getElementById(wrapperId);
@@ -309,9 +291,8 @@
         const printCount = document.getElementById('printCount');
         const printDate = document.getElementById('print-date');
 
-        if (!printBtn) return; // pas de bouton impression sur cette page
+        if (!printBtn) return;
 
-        // Date du jour dans l'en-tête d'impression
         if (printDate) {
             const now = new Date();
             printDate.textContent = now.toLocaleDateString('fr-FR', {
@@ -323,12 +304,10 @@
             const checkboxes = document.querySelectorAll('.print-checkbox');
             let count = 0;
 
-            // Nettoyer les marquages
             document.querySelectorAll('.print-selected').forEach(function (el) {
                 el.classList.remove('print-selected');
             });
 
-            // Compter et marquer
             checkboxes.forEach(function (cb) {
                 if (cb.checked) {
                     count++;
@@ -377,7 +356,6 @@
 
         printBtn.addEventListener('click', function (e) {
             e.preventDefault();
-            // Tout ouvrir avant impression
             document.querySelectorAll('.accordion-body').forEach(function (b) { b.classList.add('open'); });
             document.querySelectorAll('.full-text').forEach(function (ft) { ft.classList.add('visible'); });
             document.querySelectorAll('.sous-accordion-body').forEach(function (sab) { sab.classList.add('open'); });
@@ -388,7 +366,7 @@
     }
 
     /* ============================================================
-       10. CARTES ÉCOLES DÉPLIABLES SUR MOBILE (page enfance)
+       10. CARTES ÉCOLES DÉPLIABLES
        ============================================================ */
     function initCartesDepliables() {
         if (window.innerWidth > 768) return;
@@ -398,7 +376,7 @@
             carte.dataset.depliable = 'true';
 
             carte.addEventListener('click', function (e) {
-                e.stopPropagation(); // Empêche la fermeture de l'accordéon parent
+                e.stopPropagation();
                 if (e.target.closest('a')) return;
                 this.classList.toggle('open');
             });
@@ -406,7 +384,7 @@
     }
 
     /* ============================================================
-       11. BOUTON "LIRE LA SUITE" DU HERO (page accueil)
+       11. BOUTON HERO (page accueil)
        ============================================================ */
     function initHeroToggle() {
         const heroFullText = document.querySelector('.hero .full-text');
@@ -425,12 +403,12 @@
     }
 
     /* ============================================================
-       12. CARTES MAIRIES REPLIABLES (page interlocuteurs)
+       12. CARTES MAIRIES REPLIABLES
        ============================================================ */
     function initMairiesDepliables() {
         document.querySelectorAll('.mairie-card-header').forEach(function (header) {
             header.addEventListener('click', function (e) {
-                e.stopPropagation(); // Empêche la fermeture de l'accordéon parent
+                e.stopPropagation();
                 if (e.target.closest('a')) return;
                 const card = this.closest('.mairie-card');
                 if (card) card.classList.toggle('open');
@@ -439,7 +417,7 @@
     }
 
     /* ============================================================
-       13. INITIALISATION AU CHARGEMENT
+       13. INITIALISATION
        ============================================================ */
     function init() {
         initNavigation();
@@ -452,11 +430,9 @@
         initCartesDepliables();
         initMairiesDepliables();
 
-        // Ouverture par ancre (au chargement + au changement d'ancre)
         openAccordionFromHash();
         window.addEventListener('hashchange', openAccordionFromHash);
 
-        // Redimensionnement : refermer les cartes école en desktop
         let resizeTimer;
         window.addEventListener('resize', function () {
             clearTimeout(resizeTimer);
@@ -472,7 +448,6 @@
         });
     }
 
-    // Lancer dès que le DOM est prêt
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
