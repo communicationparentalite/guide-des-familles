@@ -383,32 +383,36 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" EN TÊTE DE SOUS-MENU
+   ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" — VISIBLE UNIQUEMENT EN MOBILE
    ============================================================ */
+
+/* Par défaut (desktop) : lien caché */
 .nav-dropdown-main-link {
-    font-weight: 700 !important;
-    color: var(--primary-dark) !important;
-    background: var(--bg-light);
-    border-bottom: 2px solid var(--border-color) !important;
+    display: none;
 }
 
-.nav-dropdown-main-link::before {
-    content: "→ ";
-    font-weight: 700;
-    margin-right: 0.3rem;
-}
-
-.nav-dropdown-main-link:hover {
-    background: var(--primary-light) !important;
-    color: white !important;
-}
-
-/* Sur mobile, on garde le style distinctif */
+/* Sur mobile : lien visible avec un style distinctif */
 @media (max-width: 768px) {
     .nav-dropdown-main-link {
+        display: block;
+        font-weight: 700 !important;
+        color: var(--primary-dark) !important;
+        background: var(--bg-light);
+        border-bottom: 2px solid var(--border-color) !important;
         text-align: left !important;
         padding-left: 1.5rem !important;
         font-size: 0.95rem !important;
+    }
+
+    .nav-dropdown-main-link::before {
+        content: "→ ";
+        font-weight: 700;
+        margin-right: 0.3rem;
+    }
+
+    .nav-dropdown-main-link:hover {
+        background: var(--primary-light) !important;
+        color: white !important;
     }
 }
 
