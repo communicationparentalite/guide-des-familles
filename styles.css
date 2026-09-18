@@ -425,6 +425,23 @@ li { margin-bottom: 0.5rem; }
     }
 }
 
+/* ============================================================
+   ✅ ANTI-SCROLL AUTOMATIQUE (bug "Vivre ensemble" / "Accès aux droits")
+   Quand on clique sur un lien en bas du menu mobile, on empêche
+   le navigateur de faire remonter la page involontairement.
+   ============================================================ */
+@media (max-width: 768px) {
+    .nav-list > li > a,
+    .nav-dropdown-menu li a {
+        scroll-margin-top: 0;
+        scroll-margin-bottom: 0;
+    }
+
+    html.nav-scroll-lock {
+        scroll-behavior: auto;
+    }
+}
+
 /* --- Couleurs des liens de navigation par page --- */
 .nav-list > li > a.nav-link-accueil:hover,
 .nav-list > li > a.nav-link-accueil.active {
