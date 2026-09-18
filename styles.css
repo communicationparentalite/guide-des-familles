@@ -396,7 +396,7 @@ li { margin-bottom: 0.5rem; }
     .nav-close-btn {
         display: block;
         width: 100%;
-        padding: 1rem;
+        padding: 0.8rem;
         background: var(--primary-dark);
         color: white;
         font-weight: 700;
@@ -441,7 +441,7 @@ li { margin-bottom: 0.5rem; }
         border-bottom: 2px solid var(--border-color) !important;
         text-align: left !important;
         padding-left: 1.5rem !important;
-        font-size: 0.95rem !important;
+        font-size: 0.9rem !important;
     }
 
     .nav-dropdown-main-link::before {
@@ -546,7 +546,6 @@ li { margin-bottom: 0.5rem; }
     transform: scaleX(1);
 }
 
-/* Neutralise la flèche sur le lien Accueil */
 .nav-list > li > a.nav-link-accueil::after {
     content: none;
 }
@@ -1365,7 +1364,6 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
-/* --- Miniature vidéo cliquable --- */
 .video-thumb {
     position: absolute;
     top: 0; left: 0;
@@ -1856,7 +1854,7 @@ li { margin-bottom: 0.5rem; }
 
     .menu-toggle.active { background: var(--primary-dark); }
 
-    /* ✅ Le menu devient un OVERLAY plein écran */
+    /* ✅ Overlay plein écran */
     .nav-list {
         display: none;
         flex-direction: column;
@@ -1873,31 +1871,27 @@ li { margin-bottom: 0.5rem; }
         height: 100dvh;
         background: var(--bg-white);
         z-index: 1001;
-        overflow-y: auto;
+        /* ✅ On laisse Firefox gérer le scroll natif */
+        overflow-y: scroll;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-        touch-action: pan-y;
         padding: 0;
         margin: 0;
-        overflow-anchor: none;
     }
 
     .nav-list li {
         width: 100%;
         margin: 0;
-        overflow-anchor: none;
     }
 
-    /* === RUBRIQUES PRINCIPALES === */
+    /* === RUBRIQUES PRINCIPALES — hauteur réduite === */
     .nav-list > li > a {
         text-align: center;
         border-bottom: 1px solid var(--border-color);
-        padding: 0.9rem 1rem;
+        padding: 0.6rem 1rem;
         border-left: none;
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 600;
-        overflow-anchor: none;
     }
 
     .nav-list > li > a.active {
@@ -1936,20 +1930,18 @@ li { margin-bottom: 0.5rem; }
         box-shadow: none;
         border-radius: 0;
         background: var(--bg-lighter);
-        overflow-anchor: none;
     }
 
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
 
-    /* === SOUS-RUBRIQUES === */
+    /* === SOUS-RUBRIQUES — hauteur réduite === */
     .nav-dropdown-menu li a {
-        padding: 0.75rem 1rem 0.75rem 2.5rem;
+        padding: 0.5rem 1rem 0.5rem 2rem;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
         color: var(--text-dark);
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         font-weight: 400;
-        overflow-anchor: none;
     }
 
     /* Couleurs des sous-menus par rubrique (mobile) */
@@ -2097,13 +2089,13 @@ li { margin-bottom: 0.5rem; }
     .menu-toggle { font-size: 1rem; }
 
     .nav-list > li > a {
-        font-size: 0.95rem;
-        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+        padding: 0.5rem 0.8rem;
     }
 
     .nav-dropdown-menu li a {
-        font-size: 0.85rem;
-        padding: 0.7rem 1rem 0.7rem 2rem;
+        font-size: 0.8rem;
+        padding: 0.45rem 0.8rem 0.45rem 1.8rem;
     }
 
     .photo-gallery { grid-template-columns: 1fr; }
