@@ -29,9 +29,13 @@
                 if (window.innerWidth > 768) return;
 
                 e.preventDefault();
+                e.stopPropagation();
 
                 const parent = this.parentElement;
                 const wasOpen = parent.classList.contains('open');
+
+                // ✅ Sauvegarde la position du scroll du menu AVANT tout changement
+                const menuScrollTop = navList ? navList.scrollTop : 0;
 
                 // Fermer tous les sous-menus ouverts
                 document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
@@ -42,6 +46,16 @@
                 if (!wasOpen) {
                     parent.classList.add('open');
                 }
+
+                // ✅ Restaure la position du scroll du menu après l'ouverture
+                // (évite que Firefox fasse un scrollIntoView qui ferme le menu)
+                setTimeout(function () {
+                    if (navList) navList.scrollTop = menuScrollTop;
+                }, 0);
+
+                // ✅ Force le menu à rester ouvert
+                if (navList) navList.classList.add('active');
+                if (menuToggle) menuToggle.classList.add('active');
             });
         });
 
@@ -427,35 +441,7 @@
     }
 
     /* ============================================================
-       13. EMPÊCHE LE SCROLL AUTOMATIQUE (bug "Vivre ensemble" / "Accès aux droits")
-       ============================================================ */
-    function initPreventAutoScroll() {
-        if (window.innerWidth > 768) return;
-
-        let savedScrollY = 0;
-
-        // Sauvegarde la position AVANT l'ouverture du sous-menu
-        document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                savedScrollY = window.scrollY;
-            }, { passive: true });
-        });
-
-        // Restaure la position APRÈS le clic sur un lien du sous-menu
-        document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                // On restaure immédiatement la position
-                window.scrollTo(0, savedScrollY);
-                // Et on restaure à nouveau après un court délai (au cas où le navigateur scrolle)
-                setTimeout(function () {
-                    window.scrollTo(0, savedScrollY);
-                }, 50);
-            });
-        });
-    }
-
-    /* ============================================================
-       14. INITIALISATION
+       13. INITIALISATION
        ============================================================ */
     function init() {
         initNavigation();
@@ -467,7 +453,6 @@
         initPrintSelective();
         initCartesDepliables();
         initMairiesDepliables();
-        initPreventAutoScroll();
 
         openAccordionFromHash();
         window.addEventListener('hashchange', openAccordionFromHash);
