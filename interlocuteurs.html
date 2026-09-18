@@ -20,34 +20,69 @@
 
         /* ============================================================
            LAYOUT "LOGO + TEXTE" DANS LES ACCORDÉONS
+           Logo au-dessus, centré, taille variable selon la classe
            ============================================================ */
         .accordion-content-row {
             display: flex;
-            align-items: flex-start;
-            gap: 1.5rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
             margin-bottom: 1rem;
         }
 
         .accordion-content-row .logo-col {
-            flex: 0 0 100px;
-            max-width: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
         }
 
         .accordion-content-row .logo-col img {
-            width: 100%;
             height: auto;
             object-fit: contain;
             background: transparent;
             border-radius: 8px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        /* Taille CAF : inchangée (petit logo carré) */
+        .accordion-content-row .logo-col img.logo-taille-caf {
+            max-width: 120px;
+        }
+
+        /* Taille x2 pour les autres (CC, MSA, Département) */
+        .accordion-content-row .logo-col img.logo-taille-x2 {
+            max-width: 320px;
         }
 
         .accordion-content-row .text-col {
             flex: 1;
             min-width: 0;
+            width: 100%;
         }
 
         .accordion-content-row .text-col p:first-child {
             margin-top: 0;
+        }
+
+        /* Responsive : on réduit les logos sur mobile */
+        @media (max-width: 768px) {
+            .accordion-content-row .logo-col img.logo-taille-caf {
+                max-width: 90px;
+            }
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-content-row .logo-col img.logo-taille-caf {
+                max-width: 70px;
+            }
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 180px;
+            }
         }
 
         /* Coordonnées : visibles même quand "Lire la suite" n'est pas cliqué,
@@ -84,7 +119,7 @@
 
         .cc-image-wrapper img {
             width: 100%;
-            max-width: 600px; /* 3× la taille précédente (200px → 600px) */
+            max-width: 600px;
             height: auto;
             border-radius: 10px;
             box-shadow: var(--shadow-md);
@@ -231,19 +266,6 @@
             font-weight: 700;
             font-style: normal;
             color: var(--primary-color);
-        }
-
-        /* Responsive : logo au-dessus du texte sur mobile */
-        @media (max-width: 600px) {
-            .accordion-content-row {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .accordion-content-row .logo-col {
-                flex: 0 0 auto;
-                max-width: 80px;
-                margin: 0 auto;
-            }
         }
     </style>
 </head>
@@ -819,10 +841,13 @@
                         </button>
                         <div class="accordion-body">
 
-                            <!-- Logo + Texte côte à côte -->
+                            <!-- Logo CC au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
-                                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes" loading="lazy">
+                                    <img src="Logo_berryloirepuisaye-removebg-preview.png"
+                                         alt="Logo Communauté de Communes"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
                                 </div>
                                 <div class="text-col">
                                     <div class="short-text">
@@ -870,9 +895,13 @@
                         </button>
                         <div class="accordion-body">
 
+                            <!-- Logo CAF au-dessus, centré, taille inchangée -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
-                                    <img src="interlocuteurs_page-050.png" alt="Logo CAF" loading="lazy">
+                                    <img src="interlocuteurs_page-050.png"
+                                         alt="Logo CAF"
+                                         class="logo-taille-caf"
+                                         loading="lazy">
                                 </div>
                                 <div class="text-col">
                                     <div class="short-text">
@@ -910,9 +939,13 @@
                         </button>
                         <div class="accordion-body">
 
+                            <!-- Logo MSA au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
-                                    <img src="interlocuteurs_page-051.png" alt="Logo MSA" loading="lazy">
+                                    <img src="interlocuteurs_page-051.png"
+                                         alt="Logo MSA"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
                                 </div>
                                 <div class="text-col">
                                     <div class="short-text">
@@ -950,9 +983,13 @@
                         </button>
                         <div class="accordion-body">
 
+                            <!-- Logo Département au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
-                                    <img src="interlocuteurs_page-052.png" alt="Logo Département Loiret" loading="lazy">
+                                    <img src="interlocuteurs_page-052.png"
+                                         alt="Logo Département Loiret"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
                                 </div>
                                 <div class="text-col">
                                     <div class="short-text">
