@@ -1,10 +1,41 @@
-/* ========================================
+/* ============================================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Feuille de styles partagée - styles.css
    Version unifiée - Septembre 2026
-   ======================================== */
+   ------------------------------------------------------------
+   Organisation :
+   1.  Variables CSS (défaut + par page)
+   2.  Reset & base
+   3.  Container & éléments de base
+   4.  Header
+   5.  Navigation
+   6.  Sections & contenu
+   7.  Accordéons
+   8.  Sous-accordéons
+   9.  "Lire la suite"
+   10. Cartes dans accordéon
+   11. Cartes standard
+   12. Sous-sections
+   13. Sous-section avec image
+   14. Image + texte
+   15. Galeries
+   16. Ecoles grid & logos
+   17. Vidéo
+   18. Liens sociaux
+   19. Item expandable
+   20. Lightbox
+   21. Footer
+   22. Scroll top
+   23. Impression sélective
+   24. Bouton d'impression flottant
+   25. Responsive
+   26. Print
+   ============================================================ */
 
-/* === VARIABLES CSS PAR DÉFAUT (ACCUEIL) === */
+/* ============================================================
+   1. VARIABLES CSS
+   ============================================================ */
+
 :root {
     --primary-color: #2E7D32;
     --primary-light: #66BB6A;
@@ -26,7 +57,7 @@
     --font-main: 'Nunito', sans-serif;
 }
 
-/* === COULEURS SPÉCIFIQUES PAR PAGE === */
+/* --- Couleurs spécifiques par page --- */
 .page-interlocuteurs {
     --primary-color: #1f5692;
     --primary-light: #4A7FB5;
@@ -34,7 +65,6 @@
     --secondary-color: #2C6FA8;
     --secondary-light: #5B92C4;
 }
-
 .page-arrivee-enfant {
     --primary-color: #2E7D32;
     --primary-light: #66BB6A;
@@ -42,7 +72,6 @@
     --secondary-color: #00897B;
     --secondary-light: #4DB6AC;
 }
-
 .page-petite-enfance {
     --primary-color: #5be485;
     --primary-light: #8AEDA9;
@@ -50,7 +79,6 @@
     --secondary-color: #3FCB6C;
     --secondary-light: #7DDD9C;
 }
-
 .page-enfance {
     --primary-color: #686be7;
     --primary-light: #8B8DEF;
@@ -58,7 +86,6 @@
     --secondary-color: #5754D6;
     --secondary-light: #8280E0;
 }
-
 .page-jeunesse {
     --primary-color: #c75f35;
     --primary-light: #D98A69;
@@ -66,7 +93,6 @@
     --secondary-color: #B8703F;
     --secondary-light: #CC9670;
 }
-
 .page-parentalite {
     --primary-color: #585e70;
     --primary-light: #7D8296;
@@ -74,7 +100,6 @@
     --secondary-color: #6C7285;
     --secondary-light: #9A9FAD;
 }
-
 .page-loisirs {
     --primary-color: #b7a88e;
     --primary-light: #D2C8B4;
@@ -82,7 +107,6 @@
     --secondary-color: #A59678;
     --secondary-light: #C8BEA5;
 }
-
 .page-vivre-ensemble {
     --primary-color: #f0bb1e;
     --primary-light: #F7CE5A;
@@ -90,7 +114,6 @@
     --secondary-color: #E6A014;
     --secondary-light: #F5C850;
 }
-
 .page-acces-droits {
     --primary-color: #ff66c4;
     --primary-light: #FF96D7;
@@ -99,7 +122,10 @@
     --secondary-light: #FF8CD2;
 }
 
-/* === RESET & BASE === */
+/* ============================================================
+   2. RESET & BASE
+   ============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -117,56 +143,26 @@ body {
     background-color: var(--bg-lighter);
 }
 
-/* ============================================================ */
-/* ===== HÉRITAGE GLOBAL DE LA POLICE NUNITO ===== */
-/* ============================================================ */
-
+/* Police Nunito héritée globalement */
 body,
 h1, h2, h3, h4, h5, h6,
 p, a, span, li, ul, ol, blockquote, figure, figcaption,
 button, input, textarea, select, label, legend,
-table, th, td, caption,
-.accordion, .accordion-item, .accordion-header,
-.accordion-header h3, .accordion-header span, .accordion-header .count,
-.accordion-icon, .accordion-body, .accordion-body p,
-.accordion-body h3, .accordion-body h4, .accordion-body h5,
-.accordion-body-inner, .accordion-body-inner .text, .accordion-body-inner .text p,
-.accordion-card, .accordion-card h3, .accordion-card h4, .accordion-card p,
-.accordion-card .badge, .accordion-card .website,
-.sous-accordion-wrapper, .sous-accordion-header, .sous-accordion-header span,
-.sous-accordion-body, .sous-accordion-body h4, .sous-accordion-body h5,
-.sous-accordion-body p, .sous-accordion-body .full-text,
-.sub-section, .sub-section h5, .sub-section p,
-.read-more-btn, .quote, .section-title,
-.card, .card h3, .card h4, .card p, .card .address, .card .phone,
-.ecole-card, .ecole-card h3, .ecole-card h4, .ecole-card p, .ecole-card .badge,
-.subsection, .subsection h3, .subsection h4, .subsection h5, .subsection p,
-.subsection-with-image, .subsection-with-image h3,
-.subsection-with-image h4, .subsection-with-image p,
-.partner-content, .partner-content p, .partner-content h4,
-.partner-content .full-text, .partner-coords,
-.badge, .count,
-.ter-section, .ter-section h3, .ter-section p,
-.bulle-musicale, .bulle-musicale h3, .bulle-musicale p,
-.item-expandable summary, .item-expandable .item-content,
-.video-caption, .video-credit,
-.footer, .footer h3, .footer p, .footer a,
-.footer-section, .footer-section ul, .footer-section li, .footer-bottom,
-.menu-toggle, .nav-list a, .nav-dropdown-menu a,
-.header-info, .logo h1,
-.lightbox, .lightbox-close,
-.print-checkbox, .print-float-btn, .print-float-btn button,
-.print-header, .print-footer, .print-hint,
-.print-select-row, .print-checkbox-label {
-    font-family: 'Nunito', sans-serif;
+table, th, td, caption {
+    font-family: var(--font-main);
 }
 
-.fa, .fas, .far, .fal, .fab, .fa-solid, .fa-regular, .fa-brands,
+/* Font Awesome : on protège les icônes */
+.fa, .fas, .far, .fal, .fab,
+.fa-solid, .fa-regular, .fa-brands,
 [class*="fa-"]::before {
     font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands", "Font Awesome 6 Pro" !important;
 }
 
-/* === CONTAINER === */
+/* ============================================================
+   3. CONTAINER & ÉLÉMENTS DE BASE
+   ============================================================ */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -177,6 +173,15 @@ img {
     max-width: 100%;
     height: auto;
     display: block;
+    background: #f0f0f0;
+}
+
+/* Fallback visuel pour les images manquantes */
+img:not([src]),
+img[src=""] {
+    background: #ffe0e0;
+    border: 2px dashed #ff6666;
+    min-height: 40px;
 }
 
 a {
@@ -210,7 +215,10 @@ ul {
 
 li { margin-bottom: 0.5rem; }
 
-/* === HEADER === */
+/* ============================================================
+   4. HEADER
+   ============================================================ */
+
 .header {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
@@ -239,6 +247,7 @@ li { margin-bottom: 0.5rem; }
     height: 70px;
     width: auto;
     display: block;
+    background: transparent;
 }
 
 .logo h1 {
@@ -267,9 +276,9 @@ li { margin-bottom: 0.5rem; }
     font-weight: 600;
 }
 
-/* ============================================================ */
-/* === NAVIGATION === */
-/* ============================================================ */
+/* ============================================================
+   5. NAVIGATION
+   ============================================================ */
 
 .nav {
     background-color: var(--bg-white);
@@ -357,8 +366,7 @@ li { margin-bottom: 0.5rem; }
     border-bottom: none;
 }
 
-/* === Couleurs des liens de navigation par page === */
-
+/* --- Couleurs des liens de navigation par page --- */
 .nav-list > li > a.nav-link-accueil:hover,
 .nav-list > li > a.nav-link-accueil.active {
     background-color: var(--bg-light);
@@ -391,110 +399,82 @@ li { margin-bottom: 0.5rem; }
     border-bottom-color: #1f5692;
     color: #1f5692;
 }
-
 .nav-list > li > a.nav-link-arrivee-enfant:hover,
 .nav-list > li > a.nav-link-arrivee-enfant.active {
     border-bottom-color: #2E7D32;
     color: #2E7D32;
 }
-
 .nav-list > li > a.nav-link-petite-enfance:hover,
 .nav-list > li > a.nav-link-petite-enfance.active {
     border-bottom-color: #5be485;
     color: #33B85D;
 }
-
 .nav-list > li > a.nav-link-enfance:hover,
 .nav-list > li > a.nav-link-enfance.active {
     border-bottom-color: #686be7;
     color: #686be7;
 }
-
 .nav-list > li > a.nav-link-jeunesse:hover,
 .nav-list > li > a.nav-link-jeunesse.active {
     border-bottom-color: #c75f35;
     color: #c75f35;
 }
-
 .nav-list > li > a.nav-link-parentalite:hover,
 .nav-list > li > a.nav-link-parentalite.active {
     border-bottom-color: #585e70;
     color: #585e70;
 }
-
 .nav-list > li > a.nav-link-loisirs:hover,
 .nav-list > li > a.nav-link-loisirs.active {
     border-bottom-color: #b7a88e;
     color: #8C7D64;
 }
-
 .nav-list > li > a.nav-link-vivre-ensemble:hover,
 .nav-list > li > a.nav-link-vivre-ensemble.active {
     border-bottom-color: #f0bb1e;
     color: #B4820A;
 }
-
 .nav-list > li > a.nav-link-acces-droits:hover,
 .nav-list > li > a.nav-link-acces-droits.active {
     border-bottom-color: #ff66c4;
     color: #C83296;
 }
 
-/* === Couleur des sous-menus par rubrique === */
-
+/* --- Couleur des sous-menus par rubrique --- */
 .dropdown-interlocuteurs .nav-dropdown-menu li a:hover {
-    background-color: #eef3fa;
-    color: #1f5692;
+    background-color: #eef3fa; color: #1f5692;
 }
-
 .dropdown-arrivee-enfant .nav-dropdown-menu li a:hover {
-    background-color: #eef7ef;
-    color: #2E7D32;
+    background-color: #eef7ef; color: #2E7D32;
 }
-
 .dropdown-petite-enfance .nav-dropdown-menu li a:hover {
-    background-color: #eefaf1;
-    color: #33B85D;
+    background-color: #eefaf1; color: #33B85D;
 }
-
 .dropdown-enfance .nav-dropdown-menu li a:hover {
-    background-color: #f0f0fd;
-    color: #686be7;
+    background-color: #f0f0fd; color: #686be7;
 }
-
 .dropdown-jeunesse .nav-dropdown-menu li a:hover {
-    background-color: #fdf1ec;
-    color: #c75f35;
+    background-color: #fdf1ec; color: #c75f35;
 }
-
 .dropdown-parentalite .nav-dropdown-menu li a:hover {
-    background-color: #f0f1f4;
-    color: #585e70;
+    background-color: #f0f1f4; color: #585e70;
 }
-
 .dropdown-loisirs .nav-dropdown-menu li a:hover {
-    background-color: #f7f5f0;
-    color: #8C7D64;
+    background-color: #f7f5f0; color: #8C7D64;
 }
-
 .dropdown-vivre-ensemble .nav-dropdown-menu li a:hover {
-    background-color: #fdf8ea;
-    color: #B4820A;
+    background-color: #fdf8ea; color: #B4820A;
 }
-
 .dropdown-acces-droits .nav-dropdown-menu li a:hover {
-    background-color: #fdf0f8;
-    color: #C83296;
+    background-color: #fdf0f8; color: #C83296;
 }
 
-/* === SECTION === */
-.section {
-    padding: 3rem 0;
-}
+/* ============================================================
+   6. SECTIONS & CONTENU
+   ============================================================ */
 
-.section-alt {
-    background-color: var(--bg-lighter);
-}
+.section { padding: 3rem 0; }
+.section-alt { background-color: var(--bg-lighter); }
 
 .section-header {
     position: relative;
@@ -539,10 +519,11 @@ li { margin-bottom: 0.5rem; }
     box-shadow: var(--shadow-sm);
 }
 
-/* === ACCORDÉON === */
-.accordion {
-    margin-top: 2.5rem;
-}
+/* ============================================================
+   7. ACCORDÉONS
+   ============================================================ */
+
+.accordion { margin-top: 2.5rem; }
 
 .accordion-item {
     border: 1px solid var(--border-color);
@@ -554,9 +535,7 @@ li { margin-bottom: 0.5rem; }
     transition: box-shadow 0.2s, border-color 0.2s;
 }
 
-.accordion-item:hover {
-    box-shadow: var(--shadow-md);
-}
+.accordion-item:hover { box-shadow: var(--shadow-md); }
 
 .accordion-header {
     width: 100%;
@@ -569,77 +548,35 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
     text-align: left;
     transition: background 0.2s;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-dark);
 }
 
-.accordion-header:hover {
-    background: #f5f8ff;
-}
+.accordion-header:hover { background: #f5f8ff; }
 
 .accordion-header.open {
     background: var(--primary-color);
     color: white;
 }
 
-.accordion-header.open span {
-    color: white;
-}
+.accordion-header.open span { color: white; }
 
 .accordion-header h3,
 .accordion-header span:not(.accordion-icon):not(.count),
 .accordion-header .title {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     font-weight: 700;
 }
 
 .accordion-header .count {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     font-weight: 600;
-}
-
-.accordion-header .accordion-icon {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 300;
-}
-
-.accordion-header img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-.accordion-header .header-logo {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-.accordion-header .header-logo-large {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    flex-shrink: 0;
-}
-
-.accordion-header h3 {
-    margin: 0;
-    font-size: 0.95rem;
-    font-weight: 700;
-    flex: 1;
-    color: inherit;
-}
-
-.accordion-header .count {
     background: rgba(0, 0, 0, 0.08);
     padding: 0.1rem 0.6rem;
     border-radius: 20px;
     font-size: 0.75rem;
-    font-weight: 600;
     margin-left: 0.3rem;
 }
 
@@ -648,16 +585,40 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
-.accordion-icon {
-    font-size: 1.6rem;
+.accordion-header .accordion-icon {
+    font-family: var(--font-main);
     font-weight: 300;
+    font-size: 1.6rem;
     transition: transform 0.3s;
     flex-shrink: 0;
     margin-left: auto;
 }
 
-.accordion-header.open .accordion-icon {
-    transform: rotate(45deg);
+.accordion-header.open .accordion-icon { transform: rotate(45deg); }
+
+.accordion-header img,
+.accordion-header .header-logo {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.accordion-header .header-logo-large {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+.accordion-header h3 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 700;
+    flex: 1;
+    color: inherit;
 }
 
 .accordion-body {
@@ -688,29 +649,6 @@ li { margin-bottom: 0.5rem; }
     line-height: 1.7;
 }
 
-.accordion-body-inner .text .full-text {
-    display: none;
-}
-
-.accordion-body-inner .text .full-text.visible {
-    display: block;
-}
-
-.accordion-body .read-more-btn {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-weight: 600;
-    padding: 0.2rem 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline dotted;
-}
-
-.accordion-body .read-more-btn:hover {
-    color: var(--primary-dark);
-}
-
 .accordion-body-inner .images {
     display: flex;
     flex-wrap: wrap;
@@ -735,7 +673,10 @@ li { margin-bottom: 0.5rem; }
     box-shadow: var(--shadow-md);
 }
 
-/* === SOUS-ACCORDÉON === */
+/* ============================================================
+   8. SOUS-ACCORDÉONS
+   ============================================================ */
+
 .sous-accordion-wrapper {
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
@@ -743,9 +684,7 @@ li { margin-bottom: 0.5rem; }
     margin-bottom: 1rem;
 }
 
-.sous-accordion-wrapper:last-child {
-    margin-bottom: 0.5rem;
-}
+.sous-accordion-wrapper:last-child { margin-bottom: 0.5rem; }
 
 .sous-accordion-header {
     background: white;
@@ -755,28 +694,24 @@ li { margin-bottom: 0.5rem; }
     justify-content: space-between;
     align-items: center;
     transition: background 0.2s;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     font-weight: 700;
     color: var(--text-dark);
 }
 
 .sous-accordion-header span {
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     font-weight: 700;
 }
 
-.sous-accordion-header:hover {
-    background: #f5f8ff;
-}
+.sous-accordion-header:hover { background: #f5f8ff; }
 
 .sous-accordion-header.open {
     background: var(--primary-light);
     color: white;
 }
 
-.sous-accordion-header.open span {
-    color: white;
-}
+.sous-accordion-header.open span { color: white; }
 
 .sous-accordion-icon {
     font-size: 1.2rem;
@@ -786,9 +721,7 @@ li { margin-bottom: 0.5rem; }
     margin-left: auto;
 }
 
-.sous-accordion-header.open .sous-accordion-icon {
-    transform: rotate(45deg);
-}
+.sous-accordion-header.open .sous-accordion-icon { transform: rotate(45deg); }
 
 .sous-accordion-body {
     max-height: 0;
@@ -803,80 +736,10 @@ li { margin-bottom: 0.5rem; }
     padding: 0.5rem 1.2rem 1rem;
 }
 
-.sous-accordion-body .full-text {
-    display: none;
-}
+/* ============================================================
+   9. "LIRE LA SUITE" (générique)
+   ============================================================ */
 
-.sous-accordion-body .full-text.visible {
-    display: block;
-}
-
-.sous-accordion-body .read-more-btn {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-weight: 600;
-    padding: 0.2rem 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline dotted;
-}
-
-.sous-accordion-body .read-more-btn:hover {
-    color: var(--primary-dark);
-}
-
-/* === SOUS-SECTION === */
-.sub-section {
-    background: white;
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-    border-left: 4px solid var(--primary-light);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
-}
-
-.sub-section:last-child {
-    margin-bottom: 0;
-}
-
-.sub-section h5 {
-    color: var(--primary-dark);
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem 0;
-}
-
-.sub-section p {
-    margin: 0 0 0.6rem 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-.sub-section .full-text {
-    display: none;
-}
-
-.sub-section .full-text.visible {
-    display: block;
-}
-
-.sub-section .read-more-btn {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-weight: 600;
-    padding: 0.2rem 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline dotted;
-}
-
-.sub-section .read-more-btn:hover {
-    color: var(--primary-dark);
-}
-
-/* === LIRE LA SUITE (générique) === */
 .read-more-btn {
     background: none;
     border: none;
@@ -888,19 +751,15 @@ li { margin-bottom: 0.5rem; }
     text-decoration: underline dotted;
 }
 
-.read-more-btn:hover {
-    color: var(--primary-dark);
-}
+.read-more-btn:hover { color: var(--primary-dark); }
 
-.full-text {
-    display: none;
-}
+.full-text { display: none; }
+.full-text.visible { display: block; }
 
-.full-text.visible {
-    display: block;
-}
+/* ============================================================
+   10. CARTES DANS ACCORDÉON (.accordion-card)
+   ============================================================ */
 
-/* === CARTES DANS ACCORDÉON === */
 .accordion-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -940,9 +799,7 @@ li { margin-bottom: 0.5rem; }
     text-decoration: none;
 }
 
-.accordion-card a:hover {
-    text-decoration: underline;
-}
+.accordion-card a:hover { text-decoration: underline; }
 
 .accordion-card .badge {
     display: inline-block;
@@ -973,7 +830,7 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
-/* === LIENS SITES INTERNET - STYLE BADGE UNIFORME === */
+/* --- Liens sites internet en badge uniforme --- */
 .accordion-body a[target="_blank"]:not(.social-links a),
 .sous-accordion-body a[target="_blank"]:not(.social-links a),
 .accordion-card a[target="_blank"],
@@ -1004,7 +861,10 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
-/* === CARTES STANDARD === */
+/* ============================================================
+   11. CARTES STANDARD (.card)
+   ============================================================ */
+
 .cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -1057,9 +917,7 @@ li { margin-bottom: 0.5rem; }
     text-decoration: none;
 }
 
-.card a:hover {
-    text-decoration: underline;
-}
+.card a:hover { text-decoration: underline; }
 
 .card .card-image {
     width: 100%;
@@ -1070,25 +928,34 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
 }
 
-.card .full-text { display: none; }
-.card .full-text.visible { display: block; }
+/* ============================================================
+   12. SOUS-SECTIONS
+   ============================================================ */
 
-.card .read-more-btn {
-    background: none;
-    border: none;
-    color: var(--primary-color);
-    font-weight: 600;
-    padding: 0.2rem 0;
-    cursor: pointer;
-    font-size: 0.85rem;
-    text-decoration: underline dotted;
+.sub-section {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--primary-light);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.card .read-more-btn:hover {
+.sub-section:last-child { margin-bottom: 0; }
+
+.sub-section h5 {
     color: var(--primary-dark);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
 }
 
-/* === SUBSECTIONS === */
+.sub-section p {
+    margin: 0 0 0.6rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
 .subsections {
     display: grid;
     gap: 1.5rem;
@@ -1114,7 +981,10 @@ li { margin-bottom: 0.5rem; }
     font-size: 1.1rem;
 }
 
-/* === SOUS-SECTION AVEC IMAGE === */
+/* ============================================================
+   13. SOUS-SECTION AVEC IMAGE
+   ============================================================ */
+
 .subsection-with-image {
     display: flex;
     align-items: flex-start;
@@ -1138,18 +1008,14 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
 }
 
-.subsection-with-image .text-wrapper {
-    flex: 1;
-}
+.subsection-with-image .text-wrapper { flex: 1; }
 
 .subsection-with-image .text-wrapper h3 {
     margin-top: 0;
     color: var(--primary-dark);
 }
 
-.subsection-with-image .text-wrapper .social-links {
-    margin-top: 0.5rem;
-}
+.subsection-with-image .text-wrapper .social-links { margin-top: 0.5rem; }
 
 .subsection-with-image .text-wrapper .social-links a {
     font-size: 1.3rem;
@@ -1157,11 +1023,12 @@ li { margin-bottom: 0.5rem; }
     text-decoration: none;
 }
 
-.subsection-with-image .text-wrapper .social-links a:hover {
-    opacity: 0.8;
-}
+.subsection-with-image .text-wrapper .social-links a:hover { opacity: 0.8; }
 
-/* === IMAGE + TEXTE === */
+/* ============================================================
+   14. IMAGE + TEXTE
+   ============================================================ */
+
 .image-text-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1177,7 +1044,10 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
 }
 
-/* === PHOTO GALLERY === */
+/* ============================================================
+   15. GALERIES
+   ============================================================ */
+
 .photo-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1195,11 +1065,12 @@ li { margin-bottom: 0.5rem; }
     cursor: pointer;
 }
 
-.photo-gallery img:hover {
-    transform: scale(1.05);
-}
+.photo-gallery img:hover { transform: scale(1.05); }
 
-/* === ECOLES GRID === */
+/* ============================================================
+   16. ECOLES GRID & LOGOS
+   ============================================================ */
+
 .ecoles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1226,9 +1097,7 @@ li { margin-bottom: 0.5rem; }
     object-fit: cover;
 }
 
-.ecole-card-content {
-    padding: 1.2rem;
-}
+.ecole-card-content { padding: 1.2rem; }
 
 .ecole-card-content h3 {
     color: var(--primary-color);
@@ -1248,7 +1117,6 @@ li { margin-bottom: 0.5rem; }
     line-height: 1.5;
 }
 
-/* === LOGOS GRID === */
 .logos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1269,9 +1137,13 @@ li { margin-bottom: 0.5rem; }
     max-height: 100px;
     width: auto;
     margin: 0 auto;
+    background: transparent;
 }
 
-/* === VIDEO WRAPPER === */
+/* ============================================================
+   17. VIDÉO
+   ============================================================ */
+
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%;
@@ -1291,6 +1163,11 @@ li { margin-bottom: 0.5rem; }
     border: 0;
 }
 
+.video-wrapper.video-loaded {
+    padding-bottom: 0;
+    height: auto;
+}
+
 .video-caption {
     font-size: 0.8rem;
     color: var(--text-light);
@@ -1299,17 +1176,14 @@ li { margin-bottom: 0.5rem; }
     margin: 0;
     text-align: center;
     border-radius: 0 0 8px 8px;
-    font-family: 'Nunito', sans-serif;
 }
 
-/* === CRÉDIT VIDÉO (RÉALISATEUR) === */
 .video-credit {
     font-size: 0.85rem;
     color: var(--text-medium);
     text-align: center;
     margin: 0.5rem 0 0 0;
     padding: 0.3rem 0.5rem;
-    font-family: 'Nunito', sans-serif;
 }
 
 .video-credit a[target="_blank"] {
@@ -1324,7 +1198,6 @@ li { margin-bottom: 0.5rem; }
     text-decoration: none;
     transition: background 0.2s, opacity 0.2s;
     font-weight: 500;
-    font-family: 'Nunito', sans-serif;
 }
 
 .video-credit a[target="_blank"]:hover {
@@ -1334,10 +1207,67 @@ li { margin-bottom: 0.5rem; }
     color: white;
 }
 
-/* === SOCIAL LINKS === */
-.social-links {
-    margin-top: 0.5rem;
+/* --- Miniature vidéo cliquable --- */
+.video-thumb {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    background: #000;
+    line-height: 0;
 }
+
+.video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    background: #000;
+    transition: transform 0.4s ease, opacity 0.3s ease;
+}
+
+.video-thumb:hover img {
+    transform: scale(1.04);
+    opacity: 0.88;
+}
+
+.video-thumb .play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 72px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.65);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.video-thumb:hover .play-btn {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translate(-50%, -50%) scale(1.08);
+}
+
+.video-thumb .play-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+    margin-left: 4px;
+}
+
+.video-thumb:hover .play-btn svg { fill: #000; }
+
+/* ============================================================
+   18. LIENS SOCIAUX
+   ============================================================ */
+
+.social-links { margin-top: 0.5rem; }
 
 .social-links a {
     font-size: 1.3rem;
@@ -1345,16 +1275,17 @@ li { margin-bottom: 0.5rem; }
     text-decoration: none;
 }
 
-.social-links a:hover {
-    opacity: 0.8;
-}
+.social-links a:hover { opacity: 0.8; }
 
 .social-links a[href*="facebook"] { color: #1877F2; }
 .social-links a[href*="instagram"] { color: #E1306C; }
 .social-links a[href*="tiktok"] { color: #000000; }
 .social-links a[href*="youtube"] { color: #FF0000; }
 
-/* === ITEM EXPANDABLE === */
+/* ============================================================
+   19. ITEM EXPANDABLE
+   ============================================================ */
+
 .item-expandable {
     margin-bottom: 0.8rem;
     border: 1px solid var(--border-color);
@@ -1371,9 +1302,7 @@ li { margin-bottom: 0.5rem; }
     transition: background 0.2s;
 }
 
-.item-expandable summary:hover {
-    background: #f5f8ff;
-}
+.item-expandable summary:hover { background: #f5f8ff; }
 
 .item-expandable .item-content {
     padding: 0.8rem 1rem;
@@ -1381,7 +1310,10 @@ li { margin-bottom: 0.5rem; }
     border-top: 1px solid var(--border-color);
 }
 
-/* === LIGHTBOX === */
+/* ============================================================
+   20. LIGHTBOX
+   ============================================================ */
+
 .lightbox {
     display: none;
     position: fixed;
@@ -1396,9 +1328,7 @@ li { margin-bottom: 0.5rem; }
     padding: 1.5rem;
 }
 
-.lightbox.active {
-    display: flex;
-}
+.lightbox.active { display: flex; }
 
 .lightbox-content {
     max-width: 90vw;
@@ -1416,6 +1346,7 @@ li { margin-bottom: 0.5rem; }
     object-fit: contain;
     border-radius: 10px;
     display: block;
+    background: transparent;
 }
 
 .lightbox-close {
@@ -1434,11 +1365,12 @@ li { margin-bottom: 0.5rem; }
     transition: transform 0.2s;
 }
 
-.lightbox-close:hover {
-    transform: scale(1.1);
-}
+.lightbox-close:hover { transform: scale(1.1); }
 
-/* === FOOTER === */
+/* ============================================================
+   21. FOOTER
+   ============================================================ */
+
 .footer {
     background: linear-gradient(135deg, #212121 0%, #424242 100%);
     color: white;
@@ -1474,9 +1406,7 @@ li { margin-bottom: 0.5rem; }
     margin-left: 0;
 }
 
-.footer-section ul li {
-    margin-bottom: 0.4rem;
-}
+.footer-section ul li { margin-bottom: 0.4rem; }
 
 .footer-section a {
     color: rgba(255, 255, 255, 0.9);
@@ -1495,7 +1425,10 @@ li { margin-bottom: 0.5rem; }
     font-size: 0.85rem;
 }
 
-/* === SCROLL TOP === */
+/* ============================================================
+   22. SCROLL TOP
+   ============================================================ */
+
 .scroll-top {
     position: fixed;
     bottom: 2rem;
@@ -1525,9 +1458,9 @@ li { margin-bottom: 0.5rem; }
     transform: translateY(-3px);
 }
 
-/* ============================================================ */
-/* ===== IMPRESSION SÉLECTIVE - LIGNE DANS LE CONTENU ===== */
-/* ============================================================ */
+/* ============================================================
+   23. IMPRESSION SÉLECTIVE
+   ============================================================ */
 
 .print-select-row {
     display: flex;
@@ -1591,20 +1524,9 @@ li { margin-bottom: 0.5rem; }
     border-style: solid;
 }
 
-@media (max-width: 768px) {
-    .print-select-row {
-        padding: 0.5rem 0.6rem;
-        font-size: 0.75rem;
-    }
-
-    .print-select-row .print-checkbox-label {
-        font-size: 0.75rem;
-    }
-}
-
-/* ============================================================ */
-/* ===== BOUTON D'IMPRESSION FLOTTANT ===== */
-/* ============================================================ */
+/* ============================================================
+   24. BOUTON D'IMPRESSION FLOTTANT
+   ============================================================ */
 
 .print-float-btn {
     position: fixed;
@@ -1615,7 +1537,7 @@ li { margin-bottom: 0.5rem; }
     flex-direction: column;
     gap: 0.5rem;
     align-items: flex-end;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
 }
 
 .print-float-btn .print-hint {
@@ -1656,7 +1578,7 @@ li { margin-bottom: 0.5rem; }
     padding: 0.9rem 1.4rem;
     font-size: 0.95rem;
     font-weight: 700;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     cursor: pointer;
     box-shadow: var(--shadow-lg);
     display: flex;
@@ -1670,9 +1592,7 @@ li { margin-bottom: 0.5rem; }
     transform: translateY(-2px);
 }
 
-.print-float-btn button:active {
-    transform: translateY(0);
-}
+.print-float-btn button:active { transform: translateY(0); }
 
 .print-float-btn .print-select-all {
     background: white;
@@ -1683,7 +1603,7 @@ li { margin-bottom: 0.5rem; }
     font-weight: 600;
     border-radius: 20px;
     cursor: pointer;
-    font-family: 'Nunito', sans-serif;
+    font-family: var(--font-main);
     box-shadow: var(--shadow-sm);
     transition: var(--transition);
     display: flex;
@@ -1707,55 +1627,11 @@ li { margin-bottom: 0.5rem; }
     margin-left: 0.3rem;
 }
 
-@media (max-width: 768px) {
-    .print-float-btn {
-        bottom: 5rem;
-        right: 1rem;
-    }
+.print-float-btn button .print-label-short { display: none; }
 
-    .print-float-btn .print-hint {
-        font-size: 0.7rem;
-        max-width: 220px;
-        padding: 0.4rem 0.7rem;
-    }
-
-    .print-float-btn button {
-        padding: 0.75rem 1.1rem;
-        font-size: 0.85rem;
-    }
-
-    .print-float-btn .print-select-all {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .print-float-btn button {
-        padding: 0.65rem 1rem;
-        font-size: 0.8rem;
-    }
-
-    .print-float-btn button .print-label-long {
-        display: none;
-    }
-
-    .print-float-btn button .print-label-short {
-        display: inline;
-    }
-
-    .print-float-btn .print-hint {
-        display: none;
-    }
-}
-
-.print-float-btn button .print-label-short {
-    display: none;
-}
-
-/* ============================================================ */
-/* ===== RESPONSIVE ===== */
-/* ============================================================ */
+/* ============================================================
+   25. RESPONSIVE
+   ============================================================ */
 
 @media (max-width: 992px) {
     .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
@@ -1767,27 +1643,13 @@ li { margin-bottom: 0.5rem; }
 }
 
 @media (max-width: 768px) {
-    * {
-        -webkit-text-size-adjust: 100%;
-    }
+    * { -webkit-text-size-adjust: 100%; }
+    body { font-size: 16px; }
+    .container { padding: 0 15px; }
 
-    body {
-        font-size: 16px;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    .header {
-        padding: 0.8rem 0;
-    }
-    .logo img {
-        height: 50px;
-    }
-    .logo h1 {
-        font-size: 2.6rem;
-    }
+    .header { padding: 0.8rem 0; }
+    .logo img { height: 50px; }
+    .logo h1 { font-size: 2.6rem; }
     .header-content {
         flex-direction: column;
         text-align: center;
@@ -1812,9 +1674,7 @@ li { margin-bottom: 0.5rem; }
         font-weight: 600;
     }
 
-    .menu-toggle.active {
-        background: var(--primary-dark);
-    }
+    .menu-toggle.active { background: var(--primary-dark); }
 
     .nav-list {
         display: none;
@@ -1822,14 +1682,8 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
-    .nav-list.active {
-        display: flex;
-    }
-
-    .nav-list li {
-        width: 100%;
-        margin: 0;
-    }
+    .nav-list.active { display: flex; }
+    .nav-list li { width: 100%; margin: 0; }
 
     .nav-list > li > a {
         text-align: center;
@@ -1844,9 +1698,7 @@ li { margin-bottom: 0.5rem; }
         font-weight: 600;
     }
 
-    .nav-list > li > a.nav-link-accueil::after {
-        display: none;
-    }
+    .nav-list > li > a.nav-link-accueil::after { display: none; }
 
     .nav-list > li > a.nav-link-accueil:hover,
     .nav-list > li > a.nav-link-accueil.active {
@@ -1877,9 +1729,7 @@ li { margin-bottom: 0.5rem; }
         background: var(--bg-lighter);
     }
 
-    .nav-dropdown.open .nav-dropdown-menu {
-        display: block;
-    }
+    .nav-dropdown.open .nav-dropdown-menu { display: block; }
 
     .nav-dropdown-menu li a {
         padding-left: 2.5rem;
@@ -1911,29 +1761,17 @@ li { margin-bottom: 0.5rem; }
     }
 
     .card { padding: 1rem; }
-
-    .image-text-row {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
+    .image-text-row { grid-template-columns: 1fr; gap: 1rem; }
     .ecoles-grid { grid-template-columns: 1fr; }
 
-    .logos-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
+    .logos-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .logo-item { padding: 0.75rem; }
 
     .content-box { padding: 1rem; }
     .subsection { padding: 1rem; }
     .subsections { gap: 1rem; }
 
-    .quote {
-        font-size: 0.9rem;
-        padding: 0.6rem 1rem;
-    }
+    .quote { font-size: 0.9rem; padding: 0.6rem 1rem; }
 
     .photo-gallery { grid-template-columns: 1fr 1fr; }
     .photo-gallery img { height: 150px; }
@@ -1981,6 +1819,34 @@ li { margin-bottom: 0.5rem; }
         font-size: 1.3rem;
     }
 
+    .print-select-row {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .print-select-row .print-checkbox-label { font-size: 0.75rem; }
+
+    .print-float-btn {
+        bottom: 5rem;
+        right: 1rem;
+    }
+
+    .print-float-btn .print-hint {
+        font-size: 0.7rem;
+        max-width: 220px;
+        padding: 0.4rem 0.7rem;
+    }
+
+    .print-float-btn button {
+        padding: 0.75rem 1.1rem;
+        font-size: 0.85rem;
+    }
+
+    .print-float-btn .print-select-all {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
     table {
         font-size: 0.85rem;
         display: block;
@@ -2017,19 +1883,26 @@ li { margin-bottom: 0.5rem; }
 
     .accordion-icon { font-size: 1.3rem; }
 
-    .accordion-body.open {
-        padding: 0.6rem 0.9rem 1.2rem;
-    }
+    .accordion-body.open { padding: 0.6rem 0.9rem 1.2rem; }
 
     .sous-accordion-header {
         padding: 0.5rem 0.8rem;
         font-size: 0.8rem;
     }
+
+    .print-float-btn button {
+        padding: 0.65rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .print-float-btn button .print-label-long { display: none; }
+    .print-float-btn button .print-label-short { display: inline; }
+    .print-float-btn .print-hint { display: none; }
 }
 
-/* ============================================================ */
-/* ===== PRINT ===== */
-/* ============================================================ */
+/* ============================================================
+   26. PRINT
+   ============================================================ */
 
 @media print {
     .nav,
@@ -2050,9 +1923,7 @@ li { margin-bottom: 0.5rem; }
     }
 
     .print-header,
-    .print-footer {
-        display: block !important;
-    }
+    .print-footer { display: block !important; }
 
     .print-header {
         text-align: center;
@@ -2123,13 +1994,8 @@ li { margin-bottom: 0.5rem; }
         page-break-after: avoid;
     }
 
-    .accordion-header span {
-        color: black !important;
-    }
-
-    .accordion-header .accordion-icon {
-        display: none !important;
-    }
+    .accordion-header span { color: black !important; }
+    .accordion-header .accordion-icon { display: none !important; }
 
     .accordion-item {
         border: none !important;
@@ -2152,33 +2018,15 @@ li { margin-bottom: 0.5rem; }
         padding: 0.4rem 0 !important;
     }
 
-    .sous-accordion-header span {
-        color: black !important;
-    }
+    .sous-accordion-header span { color: black !important; }
+    .sous-accordion-icon { display: none !important; }
 
-    .sous-accordion-icon {
-        display: none !important;
-    }
+    .full-text { display: block !important; }
+    .read-more-btn { display: none !important; }
 
-    .full-text {
-        display: block !important;
-    }
-
-    .read-more-btn {
-        display: none !important;
-    }
-
-    .ecole-details {
-        display: block !important;
-    }
-
-    .ecole-toggle-icon {
-        display: none !important;
-    }
-
-    .ecole-card .ecole-nom-court {
-        display: none !important;
-    }
+    .ecole-details { display: block !important; }
+    .ecole-toggle-icon { display: none !important; }
+    .ecole-card .ecole-nom-court { display: none !important; }
 
     .card {
         border: 1px solid #ccc !important;
@@ -2186,21 +2034,15 @@ li { margin-bottom: 0.5rem; }
         page-break-inside: avoid;
     }
 
-    /* ============================================================ */
-    /* ===== IMPRESSION SÉLECTIVE ===== */
-    /* ============================================================ */
-
-    /* Si une sélection existe : masquer les accordéons non cochés */
+    /* Impression sélective */
     body.print-has-selection .accordion-item:not(.print-selected) {
         display: none !important;
     }
 
-    /* Masquer les content-box VIDE (sans accordéon sélectionné) */
     body.print-has-selection .content-box:not(:has(.print-selected)) {
         display: none !important;
     }
 
-    /* Afficher les content-box contenant une sélection */
     body.print-has-selection .content-box:has(.print-selected) {
         display: block !important;
         padding: 0 !important;
@@ -2208,13 +2050,11 @@ li { margin-bottom: 0.5rem; }
         margin: 1.5rem 0 !important;
     }
 
-    /* Les accordéons sélectionnés s'impriment normalement */
     .accordion-item.print-selected {
         display: block !important;
         page-break-inside: avoid;
     }
 
-    /* Titres h3 des content-box : garder visibles si contenu sélectionné */
     body.print-has-selection .content-box:has(.print-selected) > h3 {
         display: block !important;
         font-size: 1.1rem !important;
@@ -2224,32 +2064,24 @@ li { margin-bottom: 0.5rem; }
         margin-bottom: 1rem !important;
     }
 
-    /* Paragraphes d'intro des content-box : masquer à l'impression */
     body.print-has-selection .content-box:has(.print-selected) > p {
         display: none !important;
     }
 
-    #carte-ecoles {
-        display: none !important;
-    }
+    #carte-ecoles { display: none !important; }
 
     .toggle-btn,
     .read-more-btn,
-    .print-select-all {
-        display: none !important;
-    }
+    .print-select-all { display: none !important; }
 
-    .carte-legende {
-        display: none !important;
-    }
+    .carte-legende { display: none !important; }
 
-    h2, h3, h4 {
-        page-break-after: avoid;
-    }
+    h2, h3, h4 { page-break-after: avoid; }
 
     img {
         max-width: 100% !important;
         page-break-inside: avoid;
+        background: transparent !important;
     }
 
     a[href]:not([href^="#"]):not([href^="tel:"]):not([href^="mailto:"])::after {
