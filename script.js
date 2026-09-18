@@ -407,9 +407,27 @@
             });
         });
     }
+   /* ============================================================
+   11. BOUTON "LIRE LA SUITE" DU HERO (page accueil)
+   ============================================================ */
+function initHeroToggle() {
+    const heroFullText = document.querySelector('.hero .full-text');
+    const heroToggleBtn = document.getElementById('togglePresidentBtn');
+    const heroSection = document.getElementById('heroSection');
+
+    if (heroToggleBtn && heroFullText) {
+        heroToggleBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isVisible = heroFullText.classList.contains('visible');
+            heroFullText.classList.toggle('visible');
+            heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+            if (heroSection) heroSection.classList.toggle('expanded');
+        });
+    }
+}
 
     /* ============================================================
-       11. INITIALISATION AU CHARGEMENT
+       12. INITIALISATION AU CHARGEMENT
        ============================================================ */
     function init() {
         initNavigation();
@@ -417,6 +435,7 @@
         initLightbox();
         initAccordions();
         initReadMore();
+        initHeroToggle();
         initPrintSelective();
         initCartesDepliables();
 
