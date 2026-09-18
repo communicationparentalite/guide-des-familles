@@ -109,29 +109,34 @@
             color: var(--primary-dark);
         }
 
-        /* ============================================================
-           IMAGE CC 3× PLUS GRANDE SUR DESKTOP
-           ============================================================ */
-        .cc-image-wrapper {
-            margin-top: 1.5rem;
-            text-align: center;
-        }
+      /* ============================================================
+   IMAGE CC 3× PLUS GRANDE SUR DESKTOP
+   ============================================================ */
+.cc-image-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
-        .cc-image-wrapper img {
-            width: 100%;
-            max-width: 600px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: var(--shadow-md);
-            cursor: pointer;
-            background: #f0f0f0;
-        }
+.cc-image-wrapper img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    background: #f0f0f0;
+    display: block;
+    margin: 0 auto;
+}
 
-        @media (max-width: 768px) {
-            .cc-image-wrapper img {
-                max-width: 100%;
-            }
-        }
+@media (max-width: 768px) {
+    .cc-image-wrapper img {
+        max-width: 100%;
+    }
+}
 
         /* ============================================================
            CARTES MAIRIES REPLIABLES
