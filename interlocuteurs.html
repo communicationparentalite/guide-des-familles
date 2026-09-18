@@ -9,7 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== COULEURS SPÉCIFIQUES À INTERLOCUTEURS (BLEU) ===== */
+        /* ============================================================
+           CSS SPÉCIFIQUE À LA PAGE INTERLOCUTEURS (BLEU)
+           ============================================================ */
         .page-interlocuteurs {
             --primary-color: #1f5692;
             --primary-light: #4A7FB5;
@@ -20,7 +22,6 @@
 
         /* ============================================================
            LAYOUT "LOGO + TEXTE" DANS LES ACCORDÉONS
-           Logo au-dessus, centré, taille variable selon la classe
            ============================================================ */
         .accordion-content-row {
             display: flex;
@@ -46,12 +47,10 @@
             width: 100%;
         }
 
-        /* Taille CAF : inchangée (petit logo carré) */
         .accordion-content-row .logo-col img.logo-taille-caf {
             max-width: 120px;
         }
 
-        /* Taille x2 pour les autres (CC, MSA, Département) */
         .accordion-content-row .logo-col img.logo-taille-x2 {
             max-width: 320px;
         }
@@ -66,7 +65,6 @@
             margin-top: 0;
         }
 
-        /* Responsive : on réduit les logos sur mobile */
         @media (max-width: 768px) {
             .accordion-content-row .logo-col img.logo-taille-caf {
                 max-width: 90px;
@@ -85,8 +83,7 @@
             }
         }
 
-        /* Coordonnées : visibles même quand "Lire la suite" n'est pas cliqué,
-           placées SOUS le texte court */
+        /* Coordonnées visibles sous le texte court */
         .accordion-coords {
             background: #f4f6fa;
             border-left: 4px solid var(--primary-color);
@@ -109,9 +106,7 @@
             color: var(--primary-dark);
         }
 
-        /* ============================================================
-           IMAGE CC 3× PLUS GRANDE SUR DESKTOP
-           ============================================================ */
+        /* Image CC plus grande */
         .cc-image-wrapper {
             margin-top: 1.5rem;
             display: flex;
@@ -241,7 +236,6 @@
             opacity: 0.85;
         }
 
-        /* Bouton "Imprimer cette mairie" dans la carte dépliée */
         .mairie-print-row {
             margin-top: 0.8rem;
             padding-top: 0.8rem;
@@ -276,7 +270,7 @@
 </head>
 <body class="page-interlocuteurs">
 
-    <!-- ===== EN-TÊTE D'IMPRESSION (caché à l'écran) ===== -->
+    <!-- ===== EN-TÊTE D'IMPRESSION ===== -->
     <div class="print-header" style="display: none;">
         <h1>Guide des Familles - Interlocuteurs clés</h1>
         <p>Communauté de Communes Berry Loire Puisaye</p>
@@ -300,16 +294,16 @@
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
-            <!-- ✅ En-tête dans l'overlay mobile -->
+            <!-- ✅ En-tête dans le menu mobile -->
             <li class="nav-mobile-header">
                 <div class="nav-mobile-header-content">
                     <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
                     <span class="nav-mobile-header-title">Guide des Familles</span>
                 </div>
             </li>
-            <!-- ✅ Bouton fermer dans l'overlay mobile -->
+            <!-- ✅ Bouton fermer dans le menu mobile -->
             <li class="nav-close-item">
                 <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
             </li>
@@ -867,7 +861,6 @@
                         </button>
                         <div class="accordion-body">
 
-                            <!-- Logo CC au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
                                     <img src="Logo_berryloirepuisaye-removebg-preview.png"
@@ -887,7 +880,6 @@
                                 </div>
                             </div>
 
-                            <!-- Coordonnées visibles (sous le texte) -->
                             <div class="accordion-coords">
                                 <p><strong>📍 Siège social</strong><br>42 rue des Prés Gris, 45250 BRIARE</p>
                                 <p>📞 <a href="tel:0238370384">02 38 37 03 84</a></p>
@@ -898,7 +890,6 @@
                                 </div>
                             </div>
 
-                            <!-- Sélection impression -->
                             <div class="print-select-row" style="margin-top: 1rem;">
                                 <label class="print-checkbox-wrapper">
                                     <input type="checkbox" class="print-checkbox" data-print-target="communaute-communes">
@@ -906,7 +897,6 @@
                                 </label>
                             </div>
 
-                            <!-- Image CC 3× plus grande -->
                             <div class="cc-image-wrapper">
                                 <img src="interlocuteurs_page-047.png" alt="Carte du territoire" loading="lazy">
                             </div>
@@ -921,7 +911,6 @@
                         </button>
                         <div class="accordion-body">
 
-                            <!-- Logo CAF au-dessus, centré, taille inchangée -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
                                     <img src="interlocuteurs_page-050.png"
@@ -965,7 +954,6 @@
                         </button>
                         <div class="accordion-body">
 
-                            <!-- Logo MSA au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
                                     <img src="interlocuteurs_page-051.png"
@@ -1009,7 +997,6 @@
                         </button>
                         <div class="accordion-body">
 
-                            <!-- Logo Département au-dessus, centré, ×2 -->
                             <div class="accordion-content-row">
                                 <div class="logo-col">
                                     <img src="interlocuteurs_page-052.png"
@@ -1096,7 +1083,7 @@
         </div>
     </footer>
 
-    <!-- ===== PIED DE PAGE D'IMPRESSION (caché à l'écran) ===== -->
+    <!-- ===== PIED DE PAGE D'IMPRESSION ===== -->
     <div class="print-footer" style="display: none;">
         <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
         <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
