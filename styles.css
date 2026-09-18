@@ -386,15 +386,24 @@ li { margin-bottom: 0.5rem; }
    ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" — VISIBLE UNIQUEMENT EN MOBILE
    ============================================================ */
 
-/* Par défaut (desktop) : lien caché */
+/* Par défaut : lien caché partout (desktop inclus)
+   La spécificité est augmentée pour écraser .nav-dropdown-menu li a */
+.nav-dropdown-menu li a.nav-dropdown-main-link,
 .nav-dropdown-main-link {
-    display: none;
+    display: none !important;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
 }
 
 /* Sur mobile : lien visible avec un style distinctif */
 @media (max-width: 768px) {
+    .nav-dropdown-menu li a.nav-dropdown-main-link,
     .nav-dropdown-main-link {
-        display: block;
+        display: block !important;
+        visibility: visible !important;
+        height: auto !important;
+        overflow: visible !important;
         font-weight: 700 !important;
         color: var(--primary-dark) !important;
         background: var(--bg-light);
