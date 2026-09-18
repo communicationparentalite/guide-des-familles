@@ -452,6 +452,7 @@ function initMairiesDepliables() {
         initHeroToggle();
         initPrintSelective();
         initCartesDepliables();
+        initMairiesDepliables();
 
         // Ouverture par ancre (au chargement + au changement d'ancre)
         openAccordionFromHash();
