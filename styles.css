@@ -322,6 +322,46 @@ li { margin-bottom: 0.5rem; }
     display: block;
 }
 
+/* ============================================================
+   ✅ FLÈCHE INDICATRICE SUR LES RUBRIQUES AVEC SOUS-MENU
+   ============================================================ */
+.nav-dropdown > a::after {
+    content: "▾";
+    display: inline-block;
+    margin-left: 0.4rem;
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+/* Quand le sous-menu est ouvert, la flèche tourne vers le haut */
+.nav-dropdown.open > a::after {
+    transform: rotate(180deg);
+}
+
+/* Sur desktop, la flèche peut rester discrète */
+@media (min-width: 769px) {
+    .nav-dropdown > a::after {
+        font-size: 0.75em;
+        opacity: 0.6;
+    }
+}
+
+/* Sur mobile, la flèche est plus visible */
+@media (max-width: 768px) {
+    .nav-dropdown > a::after {
+        font-size: 1.1em;
+        margin-left: 0.6rem;
+        opacity: 0.8;
+        font-weight: 600;
+    }
+
+    .nav-dropdown.open > a::after {
+        transform: rotate(180deg);
+        opacity: 1;
+    }
+}
+
 .nav-dropdown-menu li {
     margin: 0;
 }
@@ -368,6 +408,11 @@ li { margin-bottom: 0.5rem; }
 .nav-list > li > a.nav-link-accueil:hover::after,
 .nav-list > li > a.nav-link-accueil.active::after {
     transform: scaleX(1);
+}
+
+/* Neutralise la flèche sur le lien Accueil (pas de sous-menu) */
+.nav-list > li > a.nav-link-accueil::after {
+    content: none;
 }
 
 .nav-list > li > a.nav-link-interlocuteurs:hover,
@@ -1629,8 +1674,7 @@ li { margin-bottom: 0.5rem; }
         position: relative;
     }
 
-    /* ===== Désactive le menu contextuel à TOUS les niveaux du menu principal =====
-       (mais on le garde sur .nav-dropdown-menu pour pouvoir partager/copier un lien) */
+    /* ===== Désactive le menu contextuel à TOUS les niveaux du menu principal ===== */
     .nav-list,
     .nav-list > li,
     .nav-list > li > a,
@@ -1682,8 +1726,7 @@ li { margin-bottom: 0.5rem; }
     }
 
     /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran
-       On utilise 100dvh (dynamic viewport height) qui s'adapte à la barre d'URL mobile.
-       Fallback 100vh pour les navigateurs qui ne supportent pas dvh. */
+       On utilise 100dvh (dynamic viewport height) qui s'adapte à la barre d'URL mobile. */
     .nav-list.active {
         display: flex;
         max-height: calc(100vh - 80px);
