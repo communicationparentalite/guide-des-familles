@@ -37,6 +37,35 @@
             margin: 0;
         }
 
+        /* ============================================================
+           ✅ IMAGE MAM : centrée, entière, max 400px
+           ============================================================ */
+        .mam-logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin: 1rem 0;
+        }
+
+        .mam-logo-wrapper img {
+            display: block;
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 480px) {
+            .mam-logo-wrapper img {
+                max-width: 280px;
+            }
+        }
+
         /* ===== BULLE MUSICALE (fond vert + texte blanc) ===== */
         .bulle-musicale {
             background-color: var(--primary-color);
@@ -50,7 +79,6 @@
             color: white;
         }
 
-        /* ✅ Liens en blanc pour être visibles sur fond vert */
         .bulle-musicale a {
             color: white !important;
             text-decoration: underline;
@@ -219,8 +247,20 @@
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
+            <!-- ✅ En-tête dans le menu mobile -->
+            <li class="nav-mobile-header">
+                <div class="nav-mobile-header-content">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <span class="nav-mobile-header-title">Guide des Familles</span>
+                </div>
+            </li>
+            <!-- ✅ Bouton fermer dans le menu mobile -->
+            <li class="nav-close-item">
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
+            </li>
+
             <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
 
             <li class="nav-dropdown dropdown-interlocuteurs">
@@ -482,15 +522,20 @@
                             <div class="short-text">
                                 <p>Le territoire dispose d'une MAM (Maison d'Assistantes Maternelles) associative sur la commune de La Bussière.</p>
                             </div>
-                           <div class="full-text">
-    <div class="mam-logo-wrapper">
-        <img src="petite_enfance_mam_labussiere_logo.svg.svg" alt="Rayons de Soleil" loading="lazy">
-    </div>
-    <div class="subsection">
-        <h4>MAM "Rayons de Soleil" - La Bussière</h4>
-        ...
-    </div>
-</div>
+                            <div class="full-text">
+                                <div class="mam-logo-wrapper">
+                                    <img src="petite_enfance_mam_labussiere_logo.svg.svg" alt="Rayons de Soleil" loading="lazy">
+                                </div>
+                                <div class="subsection">
+                                    <h4>MAM "Rayons de Soleil" - La Bussière</h4>
+                                    <p>Deux assistantes maternelles agréées par la PMI vous accueillent du lundi au vendredi dans un local refait à neuf et adapté à un petit groupe d'enfants.</p>
+                                    <p><strong>📍 Adresse :</strong> 11, route d'Escrignelles, 45230 LA BUSSIÈRE</p>
+                                    <p><strong>👥 Contacts :</strong><br>
+                                    Nathalie Depardieu : 📞 <a href="tel:0650153575">06 50 15 35 75</a><br>
+                                    Julie Aufrère : 📞 <a href="tel:0659765709">06 59 76 57 09</a><br>
+                                    📧 <a href="mailto:mamrayonsdesoleil@gmail.fr">mamrayonsdesoleil@gmail.fr</a></p>
+                                </div>
+                            </div>
                             <button class="read-more-btn">Lire la suite</button>
                         </div>
                     </div>
