@@ -47,14 +47,14 @@
             position: relative;
         }
 
-        .page-accueil .logo {
+        .page-accueil .header .logo {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.2rem;
         }
 
-        .page-accueil .logo img {
+        .page-accueil .header .logo img {
             height: 70px;
             width: auto;
             display: block;
@@ -62,7 +62,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .page-accueil .logo h1 {
+        .page-accueil .header .logo h1 {
             color: white;
             margin-bottom: 0;
             font-size: 3.6rem;
@@ -71,7 +71,7 @@
             text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        .page-accueil .logo h1 a {
+        .page-accueil .header .logo h1 a {
             color: white;
             text-decoration: none;
         }
@@ -84,19 +84,6 @@
             color: rgba(255,255,255,0.95);
             text-align: right;
             text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-        }
-
-        /* ✅ Dégradé 5 couleurs pour l'en-tête de l'overlay sur l'accueil */
-        @media (max-width: 768px) {
-            .page-accueil .nav-mobile-header-content {
-                background: linear-gradient(135deg,
-                    #2E7D32 0%,
-                    #5be485 25%,
-                    #f0bb1e 50%,
-                    #ff66c4 75%,
-                    #1f5692 100%
-                );
-            }
         }
 
         /* ===== HERO ===== */
@@ -290,8 +277,8 @@
 
         /* ===== RESPONSIVE SPÉCIFIQUE ACCUEIL ===== */
         @media (max-width: 768px) {
-            .page-accueil .logo img { height: 50px; }
-            .page-accueil .logo h1 { font-size: 2.6rem; }
+            .page-accueil .header .logo img { height: 50px; }
+            .page-accueil .header .logo h1 { font-size: 2.6rem; }
             .page-accueil .header-info { font-size: 0.5rem; bottom: -0.1rem; }
 
             .hero { min-height: 300px; }
@@ -314,8 +301,8 @@
         }
 
         @media (max-width: 480px) {
-            .page-accueil .logo img { height: 40px; }
-            .page-accueil .logo h1 { font-size: 2.2rem; }
+            .page-accueil .header .logo img { height: 40px; }
+            .page-accueil .header .logo h1 { font-size: 2.2rem; }
             .page-accueil .header-info { font-size: 0.45rem; }
 
             .hero { min-height: 250px; }
@@ -343,7 +330,7 @@
                     <h1><a href="index.html">Guide des Familles</a></h1>
                 </div>
                 <div class="header-info">
-                    <strong>Dernière mise à jour :</strong> 14 août 2026
+                    <strong>Dernière mise à jour :</strong> <span class="header-date"></span>
                 </div>
             </div>
         </div>
@@ -353,13 +340,6 @@
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
-            <!-- ✅ En-tête dans l'overlay mobile -->
-            <li class="nav-mobile-header">
-                <div class="nav-mobile-header-content">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
-                    <span class="nav-mobile-header-title">Guide des Familles</span>
-                </div>
-            </li>
             <!-- ✅ Bouton fermer dans l'overlay mobile -->
             <li class="nav-close-item">
                 <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
