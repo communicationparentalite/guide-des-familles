@@ -86,6 +86,19 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.4);
         }
 
+        /* ✅ Dégradé 5 couleurs pour l'en-tête de l'overlay sur l'accueil */
+        @media (max-width: 768px) {
+            .page-accueil .nav-mobile-header-content {
+                background: linear-gradient(135deg,
+                    #2E7D32 0%,
+                    #5be485 25%,
+                    #f0bb1e 50%,
+                    #ff66c4 75%,
+                    #1f5692 100%
+                );
+            }
+        }
+
         /* ===== HERO ===== */
         .hero {
             position: relative;
@@ -340,6 +353,18 @@
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
+            <!-- ✅ En-tête dans l'overlay mobile -->
+            <li class="nav-mobile-header">
+                <div class="nav-mobile-header-content">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <span class="nav-mobile-header-title">Guide des Familles</span>
+                </div>
+            </li>
+            <!-- ✅ Bouton fermer dans l'overlay mobile -->
+            <li class="nav-close-item">
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
+            </li>
+
             <li><a href="index.html" class="nav-link-accueil active">Accueil</a></li>
 
             <li class="nav-dropdown dropdown-interlocuteurs">
@@ -572,7 +597,7 @@
                         </div>
                     </a>
                     <a href="acces-droits.html" class="nav-card">
-                        <img src="acces_aux_droits.png" alt="Accès aux droits" loading="lazy"
+                        <img src="acces_droits.png" alt="Accès aux droits" loading="lazy"
                              onerror="this.onerror=null;this.src='Accès aux droits.png';">
                         <div class="card-content">
                             <h3>Accès aux droits</h3>
