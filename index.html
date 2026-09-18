@@ -9,7 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== COULEURS DE LA PAGE ACCUEIL ===== */
+        /* ============================================================
+           CSS SPÉCIFIQUE À LA PAGE ACCUEIL
+           (le reste est dans styles.css)
+           ============================================================ */
+
+        /* Couleurs de la page accueil */
         .page-accueil {
             --primary-color: #2E7D32;
             --primary-light: #66BB6A;
@@ -18,8 +23,8 @@
             --secondary-light: #4DB6AC;
         }
 
-        /* ===== HEADER AVEC DÉGRADÉ 5 COULEURS ===== */
-        .header {
+        /* Header accueil : dégradé 5 couleurs */
+        .page-accueil .header {
             background: linear-gradient(135deg,
                 #2E7D32 0%,
                 #5be485 25%,
@@ -33,7 +38,7 @@
             position: relative;
         }
 
-        .header-content {
+        .page-accueil .header-content {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -42,21 +47,22 @@
             position: relative;
         }
 
-        .logo {
+        .page-accueil .logo {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.2rem;
         }
 
-        .logo img {
+        .page-accueil .logo img {
             height: 70px;
             width: auto;
             display: block;
+            background: transparent;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .logo h1 {
+        .page-accueil .logo h1 {
             color: white;
             margin-bottom: 0;
             font-size: 3.6rem;
@@ -65,12 +71,12 @@
             text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        .logo h1 a {
+        .page-accueil .logo h1 a {
             color: white;
             text-decoration: none;
         }
 
-        .header-info {
+        .page-accueil .header-info {
             position: absolute;
             bottom: -0.2rem;
             right: 0;
@@ -78,22 +84,6 @@
             color: rgba(255,255,255,0.95);
             text-align: right;
             text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-        }
-
-        .header-info strong {
-            font-weight: 600;
-        }
-
-        @media (max-width: 768px) {
-            .logo img { height: 50px; }
-            .logo h1 { font-size: 2.6rem; }
-            .header-info { font-size: 0.5rem; bottom: -0.1rem; }
-        }
-
-        @media (max-width: 480px) {
-            .logo img { height: 40px; }
-            .logo h1 { font-size: 2.2rem; }
-            .header-info { font-size: 0.45rem; }
         }
 
         /* ===== HERO ===== */
@@ -110,9 +100,7 @@
             transition: min-height 0.6s ease;
         }
 
-        .hero.expanded {
-            min-height: 800px;
-        }
+        .hero.expanded { min-height: 800px; }
 
         .hero-bg {
             position: absolute;
@@ -123,6 +111,7 @@
             object-fit: cover;
             filter: brightness(0.55);
             transition: filter 0.3s;
+            background: #333;
         }
 
         .hero-content {
@@ -147,14 +136,6 @@
             line-height: 1.8;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
             text-align: left;
-        }
-
-        .hero .message-text .full-text {
-            display: none;
-        }
-
-        .hero .message-text .full-text.visible {
-            display: block;
         }
 
         .hero .message-text strong {
@@ -186,7 +167,7 @@
             transition: all 0.3s;
             text-shadow: none;
             backdrop-filter: blur(4px);
-            font-family: 'Nunito', sans-serif;
+            font-family: var(--font-main);
         }
 
         .hero .toggle-btn:hover {
@@ -201,14 +182,6 @@
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
             align-items: center;
-        }
-
-        .guide-collaboratif .text-content .full-text {
-            display: none;
-        }
-
-        .guide-collaboratif .text-content .full-text.visible {
-            display: block;
         }
 
         .guide-collaboratif .image-wrapper img {
@@ -255,6 +228,7 @@
             object-fit: cover;
             filter: brightness(0.5);
             transition: filter 0.3s, transform 0.3s;
+            background: #555;
         }
 
         .quick-access-nav .nav-card:hover img {
@@ -290,7 +264,23 @@
             text-align: center;
         }
 
+        /* ===== FOOTER ACCUEIL (2 colonnes) ===== */
+        .footer-content-accueil {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== RESPONSIVE SPÉCIFIQUE ACCUEIL ===== */
         @media (max-width: 768px) {
+            .page-accueil .logo img { height: 50px; }
+            .page-accueil .logo h1 { font-size: 2.6rem; }
+            .page-accueil .header-info { font-size: 0.5rem; bottom: -0.1rem; }
+
             .hero { min-height: 300px; }
             .hero.expanded { min-height: 700px; }
             .hero h2 { font-size: 1.5rem; text-align: center; }
@@ -306,9 +296,15 @@
             .quick-access-nav .nav-card { height: 140px; padding: 1rem; }
             .quick-access-nav .nav-card .card-content h3 { font-size: 0.9rem; }
             .quick-access-nav .nav-card .card-content p { font-size: 0.7rem; }
+
+            .footer-content-accueil { grid-template-columns: 1fr; gap: 1.5rem; }
         }
 
         @media (max-width: 480px) {
+            .page-accueil .logo img { height: 40px; }
+            .page-accueil .logo h1 { font-size: 2.2rem; }
+            .page-accueil .header-info { font-size: 0.45rem; }
+
             .hero { min-height: 250px; }
             .hero.expanded { min-height: 650px; }
             .hero .message-text { font-size: 0.85rem; }
@@ -320,34 +316,24 @@
             .quick-access-nav .nav-card .card-content h3 { font-size: 0.8rem; }
             .quick-access-nav .nav-card .card-content p { font-size: 0.65rem; }
         }
-
-        /* ===== FOOTER SPÉCIFIQUE ACCUEIL (2 COLONNES) ===== */
-        .footer-content-accueil {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        @media (max-width: 768px) {
-            .footer-content-accueil {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body class="page-accueil">
+
+    <!-- ===== EN-TÊTE D'IMPRESSION (caché à l'écran) ===== -->
+    <div class="print-header" style="display: none;">
+        <h1>Guide des Familles - Accueil</h1>
+        <p>Communauté de Communes Berry Loire Puisaye</p>
+        <p>Imprimé le <span id="print-date"></span></p>
+    </div>
 
     <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container">
             <div class="header-content">
                 <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye"
+                         onerror="this.style.display='none'">
                     <h1><a href="index.html">Guide des Familles</a></h1>
                 </div>
                 <div class="header-info">
@@ -361,119 +347,121 @@
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
         <ul class="nav-list" id="navList">
-    <li><a href="index.html" class="nav-link-accueil active">Accueil</a></li>
+            <li><a href="index.html" class="nav-link-accueil active">Accueil</a></li>
 
-    <li class="nav-dropdown dropdown-interlocuteurs">
-        <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-            <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-            <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-            <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-            <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-interlocuteurs">
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-arrivee-enfant">
-        <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
-            <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-            <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-arrivee-enfant">
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-petite-enfance">
-        <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-            <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
-            <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
-            <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
-            <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
-            <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
-            <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-petite-enfance">
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
+                    <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
+                    <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
+                    <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-enfance">
-        <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="enfance.html#scolarite">Scolarité</a></li>
-            <li><a href="enfance.html#clas">CLAS</a></li>
-            <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-            <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-enfance">
+                <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                    <li><a href="enfance.html#clas">CLAS</a></li>
+                    <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-jeunesse">
-        <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="jeunesse.html#colleges">Collèges</a></li>
-            <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-            <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-jeunesse">
+                <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-parentalite">
-        <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-            <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-            <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-            <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-            <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-            <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-            <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-            <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-parentalite">
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-loisirs">
-        <a href="loisirs.html" class="nav-link-loisirs">Loisirs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-            <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-            <li><a href="loisirs.html#associations">Associations</a></li>
-            <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-            <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-            <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-            <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-            <li><a href="loisirs.html#squares">Squares</a></li>
-            <li><a href="loisirs.html#city-skate">City-stades</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-loisirs">
+                <a href="loisirs.html" class="nav-link-loisirs">Loisirs ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="loisirs.html#associations">Associations</a></li>
+                    <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
+                    <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
+                    <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
+                    <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
+                    <li><a href="loisirs.html#squares">Squares</a></li>
+                    <li><a href="loisirs.html#city-skate">City-stades</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-vivre-ensemble">
-        <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-            <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-            <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-vivre-ensemble">
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-acces-droits">
-        <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-            <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-            <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-            <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
-            <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-            <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+            <li class="nav-dropdown dropdown-acces-droits">
+                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
         </ul>
-    </li>
-</ul>
     </nav>
 
     <!-- ===== MAIN ===== -->
     <main>
         <section class="section">
             <div class="container">
-                <!-- Hero -->
+
+                <!-- ===== HERO ===== -->
                 <div class="hero" id="heroSection">
-                    <img src="couverture_page-000.png" alt="Famille" class="hero-bg">
+                    <img src="couverture_page-000.png" alt="Famille" class="hero-bg"
+                         onerror="this.style.background='linear-gradient(135deg, #2E7D32, #00897B)'; this.removeAttribute('src');">
                     <div class="hero-content">
                         <h2>Bienvenue dans votre Guide des Familles</h2>
                         <div class="message-text" id="presidentMessage">
@@ -495,7 +483,7 @@
                     </div>
                 </div>
 
-                <!-- Guide collaboratif -->
+                <!-- ===== GUIDE COLLABORATIF ===== -->
                 <div class="content-box">
                     <h3 style="color:var(--primary-color);">Un guide collaboratif</h3>
                     <div class="guide-collaboratif">
@@ -517,78 +505,80 @@
                             <button class="read-more-btn" id="guideReadMore">Lire la suite</button>
                         </div>
                         <div class="image-wrapper">
-                            <img src="presentation_page-000.png" alt="Partenaires du guide">
+                            <img src="presentation_page-000.png" alt="Partenaires du guide" loading="lazy">
                         </div>
                     </div>
                 </div>
 
-                <!-- Navigation rapide -->
+                <!-- ===== NAVIGATION RAPIDE ===== -->
                 <h3 style="color:var(--primary-color); margin-top:2rem; margin-bottom:1.5rem;">Accédez directement à une rubrique</h3>
                 <div class="quick-access-nav">
                     <a href="interlocuteurs.html" class="nav-card">
-                        <img src="interlocuteurs_page-000.png" alt="Interlocuteurs">
+                        <img src="interlocuteurs_page-000.png" alt="Interlocuteurs" loading="lazy">
                         <div class="card-content">
                             <h3>Interlocuteurs clés</h3>
                             <p>Mairies, CC, CAF, MSA</p>
                         </div>
                     </a>
                     <a href="arrivee-enfant.html" class="nav-card">
-                        <img src="arrivee_enfant_page-000.png" alt="Arrivée d'un enfant">
+                        <img src="arrivee_enfant_page-000.png" alt="Arrivée d'un enfant" loading="lazy">
                         <div class="card-content">
                             <h3>Arrivée d'un enfant</h3>
                             <p>Démarches, maternité, PMI</p>
                         </div>
                     </a>
                     <a href="petite-enfance.html" class="nav-card">
-                        <img src="petite_enfance_page-000.png" alt="Petite enfance">
+                        <img src="petite_enfance_page-000.png" alt="Petite enfance" loading="lazy">
                         <div class="card-content">
                             <h3>Petite enfance (0-5 ans)</h3>
                             <p>Multi-accueil, assistantes maternelles</p>
                         </div>
                     </a>
                     <a href="enfance.html" class="nav-card">
-                        <img src="enfance_page-000.png" alt="Enfance">
+                        <img src="enfance_page-000.png" alt="Enfance" loading="lazy">
                         <div class="card-content">
                             <h3>Enfance (3-11 ans)</h3>
                             <p>Écoles, accueils de loisirs</p>
                         </div>
                     </a>
                     <a href="jeunesse.html" class="nav-card">
-                        <img src="jeunesse_page-000.png" alt="Jeunesse">
+                        <img src="jeunesse_page-000.png" alt="Jeunesse" loading="lazy">
                         <div class="card-content">
                             <h3>Jeunesse (11-25 ans)</h3>
                             <p>Collèges, structures jeunesse</p>
                         </div>
                     </a>
                     <a href="parentalite.html" class="nav-card">
-                        <img src="parentalite_page-000.png" alt="Parentalité">
+                        <img src="parentalite_page-000.png" alt="Parentalité" loading="lazy">
                         <div class="card-content">
                             <h3>Parentalité</h3>
                             <p>Accompagnement, ateliers</p>
                         </div>
                     </a>
                     <a href="loisirs.html" class="nav-card">
-                        <img src="Loisirs1.png" alt="Loisirs">
+                        <img src="Loisirs1.png" alt="Loisirs" loading="lazy">
                         <div class="card-content">
                             <h3>Loisirs & Culture</h3>
                             <p>Bibliothèques, sport, culture</p>
                         </div>
                     </a>
                     <a href="vivre-ensemble.html" class="nav-card">
-                        <img src="Vivre_ensemble.png" alt="Vivre ensemble">
+                        <img src="Vivre_ensemble.png" alt="Vivre ensemble" loading="lazy">
                         <div class="card-content">
                             <h3>Vivre ensemble</h3>
                             <p>Associations, initiatives citoyennes</p>
                         </div>
                     </a>
                     <a href="acces-droits.html" class="nav-card">
-                        <img src="Accès aux droits.png" alt="Accès aux droits">
+                        <img src="acces_aux_droits.png" alt="Accès aux droits" loading="lazy"
+                             onerror="this.onerror=null;this.src='Accès aux droits.png';">
                         <div class="card-content">
                             <h3>Accès aux droits</h3>
                             <p>France Services, ADS, CIDFF</p>
                         </div>
                     </a>
                 </div>
+
             </div>
         </section>
     </main>
@@ -596,19 +586,20 @@
     <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
             <img id="lightboxImg" class="lightbox-image" src="" alt="">
         </div>
     </div>
 
-    <!-- ===== FOOTER SPÉCIFIQUE ACCUEIL (2 COLONNES) ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content-accueil">
                 <div class="footer-section">
                     <h3>Communauté de Communes Berry Loire Puisaye</h3>
                     <p>42 rue des Prés Gris<br>45250 BRIARE</p>
-                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>
+                    📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Liens utiles</h3>
@@ -625,156 +616,35 @@
         </div>
     </footer>
 
+    <!-- ===== PIED DE PAGE D'IMPRESSION (caché à l'écran) ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
     <!-- ===== SCROLL TOP ===== -->
-    <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        (function() {
-            // ============================================================
-            // ---- MENU MOBILE ----
-            // ============================================================
-            const menuToggle = document.getElementById('menuToggle');
-            const navList = document.getElementById('navList');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navList.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-
-            // ============================================================
-            // ---- SOUS-MENU DÉROULANT SUR MOBILE ----
-            // ============================================================
-            document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
-                let clickTimer = null;
-
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        if (clickTimer) {
-                            clearTimeout(clickTimer);
-                            clickTimer = null;
-                            return;
-                        }
-
-                        e.preventDefault();
-                        const parent = this.parentElement;
-                        const wasOpen = parent.classList.contains('open');
-
-                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
-                            item.classList.remove('open');
-                        });
-
-                        if (!wasOpen) {
-                            parent.classList.add('open');
-                        }
-
-                        clickTimer = setTimeout(function() {
-                            clickTimer = null;
-                        }, 300);
-                    }
-                });
-            });
-
-            // ============================================================
-            // ---- FERMETURE DU SOUS-MENU ----
-            // ============================================================
-            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) parentDropdown.classList.remove('open');
-                        if (navList) navList.classList.remove('active');
-                        if (menuToggle) menuToggle.classList.remove('active');
-                    }
-                });
-            });
-
-            // ============================================================
-            // ---- SCROLL TOP ----
-            // ============================================================
-            const scrollBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', function() {
-                scrollBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // ============================================================
-            // ---- LIGHTBOX ----
-            // ============================================================
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.getElementById('lightboxClose');
-
-            function openLightbox(src) {
-                if (!lightbox || !lightboxImg) return;
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeLightbox() {
-                if (!lightbox) return;
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            document.querySelectorAll('.section img:not(.hero-bg)').forEach(function(img) {
-                img.addEventListener('click', function(e) {
-                    if (this.closest('.hero')) return;
-                    e.stopPropagation();
-                    const src = this.getAttribute('src');
-                    if (src) openLightbox(src);
-                });
-            });
-
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) closeLightbox();
-                });
-            }
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeLightbox();
-            });
-
-            // ============================================================
-            // ---- HERO TOGGLE (bouton uniquement) ----
-            // ============================================================
-            const heroFullText = document.querySelector('.hero .full-text');
-            const heroToggleBtn = document.getElementById('togglePresidentBtn');
-            const heroSection = document.getElementById('heroSection');
-
-            if (heroToggleBtn && heroFullText) {
-                heroToggleBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const isVisible = heroFullText.classList.contains('visible');
-                    heroFullText.classList.toggle('visible');
-                    heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                    if (heroSection) heroSection.classList.toggle('expanded');
-                });
-            }
-
-            // ============================================================
-            // ---- GUIDE COLLABORATIF TOGGLE ----
-            // ============================================================
-            const guideFullText = document.querySelector('.guide-collaboratif .full-text');
-            const guideToggleBtn = document.getElementById('guideReadMore');
-
-            if (guideToggleBtn && guideFullText) {
-                guideToggleBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const isVisible = guideFullText.classList.contains('visible');
-                    guideFullText.classList.toggle('visible');
-                    guideToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                });
-            }
-
-        })();
-    </script>
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
 </body>
 </html>
