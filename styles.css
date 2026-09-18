@@ -185,6 +185,28 @@ ul {
 li { margin-bottom: 0.5rem; }
 
 /* ============================================================
+   ✅ IMAGE DE CONTENU : centrée, entière, max 400px
+   (utilisée pour les images "seules" dans les accordéons)
+   ============================================================ */
+.img-contenu-400 {
+    display: block;
+    margin: 1rem auto;
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media (max-width: 480px) {
+    .img-contenu-400 {
+        max-width: 280px;
+    }
+}
+
+/* ============================================================
    4. HEADER
    ============================================================ */
 
@@ -1633,6 +1655,54 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
+   ✅ LIGNES D'IMPRESSION DANS LES CARTES (écoles, squares, skateparks)
+   Ces règles sont partagées entre les cartes qui ont une case à cocher
+   ============================================================ */
+.ecole-print-row,
+.lieu-print-row {
+    margin-top: 0.8rem;
+    padding-top: 0.8rem;
+    border-top: 1px dashed var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.ecole-print-row input[type="checkbox"],
+.lieu-print-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--primary-color);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.ecole-print-row label,
+.lieu-print-row label {
+    font-size: 0.78rem;
+    font-style: italic;
+    color: var(--text-light);
+    cursor: pointer;
+    user-select: none;
+}
+
+.ecole-print-row input[type="checkbox"]:checked + label,
+.lieu-print-row input[type="checkbox"]:checked + label {
+    font-weight: 700;
+    font-style: normal;
+    color: var(--primary-color);
+}
+
+/* ✅ Mise en évidence de la carte quand elle est sélectionnée */
+.ecole-card.print-selected,
+.lieu-card.print-selected {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-light);
+    background: #fafbff;
+}
+
+/* ============================================================
    24. BOUTON D'IMPRESSION FLOTTANT
    ============================================================ */
 
@@ -2255,6 +2325,44 @@ li { margin-bottom: 0.5rem; }
     }
 
     body.print-has-selection .content-box:has(.print-selected) > p {
+        display: none !important;
+    }
+
+    /* ✅ Impression individuelle des écoles */
+    body.print-has-selection .ecole-card:not(.print-selected) {
+        display: none !important;
+    }
+
+    body.print-has-selection .ecole-card.print-selected {
+        display: block !important;
+        page-break-inside: avoid;
+        border: 1px solid #999 !important;
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* ✅ Impression individuelle des squares/skateparks */
+    body.print-has-selection .lieu-card:not(.print-selected) {
+        display: none !important;
+    }
+
+    body.print-has-selection .lieu-card.print-selected {
+        display: block !important;
+        page-break-inside: avoid;
+        border: 1px solid #999 !important;
+        padding: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+
+    /* ✅ Cache les cases à cocher et leurs labels à l'impression */
+    .ecole-print-row,
+    .lieu-print-row {
+        display: none !important;
+    }
+
+    /* ✅ Cache les images des écoles sélectionnées pour ne garder que le texte */
+    body.print-has-selection .ecole-card.print-selected img,
+    body.print-has-selection .lieu-card.print-selected img {
         display: none !important;
     }
 
