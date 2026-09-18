@@ -310,7 +310,7 @@ li { margin-bottom: 0.5rem; }
     padding: 0;
 }
 
-/* ✅ CORRIGÉ : le :hover s'applique UNIQUEMENT en desktop (≥ 769px) */
+/* ✅ Le :hover s'applique UNIQUEMENT en desktop (≥ 769px) */
 @media (min-width: 769px) {
     .nav-dropdown:hover .nav-dropdown-menu {
         display: block;
@@ -1681,14 +1681,19 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
-    /* Menu actif : scroll interne + hauteur limitée à l'écran */
+    /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran
+       On utilise 100dvh (dynamic viewport height) qui s'adapte à la barre d'URL mobile.
+       Fallback 100vh pour les navigateurs qui ne supportent pas dvh. */
     .nav-list.active {
         display: flex;
         max-height: calc(100vh - 80px);
+        max-height: calc(100dvh - 80px);
         overflow-y: auto;
+        overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
         touch-action: pan-y;
+        will-change: scroll-position;
     }
 
     .nav-list li { width: 100%; margin: 0; }
@@ -1884,6 +1889,21 @@ li { margin-bottom: 0.5rem; }
     th, td {
         padding: 0.5rem;
         white-space: nowrap;
+    }
+}
+
+/* ✅ Bloque le scroll de la page quand le menu est ouvert (mobile) */
+@media (max-width: 768px) {
+    body.nav-open {
+        overflow: hidden;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+    }
+
+    body.nav-open .nav-list {
+        touch-action: pan-y;
     }
 }
 
