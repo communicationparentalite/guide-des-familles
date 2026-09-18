@@ -12,6 +12,7 @@
     function initNavigation() {
         const menuToggle = document.getElementById('menuToggle');
         const navList = document.getElementById('navList');
+        const navCloseBtn = document.getElementById('navCloseBtn');
 
         // Bouton hamburger (mobile)
         if (menuToggle && navList) {
@@ -19,6 +20,22 @@
                 e.stopPropagation();
                 navList.classList.toggle('active');
                 menuToggle.classList.toggle('active');
+
+                // ✅ Bloque le scroll du body quand l'overlay est ouvert
+                if (navList.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // ✅ Bouton fermer dans l'overlay
+        if (navCloseBtn && navList && menuToggle) {
+            navCloseBtn.addEventListener('click', function () {
+                navList.classList.remove('active');
+                menuToggle.classList.remove('active');
+                document.body.style.overflow = '';
             });
         }
 
@@ -48,7 +65,6 @@
                 }
 
                 // ✅ Restaure la position du scroll du menu après l'ouverture
-                // (évite que Firefox fasse un scrollIntoView qui ferme le menu)
                 setTimeout(function () {
                     if (navList) navList.scrollTop = menuScrollTop;
                 }, 0);
@@ -77,6 +93,7 @@
                 if (parentDropdown) parentDropdown.classList.remove('open');
                 if (navList) navList.classList.remove('active');
                 if (menuToggle) menuToggle.classList.remove('active');
+                document.body.style.overflow = '';  // ✅ Réactive le scroll du body
             });
         });
     }
