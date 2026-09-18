@@ -425,9 +425,23 @@ function initHeroToggle() {
         });
     }
 }
+   /* ============================================================
+   12. CARTES MAIRIES REPLIABLES (page interlocuteurs)
+   ============================================================ */
+function initMairiesDepliables() {
+    document.querySelectorAll('.mairie-card-header').forEach(function (header) {
+        header.addEventListener('click', function (e) {
+            // Si on clique sur un lien dans le header (rare), on laisse
+            if (e.target.closest('a')) return;
+
+            const card = this.closest('.mairie-card');
+            if (card) card.classList.toggle('open');
+        });
+    });
+}
 
     /* ============================================================
-       12. INITIALISATION AU CHARGEMENT
+       13. INITIALISATION AU CHARGEMENT
        ============================================================ */
     function init() {
         initNavigation();
