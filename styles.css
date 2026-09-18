@@ -1647,6 +1647,7 @@ li { margin-bottom: 0.5rem; }
     body { font-size: 16px; }
     .container { padding: 0 15px; }
 
+    /* ===== HEADER ===== */
     .header { padding: 0.8rem 0; }
     .logo img { height: 50px; }
     .logo h1 { font-size: 2.6rem; }
@@ -1661,6 +1662,7 @@ li { margin-bottom: 0.5rem; }
         position: static;
     }
 
+    /* ===== MENU MOBILE ===== */
     .menu-toggle {
         display: block;
         background: var(--primary-color);
@@ -1682,14 +1684,30 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
-    .nav-list.active { display: flex; }
+    /* Menu actif : scroll interne + hauteur limitée à l'écran */
+    .nav-list.active {
+        display: flex;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+
     .nav-list li { width: 100%; margin: 0; }
 
+    /* === RUBRIQUES PRINCIPALES (Accueil, Interlocuteurs...) === */
     .nav-list > li > a {
         text-align: center;
         border-bottom: 1px solid var(--border-color);
-        padding: 0.75rem 1rem;
+        padding: 0.9rem 1rem;
         border-left: none;
+        font-size: 1rem;
+        font-weight: 600;
+        /* Empêche le menu contextuel (clic long) sur les rubriques */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .nav-list > li > a.active {
@@ -1721,6 +1739,7 @@ li { margin-bottom: 0.5rem; }
         font-weight: 600;
     }
 
+    /* === SOUS-MENUS DÉROULANTS === */
     .nav-dropdown-menu {
         position: static;
         display: none;
@@ -1731,13 +1750,18 @@ li { margin-bottom: 0.5rem; }
 
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
 
+    /* === SOUS-RUBRIQUES (Mairies, CAF...) === */
     .nav-dropdown-menu li a {
-        padding-left: 2.5rem;
+        padding: 0.75rem 1rem 0.75rem 2.5rem;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
         color: var(--text-dark);
+        font-size: 0.9rem;
+        font-weight: 400;
+        /* On garde le menu contextuel sur les sous-rubriques (utile pour partager) */
     }
 
+    /* Couleurs des sous-menus par rubrique (mobile) */
     .dropdown-interlocuteurs .nav-dropdown-menu li a:hover { background-color: #eef3fa; color: #1f5692; }
     .dropdown-arrivee-enfant .nav-dropdown-menu li a:hover { background-color: #eef7ef; color: #2E7D32; }
     .dropdown-petite-enfance .nav-dropdown-menu li a:hover { background-color: #eefaf1; color: #33B85D; }
@@ -1748,6 +1772,7 @@ li { margin-bottom: 0.5rem; }
     .dropdown-vivre-ensemble .nav-dropdown-menu li a:hover { background-color: #fdf8ea; color: #B4820A; }
     .dropdown-acces-droits .nav-dropdown-menu li a:hover { background-color: #fdf0f8; color: #C83296; }
 
+    /* ===== SECTIONS & CONTENU ===== */
     .section { padding: 1.5rem 0; }
     .section-title { font-size: 1.5rem; }
     .section-header { height: 200px; margin-bottom: 1rem; }
@@ -1807,10 +1832,12 @@ li { margin-bottom: 0.5rem; }
         margin: 0 auto;
     }
 
+    /* ===== FOOTER ===== */
     .footer-content { grid-template-columns: 1fr; gap: 1.5rem; }
     .footer-content-accueil { grid-template-columns: 1fr; gap: 1.5rem; }
     .footer { padding: 2rem 0 1rem; }
 
+    /* ===== SCROLL TOP ===== */
     .scroll-top {
         width: 45px;
         height: 45px;
@@ -1819,6 +1846,7 @@ li { margin-bottom: 0.5rem; }
         font-size: 1.3rem;
     }
 
+    /* ===== IMPRESSION SÉLECTIVE ===== */
     .print-select-row {
         padding: 0.5rem 0.6rem;
         font-size: 0.75rem;
@@ -1826,6 +1854,7 @@ li { margin-bottom: 0.5rem; }
 
     .print-select-row .print-checkbox-label { font-size: 0.75rem; }
 
+    /* ===== BOUTON D'IMPRESSION FLOTTANT ===== */
     .print-float-btn {
         bottom: 5rem;
         right: 1rem;
@@ -1847,6 +1876,7 @@ li { margin-bottom: 0.5rem; }
         font-size: 0.75rem;
     }
 
+    /* ===== TABLEAUX ===== */
     table {
         font-size: 0.85rem;
         display: block;
@@ -1871,6 +1901,18 @@ li { margin-bottom: 0.5rem; }
     .section-title { font-size: 1.3rem; }
 
     .menu-toggle { font-size: 1rem; }
+
+    /* Rubriques principales : légèrement réduites sur petit mobile */
+    .nav-list > li > a {
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+    }
+
+    /* Sous-rubriques : légèrement réduites aussi */
+    .nav-dropdown-menu li a {
+        font-size: 0.85rem;
+        padding: 0.7rem 1rem 0.7rem 2rem;
+    }
 
     .photo-gallery { grid-template-columns: 1fr; }
     .photo-gallery img { height: 200px; }
