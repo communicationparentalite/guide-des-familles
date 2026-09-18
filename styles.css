@@ -382,6 +382,36 @@ li { margin-bottom: 0.5rem; }
     border-bottom: none;
 }
 
+/* ============================================================
+   ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" EN TÊTE DE SOUS-MENU
+   ============================================================ */
+.nav-dropdown-main-link {
+    font-weight: 700 !important;
+    color: var(--primary-dark) !important;
+    background: var(--bg-light);
+    border-bottom: 2px solid var(--border-color) !important;
+}
+
+.nav-dropdown-main-link::before {
+    content: "→ ";
+    font-weight: 700;
+    margin-right: 0.3rem;
+}
+
+.nav-dropdown-main-link:hover {
+    background: var(--primary-light) !important;
+    color: white !important;
+}
+
+/* Sur mobile, on garde le style distinctif */
+@media (max-width: 768px) {
+    .nav-dropdown-main-link {
+        text-align: left !important;
+        padding-left: 1.5rem !important;
+        font-size: 0.95rem !important;
+    }
+}
+
 /* --- Couleurs des liens de navigation par page --- */
 .nav-list > li > a.nav-link-accueil:hover,
 .nav-list > li > a.nav-link-accueil.active {
@@ -1725,8 +1755,7 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
-    /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran
-       On utilise 100dvh (dynamic viewport height) qui s'adapte à la barre d'URL mobile. */
+    /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran */
     .nav-list.active {
         display: flex;
         max-height: calc(100vh - 80px);
