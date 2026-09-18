@@ -46,7 +46,6 @@
         });
 
         // ✅ Bloque le menu contextuel (appui long) sur les rubriques principales
-        // Fonctionne sur Firefox mobile, Chrome Android, Safari iOS, Edge
         document.querySelectorAll('.nav-list > li > a').forEach(function (link) {
             link.addEventListener('contextmenu', function (e) {
                 if (window.innerWidth <= 768) {
@@ -428,7 +427,35 @@
     }
 
     /* ============================================================
-       13. INITIALISATION
+       13. EMPÊCHE LE SCROLL AUTOMATIQUE (bug "Vivre ensemble" / "Accès aux droits")
+       ============================================================ */
+    function initPreventAutoScroll() {
+        if (window.innerWidth > 768) return;
+
+        let savedScrollY = 0;
+
+        // Sauvegarde la position AVANT l'ouverture du sous-menu
+        document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                savedScrollY = window.scrollY;
+            }, { passive: true });
+        });
+
+        // Restaure la position APRÈS le clic sur un lien du sous-menu
+        document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                // On restaure immédiatement la position
+                window.scrollTo(0, savedScrollY);
+                // Et on restaure à nouveau après un court délai (au cas où le navigateur scrolle)
+                setTimeout(function () {
+                    window.scrollTo(0, savedScrollY);
+                }, 50);
+            });
+        });
+    }
+
+    /* ============================================================
+       14. INITIALISATION
        ============================================================ */
     function init() {
         initNavigation();
@@ -440,6 +467,7 @@
         initPrintSelective();
         initCartesDepliables();
         initMairiesDepliables();
+        initPreventAutoScroll();
 
         openAccordionFromHash();
         window.addEventListener('hashchange', openAccordionFromHash);
