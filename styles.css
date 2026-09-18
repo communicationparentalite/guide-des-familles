@@ -347,10 +347,11 @@ li { margin-bottom: 0.5rem; }
 
 @media (max-width: 768px) {
     .nav-dropdown > a::after {
-        font-size: 1.1em;
-        margin-left: 0.6rem;
+        font-size: 1em;
+        margin-left: auto;
         opacity: 0.8;
         font-weight: 600;
+        flex-shrink: 0;
     }
 
     .nav-dropdown.open > a::after {
@@ -380,7 +381,7 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   ✅ EN-TÊTE DANS L'OVERLAY MOBILE (logo + titre) — version compacte
+   ✅ EN-TÊTE DANS LE MENU MOBILE (logo + titre)
    ============================================================ */
 .nav-mobile-header {
     display: none;
@@ -421,7 +422,7 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   ✅ BOUTON FERMER (dans l'overlay mobile) — version compacte
+   ✅ BOUTON FERMER (dans le menu mobile)
    ============================================================ */
 .nav-close-item {
     display: none;
@@ -459,7 +460,6 @@ li { margin-bottom: 0.5rem; }
    ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" — VISIBLE UNIQUEMENT EN MOBILE
    ============================================================ */
 
-/* Par défaut : lien caché partout (desktop inclus) */
 .nav-dropdown-menu li a.nav-dropdown-main-link,
 .nav-dropdown-main-link {
     display: none !important;
@@ -469,7 +469,6 @@ li { margin-bottom: 0.5rem; }
 }
 
 @media (max-width: 768px) {
-    /* Style de base */
     .nav-dropdown-menu li a.nav-dropdown-main-link,
     .nav-dropdown-main-link {
         display: block !important;
@@ -491,71 +490,26 @@ li { margin-bottom: 0.5rem; }
     }
 
     /* --- Couleur du texte : spécifique à chaque rubrique --- */
-    .dropdown-interlocuteurs .nav-dropdown-main-link {
-        color: #1f5692 !important;
-    }
-    .dropdown-arrivee-enfant .nav-dropdown-main-link {
-        color: #2E7D32 !important;
-    }
-    .dropdown-petite-enfance .nav-dropdown-main-link {
-        color: #33B85D !important;
-    }
-    .dropdown-enfance .nav-dropdown-main-link {
-        color: #686be7 !important;
-    }
-    .dropdown-jeunesse .nav-dropdown-main-link {
-        color: #c75f35 !important;
-    }
-    .dropdown-parentalite .nav-dropdown-main-link {
-        color: #585e70 !important;
-    }
-    .dropdown-loisirs .nav-dropdown-main-link {
-        color: #8C7D64 !important;
-    }
-    .dropdown-vivre-ensemble .nav-dropdown-main-link {
-        color: #B4820A !important;
-    }
-    .dropdown-acces-droits .nav-dropdown-main-link {
-        color: #C83296 !important;
-    }
+    .dropdown-interlocuteurs .nav-dropdown-main-link { color: #1f5692 !important; }
+    .dropdown-arrivee-enfant .nav-dropdown-main-link { color: #2E7D32 !important; }
+    .dropdown-petite-enfance .nav-dropdown-main-link { color: #33B85D !important; }
+    .dropdown-enfance .nav-dropdown-main-link { color: #686be7 !important; }
+    .dropdown-jeunesse .nav-dropdown-main-link { color: #c75f35 !important; }
+    .dropdown-parentalite .nav-dropdown-main-link { color: #585e70 !important; }
+    .dropdown-loisirs .nav-dropdown-main-link { color: #8C7D64 !important; }
+    .dropdown-vivre-ensemble .nav-dropdown-main-link { color: #B4820A !important; }
+    .dropdown-acces-droits .nav-dropdown-main-link { color: #C83296 !important; }
 
     /* --- Survol : fond spécifique à chaque rubrique --- */
-    .dropdown-interlocuteurs .nav-dropdown-main-link:hover {
-        background: #1f5692 !important;
-        color: white !important;
-    }
-    .dropdown-arrivee-enfant .nav-dropdown-main-link:hover {
-        background: #2E7D32 !important;
-        color: white !important;
-    }
-    .dropdown-petite-enfance .nav-dropdown-main-link:hover {
-        background: #33B85D !important;
-        color: white !important;
-    }
-    .dropdown-enfance .nav-dropdown-main-link:hover {
-        background: #686be7 !important;
-        color: white !important;
-    }
-    .dropdown-jeunesse .nav-dropdown-main-link:hover {
-        background: #c75f35 !important;
-        color: white !important;
-    }
-    .dropdown-parentalite .nav-dropdown-main-link:hover {
-        background: #585e70 !important;
-        color: white !important;
-    }
-    .dropdown-loisirs .nav-dropdown-main-link:hover {
-        background: #8C7D64 !important;
-        color: white !important;
-    }
-    .dropdown-vivre-ensemble .nav-dropdown-main-link:hover {
-        background: #B4820A !important;
-        color: white !important;
-    }
-    .dropdown-acces-droits .nav-dropdown-main-link:hover {
-        background: #C83296 !important;
-        color: white !important;
-    }
+    .dropdown-interlocuteurs .nav-dropdown-main-link:hover { background: #1f5692 !important; color: white !important; }
+    .dropdown-arrivee-enfant .nav-dropdown-main-link:hover { background: #2E7D32 !important; color: white !important; }
+    .dropdown-petite-enfance .nav-dropdown-main-link:hover { background: #33B85D !important; color: white !important; }
+    .dropdown-enfance .nav-dropdown-main-link:hover { background: #686be7 !important; color: white !important; }
+    .dropdown-jeunesse .nav-dropdown-main-link:hover { background: #c75f35 !important; color: white !important; }
+    .dropdown-parentalite .nav-dropdown-main-link:hover { background: #585e70 !important; color: white !important; }
+    .dropdown-loisirs .nav-dropdown-main-link:hover { background: #8C7D64 !important; color: white !important; }
+    .dropdown-vivre-ensemble .nav-dropdown-main-link:hover { background: #B4820A !important; color: white !important; }
+    .dropdown-acces-droits .nav-dropdown-main-link:hover { background: #C83296 !important; color: white !important; }
 }
 
 /* --- Couleurs des liens de navigation par page --- */
@@ -564,30 +518,6 @@ li { margin-bottom: 0.5rem; }
     background-color: var(--bg-light);
     color: var(--text-dark);
     border-bottom-color: transparent;
-}
-
-.nav-list > li > a.nav-link-accueil::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg,
-        #2E7D32 0%, #5be485 25%, #f0bb1e 50%, #ff66c4 75%, #1f5692 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.05s ease;
-    pointer-events: none;
-}
-
-.nav-list > li > a.nav-link-accueil:hover::after,
-.nav-list > li > a.nav-link-accueil.active::after {
-    transform: scaleX(1);
-}
-
-.nav-list > li > a.nav-link-accueil::after {
-    content: none;
 }
 
 .nav-list > li > a.nav-link-interlocuteurs:hover,
@@ -637,33 +567,15 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* --- Couleur des sous-menus par rubrique --- */
-.dropdown-interlocuteurs .nav-dropdown-menu li a:hover {
-    background-color: #eef3fa; color: #1f5692;
-}
-.dropdown-arrivee-enfant .nav-dropdown-menu li a:hover {
-    background-color: #eef7ef; color: #2E7D32;
-}
-.dropdown-petite-enfance .nav-dropdown-menu li a:hover {
-    background-color: #eefaf1; color: #33B85D;
-}
-.dropdown-enfance .nav-dropdown-menu li a:hover {
-    background-color: #f0f0fd; color: #686be7;
-}
-.dropdown-jeunesse .nav-dropdown-menu li a:hover {
-    background-color: #fdf1ec; color: #c75f35;
-}
-.dropdown-parentalite .nav-dropdown-menu li a:hover {
-    background-color: #f0f1f4; color: #585e70;
-}
-.dropdown-loisirs .nav-dropdown-menu li a:hover {
-    background-color: #f7f5f0; color: #8C7D64;
-}
-.dropdown-vivre-ensemble .nav-dropdown-menu li a:hover {
-    background-color: #fdf8ea; color: #B4820A;
-}
-.dropdown-acces-droits .nav-dropdown-menu li a:hover {
-    background-color: #fdf0f8; color: #C83296;
-}
+.dropdown-interlocuteurs .nav-dropdown-menu li a:hover { background-color: #eef3fa; color: #1f5692; }
+.dropdown-arrivee-enfant .nav-dropdown-menu li a:hover { background-color: #eef7ef; color: #2E7D32; }
+.dropdown-petite-enfance .nav-dropdown-menu li a:hover { background-color: #eefaf1; color: #33B85D; }
+.dropdown-enfance .nav-dropdown-menu li a:hover { background-color: #f0f0fd; color: #686be7; }
+.dropdown-jeunesse .nav-dropdown-menu li a:hover { background-color: #fdf1ec; color: #c75f35; }
+.dropdown-parentalite .nav-dropdown-menu li a:hover { background-color: #f0f1f4; color: #585e70; }
+.dropdown-loisirs .nav-dropdown-menu li a:hover { background-color: #f7f5f0; color: #8C7D64; }
+.dropdown-vivre-ensemble .nav-dropdown-menu li a:hover { background-color: #fdf8ea; color: #B4820A; }
+.dropdown-acces-droits .nav-dropdown-menu li a:hover { background-color: #fdf0f8; color: #C83296; }
 
 /* ============================================================
    6. SECTIONS & CONTENU
@@ -1849,20 +1761,6 @@ li { margin-bottom: 0.5rem; }
         overflow: visible;
     }
 
-    /* ===== Désactive le menu contextuel à TOUS les niveaux du menu principal ===== */
-    .nav-list,
-    .nav-list > li,
-    .nav-list > li > a,
-    .nav-list > li > a * {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-    }
-
     /* ===== HEADER ===== */
     .header { padding: 0.8rem 0; }
     .logo img { height: 50px; }
@@ -1878,45 +1776,34 @@ li { margin-bottom: 0.5rem; }
         position: static;
     }
 
-    /* ===== MENU MOBILE ===== */
+    /* ===== MENU MOBILE : ACCORDÉON DANS LE FLUX (pas d'overlay) ===== */
     .menu-toggle {
         display: block;
         background: var(--primary-color);
         border: none;
-        font-size: 1.1rem;
+        font-size: 1rem;
         padding: 0.75rem 1rem;
         cursor: pointer;
         width: 100%;
         text-align: left;
         color: white;
         font-weight: 600;
+        font-family: var(--font-main);
     }
 
     .menu-toggle.active { background: var(--primary-dark); }
 
-    /* ✅ Overlay plein écran */
+    /* ✅ Le menu se déploie DANS le flux, pas en overlay */
     .nav-list {
         display: none;
         flex-direction: column;
         width: 100%;
+        background: var(--bg-white);
+        border-top: 1px solid var(--border-color);
     }
 
     .nav-list.active {
         display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        background: var(--bg-white);
-        z-index: 1001;
-        /* ✅ On laisse Firefox gérer le scroll natif */
-        overflow-y: scroll;
-        overflow-x: hidden;
-        -webkit-overflow-scrolling: touch;
-        padding: 0;
-        margin: 0;
     }
 
     .nav-list li {
@@ -1924,14 +1811,17 @@ li { margin-bottom: 0.5rem; }
         margin: 0;
     }
 
-    /* === RUBRIQUES PRINCIPALES — hauteur réduite === */
+    /* === RUBRIQUES PRINCIPALES === */
     .nav-list > li > a {
-        text-align: center;
+        text-align: left;
         border-bottom: 1px solid var(--border-color);
-        padding: 0.6rem 1rem;
-        border-left: none;
+        padding: 0.75rem 1rem;
         font-size: 0.95rem;
         font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .nav-list > li > a.active {
@@ -1939,8 +1829,6 @@ li { margin-bottom: 0.5rem; }
         color: white;
         font-weight: 600;
     }
-
-    .nav-list > li > a.nav-link-accueil::after { display: none; }
 
     .nav-list > li > a.nav-link-accueil:hover,
     .nav-list > li > a.nav-link-accueil.active {
@@ -1970,18 +1858,21 @@ li { margin-bottom: 0.5rem; }
         box-shadow: none;
         border-radius: 0;
         background: var(--bg-lighter);
+        width: 100%;
     }
 
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
 
-    /* === SOUS-RUBRIQUES — hauteur réduite === */
+    /* === SOUS-RUBRIQUES === */
     .nav-dropdown-menu li a {
-        padding: 0.5rem 1rem 0.5rem 2rem;
+        padding: 0.6rem 1rem 0.6rem 2rem;
         text-align: left;
         border-bottom: 1px solid var(--border-color);
         color: var(--text-dark);
         font-size: 0.85rem;
         font-weight: 400;
+        display: block;
+        -webkit-tap-highlight-color: transparent;
     }
 
     /* Couleurs des sous-menus par rubrique (mobile) */
@@ -1994,6 +1885,18 @@ li { margin-bottom: 0.5rem; }
     .dropdown-loisirs .nav-dropdown-menu li a:hover { background-color: #f7f5f0; color: #8C7D64; }
     .dropdown-vivre-ensemble .nav-dropdown-menu li a:hover { background-color: #fdf8ea; color: #B4820A; }
     .dropdown-acces-droits .nav-dropdown-menu li a:hover { background-color: #fdf0f8; color: #C83296; }
+
+    /* === Désactive le menu contextuel à TOUS les niveaux === */
+    .nav-list,
+    .nav-list a,
+    .nav-list button {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
 
     /* ===== SECTIONS & CONTENU ===== */
     .section { padding: 1.5rem 0; }
@@ -2126,16 +2029,16 @@ li { margin-bottom: 0.5rem; }
     h4 { font-size: 1rem; }
     .section-title { font-size: 1.3rem; }
 
-    .menu-toggle { font-size: 1rem; }
+    .menu-toggle { font-size: 0.95rem; }
 
     .nav-list > li > a {
         font-size: 0.85rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.6rem 0.8rem;
     }
 
     .nav-dropdown-menu li a {
         font-size: 0.8rem;
-        padding: 0.45rem 0.8rem 0.45rem 1.8rem;
+        padding: 0.5rem 0.8rem 0.5rem 1.8rem;
     }
 
     .photo-gallery { grid-template-columns: 1fr; }
