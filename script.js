@@ -5,7 +5,8 @@
    Ce fichier remplace TOUT le JavaScript inline des 9 pages.
    Il gère : menu, sous-menus, scroll-top, lightbox, accordéons,
    sous-accordéons, "Lire la suite", ouverture par ancre,
-   vidéo YouTube, impression sélective, cartes école dépliables.
+   vidéo YouTube, impression sélective, cartes école et mairies
+   dépliables, bouton hero de l'accueil.
    ============================================================ */
 
 (function () {
@@ -32,9 +33,8 @@
             let clickTimer = null;
 
             link.addEventListener('click', function (e) {
-                if (window.innerWidth > 768) return; // desktop : hover CSS suffit
+                if (window.innerWidth > 768) return;
 
-                // Si on a déjà cliqué récemment, on laisse le lien fonctionner
                 if (clickTimer) {
                     clearTimeout(clickTimer);
                     clickTimer = null;
@@ -45,12 +45,10 @@
                 const parent = this.parentElement;
                 const wasOpen = parent.classList.contains('open');
 
-                // Fermer tous les autres sous-menus
                 document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
                     item.classList.remove('open');
                 });
 
-                // Ouvrir celui-ci s'il était fermé
                 if (!wasOpen) parent.classList.add('open');
 
                 clickTimer = setTimeout(function () { clickTimer = null; }, 300);
@@ -111,7 +109,7 @@
         document.querySelectorAll(
             '.section img:not(.hero-bg):not(.video-thumb img):not(#carte-ecoles img), ' +
             '.accordion-card img, .inline-image, .accordion-image, ' +
-            '.subsection-with-image img, .full-text img'
+            '.subsection-with-image img, .full-text img, .cc-image-wrapper img'
         ).forEach(function (img) {
             img.addEventListener('click', function (e) {
                 if (this.closest('.hero')) return;
@@ -142,12 +140,10 @@
         if (!body) return;
 
         if (isOpen) {
-            // Fermer
             header.classList.remove('open');
             header.setAttribute('aria-expanded', 'false');
             body.classList.remove('open');
         } else {
-            // Fermer tous les autres, puis ouvrir celui-ci
             document.querySelectorAll('.accordion-header').forEach(function (h) {
                 h.classList.remove('open');
                 h.setAttribute('aria-expanded', 'false');
@@ -402,43 +398,45 @@
             carte.dataset.depliable = 'true';
 
             carte.addEventListener('click', function (e) {
-                if (e.target.closest('a')) return; // on laisse les liens fonctionner
+                e.stopPropagation(); // Empêche la fermeture de l'accordéon parent
+                if (e.target.closest('a')) return;
                 this.classList.toggle('open');
             });
         });
     }
-   /* ============================================================
-   11. BOUTON "LIRE LA SUITE" DU HERO (page accueil)
-   ============================================================ */
-function initHeroToggle() {
-    const heroFullText = document.querySelector('.hero .full-text');
-    const heroToggleBtn = document.getElementById('togglePresidentBtn');
-    const heroSection = document.getElementById('heroSection');
 
-    if (heroToggleBtn && heroFullText) {
-        heroToggleBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            const isVisible = heroFullText.classList.contains('visible');
-            heroFullText.classList.toggle('visible');
-            heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-            if (heroSection) heroSection.classList.toggle('expanded');
+    /* ============================================================
+       11. BOUTON "LIRE LA SUITE" DU HERO (page accueil)
+       ============================================================ */
+    function initHeroToggle() {
+        const heroFullText = document.querySelector('.hero .full-text');
+        const heroToggleBtn = document.getElementById('togglePresidentBtn');
+        const heroSection = document.getElementById('heroSection');
+
+        if (heroToggleBtn && heroFullText) {
+            heroToggleBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const isVisible = heroFullText.classList.contains('visible');
+                heroFullText.classList.toggle('visible');
+                heroToggleBtn.textContent = isVisible ? 'Lire la suite' : 'Réduire';
+                if (heroSection) heroSection.classList.toggle('expanded');
+            });
+        }
+    }
+
+    /* ============================================================
+       12. CARTES MAIRIES REPLIABLES (page interlocuteurs)
+       ============================================================ */
+    function initMairiesDepliables() {
+        document.querySelectorAll('.mairie-card-header').forEach(function (header) {
+            header.addEventListener('click', function (e) {
+                e.stopPropagation(); // Empêche la fermeture de l'accordéon parent
+                if (e.target.closest('a')) return;
+                const card = this.closest('.mairie-card');
+                if (card) card.classList.toggle('open');
+            });
         });
     }
-}
-   /* ============================================================
-   12. CARTES MAIRIES REPLIABLES (page interlocuteurs)
-   ============================================================ */
-function initMairiesDepliables() {
-    document.querySelectorAll('.mairie-card-header').forEach(function (header) {
-        header.addEventListener('click', function (e) {
-            // Si on clique sur un lien dans le header (rare), on laisse
-            if (e.target.closest('a')) return;
-
-            const card = this.closest('.mairie-card');
-            if (card) card.classList.toggle('open');
-        });
-    });
-}
 
     /* ============================================================
        13. INITIALISATION AU CHARGEMENT
