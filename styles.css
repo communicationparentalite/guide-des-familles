@@ -1977,14 +1977,9 @@ li { margin-bottom: 0.5rem; }
     }
 }
 
-/* ✅ Bloque le scroll de la page quand le menu est ouvert (mobile)
-   Version simplifiée : on bloque uniquement le scroll du body sans position:fixed
-   (position:fixed casse le scroll interne sur Firefox mobile) */
-@media (max-width: 768px) {
-    body.nav-open {
-        overflow: hidden;
-    }
-}
+/* On ne bloque PAS le scroll du body : le menu gère son propre scroll interne
+   via .nav-list.active (max-height + overflow-y: auto).
+   Cela évite de casser le scroll du menu sur Firefox mobile. */
 
 @media (max-width: 480px) {
     .logo img { height: 40px; }
