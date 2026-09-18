@@ -18,7 +18,92 @@
             --secondary-light: #FF8CD2;
         }
 
-        /* ===== IMAGES DE L'ACCORDÉON ===== */
+        /* ============================================================
+           ✅ LAYOUT "LOGO + TEXTE" DANS LES ACCORDÉONS
+           Logo au-dessus, centré (comme dans interlocuteurs.html)
+           ============================================================ */
+        .accordion-content-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .accordion-content-row .logo-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .accordion-content-row .logo-col img {
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 8px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .accordion-content-row .logo-col img.logo-taille-x2 {
+            max-width: 320px;
+        }
+
+        .accordion-content-row .logo-col img.logo-taille-caf {
+            max-width: 120px;
+        }
+
+        .accordion-content-row .text-col {
+            flex: 1;
+            min-width: 0;
+            width: 100%;
+        }
+
+        .accordion-content-row .text-col p:first-child {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 220px;
+            }
+            .accordion-content-row .logo-col img.logo-taille-caf {
+                max-width: 90px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 180px;
+            }
+            .accordion-content-row .logo-col img.logo-taille-caf {
+                max-width: 70px;
+            }
+        }
+
+        /* ============================================================
+           IMAGES DE L'ACCORDÉON (miniatures)
+           ============================================================ */
+        .accordion-body-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .accordion-body-inner .text {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .accordion-body-inner .images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+            margin-top: 1rem;
+        }
+
         .accordion-image {
             width: 140px;
             height: 100px;
@@ -46,6 +131,13 @@
 </head>
 <body class="page-acces-droits">
 
+    <!-- ===== EN-TÊTE D'IMPRESSION ===== -->
+    <div class="print-header" style="display: none;">
+        <h1>Guide des Familles - Accès aux droits</h1>
+        <p>Communauté de Communes Berry Loire Puisaye</p>
+        <p>Imprimé le <span id="print-date"></span></p>
+    </div>
+
     <!-- ===== HEADER ===== -->
     <header class="header">
         <div class="container">
@@ -63,113 +155,133 @@
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
-<ul class="nav-list" id="navList">
-    <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
+            <!-- ✅ En-tête dans le menu mobile -->
+            <li class="nav-mobile-header">
+                <div class="nav-mobile-header-content">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <span class="nav-mobile-header-title">Guide des Familles</span>
+                </div>
+            </li>
+            <!-- ✅ Bouton fermer dans le menu mobile -->
+            <li class="nav-close-item">
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
+            </li>
 
-    <li class="nav-dropdown dropdown-interlocuteurs">
-        <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
-            <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
-            <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
-            <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
-            <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
-        </ul>
-    </li>
+            <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
 
-    <li class="nav-dropdown dropdown-arrivee-enfant">
-        <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
-            <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
-            <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-interlocuteurs">
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html" class="nav-dropdown-main-link">Voir la page Interlocuteurs</a></li>
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-petite-enfance">
-        <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
-            <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
-            <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
-            <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
-            <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
-            <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
-            <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-arrivee-enfant">
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html" class="nav-dropdown-main-link">Voir la page Arrivée d'un enfant</a></li>
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-enfance">
-        <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="enfance.html#scolarite">Scolarité</a></li>
-            <li><a href="enfance.html#clas">CLAS</a></li>
-            <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
-            <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-petite-enfance">
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html" class="nav-dropdown-main-link">Voir la page Petite enfance</a></li>
+                    <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
+                    <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
+                    <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
+                    <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-jeunesse">
-        <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="jeunesse.html#colleges">Collèges</a></li>
-            <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
-            <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-enfance">
+                <a href="enfance.html" class="nav-link-enfance">Enfance</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html" class="nav-dropdown-main-link">Voir la page Enfance</a></li>
+                    <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                    <li><a href="enfance.html#clas">CLAS</a></li>
+                    <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-parentalite">
-        <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
-            <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
-            <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
-            <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
-            <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
-            <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
-            <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
-            <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-jeunesse">
+                <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html" class="nav-dropdown-main-link">Voir la page Jeunesse</a></li>
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-loisirs">
-        <a href="loisirs.html" class="nav-link-loisirs">Loisirs ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
-            <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
-            <li><a href="loisirs.html#associations">Associations</a></li>
-            <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
-            <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
-            <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
-            <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
-            <li><a href="loisirs.html#squares">Squares</a></li>
-            <li><a href="loisirs.html#city-skate">City-stades</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-parentalite">
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html" class="nav-dropdown-main-link">Voir la page Parentalité</a></li>
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-vivre-ensemble">
-        <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
-            <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
-            <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
-        </ul>
-    </li>
+            <li class="nav-dropdown dropdown-loisirs">
+                <a href="loisirs.html" class="nav-link-loisirs">Loisirs</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html" class="nav-dropdown-main-link">Voir la page Loisirs</a></li>
+                    <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="loisirs.html#associations">Associations</a></li>
+                    <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
+                    <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
+                    <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
+                    <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
+                    <li><a href="loisirs.html#squares">Squares</a></li>
+                    <li><a href="loisirs.html#city-skate">City-stades</a></li>
+                </ul>
+            </li>
 
-    <li class="nav-dropdown dropdown-acces-droits">
-        <a href="acces-droits.html" class="nav-link-acces-droits active">Accès aux droits ▾</a>
-        <ul class="nav-dropdown-menu">
-            <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
-            <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
-            <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
-            <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
-            <li><a href="acces-droits.html#cidff">CIDFF</a></li>
-            <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+            <li class="nav-dropdown dropdown-vivre-ensemble">
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html" class="nav-dropdown-main-link">Voir la page Vivre ensemble</a></li>
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-acces-droits">
+                <a href="acces-droits.html" class="nav-link-acces-droits active">Accès aux droits</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html" class="nav-dropdown-main-link">Voir la page Accès aux droits</a></li>
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
         </ul>
-    </li>
-</ul>
     </nav>
 
     <!-- ===== MAIN ===== -->
@@ -186,26 +298,44 @@
                 <!-- ===== ACCORDÉON ===== -->
                 <div class="accordion">
 
-                    <!-- 1. Réseau France Service -->
+                    <!-- ===== 1. RÉSEAU FRANCE SERVICES ===== -->
                     <div class="accordion-item" id="franceservice">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="acces_logo_franceservices.png" alt="Logo France Service" style="width:60px; height:60px; object-fit:contain;">
                             <span>Réseau France Services</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p>Que vous soyez en ville ou à la campagne, dans un lieu fixe ou itinérant, les conseillers France services sont à votre écoute, et disponibles partout en France.<br>
-                                    Sur place, vous disposez d'un accueil, d'une information et d'orientation personnalisés par un agent ainsi que d'une borne de visioconférence pour communiquer avec les différents opérateurs partenaires.</p>
-                                    <p><strong>Les services en visiophonie :</strong><br>
-                                    CAF du Loiret, et CPAM en accès libre mais en salle d'attente.<br>
-                                    Agence départementale d'information logement sur rendez-vous<br>
-                                    Espace info énergie du Loiret, sur rendez-vous<br>
-                                    Maison de Justice et du droit, sur rendez-vous<br>
-                                    CARSAT sur rendez-vous le mercredi matin<br>
-                                    Agence nationale des titres sécurisés (ANTS), Allocations familiales, Assurance Maladie, Assurance retraite, Chèque énergie, Finances publiques, France Rénov', France Travail, CESU, La Poste, Mutualité sociale agricole (MSA), Point-justice</p>
-                                    <p><strong>📍 Poste de Bonny-sur-Loire</strong><br>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="franceservice">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="acces_logo_franceservices.png"
+                                         alt="Logo France Services"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Que vous soyez en ville ou à la campagne, dans un lieu fixe ou itinérant, les conseillers France services sont à votre écoute, et disponibles partout en France.<br>
+                                        Sur place, vous disposez d'un accueil, d'une information et d'orientation personnalisés par un agent ainsi que d'une borne de visioconférence pour communiquer avec les différents opérateurs partenaires.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p><strong>Les services en visiophonie :</strong><br>
+                                        CAF du Loiret, et CPAM en accès libre mais en salle d'attente.<br>
+                                        Agence départementale d'information logement sur rendez-vous<br>
+                                        Espace info énergie du Loiret, sur rendez-vous<br>
+                                        Maison de Justice et du droit, sur rendez-vous<br>
+                                        CARSAT sur rendez-vous le mercredi matin<br>
+                                        Agence nationale des titres sécurisés (ANTS), Allocations familiales, Assurance Maladie, Assurance retraite, Chèque énergie, Finances publiques, France Rénov', France Travail, CESU, La Poste, Mutualité sociale agricole (MSA), Point-justice</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Poste de Bonny-sur-Loire</strong><br>
                                     Sans rendez-vous du mardi au vendredi de 9h00 à 12h30 et de 14h00 à 17h30<br>
                                     1 Place Beaupin Lagier - 45420 Bonny-sur-Loire<br>
                                     📞 <a href="tel:0238051874">02 38 05 18 74</a><br>
@@ -217,6 +347,9 @@
                                     📞 <a href="tel:0238051803">02 38 05 18 03</a> - <a href="tel:0630000250">06 30 00 02 50</a><br>
                                     📧 <a href="mailto:esp@cc-berryloirepuisaye.fr">esp@cc-berryloirepuisaye.fr</a></p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
                                     <img src="acces_franceservices.png" alt="Poste de Bonny" class="accordion-image">
                                     <img src="acces_borne_franceservice.png" alt="Borne France Services" class="accordion-image">
@@ -225,30 +358,51 @@
                         </div>
                     </div>
 
-                    <!-- 2. ADS -->
+                    <!-- ===== 2. ADS ===== -->
                     <div class="accordion-item" id="ads">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="interlocuteurs_page-052.png" alt="Logo Loiret" style="width:60px; height:60px; object-fit:contain;">
                             <span>Agence Départementale des Solidarités - ADS Gien Montargis</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p>Le département propose à chaque Loirétain, quel que soit son âge, sa situation et son lieu d'habitation, un service de proximité pour permettre de trouver les solutions les plus adaptées aux besoins exprimés :</p>
-                                    <p>Des travailleurs sociaux vous reçoivent sur RDV lors de permanences :<br>
-                                    - au Centre Médico-Social, 6 rue des Grands jardins à Briare<br>
-                                    - au Centre Médico-Social 1 Rue de la Boyaudière à Châtillon-sur-Loire<br>
-                                    - à la Maison de santé 27 Grande Rue à Bonny-sur-Loire<br>
-                                    - à la Mairie, 10 place de l'Église à Beaulieu-sur-Loire<br>
-                                    - à l'ADS 10 rue Jean Mermoz à Gien<br>
-                                    Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
-                                    <p><strong>📍 Agence départementale des solidarités Gien-Montargis (antenne de Gien)</strong><br>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="ads">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="interlocuteurs_page-052.png"
+                                         alt="Logo Département du Loiret"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Le département propose à chaque Loirétain, quel que soit son âge, sa situation et son lieu d'habitation, un service de proximité pour permettre de trouver les solutions les plus adaptées aux besoins exprimés.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p><strong>Des travailleurs sociaux vous reçoivent sur RDV lors de permanences :</strong><br>
+                                        - au Centre Médico-Social, 6 rue des Grands jardins à Briare<br>
+                                        - au Centre Médico-Social 1 Rue de la Boyaudière à Châtillon-sur-Loire<br>
+                                        - à la Maison de santé 27 Grande Rue à Bonny-sur-Loire<br>
+                                        - à la Mairie, 10 place de l'Église à Beaulieu-sur-Loire<br>
+                                        - à l'ADS 10 rue Jean Mermoz à Gien<br>
+                                        Et ponctuellement dans les mairies, ou en visite à votre domicile</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Agence départementale des solidarités Gien-Montargis (antenne de Gien)</strong><br>
                                     10 rue Jean Mermoz - 45500 GIEN<br>
                                     📞 <a href="tel:0238052349">02 38 05 23 49</a><br>
                                     📧 <a href="mailto:adsgienmontargis@loiret.fr">adsgienmontargis@loiret.fr</a><br>
                                     🌐 <a href="https://www.loiret.fr/annuaire/agence-departementale-des-solidarites-montargis-gien-antenne-de-gien" target="_blank" rel="noopener">www.loiret.fr</a></p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
                                     <img src="acces_adsgien.png" alt="ADS Antenne de Gien" class="accordion-image">
                                     <img src="acces_missionads.png" alt="Flyers missions de l'ADS" class="accordion-image">
@@ -257,66 +411,108 @@
                         </div>
                     </div>
 
-                    <!-- 3. Service d'Intervention Sociale de la CAF -->
+                    <!-- ===== 3. SERVICE D'INTERVENTION SOCIALE DE LA CAF ===== -->
                     <div class="accordion-item" id="sis">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="interlocuteurs_page-050.png" alt="Logo CAF" style="width:60px; height:60px; object-fit:contain;">
                             <span>Service d'Intervention Sociale de la CAF</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p><strong>Des événements ou situations peuvent bouleverser votre vie de famille et votre vie quotidienne. La Caf est à vos côtés dans ces moments particuliers :</strong><br>
-                                    - première naissance ou naissance multiple<br>
-                                    - séparation envisagée ou effective<br>
-                                    - décès du conjoint ou d'un enfant<br>
-                                    - violences conjugales<br>
-                                    - impayé(s) de loyer(s) (bailleur privé)</p>
-                                    <p>Dans ces situations, un travailleur social :<br>
-                                    - vous accueille,<br>
-                                    - vous écoute et vous aide à trouver des réponses à vos questions en toute confidentialité, vous informe sur l'ensemble de vos droits et vous oriente selon votre situation,<br>
-                                    - vous accompagne dans vos démarches,<br>
-                                    - vous soutient financièrement dans la réalisation d'un projet social, familial ou professionnel, sous certaines conditions,<br>
-                                    - vous propose des séances collectives d'informations "Parents après la séparation".</p>
-                                    <p>Plus d'infos sur Caf.fr (rubrique Ma Caf / Vie personnelle / Vous êtes parents séparés)</p>
-                                    <p><strong>Pour prendre un rendez-vous ou obtenir plus d'informations</strong><br>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="sis">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="interlocuteurs_page-050.png"
+                                         alt="Logo CAF"
+                                         class="logo-taille-caf"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p><strong>Des événements ou situations peuvent bouleverser votre vie de famille et votre vie quotidienne. La Caf est à vos côtés dans ces moments particuliers :</strong><br>
+                                        - première naissance ou naissance multiple<br>
+                                        - séparation envisagée ou effective<br>
+                                        - décès du conjoint ou d'un enfant<br>
+                                        - violences conjugales<br>
+                                        - impayé(s) de loyer(s) (bailleur privé)</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Dans ces situations, un travailleur social :<br>
+                                        - vous accueille,<br>
+                                        - vous écoute et vous aide à trouver des réponses à vos questions en toute confidentialité, vous informe sur l'ensemble de vos droits et vous oriente selon votre situation,<br>
+                                        - vous accompagne dans vos démarches,<br>
+                                        - vous soutient financièrement dans la réalisation d'un projet social, familial ou professionnel, sous certaines conditions,<br>
+                                        - vous propose des séances collectives d'informations "Parents après la séparation".</p>
+                                        <p>Plus d'infos sur Caf.fr (rubrique Ma Caf / Vie personnelle / Vous êtes parents séparés)</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>Pour prendre un rendez-vous ou obtenir plus d'informations</strong><br>
                                     📞 <a href="tel:0238515042">02 38 51 50 42</a> ou <a href="tel:0238517742">02 38 51 77 42</a><br>
                                     📧 <a href="mailto:interventionsociale-caf45@caf45.caf.fr">interventionsociale-caf45@caf45.caf.fr</a></p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
-                                    <img src="acces_siscaf2.png" alt="SIS" class="accordion-image">
-                                    <img src="acces_siscaf.png" alt="SIS" class="accordion-image">
+                                    <img src="acces_siscaf2.png" alt="SIS CAF" class="accordion-image">
+                                    <img src="acces_siscaf.png" alt="SIS CAF" class="accordion-image">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 4. Adhérents MSA -->
+                    <!-- ===== 4. ADHÉRENTS MSA ===== -->
                     <div class="accordion-item" id="msa">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="interlocuteurs_page-051.png" alt="Logo MSA" style="width:60px; height:60px; object-fit:contain;">
                             <span>Adhérents MSA, comment savoir si vous parlez au bon interlocuteur ?</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p><strong>Au quotidien, la Mutualité Sociale Agricole :</strong></p>
-                                    <p>Mobilise des prestations d'action sociale permettant de mieux concilier vie familiale et professionnelle en :<br>
-                                    - favorisant le recours à des modes de garde diversifiés et/ou l'accès des enfants aux activités de loisirs, culturelles et sportives,<br>
-                                    - proposant des aides aux études et aux frais de scolarité,<br>
-                                    - finançant de l'aide à domicile en faveur des familles à des moments charnières de la vie.</p>
-                                    <p>Ce soutien se poursuit dans l'avancée en âge en prévenant la perte d'autonomie et le maintien à domicile en finançant des aides techniques et de l'aide à domicile.</p>
-                                    <p><strong>Propose un accompagnement social</strong> pour soutenir les familles fragilisées par des événements de la vie, par des difficultés financières, de santé ou suite à une séparation et/ou dans le cadre de la prévention du mal-être.</p>
-                                    <p><strong>Accompagne / soutient</strong> les territoires ruraux et/ou fragiles dans le développement et la création d'établissements d'accueil, services d'accompagnement, d'actions destinés au mieux-vivre des familles.</p>
-                                    <p>Une équipe de professionnels est présente sur les territoires pour accompagner, prévenir et informer les adhérents MSA.</p>
-                                    <p><strong>Pour en savoir plus, et trouver le bon interlocuteur :</strong> Une plaquette en ligne intitulée <a href="https://bcl.msa.fr/lfp/documents/98845/79314512/Orienter-Bon-Interlocuteur-Planches.pdf" target="_blank" rel="noopener">"Orienter vers le bon interlocuteur MSA"</a></p>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="msa">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="interlocuteurs_page-051.png"
+                                         alt="Logo MSA"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p><strong>Au quotidien, la Mutualité Sociale Agricole :</strong></p>
+                                        <p>Mobilise des prestations d'action sociale permettant de mieux concilier vie familiale et professionnelle en :<br>
+                                        - favorisant le recours à des modes de garde diversifiés et/ou l'accès des enfants aux activités de loisirs, culturelles et sportives,<br>
+                                        - proposant des aides aux études et aux frais de scolarité,<br>
+                                        - finançant de l'aide à domicile en faveur des familles à des moments charnières de la vie.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Ce soutien se poursuit dans l'avancée en âge en prévenant la perte d'autonomie et le maintien à domicile en finançant des aides techniques et de l'aide à domicile.</p>
+                                        <p><strong>Propose un accompagnement social</strong> pour soutenir les familles fragilisées par des événements de la vie, par des difficultés financières, de santé ou suite à une séparation et/ou dans le cadre de la prévention du mal-être.</p>
+                                        <p><strong>Accompagne / soutient</strong> les territoires ruraux et/ou fragiles dans le développement et la création d'établissements d'accueil, services d'accompagnement, d'actions destinés au mieux-vivre des familles.</p>
+                                        <p>Une équipe de professionnels est présente sur les territoires pour accompagner, prévenir et informer les adhérents MSA.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>Pour en savoir plus, et trouver le bon interlocuteur :</strong> Une plaquette en ligne intitulée <a href="https://bcl.msa.fr/lfp/documents/98845/79314512/Orienter-Bon-Interlocuteur-Planches.pdf" target="_blank" rel="noopener">"Orienter vers le bon interlocuteur MSA"</a></p>
                                     <p>📍 5 rue Chanzy, 28037 CHARTRES Cedex<br>
                                     📞 <a href="tel:0237999999">02 37 99 99 99</a><br>
                                     📧 <a href="mailto:ass.grprec@bcl.msa.fr">ass.grprec@bcl.msa.fr</a><br>
                                     🌐 <a href="https://bcl.msa.fr" target="_blank" rel="noopener">bcl.msa.fr</a></p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
                                     <img src="acces_msa1.png" alt="MSA Accueil" class="accordion-image">
                                 </div>
@@ -324,23 +520,42 @@
                         </div>
                     </div>
 
-                    <!-- 5. CIDFF -->
+                    <!-- ===== 5. CIDFF ===== -->
                     <div class="accordion-item" id="cidff">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="acces_logo_cidff.png" alt="Logo CIDFF" style="width:60px; height:60px; object-fit:contain;">
                             <span>CIDFF - Centre d'Information sur les Droits des Femmes et des Familles</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p>Le CIDFF est un lieu d'accueil, d'écoute et d'information gratuit et confidentiel, ouvert à tous, et en particulier aux femmes. Ses juristes et conseillères conjugales et familiales informent sur les droits dans tous les domaines de la vie quotidienne :</p>
-                                    <p>- droit de la famille (séparation, divorce, autorité parentale, pension alimentaire)<br>
-                                    - droit du travail et accès à l'emploi<br>
-                                    - accompagnement des femmes victimes de violences<br>
-                                    - accès aux droits sociaux et à la santé<br>
-                                    - soutien à la parentalité</p>
-                                    <p><strong>📍 CIDFF du Loiret - Antenne Montargis-Gien</strong><br>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="cidff">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="acces_logo_cidff.png"
+                                         alt="Logo CIDFF"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Le CIDFF est un lieu d'accueil, d'écoute et d'information gratuit et confidentiel, ouvert à tous, et en particulier aux femmes. Ses juristes et conseillères conjugales et familiales informent sur les droits dans tous les domaines de la vie quotidienne :</p>
+                                        <p>- droit de la famille (séparation, divorce, autorité parentale, pension alimentaire)<br>
+                                        - droit du travail et accès à l'emploi<br>
+                                        - accompagnement des femmes victimes de violences<br>
+                                        - accès aux droits sociaux et à la santé<br>
+                                        - soutien à la parentalité</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>N'hésitez pas à les contacter pour toute question relative à vos droits ou pour un accompagnement personnalisé.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 CIDFF du Loiret - Antenne Montargis-Gien</strong><br>
                                     31 avenue Louis-Maurice-Chautemps - 45200 Montargis<br>
                                     📞 <a href="tel:0238770233">02 38 77 02 33</a><br>
                                     📧 <a href="mailto:contact45@cidffcentrevaldeloire.fr">contact45@cidffcentrevaldeloire.fr</a><br>
@@ -348,6 +563,9 @@
                                     <p><strong>Permanence à Gien :</strong><br>
                                     21 rue de Paris - 45500 Gien</p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
                                     <img src="acces_image_cidff.png" alt="Droit CIDFF" class="accordion-image">
                                 </div>
@@ -355,26 +573,47 @@
                         </div>
                     </div>
 
-                    <!-- 6. PRH45 -->
+                    <!-- ===== 6. PRH45 ===== -->
                     <div class="accordion-item" id="prh45">
                         <button class="accordion-header" aria-expanded="false">
-                            <img src="acces_logo_prh45.png" alt="Logo Pôle Ressources Handicap 45" style="width:60px; height:60px; object-fit:contain;">
                             <span>Pôle Ressources Handicap 45 (PRH45)</span>
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="accordion-body-inner">
-                                <div class="text">
-                                    <p>Créé à l'initiative de la CAF du Loiret et géré par Handi'Ressource 45 (groupement des associations ADAPEI 45 et ADPEP 45), le Pôle Ressources Handicap 45 a pour mission de favoriser l'inclusion des enfants de moins de 18 ans en situation de handicap, malades ou à besoins spécifiques, dans les modes d'accueil du quotidien : crèche, assistant maternel, accueil de loisirs, club sportif, cantine, temps périscolaire...</p>
-                                    <p>Le PRH45 informe et accompagne :<br>
-                                    - les familles, dans la recherche et la mise en place d'un mode d'accueil adapté à leur enfant<br>
-                                    - les professionnels (petite enfance, enfance, loisirs, santé) dans l'adaptation de leurs pratiques et de leurs locaux<br>
-                                    - toute personne accompagnant la famille dans ses démarches</p>
-                                    <p>Intervention gratuite, sur tout le département, à domicile ou dans le lieu de votre choix.</p>
-                                    <p>📞 <a href="tel:0631546165">06 31 54 61 65</a><br>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="prh45">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="acces_logo_prh45.png"
+                                         alt="Logo Pôle Ressources Handicap 45"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Créé à l'initiative de la CAF du Loiret et géré par Handi'Ressource 45 (groupement des associations ADAPEI 45 et ADPEP 45), le Pôle Ressources Handicap 45 a pour mission de favoriser l'inclusion des enfants de moins de 18 ans en situation de handicap, malades ou à besoins spécifiques, dans les modes d'accueil du quotidien : crèche, assistant maternel, accueil de loisirs, club sportif, cantine, temps périscolaire...</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Le PRH45 informe et accompagne :<br>
+                                        - les familles, dans la recherche et la mise en place d'un mode d'accueil adapté à leur enfant<br>
+                                        - les professionnels (petite enfance, enfance, loisirs, santé) dans l'adaptation de leurs pratiques et de leurs locaux<br>
+                                        - toute personne accompagnant la famille dans ses démarches</p>
+                                        <p>Intervention gratuite, sur tout le département, à domicile ou dans le lieu de votre choix.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;">📞 <a href="tel:0631546165">06 31 54 61 65</a><br>
                                     📧 <a href="mailto:contact@prh45.fr">contact@prh45.fr</a><br>
                                     🌐 <a href="https://prh45.fr" target="_blank" rel="noopener">prh45.fr</a></p>
                                 </div>
+                            </div>
+
+                            <div class="accordion-body-inner">
                                 <div class="images">
                                     <img src="acces_prh45_temoignage1.png" alt="PRH45 Témoignage" class="accordion-image">
                                     <img src="acces_prh45_temoignage2.png" alt="PRH45 Autre témoignage" class="accordion-image">
@@ -393,7 +632,7 @@
     <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
             <img id="lightboxImg" class="lightbox-image" src="" alt="">
         </div>
     </div>
@@ -433,166 +672,35 @@
         </div>
     </footer>
 
+    <!-- ===== PIED DE PAGE D'IMPRESSION ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
     <!-- ===== SCROLL TOP ===== -->
-    <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        (function() {
-            // ---- MENU MOBILE ----
-            const menuToggle = document.getElementById('menuToggle');
-            const navList = document.getElementById('navList');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navList.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-
-            // ---- SOUS-MENU DÉROULANT SUR MOBILE ----
-            document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
-                let clickTimer = null;
-
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        if (clickTimer) {
-                            clearTimeout(clickTimer);
-                            clickTimer = null;
-                            return;
-                        }
-
-                        e.preventDefault();
-                        const parent = this.parentElement;
-                        const wasOpen = parent.classList.contains('open');
-
-                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
-                            item.classList.remove('open');
-                        });
-
-                        if (!wasOpen) {
-                            parent.classList.add('open');
-                        }
-
-                        clickTimer = setTimeout(function() {
-                            clickTimer = null;
-                        }, 300);
-                    }
-                });
-            });
-
-            // ---- FERMETURE DU SOUS-MENU ----
-            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) parentDropdown.classList.remove('open');
-                        if (navList) navList.classList.remove('active');
-                        if (menuToggle) menuToggle.classList.remove('active');
-                    }
-                });
-            });
-
-            // ---- SCROLL TOP ----
-            const scrollBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', function() {
-                scrollBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // ---- LIGHTBOX ----
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.getElementById('lightboxClose');
-
-            function openLightbox(src) {
-                if (!lightbox || !lightboxImg) return;
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeLightbox() {
-                if (!lightbox) return;
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            document.querySelectorAll('.section img:not(.hero-bg), .accordion-image').forEach(function(img) {
-                img.addEventListener('click', function(e) {
-                    if (this.closest('.hero')) return;
-                    e.stopPropagation();
-                    const src = this.getAttribute('src');
-                    if (src) openLightbox(src);
-                });
-            });
-
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) closeLightbox();
-                });
-            }
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeLightbox();
-            });
-
-            // ---- ACCORDÉON ----
-            function toggleAccordion(header) {
-                const isOpen = header.classList.contains('open');
-                const body = header.nextElementSibling;
-
-                if (isOpen) {
-                    header.classList.remove('open');
-                    header.setAttribute('aria-expanded', 'false');
-                    body.classList.remove('open');
-                } else {
-                    document.querySelectorAll('.accordion-header').forEach(function(h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        h.nextElementSibling.classList.remove('open');
-                    });
-                    header.classList.add('open');
-                    header.setAttribute('aria-expanded', 'true');
-                    body.classList.add('open');
-                }
-            }
-
-            document.querySelectorAll('.accordion-header').forEach(function(header) {
-                header.addEventListener('click', function() {
-                    toggleAccordion(this);
-                });
-            });
-
-            // ---- OUVERTURE PAR ANCRE ----
-            function openAccordionFromHash() {
-                if (!window.location.hash) return;
-                const target = document.querySelector(window.location.hash);
-                if (target && target.classList.contains('accordion-item')) {
-                    const header = target.querySelector('.accordion-header');
-                    if (header) {
-                        document.querySelectorAll('.accordion-header').forEach(function(h) {
-                            h.classList.remove('open');
-                            h.setAttribute('aria-expanded', 'false');
-                            h.nextElementSibling.classList.remove('open');
-                        });
-                        header.classList.add('open');
-                        header.setAttribute('aria-expanded', 'true');
-                        header.nextElementSibling.classList.add('open');
-                        setTimeout(function() {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 200);
-                    }
-                }
-            }
-
-            window.addEventListener('DOMContentLoaded', openAccordionFromHash);
-            window.addEventListener('hashchange', openAccordionFromHash);
-
-        })();
-    </script>
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
 </body>
 </html>
