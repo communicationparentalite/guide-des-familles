@@ -380,6 +380,47 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
+   ✅ EN-TÊTE DANS L'OVERLAY MOBILE (logo + titre)
+   ============================================================ */
+.nav-mobile-header {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .nav-mobile-header {
+        display: block;
+        width: 100%;
+        list-style: none;
+    }
+
+    .nav-mobile-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 1rem;
+        background: linear-gradient(135deg,
+            var(--primary-color) 0%,
+            var(--secondary-color) 100%
+        );
+        color: white;
+    }
+
+    .nav-mobile-header-content img {
+        height: 45px;
+        width: auto;
+        background: transparent;
+    }
+
+    .nav-mobile-header-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: white;
+        letter-spacing: 0.02em;
+    }
+}
+
+/* ============================================================
    ✅ BOUTON FERMER (dans l'overlay mobile)
    ============================================================ */
 .nav-close-item {
