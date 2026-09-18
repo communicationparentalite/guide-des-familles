@@ -45,6 +45,17 @@
             });
         });
 
+        // ✅ NOUVEAU : Bloque le menu contextuel (appui long) sur les rubriques principales
+        // Fonctionne sur Firefox mobile, Chrome Android, Safari iOS, Edge
+        document.querySelectorAll('.nav-list > li > a').forEach(function (link) {
+            link.addEventListener('contextmenu', function (e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+
         // Fermer le menu au clic sur un lien du sous-menu (mobile)
         document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
             link.addEventListener('click', function () {
