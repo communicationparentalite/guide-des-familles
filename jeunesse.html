@@ -37,7 +37,6 @@
             border: 0;
         }
 
-        /* ===== MINIATURE VIDÉO CLIQUABLE ===== */
         .video-wrapper.video-loaded {
             padding-bottom: 0;
             height: auto;
@@ -177,9 +176,23 @@
                 display: block;
             }
         }
+
+        /* ===== LIGNE D'IMPRESSION DANS LES CARTES DE STRUCTURES ===== */
+        .structure-card .lieu-print-row {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed var(--border-color);
+        }
     </style>
 </head>
 <body class="page-jeunesse">
+
+    <!-- ===== EN-TÊTE D'IMPRESSION ===== -->
+    <div class="print-header" style="display: none;">
+        <h1>Guide des Familles - Adolescence &amp; Jeunesse</h1>
+        <p>Communauté de Communes Berry Loire Puisaye</p>
+        <p>Imprimé le <span id="print-date"></span></p>
+    </div>
 
     <!-- ===== HEADER ===== -->
     <header class="header">
@@ -198,13 +211,26 @@
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
-        <button class="menu-toggle" id="menuToggle" aria-label="Menu">☰ Menu</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
+            <!-- ✅ En-tête dans le menu mobile -->
+            <li class="nav-mobile-header">
+                <div class="nav-mobile-header-content">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <span class="nav-mobile-header-title">Guide des Familles</span>
+                </div>
+            </li>
+            <!-- ✅ Bouton fermer dans le menu mobile -->
+            <li class="nav-close-item">
+                <button class="nav-close-btn" id="navCloseBtn" aria-label="Fermer le menu">✕ Fermer</button>
+            </li>
+
             <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
 
             <li class="nav-dropdown dropdown-interlocuteurs">
-                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs ▾</a>
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html" class="nav-dropdown-main-link">Voir la page Interlocuteurs</a></li>
                     <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
                     <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
                     <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
@@ -214,8 +240,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-arrivee-enfant">
-                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant ▾</a>
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html" class="nav-dropdown-main-link">Voir la page Arrivée d'un enfant</a></li>
                     <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
                     <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
                     <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
@@ -223,8 +250,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-petite-enfance">
-                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance ▾</a>
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html" class="nav-dropdown-main-link">Voir la page Petite enfance</a></li>
                     <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
                     <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
                     <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
@@ -236,8 +264,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-enfance">
-                <a href="enfance.html" class="nav-link-enfance">Enfance ▾</a>
+                <a href="enfance.html" class="nav-link-enfance">Enfance</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html" class="nav-dropdown-main-link">Voir la page Enfance</a></li>
                     <li><a href="enfance.html#scolarite">Scolarité</a></li>
                     <li><a href="enfance.html#clas">CLAS</a></li>
                     <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
@@ -246,17 +275,19 @@
             </li>
 
             <li class="nav-dropdown dropdown-jeunesse">
-                <a href="jeunesse.html" class="nav-link-jeunesse active">Jeunesse ▾</a>
+                <a href="jeunesse.html" class="nav-link-jeunesse active">Jeunesse</a>
                 <ul class="nav-dropdown-menu">
-                    <li><a href="#colleges">Collèges</a></li>
-                    <li><a href="#ter">Focus sur le Territoire Éducatif Rural</a></li>
-                    <li><a href="#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                    <li><a href="jeunesse.html" class="nav-dropdown-main-link">Voir la page Jeunesse</a></li>
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
                 </ul>
             </li>
 
             <li class="nav-dropdown dropdown-parentalite">
-                <a href="parentalite.html" class="nav-link-parentalite">Parentalité ▾</a>
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html" class="nav-dropdown-main-link">Voir la page Parentalité</a></li>
                     <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
                     <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
                     <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
@@ -269,8 +300,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-loisirs">
-                <a href="loisirs.html" class="nav-link-loisirs">Loisirs ▾</a>
+                <a href="loisirs.html" class="nav-link-loisirs">Loisirs</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html" class="nav-dropdown-main-link">Voir la page Loisirs</a></li>
                     <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
                     <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
                     <li><a href="loisirs.html#associations">Associations</a></li>
@@ -284,8 +316,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-vivre-ensemble">
-                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble ▾</a>
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html" class="nav-dropdown-main-link">Voir la page Vivre ensemble</a></li>
                     <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
                     <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
                     <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
@@ -293,8 +326,9 @@
             </li>
 
             <li class="nav-dropdown dropdown-acces-droits">
-                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits ▾</a>
+                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits</a>
                 <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html" class="nav-dropdown-main-link">Voir la page Accès aux droits</a></li>
                     <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
                     <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
                     <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
@@ -328,12 +362,18 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="colleges">
+                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
+                                </label>
+                            </div>
                             <div class="short-text">
                                 <p>Le territoire dispose de deux collèges publics qui accueillent les élèves du secteur : le Collège Albert Camus à Briare et le Collège Pierre Dézarnaulds à Châtillon-sur-Loire.</p>
                             </div>
                             <div class="full-text">
 
-                                <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS (avec vidéo) ===== -->
+                                <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS ===== -->
                                 <div class="sous-accordion-wrapper">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
                                         <span>Collège Albert Camus (Briare)</span>
@@ -350,7 +390,7 @@
                                             📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
                                             🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank" rel="noopener">Site internet officiel</a></p>
 
-                                            <!-- ===== LECTEUR YOUTUBE (miniature cliquable) ===== -->
+                                            <!-- ===== LECTEUR YOUTUBE ===== -->
                                             <div style="margin-top: 1.5rem;">
                                                 <div class="video-wrapper" id="video-camus">
                                                     <div class="video-thumb" onclick="loadVideo('video-camus', 'U0OX3-ikWuk', 'Collège Albert Camus - Briare')">
@@ -400,6 +440,12 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="ter">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
                             <div class="ter-section">
                                 <div class="short-text">
                                     <div class="ter-content">
@@ -447,13 +493,19 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="structures-loisirs">
+                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
+                                </label>
+                            </div>
                             <div class="short-text">
                                 <p>Le territoire propose plusieurs structures d'accueil et de loisirs pour les jeunes de 11 à 25 ans : Culture Ados (Bee'Mobile), Maison Saint-Jean, séjours pédagogiques, Maison des Adolescents et Mission Locale.</p>
                             </div>
                             <div class="full-text">
 
                                 <!-- Culture Ados -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="structure-culture-ados">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('culture-ados')">
                                         <span>Culture Ados (Bee'Mobile)</span>
                                         <span id="culture-ados-icon" class="sous-accordion-icon">+</span>
@@ -475,11 +527,15 @@
                                                 <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                                             </div>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-culture-ados" class="print-checkbox" data-print-target="structure-culture-ados">
+                                            <label for="print-structure-culture-ados">Imprimer cette structure</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Maison Saint-Jean -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="structure-maison-saint-jean">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-saint-jean')">
                                         <span>Maison Saint-Jean (Briare)</span>
                                         <span id="maison-saint-jean-icon" class="sous-accordion-icon">+</span>
@@ -494,11 +550,15 @@
                                             <p>📞 <a href="tel:0238371664">02 38 37 16 64</a> / <a href="tel:0764754898">07 64 75 48 98</a></p>
                                             <p>Ouvert les mercredis, un vendredi par mois et les vacances scolaires.</p>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-maison-saint-jean" class="print-checkbox" data-print-target="structure-maison-saint-jean">
+                                            <label for="print-structure-maison-saint-jean">Imprimer cette structure</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Séjours pédagogiques -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="structure-sejours">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('sejours-pedagogiques')">
                                         <span>Séjours pédagogiques (Bee'Mobile)</span>
                                         <span id="sejours-pedagogiques-icon" class="sous-accordion-icon">+</span>
@@ -517,11 +577,15 @@
                                                 <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                                             </div>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-sejours" class="print-checkbox" data-print-target="structure-sejours">
+                                            <label for="print-structure-sejours">Imprimer cette structure</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Maison des Adolescents -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="structure-maison-ados">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-ados')">
                                         <span>Maison des Adolescents (AMARA 45)</span>
                                         <span id="maison-ados-icon" class="sous-accordion-icon">+</span>
@@ -541,11 +605,15 @@
                                                 <a href="https://instagram.com/maisondesados45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                                             </div>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-maison-ados" class="print-checkbox" data-print-target="structure-maison-ados">
+                                            <label for="print-structure-maison-ados">Imprimer cette structure</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- Mission Locale -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="structure-mission-locale">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('mission-locale')">
                                         <span>Mission Locale de Gien</span>
                                         <span id="mission-locale-icon" class="sous-accordion-icon">+</span>
@@ -559,6 +627,10 @@
                                             <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
                                             <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
                                             📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
+                                        </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-mission-locale" class="print-checkbox" data-print-target="structure-mission-locale">
+                                            <label for="print-structure-mission-locale">Imprimer cette structure</label>
                                         </div>
                                     </div>
                                 </div>
@@ -578,7 +650,7 @@
     <!-- ===== LIGHTBOX ===== -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
             <img id="lightboxImg" class="lightbox-image" src="" alt="">
         </div>
     </div>
@@ -617,222 +689,35 @@
         </div>
     </footer>
 
+    <!-- ===== PIED DE PAGE D'IMPRESSION ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
     <!-- ===== SCROLL TOP ===== -->
-    <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        (function() {
-            // ============================================================
-            // ---- MENU MOBILE ----
-            // ============================================================
-            const menuToggle = document.getElementById('menuToggle');
-            const navList = document.getElementById('navList');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navList.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-
-            // ---- SOUS-MENU DÉROULANT SUR MOBILE ----
-            document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
-                let clickTimer = null;
-
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        if (clickTimer) {
-                            clearTimeout(clickTimer);
-                            clickTimer = null;
-                            return;
-                        }
-
-                        e.preventDefault();
-                        const parent = this.parentElement;
-                        const wasOpen = parent.classList.contains('open');
-
-                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
-                            item.classList.remove('open');
-                        });
-
-                        if (!wasOpen) {
-                            parent.classList.add('open');
-                        }
-
-                        clickTimer = setTimeout(function() {
-                            clickTimer = null;
-                        }, 300);
-                    }
-                });
-            });
-
-            // ---- FERMETURE DU SOUS-MENU ----
-            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (window.innerWidth <= 768) {
-                        const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) parentDropdown.classList.remove('open');
-                        if (navList) navList.classList.remove('active');
-                        if (menuToggle) menuToggle.classList.remove('active');
-                    }
-                });
-            });
-
-            // ---- SCROLL TOP ----
-            const scrollBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', function() {
-                scrollBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // ---- LIGHTBOX ----
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.getElementById('lightboxClose');
-
-            window.openLightbox = function(src) {
-                if (!lightbox || !lightboxImg) return;
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            };
-
-            function closeLightbox() {
-                if (!lightbox) return;
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            document.querySelectorAll('.section img:not(.hero-bg)').forEach(function(img) {
-                img.addEventListener('click', function(e) {
-                    if (this.closest('.hero')) return;
-                    if (this.closest('.video-wrapper')) return;
-                    if (this.closest('.video-thumb')) return;
-                    e.stopPropagation();
-                    const src = this.getAttribute('src');
-                    if (src) openLightbox(src);
-                });
-            });
-
-            if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-            if (lightbox) {
-                lightbox.addEventListener('click', function(e) {
-                    if (e.target === lightbox) closeLightbox();
-                });
-            }
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeLightbox();
-            });
-
-            // ============================================================
-            // ---- CHARGEMENT DE LA VIDÉO AU CLIC SUR LA MINIATURE ----
-            // ============================================================
-            window.loadVideo = function(wrapperId, videoId, title) {
-                const wrapper = document.getElementById(wrapperId);
-                if (!wrapper) return;
-                wrapper.classList.add('video-loaded');
-                wrapper.innerHTML =
-                    '<iframe src="https://www.youtube.com/embed/' + videoId +
-                    '?rel=0&modestbranding=1&autoplay=1" ' +
-                    'title="' + title + '" ' +
-                    'frameborder="0" ' +
-                    'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
-                    'referrerpolicy="strict-origin-when-cross-origin" ' +
-                    'allowfullscreen></iframe>';
-            };
-
-            // ---- ACCORDÉON PRINCIPAL ----
-            function toggleAccordion(header) {
-                const isOpen = header.classList.contains('open');
-                const body = header.nextElementSibling;
-
-                if (isOpen) {
-                    header.classList.remove('open');
-                    header.setAttribute('aria-expanded', 'false');
-                    body.classList.remove('open');
-                } else {
-                    document.querySelectorAll('.accordion-header').forEach(function(h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        h.nextElementSibling.classList.remove('open');
-                    });
-                    header.classList.add('open');
-                    header.setAttribute('aria-expanded', 'true');
-                    body.classList.add('open');
-                }
-            }
-
-            document.querySelectorAll('.accordion-header').forEach(function(header) {
-                header.addEventListener('click', function() {
-                    toggleAccordion(this);
-                });
-            });
-
-            // ---- SOUS-ACCORDÉONS ----
-            window.toggleSousAccordion = function(id) {
-                const content = document.getElementById(id + '-content');
-                const header = content.previousElementSibling;
-                const icon = document.getElementById(id + '-icon');
-
-                if (content.classList.contains('open')) {
-                    content.classList.remove('open');
-                    header.classList.remove('open');
-                    icon.textContent = '+';
-                    icon.style.transform = 'rotate(0deg)';
-                } else {
-                    content.classList.add('open');
-                    header.classList.add('open');
-                    icon.textContent = '−';
-                    icon.style.transform = 'rotate(0deg)';
-                }
-            };
-
-            // ---- LIRE LA SUITE (générique) ----
-            document.querySelectorAll('.read-more-btn').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const parent = this.closest('.sous-accordion-body')
-                                || this.closest('.ter-section')
-                                || this.closest('.accordion-body');
-                    if (!parent) return;
-                    const fullText = parent.querySelector('.full-text');
-                    if (!fullText) return;
-                    const isVisible = fullText.classList.contains('visible');
-                    fullText.classList.toggle('visible');
-                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                });
-            });
-
-            // ---- OUVERTURE PAR ANCRE ----
-            function openAccordionFromHash() {
-                if (!window.location.hash) return;
-                const target = document.querySelector(window.location.hash);
-                if (target && target.classList.contains('accordion-item')) {
-                    const header = target.querySelector('.accordion-header');
-                    if (header) {
-                        document.querySelectorAll('.accordion-header').forEach(function(h) {
-                            h.classList.remove('open');
-                            h.setAttribute('aria-expanded', 'false');
-                            h.nextElementSibling.classList.remove('open');
-                        });
-                        header.classList.add('open');
-                        header.setAttribute('aria-expanded', 'true');
-                        header.nextElementSibling.classList.add('open');
-                        setTimeout(function() {
-                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        }, 200);
-                    }
-                }
-            }
-
-            window.addEventListener('DOMContentLoaded', openAccordionFromHash);
-            window.addEventListener('hashchange', openAccordionFromHash);
-
-        })();
-    </script>
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
 </body>
 </html>
