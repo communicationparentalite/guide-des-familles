@@ -1977,18 +1977,12 @@ li { margin-bottom: 0.5rem; }
     }
 }
 
-/* ✅ Bloque le scroll de la page quand le menu est ouvert (mobile) */
+/* ✅ Bloque le scroll de la page quand le menu est ouvert (mobile)
+   Version simplifiée : on bloque uniquement le scroll du body sans position:fixed
+   (position:fixed casse le scroll interne sur Firefox mobile) */
 @media (max-width: 768px) {
     body.nav-open {
         overflow: hidden;
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        touch-action: none;
-    }
-
-    body.nav-open .nav-list {
-        touch-action: pan-y;
     }
 }
 
