@@ -14,87 +14,93 @@
         const navList = document.getElementById('navList');
         const navCloseBtn = document.getElementById('navCloseBtn');
 
-        // Bouton hamburger (mobile)
         if (menuToggle && navList) {
             menuToggle.addEventListener('click', function (e) {
+                e.preventDefault();
                 e.stopPropagation();
-                navList.classList.toggle('active');
-                menuToggle.classList.toggle('active');
-
-                // ✅ Bloque le scroll du body quand l'overlay est ouvert
-                if (navList.classList.contains('active')) {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = '';
-                }
+                const isOpen = navList.classList.toggle('active');
+                menuToggle.classList.toggle('active', isOpen);
+                menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                menuToggle.textContent = isOpen ? '✕ Fermer' : '☰ Menu';
             });
         }
 
-        // ✅ Bouton fermer dans l'overlay
         if (navCloseBtn && navList && menuToggle) {
             navCloseBtn.addEventListener('click', function () {
                 navList.classList.remove('active');
                 menuToggle.classList.remove('active');
-                document.body.style.overflow = '';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰ Menu';
             });
         }
 
-        // Gestion des clics sur les rubriques principales
         document.querySelectorAll('.nav-dropdown > a').forEach(function (link) {
             link.addEventListener('click', function (e) {
-                // Desktop : on laisse le hover CSS gérer
                 if (window.innerWidth > 768) return;
-
                 e.preventDefault();
                 e.stopPropagation();
-
                 const parent = this.parentElement;
                 const wasOpen = parent.classList.contains('open');
-
-                // ✅ Sauvegarde la position du scroll du menu AVANT tout changement
-                const menuScrollTop = navList ? navList.scrollTop : 0;
-
-                // Fermer tous les sous-menus ouverts
                 document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
-                    item.classList.remove('open');
+                    if (item !== parent) item.classList.remove('open');
                 });
-
-                // Si celui-ci était fermé, on l'ouvre. Sinon il reste fermé.
-                if (!wasOpen) {
-                    parent.classList.add('open');
-                }
-
-                // ✅ Restaure la position du scroll du menu après l'ouverture
-                setTimeout(function () {
-                    if (navList) navList.scrollTop = menuScrollTop;
-                }, 0);
-
-                // ✅ Force le menu à rester ouvert
-                if (navList) navList.classList.add('active');
-                if (menuToggle) menuToggle.classList.add('active');
+                parent.classList.toggle('open', !wasOpen);
             });
         });
 
-        // ✅ Bloque le menu contextuel (appui long) sur les rubriques principales
-        document.querySelectorAll('.nav-list > li > a').forEach(function (link) {
-            link.addEventListener('contextmenu', function (e) {
+        document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
+            link.addEventListener('click', function () {
+                if (window.innerWidth > 768) return;
+                document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
+                    item.classList.remove('open');
+                });
+                if (navList) navList.classList.remove('active');
+                if (menuToggle) {
+                    menuToggle.classList.remove('active');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.textContent = '☰ Menu';
+                }
+            });
+        });
+
+        if (navList) {
+            navList.addEventListener('contextmenu', function (e) {
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
                     return false;
                 }
             });
+        }
+
+        document.addEventListener('click', function (e) {
+            if (window.innerWidth > 768) return;
+            if (!navList || !navList.classList.contains('active')) return;
+            if (navList.contains(e.target)) return;
+            if (menuToggle && menuToggle.contains(e.target)) return;
+            navList.classList.remove('active');
+            if (menuToggle) {
+                menuToggle.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.textContent = '☰ Menu';
+            }
         });
 
-        // Fermer le menu au clic sur un lien du sous-menu (mobile)
-        document.querySelectorAll('.nav-dropdown-menu a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                if (window.innerWidth > 768) return;
-                const parentDropdown = this.closest('.nav-dropdown');
-                if (parentDropdown) parentDropdown.classList.remove('open');
-                if (navList) navList.classList.remove('active');
-                if (menuToggle) menuToggle.classList.remove('active');
-                document.body.style.overflow = '';  // ✅ Réactive le scroll du body
-            });
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                if (window.innerWidth > 768 && navList) {
+                    navList.classList.remove('active');
+                    if (menuToggle) {
+                        menuToggle.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                        menuToggle.textContent = '☰ Menu';
+                    }
+                    document.querySelectorAll('.nav-dropdown.open').forEach(function (item) {
+                        item.classList.remove('open');
+                    });
+                }
+            }, 200);
         });
     }
 
@@ -261,48 +267,71 @@
     /* ============================================================
        7. OUVERTURE PAR ANCRE
        ============================================================ */
+    function openAccordionItem(item) {
+        if (!item) return;
+        const header = item.querySelector(':scope > .accordion-header');
+        if (!header || header.classList.contains('open')) return;
+
+        document.querySelectorAll('.accordion-header').forEach(function (h) {
+            h.classList.remove('open');
+            h.setAttribute('aria-expanded', 'false');
+            const body = h.nextElementSibling;
+            if (body) body.classList.remove('open');
+        });
+
+        header.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+        const body = header.nextElementSibling;
+        if (body) body.classList.add('open');
+    }
+
     function openAccordionFromHash() {
         if (!window.location.hash) return;
         const target = document.querySelector(window.location.hash);
         if (!target) return;
 
-        if (target.classList.contains('content-box')) {
-            const firstAccordion = target.querySelector('.accordion-item');
-            if (firstAccordion) {
-                const header = firstAccordion.querySelector('.accordion-header');
-                if (header && !header.classList.contains('open')) {
-                    document.querySelectorAll('.accordion-header').forEach(function (h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
-                    });
-                    header.classList.add('open');
-                    header.setAttribute('aria-expanded', 'true');
-                    if (header.nextElementSibling) header.nextElementSibling.classList.add('open');
-                    setTimeout(function () {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 200);
-                }
-                return;
-            }
+        if (target.classList.contains('accordion-item')) {
+            openAccordionItem(target);
+            setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
+            }, 250);
+            return;
         }
 
-        if (target.classList.contains('accordion-item')) {
-            const header = target.querySelector('.accordion-header');
-            if (header && !header.classList.contains('open')) {
-                document.querySelectorAll('.accordion-header').forEach(function (h) {
-                    h.classList.remove('open');
-                    h.setAttribute('aria-expanded', 'false');
-                    if (h.nextElementSibling) h.nextElementSibling.classList.remove('open');
-                });
-                header.classList.add('open');
-                header.setAttribute('aria-expanded', 'true');
-                if (header.nextElementSibling) header.nextElementSibling.classList.add('open');
-                setTimeout(function () {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
-                }, 250);
+        if (target.classList.contains('content-box')) {
+            const firstAccordion = target.querySelector('.accordion-item');
+            if (firstAccordion) openAccordionItem(firstAccordion);
+            setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
+            }, 250);
+            return;
+        }
+
+        const parentSousAccordion = target.closest('.sous-accordion-body');
+        if (parentSousAccordion) {
+            const subId = parentSousAccordion.id.replace('-content', '');
+            if (typeof window.toggleSubAccordion === 'function') {
+                if (!parentSousAccordion.classList.contains('open')) {
+                    window.toggleSubAccordion(subId);
+                }
             }
+            const parentAccordion = parentSousAccordion.closest('.accordion-item');
+            if (parentAccordion) openAccordionItem(parentAccordion);
+            setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+            return;
+        }
+
+        const parentAccordionItem = target.closest('.accordion-item');
+        if (parentAccordionItem) {
+            openAccordionItem(parentAccordionItem);
+            setTimeout(function () {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (window.__carteEcoles) window.__carteEcoles.invalidateSize();
+            }, 250);
         }
     }
 
@@ -407,7 +436,7 @@
     }
 
     /* ============================================================
-       10. CARTES ÉCOLES DÉPLIABLES
+       10. CARTES ÉCOLES DÉPLIABLES (avec support impression)
        ============================================================ */
     function initCartesDepliables() {
         if (window.innerWidth > 768) return;
@@ -419,6 +448,9 @@
             carte.addEventListener('click', function (e) {
                 e.stopPropagation();
                 if (e.target.closest('a')) return;
+                if (e.target.closest('.ecole-print-row')) return;
+                if (e.target.closest('input[type="checkbox"]')) return;
+                if (e.target.closest('label')) return;
                 this.classList.toggle('open');
             });
         });
@@ -471,7 +503,7 @@
         initCartesDepliables();
         initMairiesDepliables();
 
-        openAccordionFromHash();
+        setTimeout(openAccordionFromHash, 100);
         window.addEventListener('hashchange', openAccordionFromHash);
 
         let resizeTimer;
