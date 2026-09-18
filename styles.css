@@ -426,9 +426,40 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
+   ✅ CORRECTION FIREFOX MOBILE : empêche le menu de disparaître
+   quand on clique sur une rubrique en bas du menu
+   ============================================================ */
+
+/* Désactive le "scroll anchoring" de Firefox
+   qui fait disparaître le menu mobile quand on clique sur une rubrique en bas */
+.nav-list,
+.nav-list.active,
+.nav-list > li,
+.nav-dropdown-menu,
+.nav-dropdown-menu li {
+    overflow-anchor: none;
+}
+
+@media (max-width: 768px) {
+    /* Désactive le focus visible qui déclenche scrollIntoView */
+    .nav-dropdown > a,
+    .nav-dropdown > a:focus,
+    .nav-list > li > a:focus {
+        outline: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Force le menu à garder sa hauteur */
+    .nav-list.active {
+        min-height: 0;
+        height: auto;
+        max-height: calc(100vh - 60px);
+        overscroll-behavior: contain;
+    }
+}
+
+/* ============================================================
    ✅ ANTI-SCROLL AUTOMATIQUE (bug "Vivre ensemble" / "Accès aux droits")
-   Quand on clique sur un lien en bas du menu mobile, on empêche
-   le navigateur de faire remonter la page involontairement.
    ============================================================ */
 @media (max-width: 768px) {
     .nav-list > li > a,
@@ -1732,6 +1763,7 @@ li { margin-bottom: 0.5rem; }
     /* ===== NAV : désactive sticky en mobile pour permettre le scroll interne ===== */
     .nav {
         position: relative;
+        overflow: visible;
     }
 
     /* ===== Désactive le menu contextuel à TOUS les niveaux du menu principal ===== */
@@ -1785,17 +1817,16 @@ li { margin-bottom: 0.5rem; }
         width: 100%;
     }
 
-    /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran */
+    /* ✅ Menu actif : scroll interne + hauteur limitée à l'écran
+       On utilise 100vh - 60px (sans dvh, buggé sur Firefox) */
     .nav-list.active {
         display: flex;
-        max-height: calc(100vh - 80px);
-        max-height: calc(100dvh - 80px);
+        max-height: calc(100vh - 60px);
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
         touch-action: pan-y;
-        will-change: scroll-position;
     }
 
     .nav-list li { width: 100%; margin: 0; }
