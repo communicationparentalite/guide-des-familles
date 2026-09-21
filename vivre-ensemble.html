@@ -1,23 +1,441 @@
-<div class="accordion-item" id="guidasso">
-    <button class="accordion-header">
-        <span>Guid'Asso</span>
-        <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-body">
-        <!-- Case d'impression de section -->
-        <div class="print-select-row">...</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Vivre ensemble - Guide des Familles Berry Loire Puisaye</title>
+    <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        /* ===== COULEURS SPÉCIFIQUES À VIVRE ENSEMBLE (JAUNE) ===== */
+        .page-vivre-ensemble {
+            --primary-color: #f0bb1e;
+            --primary-light: #F7CE5A;
+            --primary-dark: #B4820A;
+            --secondary-color: #E6A014;
+            --secondary-light: #F5C850;
+        }
 
-        <!-- ✅ Logo + texte côte à côte (logo au-dessus) -->
-        <div class="accordion-content-row">
-            <div class="logo-col">
-                <img src="vivre_ensemble_guideasso.png" class="logo-taille-x2">
-            </div>
-            <div class="text-col">
-                <div class="short-text">...</div>
-                <div class="full-text">...</div>
-                <button class="read-more-btn">Lire la suite</button>
-                <p>Contacts...</p>
+        /* ============================================================
+           ✅ LAYOUT "LOGO + TEXTE" DANS LES ACCORDÉONS
+           Logo au-dessus, centré (comme dans interlocuteurs.html)
+           ============================================================ */
+        .accordion-content-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .accordion-content-row .logo-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .accordion-content-row .logo-col img {
+            height: auto;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 8px;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .accordion-content-row .logo-col img.logo-taille-x2 {
+            max-width: 320px;
+        }
+
+        .accordion-content-row .text-col {
+            flex: 1;
+            min-width: 0;
+            width: 100%;
+        }
+
+        .accordion-content-row .text-col p:first-child {
+            margin-top: 0;
+        }
+
+        @media (max-width: 768px) {
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .accordion-content-row .logo-col img.logo-taille-x2 {
+                max-width: 180px;
+            }
+        }
+    </style>
+</head>
+<body class="page-vivre-ensemble">
+
+    <!-- ===== EN-TÊTE D'IMPRESSION ===== -->
+    <div class="print-header" style="display: none;">
+        <h1>Guide des Familles - Vivre ensemble</h1>
+        <p>Communauté de Communes Berry Loire Puisaye</p>
+        <p>Imprimé le <span id="print-date"></span></p>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
+                    <h1><a href="index.html">Guide des Familles</a></h1>
+                </div>
+                <div class="header-info">
+                    <strong>Dernière mise à jour :</strong> 3 septembre 2026
+                </div>
             </div>
         </div>
+    </header>
+
+    <!-- ===== NAV ===== -->
+    <nav class="nav" id="mainNav">
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
+        <ul class="nav-list" id="navList">
+            <li><a href="index.html" class="nav-link-accueil">Accueil</a></li>
+
+            <li class="nav-dropdown dropdown-interlocuteurs">
+                <a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="interlocuteurs.html" class="nav-dropdown-main-link">Voir la page Interlocuteurs</a></li>
+                    <li><a href="interlocuteurs.html#mairies">Mairies</a></li>
+                    <li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>
+                    <li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>
+                    <li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>
+                    <li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-arrivee-enfant">
+                <a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d'un enfant</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="arrivee-enfant.html" class="nav-dropdown-main-link">Voir la page Arrivée d'un enfant</a></li>
+                    <li><a href="arrivee-enfant.html#demarches">Démarches avant l'arrivée</a></li>
+                    <li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>
+                    <li><a href="arrivee-enfant.html#mode-de-garde">Recherche d'un mode de garde</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-petite-enfance">
+                <a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="petite-enfance.html" class="nav-dropdown-main-link">Voir la page Petite enfance</a></li>
+                    <li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>
+                    <li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>
+                    <li><a href="petite-enfance.html#mam">Maison d'Assistantes Maternelles (MAM)</a></li>
+                    <li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>
+                    <li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>
+                    <li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>
+                    <li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-enfance">
+                <a href="enfance.html" class="nav-link-enfance">Enfance</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="enfance.html" class="nav-dropdown-main-link">Voir la page Enfance</a></li>
+                    <li><a href="enfance.html#scolarite">Scolarité</a></li>
+                    <li><a href="enfance.html#clas">CLAS</a></li>
+                    <li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>
+                    <li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-jeunesse">
+                <a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="jeunesse.html" class="nav-dropdown-main-link">Voir la page Jeunesse</a></li>
+                    <li><a href="jeunesse.html#colleges">Collèges</a></li>
+                    <li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>
+                    <li><a href="jeunesse.html#structures-loisirs">Structures d'accueil et de loisirs</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-parentalite">
+                <a href="parentalite.html" class="nav-link-parentalite">Parentalité</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="parentalite.html" class="nav-dropdown-main-link">Voir la page Parentalité</a></li>
+                    <li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>
+                    <li><a href="parentalite.html#sdaep">Service d'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>
+                    <li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>
+                    <li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>
+                    <li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee'Mobile</a></li>
+                    <li><a href="parentalite.html#paf">Programme d'Animations Familiales (PAF)</a></li>
+                    <li><a href="parentalite.html#groupe-echanges">Groupe d'échanges entre parents</a></li>
+                    <li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-loisirs">
+                <a href="loisirs.html" class="nav-link-loisirs">Loisirs</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="loisirs.html" class="nav-dropdown-main-link">Voir la page Loisirs</a></li>
+                    <li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>
+                    <li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>
+                    <li><a href="loisirs.html#associations">Associations</a></li>
+                    <li><a href="loisirs.html#ludotheques">Ludothèques</a></li>
+                    <li><a href="loisirs.html#microfolie">Micro-Folie</a></li>
+                    <li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>
+                    <li><a href="loisirs.html#patrimoine">Patrimoine</a></li>
+                    <li><a href="loisirs.html#squares">Squares</a></li>
+                    <li><a href="loisirs.html#city-skate">City-stades</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-vivre-ensemble">
+                <a href="vivre-ensemble.html" class="nav-link-vivre-ensemble active">Vivre ensemble</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="vivre-ensemble.html" class="nav-dropdown-main-link">Voir la page Vivre ensemble</a></li>
+                    <li><a href="vivre-ensemble.html#guidasso">Guid'Asso</a></li>
+                    <li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>
+                    <li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-dropdown dropdown-acces-droits">
+                <a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits</a>
+                <ul class="nav-dropdown-menu">
+                    <li><a href="acces-droits.html" class="nav-dropdown-main-link">Voir la page Accès aux droits</a></li>
+                    <li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>
+                    <li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>
+                    <li><a href="acces-droits.html#sis">Service d'Intervention Sociale de la CAF</a></li>
+                    <li><a href="acces-droits.html#msa">Adhérents MSA</a></li>
+                    <li><a href="acces-droits.html#cidff">CIDFF</a></li>
+                    <li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- ===== MAIN ===== -->
+    <main>
+        <section class="section section-alt">
+            <div class="container">
+                <!-- Bannière -->
+                <div class="section-header">
+                    <img src="Vivre_ensemble.png" alt="Vivre ensemble">
+                </div>
+                <h2 class="section-title">Vivre ensemble</h2>
+                <p class="quote">"Seul on va plus vite, ensemble on va plus loin." - Proverbe africain</p>
+
+                <!-- ============================================================ -->
+                <!-- ===== ACCORDÉON ===== -->
+                <!-- ============================================================ -->
+                <div class="accordion">
+
+                    <!-- ===== 1. GUID'ASSO ===== -->
+                    <div class="accordion-item" id="guidasso">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Guid'Asso</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="guidasso">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="vivre_ensemble_guideasso.png"
+                                         alt="Guid'Asso"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Dispositif de l'État, géré par la Ligue de l'enseignement pour le département du Loiret, qui propose un accompagnement des associations tout au long de leur existence : de leur création à leur dissolution.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Présence d'une informatrice au sein de Bee'Mobile qui pourra répondre aux questions des associations ou au besoin les rediriger vers des accompagnateurs généralistes, aptes à répondre à toutes les questions. Propositions de temps de rencontre et de formations gratuites tout au long de l'année.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
+                                    <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                    📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                    <div class="social-links">
+                                        <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                        <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 2. ESPACE INITIATIVES HABITANTS ===== -->
+                    <div class="accordion-item" id="espace-initiatives">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Espace Initiatives Habitants</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="espace-initiatives">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="vivre_ensemble_projet_initiative.png"
+                                         alt="Initiatives habitants"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Service ouvert à l'ensemble des habitants pour proposer et mettre en œuvre des projets collectifs : projet en cours de développement d'un jardin partagé à Bonny-sur-Loire, rue de Bicètre.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Projet à venir : projet artistique "Rêver plus grand !". Projet intergénérationnel encadré par trois artistes : une comédienne, une écrivaine et une danseuse.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
+                                    <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                    📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                    <div class="social-links">
+                                        <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                        <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ===== 3. PERMANENCE NUMÉRIQUE ===== -->
+                    <div class="accordion-item" id="permanence-numerique">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Permanence numérique</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="permanence-numerique">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+
+                            <!-- ✅ Logo placé au-dessus du contenu -->
+                            <div class="accordion-content-row">
+                                <div class="logo-col">
+                                    <img src="vivre_page-004.png"
+                                         alt="Permanence numérique"
+                                         class="logo-taille-x2"
+                                         loading="lazy">
+                                </div>
+                                <div class="text-col">
+                                    <div class="short-text">
+                                        <p>Service en cours de développement qui vise à proposer aux habitants et aux associations de l'ensemble de la Communauté de communes un accompagnement sur toutes les thématiques relatives au numérique.</p>
+                                    </div>
+                                    <div class="full-text">
+                                        <p>Cela inclut : aide à l'utilisation d'un ordinateur, bonne utilisation des réseaux sociaux, formations à l'utilisation d'outils, accompagnement pour les démarches administratives. Ce service sera en itinérance sur l'ensemble des communes du Berry Loire Puisaye.</p>
+                                    </div>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <p style="margin-top: 1rem;"><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
+                                    <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                    📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                    <div class="social-links">
+                                        <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                        <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ===== FIN ACCORDÉON ===== -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+            <img id="lightboxImg" class="lightbox-image" src="" alt="">
+        </div>
     </div>
-</div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                    <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                        <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation rapide</h3>
+                    <ul>
+                        <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+                        <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
+                        <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
+                        <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
+                        <li><a href="acces-droits.html">Accès aux droits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== PIED DE PAGE D'IMPRESSION ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
+    <!-- ===== SCROLL TOP ===== -->
+    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
+
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
