@@ -186,7 +186,6 @@ li { margin-bottom: 0.5rem; }
 
 /* ============================================================
    ✅ IMAGE DE CONTENU : centrée, entière, max 400px
-   (utilisée pour les images "seules" dans les accordéons)
    ============================================================ */
 .img-contenu-400 {
     display: block;
@@ -332,14 +331,12 @@ li { margin-bottom: 0.5rem; }
     padding: 0;
 }
 
-/* ✅ Le :hover s'applique UNIQUEMENT en desktop (≥ 769px) */
 @media (min-width: 769px) {
     .nav-dropdown:hover .nav-dropdown-menu {
         display: block;
     }
 }
 
-/* Toutes tailles : la classe .open (gérée par le JS) ouvre le sous-menu */
 .nav-dropdown.open .nav-dropdown-menu {
     display: block;
 }
@@ -403,82 +400,6 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   ✅ EN-TÊTE DANS LE MENU MOBILE (logo + titre)
-   ============================================================ */
-.nav-mobile-header {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .nav-mobile-header {
-        display: block;
-        width: 100%;
-        list-style: none;
-    }
-
-    .nav-mobile-header-content {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        background: linear-gradient(135deg,
-            var(--primary-color) 0%,
-            var(--secondary-color) 100%
-        );
-        color: white;
-    }
-
-    .nav-mobile-header-content img {
-        height: 30px;
-        width: auto;
-        background: transparent;
-    }
-
-    .nav-mobile-header-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: white;
-        letter-spacing: 0.02em;
-    }
-}
-
-/* ============================================================
-   ✅ BOUTON FERMER (dans le menu mobile)
-   ============================================================ */
-.nav-close-item {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .nav-close-item {
-        display: block;
-        width: 100%;
-        list-style: none;
-    }
-
-    .nav-close-btn {
-        display: block;
-        width: 100%;
-        padding: 0.5rem;
-        background: var(--primary-dark);
-        color: white;
-        font-weight: 700;
-        font-size: 0.85rem;
-        border: none;
-        cursor: pointer;
-        text-align: center;
-        font-family: var(--font-main);
-        transition: background-color 0.2s ease;
-    }
-
-    .nav-close-btn:hover,
-    .nav-close-btn:active {
-        background: var(--primary-color);
-    }
-}
-
-/* ============================================================
    ✅ LIEN "VOIR LA PAGE [RUBRIQUE]" — VISIBLE UNIQUEMENT EN MOBILE
    ============================================================ */
 
@@ -511,7 +432,7 @@ li { margin-bottom: 0.5rem; }
         margin-right: 0.3rem;
     }
 
-    /* --- Couleur du texte : spécifique à chaque rubrique --- */
+    /* Couleur du texte : spécifique à chaque rubrique */
     .dropdown-interlocuteurs .nav-dropdown-main-link { color: #1f5692 !important; }
     .dropdown-arrivee-enfant .nav-dropdown-main-link { color: #2E7D32 !important; }
     .dropdown-petite-enfance .nav-dropdown-main-link { color: #33B85D !important; }
@@ -522,7 +443,7 @@ li { margin-bottom: 0.5rem; }
     .dropdown-vivre-ensemble .nav-dropdown-main-link { color: #B4820A !important; }
     .dropdown-acces-droits .nav-dropdown-main-link { color: #C83296 !important; }
 
-    /* --- Survol : fond spécifique à chaque rubrique --- */
+    /* Survol : fond spécifique à chaque rubrique */
     .dropdown-interlocuteurs .nav-dropdown-main-link:hover { background: #1f5692 !important; color: white !important; }
     .dropdown-arrivee-enfant .nav-dropdown-main-link:hover { background: #2E7D32 !important; color: white !important; }
     .dropdown-petite-enfance .nav-dropdown-main-link:hover { background: #33B85D !important; color: white !important; }
@@ -1656,7 +1577,6 @@ li { margin-bottom: 0.5rem; }
 
 /* ============================================================
    ✅ LIGNES D'IMPRESSION DANS LES CARTES (écoles, squares, skateparks)
-   Ces règles sont partagées entre les cartes qui ont une case à cocher
    ============================================================ */
 .ecole-print-row,
 .lieu-print-row {
@@ -1694,7 +1614,6 @@ li { margin-bottom: 0.5rem; }
     color: var(--primary-color);
 }
 
-/* ✅ Mise en évidence de la carte quand elle est sélectionnée */
 .ecole-card.print-selected,
 .lieu-card.print-selected {
     border-color: var(--primary-color);
@@ -1846,7 +1765,7 @@ li { margin-bottom: 0.5rem; }
         position: static;
     }
 
-    /* ===== MENU MOBILE : ACCORDÉON DANS LE FLUX (pas d'overlay) ===== */
+    /* ===== MENU MOBILE : ACCORDÉON DANS LE FLUX ===== */
     .menu-toggle {
         display: block;
         background: var(--primary-color);
@@ -1863,7 +1782,6 @@ li { margin-bottom: 0.5rem; }
 
     .menu-toggle.active { background: var(--primary-dark); }
 
-    /* ✅ Le menu se déploie DANS le flux, pas en overlay */
     .nav-list {
         display: none;
         flex-direction: column;
@@ -1881,7 +1799,6 @@ li { margin-bottom: 0.5rem; }
         margin: 0;
     }
 
-    /* === RUBRIQUES PRINCIPALES === */
     .nav-list > li > a {
         text-align: left;
         border-bottom: 1px solid var(--border-color);
@@ -1921,7 +1838,6 @@ li { margin-bottom: 0.5rem; }
         font-weight: 600;
     }
 
-    /* === SOUS-MENUS DÉROULANTS === */
     .nav-dropdown-menu {
         position: static;
         display: none;
@@ -1933,7 +1849,6 @@ li { margin-bottom: 0.5rem; }
 
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
 
-    /* === SOUS-RUBRIQUES === */
     .nav-dropdown-menu li a {
         padding: 0.6rem 1rem 0.6rem 2rem;
         text-align: left;
@@ -1956,7 +1871,7 @@ li { margin-bottom: 0.5rem; }
     .dropdown-vivre-ensemble .nav-dropdown-menu li a:hover { background-color: #fdf8ea; color: #B4820A; }
     .dropdown-acces-droits .nav-dropdown-menu li a:hover { background-color: #fdf0f8; color: #C83296; }
 
-    /* === Désactive le menu contextuel à TOUS les niveaux === */
+    /* Désactive le menu contextuel */
     .nav-list,
     .nav-list a,
     .nav-list button {
@@ -2005,12 +1920,6 @@ li { margin-bottom: 0.5rem; }
 
     .accordion-card-grid { grid-template-columns: 1fr; }
 
-    .partner-item {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
     .subsection-with-image {
         flex-direction: column;
         align-items: center;
@@ -2051,7 +1960,7 @@ li { margin-bottom: 0.5rem; }
 
     .print-select-row .print-checkbox-label { font-size: 0.75rem; }
 
-    /* ===== BOUTON D'IMPRESSION FLOTTANT (mobile) : à DROITE, compact ===== */
+    /* ===== BOUTON D'IMPRESSION FLOTTANT (mobile) ===== */
     .print-float-btn {
         bottom: 1rem;
         right: 1rem;
@@ -2162,10 +2071,14 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   26. PRINT
+   26. PRINT — VERSION OPTIMISÉE
    ============================================================ */
 
 @media print {
+
+    /* --------------------------------------------------------
+       26.1 MASQUER LES ÉLÉMENTS NON PERTINENTS
+       -------------------------------------------------------- */
     .nav,
     .scroll-top,
     .menu-toggle,
@@ -2179,122 +2092,293 @@ li { margin-bottom: 0.5rem; }
     .section-header,
     .quick-access-nav,
     .hero,
-    .quote {
+    .quote,
+    .toggle-btn,
+    .read-more-btn,
+    .print-select-all,
+    .carte-legende,
+    #carte-ecoles,
+    .video-wrapper,
+    .video-thumb,
+    .video-caption,
+    .video-credit,
+    .calameo-wrapper {
         display: none !important;
     }
 
+    /* --------------------------------------------------------
+       26.2 AFFICHER LES ÉLÉMENTS D'IMPRESSION
+       -------------------------------------------------------- */
     .print-header,
     .print-footer { display: block !important; }
 
     .print-header {
         text-align: center;
-        margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid #333;
+        margin-bottom: 0.8rem !important;
+        padding-bottom: 0.5rem !important;
+        border-bottom: 1px solid #333 !important;
     }
 
     .print-header h1 {
-        font-size: 1.5rem;
-        margin-bottom: 0.3rem;
-        color: #000;
+        font-size: 1.2rem !important;
+        margin-bottom: 0.15rem !important;
+        color: #000 !important;
     }
 
     .print-header p {
-        font-size: 0.85rem;
-        margin: 0;
-        color: #555;
+        font-size: 0.75rem !important;
+        margin: 0 !important;
+        color: #555 !important;
+        line-height: 1.2 !important;
     }
 
     .print-footer {
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid #ccc;
-        text-align: center;
-        font-size: 0.75rem;
-        color: #666;
+        margin-top: 1rem !important;
+        padding-top: 0.5rem !important;
+        border-top: 1px solid #ccc !important;
+        text-align: center !important;
+        font-size: 0.7rem !important;
+        color: #666 !important;
     }
 
+    /* --------------------------------------------------------
+       26.3 RESET POUR L'IMPRESSION
+       -------------------------------------------------------- */
+    html,
     body {
+        margin: 0 !important;
+        padding: 0 !important;
         background: white !important;
         color: black !important;
-        font-size: 11pt;
+        font-size: 10.5pt !important;
+        line-height: 1.4 !important;
     }
 
     .section,
     .section-alt {
         padding: 0 !important;
+        margin: 0 !important;
         background: white !important;
     }
 
     .container {
         max-width: 100% !important;
         padding: 0 !important;
+        margin: 0 !important;
     }
 
+    .content-box {
+        margin: 0.5rem 0 !important;
+        padding: 0.5rem 0 !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+    }
+
+    /* --------------------------------------------------------
+       26.4 TITRES COMPACTS
+       -------------------------------------------------------- */
     .section-title {
         display: block !important;
         color: #000 !important;
-        border-bottom: 2px solid #333 !important;
-        font-size: 1.3rem !important;
-        margin-bottom: 1rem !important;
-        padding-bottom: 0.3rem !important;
+        border-bottom: 1px solid #333 !important;
+        font-size: 1.15rem !important;
+        margin: 0 0 0.6rem 0 !important;
+        padding-bottom: 0.15rem !important;
+        page-break-after: avoid;
     }
 
-    .accordion-body {
-        max-height: none !important;
-        padding: 0.5rem 0 !important;
-        overflow: visible !important;
-        background: white !important;
+    h1, h2, h3, h4, h5, h6 {
+        color: #000 !important;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    h1 { font-size: 1.4rem !important; }
+    h2 { font-size: 1.2rem !important; }
+    h3 { font-size: 1.05rem !important; }
+    h4 { font-size: 0.95rem !important; }
+    h5 { font-size: 0.9rem !important; }
+
+    p {
+        margin-bottom: 0.4rem !important;
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* --------------------------------------------------------
+       26.5 ACCORDÉONS EN IMPRESSION
+       -------------------------------------------------------- */
+    .accordion {
+        margin-top: 0 !important;
+    }
+
+    .accordion-item {
+        border: none !important;
+        box-shadow: none !important;
+        margin-bottom: 0.8rem !important;
+        page-break-inside: avoid;
+        background: transparent !important;
     }
 
     .accordion-header {
         background: white !important;
         color: black !important;
-        border-bottom: 2px solid #333 !important;
-        padding: 0.5rem 0 !important;
+        border-bottom: 1.5px solid #333 !important;
+        padding: 0.3rem 0 !important;
+        margin: 0 !important;
         page-break-after: avoid;
+        font-size: 1rem !important;
     }
 
     .accordion-header span { color: black !important; }
     .accordion-header .accordion-icon { display: none !important; }
+    .accordion-header .count { color: #666 !important; background: transparent !important; }
 
-    .accordion-item {
-        border: none !important;
-        box-shadow: none !important;
-        margin-bottom: 1.5rem !important;
-        page-break-inside: avoid;
-    }
-
-    .sous-accordion-body {
+    .accordion-body {
         max-height: none !important;
         padding: 0.3rem 0 !important;
         overflow: visible !important;
-        background: white !important;
+        background: transparent !important;
+    }
+
+    /* Sous-accordéons */
+    .sous-accordion-wrapper {
+        border: none !important;
+        margin-bottom: 0.5rem !important;
+        page-break-inside: avoid;
     }
 
     .sous-accordion-header {
         background: white !important;
         color: black !important;
         border-bottom: 1px solid #666 !important;
-        padding: 0.4rem 0 !important;
+        padding: 0.25rem 0 !important;
+        font-size: 0.95rem !important;
     }
 
     .sous-accordion-header span { color: black !important; }
     .sous-accordion-icon { display: none !important; }
 
-    .full-text { display: block !important; }
-    .read-more-btn { display: none !important; }
-
-    .ecole-details { display: block !important; }
-    .ecole-toggle-icon { display: none !important; }
-    .ecole-card .ecole-nom-court { display: none !important; }
-
-    .card {
-        border: 1px solid #ccc !important;
-        box-shadow: none !important;
-        page-break-inside: avoid;
+    .sous-accordion-body {
+        max-height: none !important;
+        padding: 0.2rem 0 !important;
+        overflow: visible !important;
+        background: transparent !important;
     }
 
+    /* Afficher tout le contenu caché */
+    .full-text { display: block !important; }
+
+    /* --------------------------------------------------------
+       26.6 IMAGES ET LOGOS RÉDUITS
+       -------------------------------------------------------- */
+    img {
+        page-break-inside: avoid;
+        background: transparent !important;
+    }
+
+    /* Logos dans les accordéons */
+    .accordion-content-row .logo-col img,
+    .accordion-content-row .logo-col img.logo-taille-x2 {
+        max-width: 200px !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 auto 0.5rem auto !important;
+        display: block !important;
+    }
+
+    .accordion-content-row .logo-col img.logo-taille-caf {
+        max-width: 80px !important;
+    }
+
+    /* Logos dans les headers d'accordéons */
+    .accordion-header img,
+    .accordion-header .header-logo,
+    .accordion-header .header-logo-large {
+        max-width: 35px !important;
+        width: 35px !important;
+        height: 35px !important;
+        object-fit: contain !important;
+    }
+
+    /* Images de contenu */
+    .img-contenu-400,
+    .accordion-body > img,
+    .accordion-body-inner > img,
+    .sous-accordion-body > img,
+    .full-text > img,
+    .sub-section > img {
+        max-width: 250px !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0.3rem auto !important;
+        display: block !important;
+    }
+
+    /* Miniatures */
+    .accordion-image,
+    .accordion-body-inner .images img,
+    .accordion-card img,
+    .card img,
+    .card-image {
+        max-width: 150px !important;
+        width: auto !important;
+        height: auto !important;
+        max-height: 120px !important;
+        object-fit: contain !important;
+    }
+
+    /* Images dans les cartes écoles / mairies / lieux */
+    .ecole-card img,
+    .mairie-card img,
+    .lieu-card img {
+        max-width: 150px !important;
+        height: auto !important;
+    }
+
+    /* Galeries */
+    .photo-gallery img {
+        max-width: 150px !important;
+        width: auto !important;
+        height: auto !important;
+        max-height: 120px !important;
+    }
+
+    /* Sous-sections avec image */
+    .subsection-with-image .image-wrapper img {
+        max-width: 120px !important;
+    }
+
+    /* Image CC (carte du territoire) */
+    .cc-image-wrapper img {
+        max-width: 350px !important;
+        margin: 0.3rem auto !important;
+    }
+
+    /* Logo MAM */
+    .mam-logo-wrapper img {
+        max-width: 200px !important;
+        width: auto !important;
+        margin: 0.3rem auto !important;
+    }
+
+    /* Image TER */
+    .ter-content img {
+        max-width: 180px !important;
+        width: auto !important;
+        height: auto !important;
+    }
+
+    /* Logo header principal */
+    .header .logo img {
+        max-width: 50px !important;
+        height: auto !important;
+    }
+
+    /* --------------------------------------------------------
+       26.7 IMPRESSION SÉLECTIVE
+       -------------------------------------------------------- */
     body.print-has-selection .accordion-item:not(.print-selected) {
         display: none !important;
     }
@@ -2307,7 +2391,7 @@ li { margin-bottom: 0.5rem; }
         display: block !important;
         padding: 0 !important;
         box-shadow: none !important;
-        margin: 1.5rem 0 !important;
+        margin: 1rem 0 !important;
     }
 
     .accordion-item.print-selected {
@@ -2317,18 +2401,18 @@ li { margin-bottom: 0.5rem; }
 
     body.print-has-selection .content-box:has(.print-selected) > h3 {
         display: block !important;
-        font-size: 1.1rem !important;
+        font-size: 1.05rem !important;
         color: #000 !important;
         border-bottom: 1px solid #999 !important;
-        padding-bottom: 0.2rem !important;
-        margin-bottom: 1rem !important;
+        padding-bottom: 0.15rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
     body.print-has-selection .content-box:has(.print-selected) > p {
         display: none !important;
     }
 
-    /* ✅ Impression individuelle des écoles */
+    /* Impression individuelle des écoles */
     body.print-has-selection .ecole-card:not(.print-selected) {
         display: none !important;
     }
@@ -2337,11 +2421,11 @@ li { margin-bottom: 0.5rem; }
         display: block !important;
         page-break-inside: avoid;
         border: 1px solid #999 !important;
-        padding: 1rem !important;
-        margin-bottom: 1rem !important;
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
-    /* ✅ Impression individuelle des squares/skateparks */
+    /* Impression individuelle des squares/skateparks */
     body.print-has-selection .lieu-card:not(.print-selected) {
         display: none !important;
     }
@@ -2350,48 +2434,206 @@ li { margin-bottom: 0.5rem; }
         display: block !important;
         page-break-inside: avoid;
         border: 1px solid #999 !important;
-        padding: 1rem !important;
-        margin-bottom: 1rem !important;
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
     }
 
-    /* ✅ Cache les cases à cocher et leurs labels à l'impression */
+    /* Cacher les cases à cocher et leurs labels à l'impression */
     .ecole-print-row,
     .lieu-print-row {
         display: none !important;
     }
 
-    /* ✅ Cache les images des écoles sélectionnées pour ne garder que le texte */
+    /* Cacher les images des cartes sélectionnées pour ne garder que le texte */
     body.print-has-selection .ecole-card.print-selected img,
     body.print-has-selection .lieu-card.print-selected img {
         display: none !important;
     }
 
-    #carte-ecoles { display: none !important; }
-
-    .toggle-btn,
-    .read-more-btn,
-    .print-select-all { display: none !important; }
-
-    .carte-legende { display: none !important; }
-
-    h2, h3, h4 { page-break-after: avoid; }
-
-    img {
-        max-width: 100% !important;
+    /* --------------------------------------------------------
+       26.8 TABLEAUX
+       -------------------------------------------------------- */
+    table {
+        width: 100% !important;
+        border-collapse: collapse !important;
+        font-size: 9pt !important;
+        margin: 0.5rem 0 !important;
         page-break-inside: avoid;
-        background: transparent !important;
     }
 
+    thead {
+        display: table-header-group; /* Répéter l'en-tête sur chaque page */
+    }
+
+    tfoot {
+        display: table-footer-group;
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    th, td {
+        padding: 0.3rem 0.5rem !important;
+        border: 1px solid #999 !important;
+        text-align: left !important;
+        vertical-align: top !important;
+    }
+
+    th {
+        background: #f0f0f0 !important;
+        font-weight: 700 !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    td {
+        background: white !important;
+        color: #000 !important;
+    }
+
+    /* --------------------------------------------------------
+       26.9 LISTES
+       -------------------------------------------------------- */
+    ul, ol {
+        margin-left: 1.2rem !important;
+        margin-bottom: 0.5rem !important;
+        padding-left: 0.5rem !important;
+    }
+
+    li {
+        margin-bottom: 0.15rem !important;
+        page-break-inside: avoid;
+        line-height: 1.35 !important;
+    }
+
+    ul li::marker,
+    ol li::marker {
+        color: #333 !important;
+    }
+
+    /* Listes imbriquées */
+    ul ul, ol ol, ul ol, ol ul {
+        margin-top: 0.15rem !important;
+        margin-bottom: 0.15rem !important;
+        margin-left: 1rem !important;
+    }
+
+    /* --------------------------------------------------------
+       26.10 LIENS (URL en clair, sauf exceptions)
+       -------------------------------------------------------- */
     a[href]:not([href^="#"]):not([href^="tel:"]):not([href^="mailto:"])::after {
         content: " (" attr(href) ")";
-        font-size: 0.8em;
+        font-size: 0.75em;
         color: #555;
         word-break: break-all;
+        font-weight: normal;
     }
 
     a[href^="#"]::after,
     a[href^="tel:"]::after,
     a[href^="mailto:"]::after {
         content: none !important;
+    }
+
+    a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+
+    /* --------------------------------------------------------
+       26.11 CARTES ET GRILLES
+       -------------------------------------------------------- */
+    .cards-grid,
+    .cards-grid-2,
+    .cards-grid-3,
+    .cards-grid-4,
+    .accordion-card-grid,
+    .ecoles-grid,
+    .logos-grid,
+    .photo-gallery {
+        display: block !important;
+        margin: 0.3rem 0 !important;
+    }
+
+    .card,
+    .accordion-card,
+    .ecole-card,
+    .mairie-card,
+    .lieu-card,
+    .logo-item {
+        display: block !important;
+        margin-bottom: 0.5rem !important;
+        padding: 0.4rem !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        page-break-inside: avoid;
+        background: white !important;
+        border-left: 3px solid #666 !important;
+    }
+
+    .card h3, .card h4,
+    .accordion-card h3, .accordion-card h4,
+    .ecole-card h4,
+    .mairie-card h4 {
+        font-size: 0.95rem !important;
+        margin-bottom: 0.2rem !important;
+    }
+
+    /* --------------------------------------------------------
+       26.12 VIDÉOS ET CALAMÉO
+       -------------------------------------------------------- */
+    iframe {
+        display: none !important;
+    }
+
+    /* --------------------------------------------------------
+       26.13 BADGES ET ÉTIQUETTES
+       -------------------------------------------------------- */
+    .badge {
+        display: inline-block !important;
+        background: transparent !important;
+        border: 1px solid #666 !important;
+        color: #000 !important;
+        padding: 0.05rem 0.4rem !important;
+        border-radius: 4px !important;
+        font-size: 0.7rem !important;
+    }
+
+    /* --------------------------------------------------------
+       26.14 SAUTS DE PAGE
+       -------------------------------------------------------- */
+    .content-box,
+    .subsection,
+    .sub-section {
+        page-break-inside: auto;
+    }
+
+    /* Éviter les coupures au milieu d'un bloc logo + texte */
+    .accordion-content-row {
+        page-break-inside: avoid;
+    }
+
+    /* --------------------------------------------------------
+       26.15 PAGES BLANCHES : ÉVITER LES GRANDS VIDES
+       -------------------------------------------------------- */
+    body > main {
+        display: block !important;
+        page-break-before: avoid !important;
+    }
+
+    .section {
+        page-break-before: avoid !important;
+    }
+
+    /* --------------------------------------------------------
+       26.16 COULEURS IMPRESSION (optionnel)
+       -------------------------------------------------------- */
+    /* Forcer l'impression des couleurs de fond (nécessite l'accord de l'utilisateur) */
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 }
