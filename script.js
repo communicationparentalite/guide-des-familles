@@ -359,16 +359,8 @@
         const printBtn = document.getElementById('printBtn');
         const printSelectAll = document.getElementById('printSelectAll');
         const printCount = document.getElementById('printCount');
-        const printDate = document.getElementById('print-date');
 
         if (!printBtn) return;
-
-        if (printDate) {
-            const now = new Date();
-            printDate.textContent = now.toLocaleDateString('fr-FR', {
-                day: '2-digit', month: 'long', year: 'numeric'
-            });
-        }
 
         function updateSelection() {
             const checkboxes = document.querySelectorAll('.print-checkbox');
@@ -490,7 +482,23 @@
     }
 
     /* ============================================================
-       13. INITIALISATION
+       13. AUTOMATISATION DES DATES DE MISE À JOUR
+       ============================================================ */
+    function initDates() {
+        const dateElements = document.querySelectorAll('.header-date, #print-date');
+        if (dateElements.length === 0) return;
+
+        const now = new Date();
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const formattedDate = now.toLocaleDateString('fr-FR', options);
+
+        dateElements.forEach(function (el) {
+            el.textContent = formattedDate;
+        });
+    }
+
+    /* ============================================================
+       14. INITIALISATION
        ============================================================ */
     function init() {
         initNavigation();
@@ -502,6 +510,7 @@
         initPrintSelective();
         initCartesDepliables();
         initMairiesDepliables();
+        initDates();
 
         setTimeout(openAccordionFromHash, 100);
         window.addEventListener('hashchange', openAccordionFromHash);
