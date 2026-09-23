@@ -1883,6 +1883,57 @@ li { margin-bottom: 0.5rem; }
         user-select: none;
     }
 
+    /* ============================================================
+       ✅ AJOUT : EN-TÊTE ET BOUTON FERMER DANS LE MENU MOBILE
+       ============================================================ */
+    .nav-mobile-header,
+    .nav-close-item {
+        display: block;
+        width: 100%;
+    }
+
+    .nav-mobile-header-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 1rem;
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .nav-mobile-header-content img {
+        height: 40px;
+        width: auto;
+        background: transparent;
+    }
+
+    .nav-mobile-header-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+
+    .nav-close-btn {
+        display: block;
+        width: 100%;
+        padding: 0.8rem;
+        background: var(--bg-light);
+        border: none;
+        border-top: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border-color);
+        text-align: center;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--text-dark);
+        cursor: pointer;
+        font-family: var(--font-main);
+    }
+
+    .nav-close-btn:hover {
+        background: var(--primary-light);
+        color: white;
+    }
+
     /* ===== SECTIONS & CONTENU ===== */
     .section { padding: 1.5rem 0; }
     .section-title { font-size: 1.5rem; }
@@ -1996,6 +2047,14 @@ li { margin-bottom: 0.5rem; }
         padding: 0.5rem;
         white-space: nowrap;
     }
+}
+
+/* ============================================================
+   ✅ MASQUER L'EN-TÊTE ET LE BOUTON FERMER SUR DESKTOP
+   ============================================================ */
+.nav-mobile-header,
+.nav-close-item {
+    display: none;
 }
 
 @media (max-width: 480px) {
