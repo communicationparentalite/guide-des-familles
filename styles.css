@@ -1576,10 +1576,11 @@ li { margin-bottom: 0.5rem; }
 }
 
 /* ============================================================
-   ✅ LIGNES D'IMPRESSION DANS LES CARTES (écoles, squares, skateparks)
+   ✅ LIGNES D'IMPRESSION DANS LES CARTES (écoles, squares, skateparks, mairies)
    ============================================================ */
 .ecole-print-row,
-.lieu-print-row {
+.lieu-print-row,
+.mairie-print-row {
     margin-top: 0.8rem;
     padding-top: 0.8rem;
     border-top: 1px dashed var(--border-color);
@@ -1589,7 +1590,8 @@ li { margin-bottom: 0.5rem; }
 }
 
 .ecole-print-row input[type="checkbox"],
-.lieu-print-row input[type="checkbox"] {
+.lieu-print-row input[type="checkbox"],
+.mairie-print-row input[type="checkbox"] {
     width: 16px;
     height: 16px;
     accent-color: var(--primary-color);
@@ -1599,7 +1601,8 @@ li { margin-bottom: 0.5rem; }
 }
 
 .ecole-print-row label,
-.lieu-print-row label {
+.lieu-print-row label,
+.mairie-print-row label {
     font-size: 0.78rem;
     font-style: italic;
     color: var(--text-light);
@@ -1608,14 +1611,16 @@ li { margin-bottom: 0.5rem; }
 }
 
 .ecole-print-row input[type="checkbox"]:checked + label,
-.lieu-print-row input[type="checkbox"]:checked + label {
+.lieu-print-row input[type="checkbox"]:checked + label,
+.mairie-print-row input[type="checkbox"]:checked + label {
     font-weight: 700;
     font-style: normal;
     color: var(--primary-color);
 }
 
 .ecole-card.print-selected,
-.lieu-card.print-selected {
+.lieu-card.print-selected,
+.mairie-card.print-selected {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px var(--primary-light);
     background: #fafbff;
@@ -2497,15 +2502,63 @@ li { margin-bottom: 0.5rem; }
         margin-bottom: 0.5rem !important;
     }
 
+    /* ============================================================
+       ✅ AJOUT : IMPRESSION INDIVIDUELLE DES MAIRIES
+       ============================================================ */
+    body.print-has-selection .mairie-card:not(.print-selected) {
+        display: none !important;
+    }
+
+    body.print-has-selection .mairie-card.print-selected {
+        display: block !important;
+        page-break-inside: avoid;
+        border: 1px solid #999 !important;
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Neutraliser l'en-tête cliquable de la mairie sélectionnée */
+    body.print-has-selection .mairie-card.print-selected .mairie-card-header {
+        background: transparent !important;
+        color: #000 !important;
+        padding: 0 !important;
+        cursor: default !important;
+    }
+
+    body.print-has-selection .mairie-card.print-selected .mairie-card-header h4 {
+        color: #000 !important;
+        font-size: 1rem !important;
+        margin-bottom: 0.3rem !important;
+    }
+
+    body.print-has-selection .mairie-card.print-selected .mairie-card-icon {
+        display: none !important;
+    }
+
+    /* Toujours afficher le corps de la mairie sélectionnée à l'impression */
+    body.print-has-selection .mairie-card.print-selected .mairie-card-body {
+        max-height: none !important;
+        padding: 0.3rem 0 !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    body.print-has-selection .mairie-card.print-selected .mairie-card-body a {
+        color: #000 !important;
+        text-decoration: none !important;
+    }
+
     /* Cacher les cases à cocher et leurs labels à l'impression */
     .ecole-print-row,
-    .lieu-print-row {
+    .lieu-print-row,
+    .mairie-print-row {
         display: none !important;
     }
 
     /* Cacher les images des cartes sélectionnées pour ne garder que le texte */
     body.print-has-selection .ecole-card.print-selected img,
-    body.print-has-selection .lieu-card.print-selected img {
+    body.print-has-selection .lieu-card.print-selected img,
+    body.print-has-selection .mairie-card.print-selected img {
         display: none !important;
     }
 
