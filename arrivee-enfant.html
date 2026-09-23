@@ -104,7 +104,7 @@
                     <h1><a href="index.html">Guide des Familles</a></h1>
                 </div>
                 <div class="header-info">
-                    <strong>Dernière mise à jour :</strong> 3 septembre 2026
+                    <strong>Dernière mise à jour :</strong> <span class="header-date"></span>
                 </div>
             </div>
         </div>
@@ -446,44 +446,49 @@
                                     </div>
                                     <button class="read-more-btn">Lire la suite</button>
                                     <div class="cards-grid" style="margin-top: 1rem;">
-                                       <div class="cards-grid" style="margin-top: 1rem;">
-    <div class="card">
-        <h5>MVB Doula</h5>
-        <p style="margin: 0.2rem 0;">
-            Marjorie Vatan-Bagryianik<br>
-            BRIARE<br>
-            📞 <a href="tel:0642214228">06 42 21 42 28</a>
-        </p>
-        <p style="margin: 0.4rem 0;">
-            🌐 <a href="https://www.mvb-doula.fr/" target="_blank" rel="noopener">www.mvb-doula.fr</a>
-        </p>
-        <p style="margin: 0.4rem 0;">
-            📧 <a href="mailto:contact@mvb-doula.fr">contact@mvb-doula.fr</a>
-        </p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/p/MVB-Doula-100083327262055/" target="_blank" rel="noopener" aria-label="Facebook MVB Doula">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-        </div>
-    </div>
+                                        <div class="card">
+                                            <h5>MVB Doula</h5>
+                                            <p style="margin: 0.2rem 0;">
+                                                Marjorie Vatan-Bagryianik<br>
+                                                BRIARE<br>
+                                                📞 <a href="tel:0642214228">06 42 21 42 28</a>
+                                            </p>
+                                            <p style="margin: 0.4rem 0;">
+                                                🌐 <a href="https://www.mvb-doula.fr/" target="_blank" rel="noopener">www.mvb-doula.fr</a>
+                                            </p>
+                                            <p style="margin: 0.4rem 0;">
+                                                📧 <a href="mailto:contact@mvb-doula.fr">contact@mvb-doula.fr</a>
+                                            </p>
+                                            <div class="social-links">
+                                                <a href="https://www.facebook.com/p/MVB-Doula-100083327262055/" target="_blank" rel="noopener" aria-label="Facebook MVB Doula">
+                                                    <i class="fa-brands fa-facebook"></i>
+                                                </a>
+                                            </div>
+                                        </div>
 
-    <div class="card">
-        <h5>Hera Doula</h5>
-        <p style="margin: 0.2rem 0;">
-            Victoire Jacquot<br>
-            CHÂTILLON-SUR-LOIRE<br>
-            📞 <a href="tel:0626075463">06 26 07 54 63</a>
-        </p>
-        <p style="margin: 0.4rem 0;">
-            📧 <a href="mailto:heradoula@gmail.com">heradoula@gmail.com</a>
-        </p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/p/H%C3%A9ra-Doula-100089091673677/" target="_blank" rel="noopener" aria-label="Facebook Héra Doula">
-                <i class="fa-brands fa-facebook"></i>
-            </a>
-        </div>
-    </div>
-</div>
+                                        <div class="card">
+                                            <h5>Hera Doula</h5>
+                                            <p style="margin: 0.2rem 0;">
+                                                Victoire Jacquot<br>
+                                                CHÂTILLON-SUR-LOIRE<br>
+                                                📞 <a href="tel:0626075463">06 26 07 54 63</a>
+                                            </p>
+                                            <p style="margin: 0.4rem 0;">
+                                                📧 <a href="mailto:heradoula@gmail.com">heradoula@gmail.com</a>
+                                            </p>
+                                            <div class="social-links">
+                                                <a href="https://www.facebook.com/p/H%C3%A9ra-Doula-100089091673677/" target="_blank" rel="noopener" aria-label="Facebook Héra Doula">
+                                                    <i class="fa-brands fa-facebook"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
                 <!-- ===== MODE DE GARDE ===== -->
                 <div class="content-box" id="mode-de-garde">
@@ -640,318 +645,7 @@
     <!-- ===== SCROLL TOP ===== -->
     <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
 
-    <!-- ===== SCRIPTS ===== -->
-    <script>
-        (function() {
-            // ---- Menu mobile ----
-            const menuToggle = document.getElementById('menuToggle');
-            const navList = document.getElementById('navList');
-
-            if (menuToggle) {
-                menuToggle.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    navList.classList.toggle('active');
-                    menuToggle.classList.toggle('active');
-                });
-            }
-
-            // ---- Sous-menu déroulant sur mobile ----
-            document.querySelectorAll('.nav-dropdown > a').forEach(function(link) {
-                let clickTimer = null;
-
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        if (clickTimer) {
-                            clearTimeout(clickTimer);
-                            clickTimer = null;
-                            return;
-                        }
-
-                        e.preventDefault();
-                        const parent = this.parentElement;
-                        const wasOpen = parent.classList.contains('open');
-
-                        document.querySelectorAll('.nav-dropdown.open').forEach(function(item) {
-                            item.classList.remove('open');
-                        });
-
-                        if (!wasOpen) {
-                            parent.classList.add('open');
-                        }
-
-                        clickTimer = setTimeout(function() {
-                            clickTimer = null;
-                        }, 300);
-                    }
-                });
-            });
-
-            // ---- Fermeture du sous-menu ----
-            document.querySelectorAll('.nav-dropdown-menu a').forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    if (window.innerWidth <= 768) {
-                        const parentDropdown = this.closest('.nav-dropdown');
-                        if (parentDropdown) {
-                            parentDropdown.classList.remove('open');
-                        }
-                        if (navList) {
-                            navList.classList.remove('active');
-                        }
-                        if (menuToggle) {
-                            menuToggle.classList.remove('active');
-                        }
-                    }
-                });
-            });
-
-            // ---- Scroll top ----
-            const scrollBtn = document.getElementById('scrollTop');
-            window.addEventListener('scroll', function() {
-                scrollBtn.classList.toggle('visible', window.scrollY > 300);
-            });
-            scrollBtn.addEventListener('click', function() {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // ---- Lightbox ----
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const closeBtn = document.getElementById('lightboxClose');
-
-            function openLightbox(src) {
-                lightboxImg.src = src;
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeLightbox() {
-                lightbox.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-
-            document.querySelectorAll('.section img:not(.hero-bg)').forEach(function(img) {
-                img.addEventListener('click', function(e) {
-                    if (this.closest('.hero')) return;
-                    e.stopPropagation();
-                    const src = this.getAttribute('src');
-                    if (src) openLightbox(src);
-                });
-            });
-
-            closeBtn.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) closeLightbox();
-            });
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') closeLightbox();
-            });
-
-            // ---- Accordéon principal ----
-            function toggleAccordion(header) {
-                const isOpen = header.classList.contains('open');
-                const body = header.nextElementSibling;
-
-                if (isOpen) {
-                    header.classList.remove('open');
-                    header.setAttribute('aria-expanded', 'false');
-                    body.classList.remove('open');
-                } else {
-                    document.querySelectorAll('.accordion-header').forEach(function(h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        h.nextElementSibling.classList.remove('open');
-                    });
-                    header.classList.add('open');
-                    header.setAttribute('aria-expanded', 'true');
-                    body.classList.add('open');
-                }
-            }
-
-            document.querySelectorAll('.accordion-header').forEach(function(header) {
-                header.addEventListener('click', function() {
-                    toggleAccordion(this);
-                });
-            });
-
-            // ---- Lire la suite ----
-            document.querySelectorAll('.read-more-btn').forEach(function(btn) {
-                btn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    const parent = this.closest('.sub-section') || this.closest('.accordion-body') || this.closest('.card') || this.parentElement;
-                    if (!parent) return;
-                    const fullText = parent.querySelector('.full-text');
-                    if (!fullText) return;
-                    const isVisible = fullText.classList.contains('visible');
-                    fullText.classList.toggle('visible');
-                    this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
-                });
-            });
-
-            // ---- Ouverture par ancre ----
-            function openAccordionFromHash() {
-                if (!window.location.hash) return;
-                const target = document.querySelector(window.location.hash);
-                if (!target) return;
-
-                if (target.classList.contains('content-box')) {
-                    const firstAccordion = target.querySelector('.accordion-item');
-                    if (firstAccordion) {
-                        const header = firstAccordion.querySelector('.accordion-header');
-                        if (header && !header.classList.contains('open')) {
-                            document.querySelectorAll('.accordion-header').forEach(function(h) {
-                                h.classList.remove('open');
-                                h.setAttribute('aria-expanded', 'false');
-                                h.nextElementSibling.classList.remove('open');
-                            });
-                            header.classList.add('open');
-                            header.setAttribute('aria-expanded', 'true');
-                            header.nextElementSibling.classList.add('open');
-                            setTimeout(function() {
-                                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                            }, 200);
-                        }
-                        return;
-                    }
-                }
-
-                const accordionItem = target.closest('.accordion-item');
-                if (!accordionItem) return;
-
-                const header = accordionItem.querySelector('.accordion-header');
-                if (header && !header.classList.contains('open')) {
-                    document.querySelectorAll('.accordion-header').forEach(function(h) {
-                        h.classList.remove('open');
-                        h.setAttribute('aria-expanded', 'false');
-                        h.nextElementSibling.classList.remove('open');
-                    });
-                    header.classList.add('open');
-                    header.setAttribute('aria-expanded', 'true');
-                    header.nextElementSibling.classList.add('open');
-                    setTimeout(function() {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 200);
-                }
-            }
-
-            window.addEventListener('DOMContentLoaded', openAccordionFromHash);
-            window.addEventListener('hashchange', openAccordionFromHash);
-
-            // ============================================================
-            // ---- IMPRESSION SÉLECTIVE ----
-            // ============================================================
-            (function() {
-                const printBtn = document.getElementById('printBtn');
-                const printSelectAll = document.getElementById('printSelectAll');
-                const printCount = document.getElementById('printCount');
-                const printDate = document.getElementById('print-date');
-
-                if (!printBtn) return;
-
-                if (printDate) {
-                    const now = new Date();
-                    printDate.textContent = now.toLocaleDateString('fr-FR', {
-                        day: '2-digit',
-                        month: 'long',
-                        year: 'numeric'
-                    });
-                }
-
-                function updateSelection() {
-                    const checkboxes = document.querySelectorAll('.print-checkbox');
-                    let count = 0;
-
-                    // Nettoyer tous les marquages
-                    document.querySelectorAll('.print-selected').forEach(function(el) {
-                        el.classList.remove('print-selected');
-                    });
-
-                    checkboxes.forEach(function(cb) {
-                        if (cb.checked) {
-                            count++;
-                            const targetId = cb.dataset.printTarget;
-                            if (targetId) {
-                                const target = document.getElementById(targetId);
-                                if (target) {
-                                    // Marquer l'accordéon
-                                    target.classList.add('print-selected');
-
-                                    // Marquer aussi le content-box parent
-                                    const parentContentBox = target.closest('.content-box');
-                                    if (parentContentBox) {
-                                        parentContentBox.classList.add('print-selected');
-                                    }
-                                }
-                            }
-                        }
-                    });
-
-                    document.body.classList.toggle('print-has-selection', count > 0);
-
-                    if (printCount) {
-                        if (count > 0) {
-                            printCount.textContent = count;
-                            printCount.style.display = 'inline-block';
-                        } else {
-                            printCount.style.display = 'none';
-                        }
-                    }
-
-                    if (printSelectAll) {
-                        const label = printSelectAll.querySelector('span:not(.print-count)');
-                        if (label) {
-                            if (count === checkboxes.length && checkboxes.length > 0) {
-                                label.textContent = 'Tout désélectionner';
-                            } else {
-                                label.textContent = 'Tout sélectionner';
-                            }
-                        }
-                    }
-                }
-
-                document.querySelectorAll('.print-checkbox').forEach(function(cb) {
-                    cb.addEventListener('change', updateSelection);
-                });
-
-                if (printSelectAll) {
-                    printSelectAll.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        const checkboxes = document.querySelectorAll('.print-checkbox');
-                        const allChecked = Array.from(checkboxes).every(function(cb) { return cb.checked; });
-
-                        checkboxes.forEach(function(cb) {
-                            cb.checked = !allChecked;
-                        });
-
-                        updateSelection();
-                    });
-                }
-
-                if (printBtn) {
-                    printBtn.addEventListener('click', function(e) {
-                        e.preventDefault();
-
-                        document.querySelectorAll('.accordion-body').forEach(function(b) {
-                            b.classList.add('open');
-                        });
-
-                        document.querySelectorAll('.full-text').forEach(function(ft) {
-                            ft.classList.add('visible');
-                        });
-
-                        document.querySelectorAll('.sous-accordion-body').forEach(function(sab) {
-                            sab.classList.add('open');
-                        });
-
-                        setTimeout(function() {
-                            window.print();
-                        }, 200);
-                    });
-                }
-
-                updateSelection();
-            })();
-
-        })();
-    </script>
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
 </body>
 </html>
