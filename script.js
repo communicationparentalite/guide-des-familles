@@ -222,7 +222,7 @@
 
     window.toggleSousAccordion = window.toggleSubAccordion;
 
-    /* ============================================================
+      /* ============================================================
        6. "LIRE LA SUITE"
        ============================================================ */
     function initReadMore() {
@@ -230,33 +230,60 @@
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
 
-                const conteneurs = [
-                    '.bulle-musicale',
-                    '.ter-section',
-                    '.text-wrapper',
-                    '.text-col',
-                    '.accordion-body',
-                    '.sous-accordion-body',
-                    '.sub-section',
-                    '.card',
-                    '.text-content'
-                ];
-
-                let conteneur = null;
-                for (let i = 0; i < conteneurs.length; i++) {
-                    conteneur = this.closest(conteneurs[i]);
-                    if (conteneur) break;
+                // ============================================
+                // 1. Chercher le .full-text qui suit IMMÉDIATEMENT le bouton
+                //    (frère suivant dans le DOM)
+                // ============================================
+                let fullText = null;
+                let sibling = this.nextElementSibling;
+                while (sibling) {
+                    if (sibling.classList && sibling.classList.contains('full-text')) {
+                        fullText = sibling;
+                        break;
+                    }
+                    sibling = sibling.nextElementSibling;
                 }
-                if (!conteneur) conteneur = this.parentElement;
-                if (!conteneur) return;
 
-                const fullText = conteneur.querySelector('.full-text');
+                // ============================================
+                // 2. Si pas trouvé, chercher dans le conteneur parent
+                //    (fallback pour les cas où le .full-text est ailleurs)
+                // ============================================
+                if (!fullText) {
+                    const conteneurs = [
+                        '.bulle-musicale',
+                        '.ter-section',
+                        '.text-wrapper',
+                        '.text-col',
+                        '.sous-accordion-body',
+                        '.accordion-body',
+                        '.sub-section',
+                        '.card',
+                        '.text-content'
+                    ];
+
+                    let conteneur = null;
+                    for (let i = 0; i < conteneurs.length; i++) {
+                        conteneur = this.closest(conteneurs[i]);
+                        if (conteneur) break;
+                    }
+                    if (!conteneur) conteneur = this.parentElement;
+                    if (!conteneur) return;
+
+                    fullText = conteneur.querySelector('.full-text');
+                }
+
                 if (!fullText) return;
 
+                // ============================================
+                // 3. Toggle
+                // ============================================
                 const isVisible = fullText.classList.contains('visible');
                 fullText.classList.toggle('visible');
                 this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
 
+                // ============================================
+                // 4. Invalider la carte Leaflet si présente
+                // ============================================
                 if (!isVisible && window.__carteEcoles) {
                     setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
                 }
