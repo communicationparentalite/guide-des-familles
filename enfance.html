@@ -1162,7 +1162,7 @@
                         allMarkers.push(marker);
                     });
 
-                    // ✅ Fallback : si l'EPCI n'a pas encore été chargé, cadrer sur tous les marqueurs
+                                        // ✅ Fallback : si l'EPCI n'a pas encore été chargé, cadrer sur tous les marqueurs
                     setTimeout(function() {
                         mapEcoles.invalidateSize();
                         if (!window.__epciLayer && allMarkers.length > 0) {
@@ -1171,80 +1171,24 @@
                         }
                     }, 500);
 
-                    // Géocodage simplifié
-                    (function geocodage() {
-                        const API_URL = 'https://api-adresse.data.gouv.fr/search/';
-                        const cache = new Map();
-                        const DELAI = 300;
-                        const SCORE_MIN = 0.5;
-
-                        const file = markersByEtab.map(function(item) {
-                            return { etab: item.etab, marker: item.marker, requete: item.etab.adresse };
-                        }).concat(markersCommunes.filter(function(item) {
-                            return item.etab.adresseRecherche != null;
-                        }).map(function(item) {
-                            return { etab: item.etab, marker: item.marker, requete: item.etab.adresseRecherche };
-                        }));
-
-                        function normaliser(texte) {
-                            return texte.replace(/\s+/g, ' ').replace(/,\s*/g, ' ').trim();
-                        }
-
-                        function fetchAdresse(texte) {
-                            const cpMatch = texte.match(/\b\d{5}\b/);
-                            const postcode = cpMatch ? cpMatch[0] : '';
-                            const url = API_URL + '?q=' + encodeURIComponent(normaliser(texte)) + '&limit=1' + (postcode ? '&postcode=' + postcode : '');
-
-                            return new Promise(function(resolve) {
-                                const controller = new AbortController();
-                                const timeoutId = setTimeout(function() { controller.abort(); }, 5000);
-                                fetch(url, { signal: controller.signal })
-                                    .then(function(r) { clearTimeout(timeoutId); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-                                    .then(function(data) {
-                                        if (data.features && data.features.length > 0) {
-                                            const f = data.features[0];
-                                            resolve({ lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0], score: f.properties.score });
-                                        } else { resolve(null); }
-                                    })
-                                    .catch(function() { clearTimeout(timeoutId); resolve(null); });
-                            });
-                        }
-
-                        let index = 0;
-                        function traiterSuivant() {
-                            if (index >= file.length) return;
-                            const item = file[index++];
-                            const requete = item.requete;
-
-                            if (cache.has(requete)) {
-                                const coords = cache.get(requete);
-                                if (coords && coords.score >= SCORE_MIN) {
-                                    item.marker.setLatLng([coords.lat, coords.lng]);
-                                    item.etab.lat = coords.lat;
-                                    item.etab.lng = coords.lng;
-                                }
-                                traiterSuivant();
-                                return;
-                            }
-
-                            fetchAdresse(requete).then(function(coords) {
-                                cache.set(requete, coords);
-                                if (coords && coords.score >= SCORE_MIN) {
-                                    item.marker.setLatLng([coords.lat, coords.lng]);
-                                    item.etab.lat = coords.lat;
-                                    item.etab.lng = coords.lng;
-                                }
-                                setTimeout(traiterSuivant, DELAI);
-                            });
-                        }
-                        setTimeout(traiterSuivant, 800);
-                    })();
+                    // ============================================================
+                    // ✅ GÉOCODAGE DÉSACTIVÉ
+                    // Les coordonnées GPS fixes du tableau etablissementsData
+                    // sont fiables et suffisantes. L'appel à l'API
+                    // api-adresse.data.gouv.fr déplaçait parfois les marqueurs
+                    // vers de mauvaises positions (zone industrielle), ce qui
+                    // cassait les lignes RPI et le cadrage de la carte.
+                    // ============================================================
 
                 } catch (err) {
                     console.error('Erreur Leaflet :', err);
                     mapEcolesEl.innerHTML = '<p style="padding:1rem; text-align:center; color:#777;">La carte n\'a pas pu être chargée.</p>';
                 }
             }
+        })();
+    </script>
+</body>
+</html>
         })();
     </script>
 </body>
