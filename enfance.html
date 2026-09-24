@@ -1046,13 +1046,13 @@
                     window.__epciLayer = null;
 
                     var styleEPCI = { color: "#4A4DBD", weight: 3, opacity: 0.9, fillColor: "#686be7", fillOpacity: 0.03, dashArray: "8, 5" };
-                    fetch('epci-ccblp.geojson')
+                                       fetch('epci-ccblp.geojson')
                         .then(function(r) { if (!r.ok) throw new Error('EPCI non trouvé'); return r.json(); })
                         .then(function(data) {
                             epciLayer = L.geoJSON(data, { style: styleEPCI, interactive: false }).addTo(mapEcoles);
                             window.__epciLayer = epciLayer;
-                            // ✅ Cadrer automatiquement la carte sur les limites de la CCBLP
-                            mapEcoles.fitBounds(epciLayer.getBounds(), { padding: [20, 20] });
+                            // ⚠️ On ne fait PAS fitBounds ici : la carte n'a pas encore sa taille
+                            console.log('EPCI chargé, bounds =', epciLayer.getBounds().toBBoxString());
                         })
                         .catch(function(err) { console.warn('⚠️ EPCI :', err); });
 
@@ -1162,14 +1162,16 @@
                         allMarkers.push(marker);
                     });
 
-                                        // ✅ Fallback : si l'EPCI n'a pas encore été chargé, cadrer sur tous les marqueurs
+                     // ✅ Cadrage systématique : EPCI si disponible, sinon marqueurs
                     setTimeout(function() {
                         mapEcoles.invalidateSize();
-                        if (!window.__epciLayer && allMarkers.length > 0) {
+                        if (window.__epciLayer) {
+                            mapEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
+                        } else if (allMarkers.length > 0) {
                             const group = L.featureGroup(allMarkers);
                             mapEcoles.fitBounds(group.getBounds().pad(0.1));
                         }
-                    }, 500);
+                    }, 1000);
 
                     // ============================================================
                     // ✅ GÉOCODAGE DÉSACTIVÉ
