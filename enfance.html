@@ -606,7 +606,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- CHÂTILLON-SUR-LOIRE -->
+                                    <!-- CHÂTILLON-SUR-LOIRE – ÉCOLE -->
                                     <div class="ecole-card" id="ecole-chatillon">
                                         <h4>Châtillon-sur-Loire</h4>
                                         <span class="ecole-nom-court">Maternelle et élémentaire</span>
@@ -697,8 +697,8 @@
                                 </label>
                             </div>
                         </div>
-                     </div>
-                                         <!-- ===== 2. CLAS ===== -->
+                    </div>
+                                        <!-- ===== 2. CLAS ===== -->
                     <div class="accordion-item" id="clas">
                         <button class="accordion-header" aria-expanded="false">
                             <span>CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
@@ -1032,7 +1032,8 @@
             const mapEcolesEl = document.getElementById('carte-ecoles');
             if (mapEcolesEl && typeof L !== 'undefined') {
                 try {
-                    const mapEcoles = L.map('carte-ecoles').setView([47.62, 2.78], 10);
+                    // ✅ Vue initiale centrée sur la CCBLP (sera ajustée par fitBounds)
+                    const mapEcoles = L.map('carte-ecoles').setView([47.63, 2.79], 11);
                     window.__carteEcoles = mapEcoles;
 
                     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -1040,10 +1041,19 @@
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(mapEcoles);
 
+                    // ✅ Variable pour stocker la couche EPCI (utilisée pour le cadrage)
+                    let epciLayer = null;
+                    window.__epciLayer = null;
+
                     var styleEPCI = { color: "#4A4DBD", weight: 3, opacity: 0.9, fillColor: "#686be7", fillOpacity: 0.03, dashArray: "8, 5" };
                     fetch('epci-ccblp.geojson')
                         .then(function(r) { if (!r.ok) throw new Error('EPCI non trouvé'); return r.json(); })
-                        .then(function(data) { L.geoJSON(data, { style: styleEPCI, interactive: false }).addTo(mapEcoles); })
+                        .then(function(data) {
+                            epciLayer = L.geoJSON(data, { style: styleEPCI, interactive: false }).addTo(mapEcoles);
+                            window.__epciLayer = epciLayer;
+                            // ✅ Cadrer automatiquement la carte sur les limites de la CCBLP
+                            mapEcoles.fitBounds(epciLayer.getBounds(), { padding: [20, 20] });
+                        })
                         .catch(function(err) { console.warn('⚠️ EPCI :', err); });
 
                     var styleCommunes = { color: "#8B8DEF", weight: 1.2, opacity: 0.6, fillColor: "#686be7", fillOpacity: 0.02 };
@@ -1152,13 +1162,14 @@
                         allMarkers.push(marker);
                     });
 
-                    // ✅ CORRECTION : ajuster automatiquement la vue pour afficher TOUS les marqueurs
-                    if (allMarkers.length > 0) {
-                        const group = L.featureGroup(allMarkers);
-                        mapEcoles.fitBounds(group.getBounds().pad(0.1));
-                    }
-
-                    setTimeout(function() { mapEcoles.invalidateSize(); }, 500);
+                    // ✅ Fallback : si l'EPCI n'a pas encore été chargé, cadrer sur tous les marqueurs
+                    setTimeout(function() {
+                        mapEcoles.invalidateSize();
+                        if (!window.__epciLayer && allMarkers.length > 0) {
+                            const group = L.featureGroup(allMarkers);
+                            mapEcoles.fitBounds(group.getBounds().pad(0.1));
+                        }
+                    }, 500);
 
                     // Géocodage simplifié
                     (function geocodage() {
