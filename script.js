@@ -188,9 +188,14 @@
             header.setAttribute('aria-expanded', 'true');
             body.classList.add('open');
 
-            if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
-                setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
-            }
+           if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
+    setTimeout(function () {
+        window.__carteEcoles.invalidateSize();
+        if (window.__epciLayer) {
+            window.__carteEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
+        }
+    }, 350);
+}
         }
     }
 
