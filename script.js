@@ -397,20 +397,32 @@
                 el.classList.remove('print-selected');
             });
 
-            checkboxes.forEach(function (cb) {
-                if (cb.checked) {
-                    count++;
-                    const targetId = cb.dataset.printTarget;
-                    if (targetId) {
-                        const target = document.getElementById(targetId);
-                        if (target) {
-                            target.classList.add('print-selected');
-                            const parentBox = target.closest('.content-box');
-                            if (parentBox) parentBox.classList.add('print-selected');
-                        }
-                    }
-                }
-            });
+           checkboxes.forEach(function (cb) {
+    if (cb.checked) {
+        count++;
+        const targetId = cb.dataset.printTarget;
+        if (targetId) {
+            const target = document.getElementById(targetId);
+            if (target) {
+                // 1. Marquer l'élément ciblé
+                target.classList.add('print-selected');
+
+                // 2. Propager à l'accordéon parent (pour éviter que le CSS ne le masque)
+                const parentAccordion = target.closest('.accordion-item');
+                if (parentAccordion) parentAccordion.classList.add('print-selected');
+
+                // 3. Propager au content-box parent
+                const parentContentBox = target.closest('.content-box');
+                if (parentContentBox) parentContentBox.classList.add('print-selected');
+
+                // 4. Si c'est une mairie/école dans une grille, propager aussi
+                //    au .accordion-card-grid parent (pour éviter qu'il ne soit masqué)
+                const parentGrid = target.closest('.accordion-card-grid');
+                if (parentGrid) parentGrid.classList.add('print-selected');
+            }
+        }
+    }
+});
 
             document.body.classList.toggle('print-has-selection', count > 0);
 
