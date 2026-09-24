@@ -1046,13 +1046,14 @@
                     window.__epciLayer = null;
 
                     var styleEPCI = { color: "#4A4DBD", weight: 3, opacity: 0.9, fillColor: "#686be7", fillOpacity: 0.03, dashArray: "8, 5" };
-                                       fetch('epci-ccblp.geojson')
+                    fetch('epci-ccblp.geojson')
                         .then(function(r) { if (!r.ok) throw new Error('EPCI non trouvé'); return r.json(); })
                         .then(function(data) {
                             epciLayer = L.geoJSON(data, { style: styleEPCI, interactive: false }).addTo(mapEcoles);
                             window.__epciLayer = epciLayer;
-                            // ⚠️ On ne fait PAS fitBounds ici : la carte n'a pas encore sa taille
-                            console.log('EPCI chargé, bounds =', epciLayer.getBounds().toBBoxString());
+                            // ✅ Cadrer automatiquement la carte sur les limites de la CCBLP
+                            mapEcoles.invalidateSize();
+                            mapEcoles.fitBounds(epciLayer.getBounds(), { padding: [20, 20] });
                         })
                         .catch(function(err) { console.warn('⚠️ EPCI :', err); });
 
@@ -1070,6 +1071,9 @@
                         "commune-rpi":  { couleur: "#ffffff", rayon: 5,  bordure: "#4A4DBD" }
                     };
 
+                    // ============================================================
+                    // ✅ STRUCTURES POUR LES LIGNES RPI SYNCHRONISÉES
+                    // ============================================================
                     const rpiGroupes = {};
                     etablissementsData.forEach(function(etab) {
                         if (etab.rpiId) {
@@ -1082,40 +1086,25 @@
                         rpiGroupes[c.rpiId].push(c);
                     });
 
+                    // Dictionnaire : markersByEtabId[etabId] = marker
+                    // Permet de retrouver le marqueur d'une école par son identifiant unique
+                    const markersByEtabId = {};
+
+                    // Stockage des lignes RPI avec métadonnées pour pouvoir les redessiner
+                    // Structure : rpiLines[rpiId] = [ { ligne, etabId1, etabId2 } ]
                     const rpiLines = {};
-                    Object.keys(rpiGroupes).forEach(function(rpiId) {
-                        const entites = rpiGroupes[rpiId];
-                        const ecolesCentrales = entites.filter(function(e) { return e.type === "ecole" || e.type === "rpi"; });
-                        const communesDuRPI = entites.filter(function(e) { return !e.type; });
 
-                        if (entites.length >= 2) {
-                            const lignes = [];
-                            if (ecolesCentrales.length > 0) {
-                                const ecole = ecolesCentrales[0];
-                                communesDuRPI.forEach(function(commune) {
-                                    const ligne = L.polyline([[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
-                                        { color: "#4A4DBD", weight: 2, dashArray: "4, 6", opacity: 0.55 }).addTo(mapEcoles);
-                                    lignes.push(ligne);
-                                });
-                                if (ecolesCentrales.length > 1) {
-                                    for (let i = 0; i < ecolesCentrales.length - 1; i++) {
-                                        const ligne = L.polyline([
-                                            [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
-                                            [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
-                                        ], { color: "#4A4DBD", weight: 2, dashArray: "4, 6", opacity: 0.55 }).addTo(mapEcoles);
-                                        lignes.push(ligne);
-                                    }
-                                }
-                            }
-                            rpiLines[rpiId] = lignes;
-                        }
-                    });
-
+                    // ============================================================
+                    // ✅ CRÉATION DES MARQUEURS (avant les lignes, pour les avoir à disposition)
+                    // ============================================================
                     const markersByEtab = [];
                     const markersCommunes = [];
                     const allMarkers = [];
 
-                    etablissementsData.forEach(function(etab) {
+                    etablissementsData.forEach(function(etab, index) {
+                        const etabId = 'etab-' + index;
+                        etab._id = etabId;
+
                         const style = styleParType[etab.type] || styleParType["ecole"];
                         const marker = L.circleMarker([etab.lat, etab.lng], {
                             radius: style.rayon, fillColor: style.couleur, color: style.bordure,
@@ -1140,10 +1129,14 @@
 
                         marker.bindTooltip(contenu, { direction: 'top', offset: [0, -10], className: 'ecole-tooltip-wrapper', opacity: 1 });
                         markersByEtab.push({ etab: etab, marker: marker });
+                        markersByEtabId[etabId] = marker;
                         allMarkers.push(marker);
                     });
 
-                    communesRattachees.forEach(function(c) {
+                    communesRattachees.forEach(function(c, index) {
+                        const etabId = 'commune-' + index;
+                        c._id = etabId;
+
                         const style = styleParType["commune-rpi"];
                         const marker = L.circleMarker([c.lat, c.lng], {
                             radius: style.rayon, fillColor: style.couleur, color: style.bordure,
@@ -1159,28 +1152,148 @@
 
                         marker.bindTooltip(contenu, { direction: 'top', offset: [0, -10], className: 'ecole-tooltip-wrapper', opacity: 1 });
                         markersCommunes.push({ etab: c, marker: marker });
+                        markersByEtabId[etabId] = marker;
                         allMarkers.push(marker);
                     });
 
-                     // ✅ Cadrage systématique : EPCI si disponible, sinon marqueurs
-                    setTimeout(function() {
-                        mapEcoles.invalidateSize();
-                        if (window.__epciLayer) {
-                            mapEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
-                        } else if (allMarkers.length > 0) {
-                            const group = L.featureGroup(allMarkers);
-                            mapEcoles.fitBounds(group.getBounds().pad(0.1));
+                    // ============================================================
+                    // ✅ CRÉATION DES LIGNES RPI (après les marqueurs)
+                    // Chaque ligne stocke les IDs des deux marqueurs qu'elle relie
+                    // ============================================================
+                    Object.keys(rpiGroupes).forEach(function(rpiId) {
+                        const entites = rpiGroupes[rpiId];
+                        const ecolesCentrales = entites.filter(function(e) { return e.type === "ecole" || e.type === "rpi"; });
+                        const communesDuRPI = entites.filter(function(e) { return !e.type; });
+
+                        if (entites.length >= 2) {
+                            const lignes = [];
+                            if (ecolesCentrales.length > 0) {
+                                const ecole = ecolesCentrales[0];
+                                communesDuRPI.forEach(function(commune) {
+                                    const ligne = L.polyline([[ecole.lat, ecole.lng], [commune.lat, commune.lng]],
+                                        { color: "#4A4DBD", weight: 2, dashArray: "4, 6", opacity: 0.55 }).addTo(mapEcoles);
+                                    lignes.push({
+                                        ligne: ligne,
+                                        etabId1: ecole._id,
+                                        etabId2: commune._id
+                                    });
+                                });
+                                if (ecolesCentrales.length > 1) {
+                                    for (let i = 0; i < ecolesCentrales.length - 1; i++) {
+                                        const ligne = L.polyline([
+                                            [ecolesCentrales[i].lat, ecolesCentrales[i].lng],
+                                            [ecolesCentrales[i + 1].lat, ecolesCentrales[i + 1].lng]
+                                        ], { color: "#4A4DBD", weight: 2, dashArray: "4, 6", opacity: 0.55 }).addTo(mapEcoles);
+                                        lignes.push({
+                                            ligne: ligne,
+                                            etabId1: ecolesCentrales[i]._id,
+                                            etabId2: ecolesCentrales[i + 1]._id
+                                        });
+                                    }
+                                }
+                            }
+                            rpiLines[rpiId] = lignes;
                         }
-                    }, 1000);
+                    });
 
                     // ============================================================
-                    // ✅ GÉOCODAGE DÉSACTIVÉ
-                    // Les coordonnées GPS fixes du tableau etablissementsData
-                    // sont fiables et suffisantes. L'appel à l'API
-                    // api-adresse.data.gouv.fr déplaçait parfois les marqueurs
-                    // vers de mauvaises positions (zone industrielle), ce qui
-                    // cassait les lignes RPI et le cadrage de la carte.
+                    // ✅ FONCTION : redessiner toutes les lignes RPI
+                    // Appelée après chaque déplacement de marqueur par le géocodage
                     // ============================================================
+                    function redessinerLignesRPI() {
+                        Object.keys(rpiLines).forEach(function(rpiId) {
+                            rpiLines[rpiId].forEach(function(ligneInfo) {
+                                const marker1 = markersByEtabId[ligneInfo.etabId1];
+                                const marker2 = markersByEtabId[ligneInfo.etabId2];
+                                if (marker1 && marker2) {
+                                    const latLng1 = marker1.getLatLng();
+                                    const latLng2 = marker2.getLatLng();
+                                    ligneInfo.ligne.setLatLngs([latLng1, latLng2]);
+                                }
+                            });
+                        });
+                    }
+                    window.__redessinerLignesRPI = redessinerLignesRPI;
+
+                    // ============================================================
+                    // ✅ GÉOCODAGE (réactivé)
+                    // À chaque déplacement de marqueur, on redessine les lignes RPI
+                    // pour qu'elles restent attachées aux bons points.
+                    // ============================================================
+                    (function geocodage() {
+                        const API_URL = 'https://api-adresse.data.gouv.fr/search/';
+                        const cache = new Map();
+                        const DELAI = 300;
+                        const SCORE_MIN = 0.5;
+
+                        const file = markersByEtab.map(function(item) {
+                            return { etab: item.etab, marker: item.marker, requete: item.etab.adresse };
+                        }).concat(markersCommunes.filter(function(item) {
+                            return item.etab.adresseRecherche != null;
+                        }).map(function(item) {
+                            return { etab: item.etab, marker: item.marker, requete: item.etab.adresseRecherche };
+                        }));
+
+                        function normaliser(texte) {
+                            return texte.replace(/\s+/g, ' ').replace(/,\s*/g, ' ').trim();
+                        }
+
+                        function fetchAdresse(texte) {
+                            const cpMatch = texte.match(/\b\d{5}\b/);
+                            const postcode = cpMatch ? cpMatch[0] : '';
+                            const url = API_URL + '?q=' + encodeURIComponent(normaliser(texte)) + '&limit=1' + (postcode ? '&postcode=' + postcode : '');
+
+                            return new Promise(function(resolve) {
+                                const controller = new AbortController();
+                                const timeoutId = setTimeout(function() { controller.abort(); }, 5000);
+                                fetch(url, { signal: controller.signal })
+                                    .then(function(r) { clearTimeout(timeoutId); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                                    .then(function(data) {
+                                        if (data.features && data.features.length > 0) {
+                                            const f = data.features[0];
+                                            resolve({ lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0], score: f.properties.score });
+                                        } else { resolve(null); }
+                                    })
+                                    .catch(function() { clearTimeout(timeoutId); resolve(null); });
+                            });
+                        }
+
+                        let index = 0;
+                        function traiterSuivant() {
+                            if (index >= file.length) {
+                                // ✅ Fin du géocodage : redessiner une dernière fois les lignes
+                                redessinerLignesRPI();
+                                return;
+                            }
+                            const item = file[index++];
+                            const requete = item.requete;
+
+                            if (cache.has(requete)) {
+                                const coords = cache.get(requete);
+                                if (coords && coords.score >= SCORE_MIN) {
+                                    item.marker.setLatLng([coords.lat, coords.lng]);
+                                    item.etab.lat = coords.lat;
+                                    item.etab.lng = coords.lng;
+                                    redessinerLignesRPI();
+                                }
+                                traiterSuivant();
+                                return;
+                            }
+
+                            fetchAdresse(requete).then(function(coords) {
+                                cache.set(requete, coords);
+                                if (coords && coords.score >= SCORE_MIN) {
+                                    item.marker.setLatLng([coords.lat, coords.lng]);
+                                    item.etab.lat = coords.lat;
+                                    item.etab.lng = coords.lng;
+                                    // ✅ Redessiner les lignes RPI à chaque déplacement
+                                    redessinerLignesRPI();
+                                }
+                                setTimeout(traiterSuivant, DELAI);
+                            });
+                        }
+                        setTimeout(traiterSuivant, 800);
+                    })();
 
                 } catch (err) {
                     console.error('Erreur Leaflet :', err);
