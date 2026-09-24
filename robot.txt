@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://communicationparentalite.github.io/guide-des-familles-ccblp/sitemap.xml
