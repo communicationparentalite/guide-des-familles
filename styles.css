@@ -2548,17 +2548,69 @@ li { margin-bottom: 0.5rem; }
         text-decoration: none !important;
     }
 
+    /* ============================================================
+       ✅ AJOUT : IMPRESSION INDIVIDUELLE DES SOUS-ACCORDÉONS
+       (collèges, structures jeunesse, etc.)
+       ============================================================ */
+    body.print-has-selection .sous-accordion-wrapper:not(.print-selected) {
+        display: none !important;
+    }
+
+    body.print-has-selection .sous-accordion-wrapper.print-selected {
+        display: block !important;
+        page-break-inside: avoid;
+        border: 1px solid #999 !important;
+        padding: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Neutraliser l'en-tête cliquable du sous-accordéon sélectionné */
+    body.print-has-selection .sous-accordion-wrapper.print-selected .sous-accordion-header {
+        background: transparent !important;
+        color: #000 !important;
+        padding: 0 !important;
+        cursor: default !important;
+        border-bottom: 1px solid #999 !important;
+    }
+
+    body.print-has-selection .sous-accordion-wrapper.print-selected .sous-accordion-header span {
+        color: #000 !important;
+        font-size: 1rem !important;
+    }
+
+    body.print-has-selection .sous-accordion-wrapper.print-selected .sous-accordion-icon {
+        display: none !important;
+    }
+
+    /* Toujours afficher le corps du sous-accordéon sélectionné */
+    body.print-has-selection .sous-accordion-wrapper.print-selected .sous-accordion-body {
+        max-height: none !important;
+        padding: 0.3rem 0 !important;
+        overflow: visible !important;
+        background: transparent !important;
+    }
+
+    /* Cacher les vidéos dans les sous-accordéons sélectionnés */
+    body.print-has-selection .sous-accordion-wrapper.print-selected .video-wrapper,
+    body.print-has-selection .sous-accordion-wrapper.print-selected .video-thumb,
+    body.print-has-selection .sous-accordion-wrapper.print-selected .video-caption,
+    body.print-has-selection .sous-accordion-wrapper.print-selected .video-credit {
+        display: none !important;
+    }
+
     /* Cacher les cases à cocher et leurs labels à l'impression */
     .ecole-print-row,
     .lieu-print-row,
-    .mairie-print-row {
+    .mairie-print-row,
+    .lieu-print-row {
         display: none !important;
     }
 
     /* Cacher les images des cartes sélectionnées pour ne garder que le texte */
     body.print-has-selection .ecole-card.print-selected img,
     body.print-has-selection .lieu-card.print-selected img,
-    body.print-has-selection .mairie-card.print-selected img {
+    body.print-has-selection .mairie-card.print-selected img,
+    body.print-has-selection .sous-accordion-wrapper.print-selected > .sous-accordion-body > img {
         display: none !important;
     }
 
