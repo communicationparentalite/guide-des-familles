@@ -351,19 +351,13 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="print-select-row">
-                                <label class="print-checkbox-wrapper">
-                                    <input type="checkbox" class="print-checkbox" data-print-target="colleges">
-                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
-                                </label>
-                            </div>
                             <div class="short-text">
                                 <p>Le territoire dispose de deux collèges publics qui accueillent les élèves du secteur : le Collège Albert Camus à Briare et le Collège Pierre Dézarnaulds à Châtillon-sur-Loire.</p>
                             </div>
                             <div class="full-text">
 
                                 <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS ===== -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="college-camus">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
                                         <span>Collège Albert Camus (Briare)</span>
                                         <span id="camus-icon" class="sous-accordion-icon">+</span>
@@ -395,11 +389,15 @@
                                                 <p class="video-credit">Film réalisé par <a href="https://romainbeaumont.com" target="_blank" rel="noopener">Romain Beaumont, photographe industriel</a></p>
                                             </div>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-college-camus" class="print-checkbox" data-print-target="college-camus">
+                                            <label for="print-college-camus">Imprimer ce collège</label>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <!-- ===== SOUS-ACCORDÉON COLLÈGE PIERRE DÉZARNAULDS ===== -->
-                                <div class="sous-accordion-wrapper">
+                                <div class="sous-accordion-wrapper structure-card" id="college-dezarnaulds">
                                     <div class="sous-accordion-header" onclick="toggleSousAccordion('dezarnaulds')">
                                         <span>Collège Pierre Dézarnaulds (Châtillon-sur-Loire)</span>
                                         <span id="dezarnaulds-icon" class="sous-accordion-icon">+</span>
@@ -414,11 +412,21 @@
                                             📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
                                             🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank" rel="noopener">Site internet officiel</a></p>
                                         </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-college-dezarnaulds" class="print-checkbox" data-print-target="college-dezarnaulds">
+                                            <label for="print-college-dezarnaulds">Imprimer ce collège</label>
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
                             <button class="read-more-btn">Lire la suite</button>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="colleges">
+                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -429,12 +437,6 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="print-select-row">
-                                <label class="print-checkbox-wrapper">
-                                    <input type="checkbox" class="print-checkbox" data-print-target="ter">
-                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
-                                </label>
-                            </div>
                             <div class="ter-section">
                                 <div class="short-text">
                                     <div class="ter-content">
@@ -472,6 +474,12 @@
                                     📧 <a href="mailto:dsden45@ac-orleans-tours.fr">dsden45@ac-orleans-tours.fr</a></p>
                                 </div>
                             </div>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="ter">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -482,12 +490,6 @@
                             <span class="accordion-icon">+</span>
                         </button>
                         <div class="accordion-body">
-                            <div class="print-select-row">
-                                <label class="print-checkbox-wrapper">
-                                    <input type="checkbox" class="print-checkbox" data-print-target="structures-loisirs">
-                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
-                                </label>
-                            </div>
                             <div class="short-text">
                                 <p>Le territoire propose plusieurs structures d'accueil et de loisirs pour les jeunes de 11 à 25 ans : Culture Ados (Bee'Mobile), Maison Saint-Jean, séjours pédagogiques, Maison des Adolescents et Mission Locale.</p>
                             </div>
@@ -552,4 +554,167 @@
                                         <span>Séjours pédagogiques (Bee'Mobile)</span>
                                         <span id="sejours-pedagogiques-icon" class="sous-accordion-icon">+</span>
                                     </div>
-                                   
+                                    <div id="sejours-pedagogiques-content" class="sous-accordion-body">
+                                        <img src="jeunesse_page-011.png" alt="Séjours pédagogiques">
+                                        <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
+                                        <button class="read-more-btn">Lire la suite</button>
+                                        <div class="full-text">
+                                            <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
+                                            <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
+                                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                            <div class="social-links">
+                                                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                                <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-sejours" class="print-checkbox" data-print-target="structure-sejours">
+                                            <label for="print-structure-sejours">Imprimer cette structure</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Maison des Adolescents -->
+                                <div class="sous-accordion-wrapper structure-card" id="structure-maison-ados">
+                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-ados')">
+                                        <span>Maison des Adolescents (AMARA 45)</span>
+                                        <span id="maison-ados-icon" class="sous-accordion-icon">+</span>
+                                    </div>
+                                    <div id="maison-ados-content" class="sous-accordion-body">
+                                        <img src="Capture_d_ecran_amara45.png" alt="Maison des Adolescents">
+                                        <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
+                                        <button class="read-more-btn">Lire la suite</button>
+                                        <div class="full-text">
+                                            <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
+                                            <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
+                                            <p><strong>Contact :</strong><br>
+                                            📞 <a href="tel:0785766475">07 85 76 64 75</a><br>
+                                            📧 <a href="mailto:mda45@amara45.fr">mda45@amara45.fr</a></p>
+                                            <div class="social-links">
+                                                <a href="https://facebook.com/maisondesados45" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                                <a href="https://instagram.com/maisondesados45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-maison-ados" class="print-checkbox" data-print-target="structure-maison-ados">
+                                            <label for="print-structure-maison-ados">Imprimer cette structure</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mission Locale -->
+                                <div class="sous-accordion-wrapper structure-card" id="structure-mission-locale">
+                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('mission-locale')">
+                                        <span>Mission Locale de Gien</span>
+                                        <span id="mission-locale-icon" class="sous-accordion-icon">+</span>
+                                    </div>
+                                    <div id="mission-locale-content" class="sous-accordion-body">
+                                        <img src="Capture_d_ecran_mission_locale.png" alt="Mission Locale de Gien">
+                                        <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
+                                        <button class="read-more-btn">Lire la suite</button>
+                                        <div class="full-text">
+                                            <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
+                                            <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
+                                            <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
+                                            📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
+                                        </div>
+                                        <div class="lieu-print-row">
+                                            <input type="checkbox" id="print-structure-mission-locale" class="print-checkbox" data-print-target="structure-mission-locale">
+                                            <label for="print-structure-mission-locale">Imprimer cette structure</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <button class="read-more-btn">Lire la suite</button>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="structures-loisirs">
+                                    <span class="print-checkbox-label">Sélectionner toute la section pour l'impression</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- ===== FIN ACCORDÉON ===== -->
+
+            </div>
+        </section>
+    </main>
+
+    <!-- ===== LIGHTBOX ===== -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+            <img id="lightboxImg" class="lightbox-image" src="" alt="">
+        </div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Communauté de Communes Berry Loire Puisaye</h3>
+                    <p>42 rue des Prés Gris<br>45250 BRIARE</p>
+                    <p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liens utiles</h3>
+                    <ul>
+                        <li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>
+                        <li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigation rapide</h3>
+                    <ul>
+                        <li><a href="arrivee-enfant.html">Arrivée d'un enfant</a></li>
+                        <li><a href="petite-enfance.html">Petite enfance (0-5 ans)</a></li>
+                        <li><a href="enfance.html">Enfance (3-11 ans)</a></li>
+                        <li><a href="jeunesse.html">Jeunesse (11-25 ans)</a></li>
+                        <li><a href="acces-droits.html">Accès aux droits</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== PIED DE PAGE D'IMPRESSION ===== -->
+    <div class="print-footer" style="display: none;">
+        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
+        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
+        <p>www.cc-berryloirepuisaye.fr</p>
+    </div>
+
+    <!-- ===== BOUTON D'IMPRESSION FLOTTANT ===== -->
+    <div class="print-float-btn" id="printFloatBtn">
+        <div class="print-hint">
+            <i class="fas fa-lightbulb"></i>
+            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
+        </div>
+        <button class="print-select-all" id="printSelectAll">
+            <i class="fas fa-check-square"></i>
+            <span>Tout sélectionner</span>
+            <span class="print-count" id="printCount" style="display: none;">0</span>
+        </button>
+        <button id="printBtn">
+            <i class="fas fa-print"></i>
+            <span class="print-label-long">Imprimer la sélection</span>
+            <span class="print-label-short">Imprimer</span>
+        </button>
+    </div>
+
+    <!-- ===== SCROLL TOP ===== -->
+    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
+
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
+    <script src="script.js"></script>
+</body>
+</html>
