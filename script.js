@@ -530,8 +530,40 @@
         });
     }
 
+       /* ============================================================
+       14. INJECTION DU FOOTER COMMUN
+       ============================================================ */
+    function initFooter() {
+        const footer = document.getElementById('siteFooter');
+        if (!footer) return;
+
+        footer.innerHTML =
+            '<div class="container">' +
+                '<div class="footer-content-accueil">' +
+                    '<div class="footer-section">' +
+                        '<h3>Communauté de Communes Berry Loire Puisaye</h3>' +
+                        '<p>42 rue des Prés Gris<br>45250 BRIARE</p>' +
+                        '<p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>' +
+                        '📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>' +
+                    '</div>' +
+                    '<div class="footer-section">' +
+                        '<h3>Liens utiles</h3>' +
+                        '<ul>' +
+                            '<li><a href="mentions-legales.html">Mentions légales</a></li>' +
+                            '<li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>' +
+                            '<li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>' +
+                            '<li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>' +
+                        '</ul>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="footer-bottom">' +
+                    '<p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>' +
+                '</div>' +
+            '</div>';
+    }
+
     /* ============================================================
-       14. INITIALISATION
+       15. INITIALISATION
        ============================================================ */
     function init() {
         initNavigation();
@@ -544,6 +576,7 @@
         initCartesDepliables();
         initMairiesDepliables();
         initDates();
+        initFooter();
 
         setTimeout(openAccordionFromHash, 100);
         window.addEventListener('hashchange', openAccordionFromHash);
