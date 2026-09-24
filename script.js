@@ -222,7 +222,7 @@
 
     window.toggleSousAccordion = window.toggleSubAccordion;
 
-      /* ============================================================
+    /* ============================================================
        6. "LIRE LA SUITE"
        ============================================================ */
     function initReadMore() {
@@ -230,10 +230,7 @@
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
 
-                // ============================================
                 // 1. Chercher le .full-text qui suit IMMÉDIATEMENT le bouton
-                //    (frère suivant dans le DOM)
-                // ============================================
                 let fullText = null;
                 let sibling = this.nextElementSibling;
                 while (sibling) {
@@ -244,10 +241,7 @@
                     sibling = sibling.nextElementSibling;
                 }
 
-                // ============================================
-                // 2. Si pas trouvé, chercher dans le conteneur parent
-                //    (fallback pour les cas où le .full-text est ailleurs)
-                // ============================================
+                // 2. Fallback : chercher dans le conteneur parent
                 if (!fullText) {
                     const conteneurs = [
                         '.bulle-musicale',
@@ -274,16 +268,12 @@
 
                 if (!fullText) return;
 
-                // ============================================
                 // 3. Toggle
-                // ============================================
                 const isVisible = fullText.classList.contains('visible');
                 fullText.classList.toggle('visible');
                 this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
 
-                // ============================================
                 // 4. Invalider la carte Leaflet si présente
-                // ============================================
                 if (!isVisible && window.__carteEcoles) {
                     setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
                 }
@@ -397,32 +387,31 @@
                 el.classList.remove('print-selected');
             });
 
-           checkboxes.forEach(function (cb) {
-    if (cb.checked) {
-        count++;
-        const targetId = cb.dataset.printTarget;
-        if (targetId) {
-            const target = document.getElementById(targetId);
-            if (target) {
-                // 1. Marquer l'élément ciblé
-                target.classList.add('print-selected');
+            checkboxes.forEach(function (cb) {
+                if (cb.checked) {
+                    count++;
+                    const targetId = cb.dataset.printTarget;
+                    if (targetId) {
+                        const target = document.getElementById(targetId);
+                        if (target) {
+                            // 1. Marquer l'élément ciblé
+                            target.classList.add('print-selected');
 
-                // 2. Propager à l'accordéon parent (pour éviter que le CSS ne le masque)
-                const parentAccordion = target.closest('.accordion-item');
-                if (parentAccordion) parentAccordion.classList.add('print-selected');
+                            // 2. Propager à l'accordéon parent (pour éviter que le CSS ne le masque)
+                            const parentAccordion = target.closest('.accordion-item');
+                            if (parentAccordion) parentAccordion.classList.add('print-selected');
 
-                // 3. Propager au content-box parent
-                const parentContentBox = target.closest('.content-box');
-                if (parentContentBox) parentContentBox.classList.add('print-selected');
+                            // 3. Propager au content-box parent
+                            const parentContentBox = target.closest('.content-box');
+                            if (parentContentBox) parentContentBox.classList.add('print-selected');
 
-                // 4. Si c'est une mairie/école dans une grille, propager aussi
-                //    au .accordion-card-grid parent (pour éviter qu'il ne soit masqué)
-                const parentGrid = target.closest('.accordion-card-grid');
-                if (parentGrid) parentGrid.classList.add('print-selected');
-            }
-        }
-    }
-});
+                            // 4. Si c'est une carte dans une grille, propager aussi au .accordion-card-grid
+                            const parentGrid = target.closest('.accordion-card-grid');
+                            if (parentGrid) parentGrid.classList.add('print-selected');
+                        }
+                    }
+                }
+            });
 
             document.body.classList.toggle('print-has-selection', count > 0);
 
