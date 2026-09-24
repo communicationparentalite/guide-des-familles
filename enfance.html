@@ -1263,6 +1263,13 @@
                             if (index >= file.length) {
                                 // ✅ Fin du géocodage : redessiner une dernière fois les lignes
                                 redessinerLignesRPI();
+                                // ✅ Forcer le cadrage APRÈS que tout soit prêt
+                                setTimeout(function() {
+                                    if (window.__epciLayer) {
+                                        mapEcoles.invalidateSize();
+                                        mapEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
+                                    }
+                                }, 200);
                                 return;
                             }
                             const item = file[index++];
