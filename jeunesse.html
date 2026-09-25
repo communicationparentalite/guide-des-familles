@@ -128,9 +128,8 @@
 
         .ter-section .read-more-btn {
             color: white;
-            border-color: rgba(255,255,255,0.4);
-            background: none;
             border: none;
+            background: none;
             font-weight: 600;
             padding: 0.2rem 0;
             cursor: pointer;
@@ -200,8 +199,8 @@
     <!-- ===== HEADER (injecté par script.js) ===== -->
     <header class="header" id="siteHeader"></header>
 
-      <!-- ===== NAV ===== -->
-   <nav class="nav" id="mainNav"></nav>
+    <!-- ===== NAV (injectée par script.js) ===== -->
+    <nav class="nav" id="mainNav"></nav>
 
     <!-- ===== MAIN ===== -->
     <main>
@@ -213,9 +212,6 @@
                 </div>
                 <h2 class="section-title">Adolescence &amp; Jeunesse (11-25 ans)</h2>
 
-                <!-- ============================================================ -->
-                <!-- ===== ACCORDÉON ===== -->
-                <!-- ============================================================ -->
                 <div class="accordion">
 
                     <!-- ===== 1. COLLÈGES ===== -->
@@ -228,73 +224,69 @@
                             <div class="short-text">
                                 <p>Le territoire dispose de deux collèges publics qui accueillent les élèves du secteur : le Collège Albert Camus à Briare et le Collège Pierre Dézarnaulds à Châtillon-sur-Loire.</p>
                             </div>
-                            <div class="full-text">
 
-                                <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS ===== -->
-                                <div class="sous-accordion-wrapper structure-card" id="college-camus">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
-                                        <span>Collège Albert Camus (Briare)</span>
-                                        <span id="camus-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="camus-content" class="sous-accordion-body">
-                                        <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare">
-                                        <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
-                                        <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
-                                            <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-                                            📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
-                                            🌐 <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank" rel="noopener">Site internet officiel</a></p>
+                            <!-- ===== SOUS-ACCORDÉON COLLÈGE ALBERT CAMUS ===== -->
+                            <div class="sous-accordion-wrapper structure-card" id="college-camus">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('camus')">
+                                    <span>Collège Albert Camus (Briare)</span>
+                                    <span id="camus-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="camus-content" class="sous-accordion-body">
+                                    <img src="jeunesse_page-010.png" alt="Collège Albert Camus, Briare">
+                                    <p>Situé dans une zone résidentielle calme au nord de la ville de Briare, le collège Albert Camus accueille 400 élèves dans des locaux modernes et bien équipés.</p>
+                                    <p>Que ce soit en ULIS, en SEGPA ou en enseignement général, des équipes volontaires, bienveillantes et motivées prennent en charge tous les collégiens et les préparent à leurs futurs examens et études.</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p><strong>📍 Adresse :</strong> Rue du Port à Belleau, Briare</p>
+                                        <p>📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
+                                        📧 <a href="mailto:ce0450008p@ac-orleans-tours.fr">ce0450008p@ac-orleans-tours.fr</a><br>
+                                        <a href="http://clg-albert-camus-briare.tice.ac-orleans-tours.fr/" target="_blank" rel="noopener">Site internet officiel</a></p>
 
-                                            <!-- ===== LECTEUR YOUTUBE ===== -->
-                                            <div style="margin-top: 1.5rem;">
-                                                <div class="video-wrapper" id="video-camus">
-                                                    <div class="video-thumb" onclick="loadVideo('video-camus', 'U0OX3-ikWuk', 'Collège Albert Camus - Briare')">
-                                                        <img src="https://img.youtube.com/vi/U0OX3-ikWuk/maxresdefault.jpg"
-                                                             onerror="this.onerror=null;this.src='https://img.youtube.com/vi/U0OX3-ikWuk/hqdefault.jpg';"
-                                                             alt="Collège Albert Camus - Briare">
-                                                        <span class="play-btn" aria-hidden="true">
-                                                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                                        </span>
-                                                    </div>
+                                        <div style="margin-top: 1.5rem;">
+                                            <div class="video-wrapper" id="video-camus">
+                                                <div class="video-thumb" onclick="loadVideo('video-camus', 'U0OX3-ikWuk', 'Collège Albert Camus - Briare')">
+                                                    <img src="https://img.youtube.com/vi/U0OX3-ikWuk/maxresdefault.jpg"
+                                                         onerror="this.onerror=null;this.src='https://img.youtube.com/vi/U0OX3-ikWuk/hqdefault.jpg';"
+                                                         alt="Collège Albert Camus - Briare">
+                                                    <span class="play-btn" aria-hidden="true">
+                                                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                                    </span>
                                                 </div>
-                                                <p class="video-caption">Découvrez le Collège Albert Camus en vidéo</p>
-                                                <p class="video-credit">Film réalisé par <a href="https://romainbeaumont.com" target="_blank" rel="noopener">Romain Beaumont, photographe industriel</a></p>
                                             </div>
+                                            <p class="video-caption">Découvrez le Collège Albert Camus en vidéo</p>
+                                            <p class="video-credit">Film réalisé par <a href="https://romainbeaumont.com" target="_blank" rel="noopener">Romain Beaumont, photographe industriel</a></p>
                                         </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-college-camus" class="print-checkbox" data-print-target="college-camus">
-                                            <label for="print-college-camus">Imprimer ce collège</label>
-                                        </div>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-college-camus" class="print-checkbox" data-print-target="college-camus">
+                                        <label for="print-college-camus">Imprimer ce collège</label>
                                     </div>
                                 </div>
-
-                                <!-- ===== SOUS-ACCORDÉON COLLÈGE PIERRE DÉZARNAULDS ===== -->
-                                <div class="sous-accordion-wrapper structure-card" id="college-dezarnaulds">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('dezarnaulds')">
-                                        <span>Collège Pierre Dézarnaulds (Châtillon-sur-Loire)</span>
-                                        <span id="dezarnaulds-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="dezarnaulds-content" class="sous-accordion-body">
-                                        <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire">
-                                        <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
-                                            <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
-                                            📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
-                                            🌐 <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank" rel="noopener">Site internet officiel</a></p>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-college-dezarnaulds" class="print-checkbox" data-print-target="college-dezarnaulds">
-                                            <label for="print-college-dezarnaulds">Imprimer ce collège</label>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
-                            <button class="read-more-btn">Lire la suite</button>
+
+                            <!-- ===== SOUS-ACCORDÉON COLLÈGE PIERRE DÉZARNAULDS ===== -->
+                            <div class="sous-accordion-wrapper structure-card" id="college-dezarnaulds">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('dezarnaulds')">
+                                    <span>Collège Pierre Dézarnaulds (Châtillon-sur-Loire)</span>
+                                    <span id="dezarnaulds-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="dezarnaulds-content" class="sous-accordion-body">
+                                    <img src="jeunesse_page-009.png" alt="Collège Pierre-Dézarnaulds, Châtillon-sur-Loire">
+                                    <p>Situé à 80 kilomètres d'Orléans et à 20 kilomètres de Gien, le collège Pierre Dézarnaulds accueille environ 330 élèves chaque année.</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p><strong>📍 Adresse :</strong> 2 allée du Paradis, Châtillon-sur-Loire</p>
+                                        <p>📞 <a href="tel:0238314249">02 38 31 42 49</a><br>
+                                        📧 <a href="mailto:ce0450017z@ac-orleans-tours.fr">ce0450017z@ac-orleans-tours.fr</a><br>
+                                        <a href="https://clg-pierre-dezarnaulds-chatillon-sur-loire.tice.ac-orleans-tours.fr/eva/" target="_blank" rel="noopener">Site internet officiel</a></p>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-college-dezarnaulds" class="print-checkbox" data-print-target="college-dezarnaulds">
+                                        <label for="print-college-dezarnaulds">Imprimer ce collège</label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="print-select-row">
                                 <label class="print-checkbox-wrapper">
                                     <input type="checkbox" class="print-checkbox" data-print-target="colleges">
@@ -304,48 +296,51 @@
                         </div>
                     </div>
 
-<!-- ===== 2. FOCUS TER ===== -->
-<div class="accordion-item" id="ter">
-    <button class="accordion-header" aria-expanded="false">
-        <span>Focus sur le Territoire Éducatif Rural (TER)</span>
-        <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-body">
-        <div class="ter-section">
-            <div class="ter-content">
-                <div class="text">
-                    <p>Le <strong>Territoire Éducatif Rural (TER)</strong> est un dispositif porté par l'Éducation nationale qui vise à renforcer les liens entre les écoles, les collèges et l'ensemble des acteurs éducatifs d'un même territoire rural : collectivités, associations, structures culturelles et sportives, professionnels de la petite enfance et de la jeunesse.</p>
-                    <p>Son objectif est de <strong>lutter contre les inégalités d'accès à la culture, au numérique et à l'ouverture au monde</strong> que peut connaître un territoire rural.</p>
-                    <button class="read-more-btn">Lire la suite</button>
-                    <div class="full-text">
-                        <p>Depuis septembre 2024, une Convention "Territoire Educatif Rural" a été signée par l'Éducation Nationale autour du collège Albert Camus et toutes les communes de son secteur de rattachement.</p>
-                        <p>Au lieu que l'école fasse d'un côté, la mairie de l'autre, les assos ailleurs, chacun travaille ensemble pour que les enfants aient plus d'opportunités pour apprendre, s'épanouir et découvrir le monde.</p>
-                        <p>De la maternelle au collège, il s'agit de mettre plus de moyens humains et financiers pour plus de lien et de réussite pour les élèves :</p>
-                        <ul>
-                            <li>Davantage d'activités accessibles sans devoir aller loin.</li>
-                            <li>Un soutien renforcé pour les enfants qui en ont besoin.</li>
-                            <li>Des projets motivants : ateliers, sorties, découvertes.</li>
-                            <li>Un lien direct avec les familles pour écouter leurs besoins et leurs idées.</li>
-                        </ul>
-                        <p>Sur la Communauté de communes Berry Loire Puisaye, ce dispositif permet de construire des <strong>parcours éducatifs cohérents</strong> entre les différentes structures accueillant les enfants et les jeunes, de la petite enfance jusqu'à l'adolescence.</p>
+                    <!-- ===== 2. FOCUS TER ===== -->
+                    <div class="accordion-item" id="ter">
+                        <button class="accordion-header" aria-expanded="false">
+                            <span>Focus sur le Territoire Éducatif Rural (TER)</span>
+                            <span class="accordion-icon">+</span>
+                        </button>
+                        <div class="accordion-body">
+                            <div class="ter-section">
+                                <div class="ter-content">
+                                    <div class="text">
+                                        <p>Le <strong>Territoire Éducatif Rural (TER)</strong> est un dispositif porté par l'Éducation nationale qui vise à renforcer les liens entre les écoles, les collèges et l'ensemble des acteurs éducatifs d'un même territoire rural : collectivités, associations, structures culturelles et sportives, professionnels de la petite enfance et de la jeunesse.</p>
+                                        <p>Son objectif est de <strong>lutter contre les inégalités d'accès à la culture, au numérique et à l'ouverture au monde</strong> que peut connaître un territoire rural.</p>
+                                        <button class="read-more-btn">Lire la suite</button>
+                                        <div class="full-text">
+                                            <p>Depuis septembre 2024, une Convention "Territoire Educatif Rural" a été signée par l'Éducation Nationale autour du collège Albert Camus et toutes les communes de son secteur de rattachement.</p>
+                                            <p>Au lieu que l'école fasse d'un côté, la mairie de l'autre, les assos ailleurs, chacun travaille ensemble pour que les enfants aient plus d'opportunités pour apprendre, s'épanouir et découvrir le monde.</p>
+                                            <p>De la maternelle au collège, il s'agit de mettre plus de moyens humains et financiers pour plus de lien et de réussite pour les élèves :</p>
+                                            <ul>
+                                                <li>Davantage d'activités accessibles sans devoir aller loin.</li>
+                                                <li>Un soutien renforcé pour les enfants qui en ont besoin.</li>
+                                                <li>Des projets motivants : ateliers, sorties, découvertes.</li>
+                                                <li>Un lien direct avec les familles pour écouter leurs besoins et leurs idées.</li>
+                                            </ul>
+                                            <p>Sur la Communauté de communes Berry Loire Puisaye, ce dispositif permet de construire des <strong>parcours éducatifs cohérents</strong> entre les différentes structures accueillant les enfants et les jeunes, de la petite enfance jusqu'à l'adolescence.</p>
+                                        </div>
+                                    </div>
+                                    <img src="ter-focus.jpg" alt="Territoire Éducatif Rural">
+                                </div>
+                                <div class="coords">
+                                    <p><strong>📌 Rectorat de l'Académie Orléans-Tours :</strong><br>
+                                    📞 <a href="tel:0238793800">02 38 79 38 00</a><br>
+                                    <a href="https://www.ac-orleans-tours.fr/" target="_blank" rel="noopener">www.ac-orleans-tours.fr</a></p>
+                                    <p><strong>📌 Direction des services départementaux de l'Éducation nationale (DSDEN) du Loiret :</strong><br>
+                                    📞 <a href="tel:0238747000">02 38 74 70 00</a><br>
+                                    📧 <a href="mailto:dsden45@ac-orleans-tours.fr">dsden45@ac-orleans-tours.fr</a></p>
+                                </div>
+                            </div>
+                            <div class="print-select-row">
+                                <label class="print-checkbox-wrapper">
+                                    <input type="checkbox" class="print-checkbox" data-print-target="ter">
+                                    <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-                </div>
-             </div> 
-        </div>
-        <div class="coords" style="padding: 0 1.2rem 1rem;">
-            <p><strong>📌 rue du Port à Belleau :</strong><br>
-            📞 <a href="tel:0238370283">02 38 37 02 83</a><br>
-            📧 <a href="mailto:ce.0450008@ac-orleans-tours.fr">ce.0450008@ac-orleans-tours.fr</a><br>
-          
-        </div>
-        <div class="print-select-row">
-            <label class="print-checkbox-wrapper">
-                <input type="checkbox" class="print-checkbox" data-print-target="ter">
-                <span class="print-checkbox-label">Sélectionner cette section pour l'impression</span>
-            </label>
-        </div>
-    </div>
-</div>
 
                     <!-- ===== 3. STRUCTURES D'ACCUEIL ET DE LOISIRS ===== -->
                     <div class="accordion-item" id="structures-loisirs">
@@ -357,141 +352,138 @@
                             <div class="short-text">
                                 <p>Le territoire propose plusieurs structures d'accueil et de loisirs pour les jeunes de 11 à 25 ans : Culture Ados (Bee'Mobile), Maison Saint-Jean, séjours pédagogiques, Maison des Adolescents et Mission Locale.</p>
                             </div>
-                            <div class="full-text">
 
-                                <!-- Culture Ados -->
-                                <div class="sous-accordion-wrapper structure-card" id="structure-culture-ados">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('culture-ados')">
-                                        <span>Culture Ados (Bee'Mobile)</span>
-                                        <span id="culture-ados-icon" class="sous-accordion-icon">+</span>
+                            <!-- Culture Ados -->
+                            <div class="sous-accordion-wrapper structure-card" id="structure-culture-ados">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('culture-ados')">
+                                    <span>Culture Ados (Bee'Mobile)</span>
+                                    <span id="culture-ados-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="culture-ados-content" class="sous-accordion-body">
+                                    <img src="jeunesse_page-009.png" alt="Culture Ados">
+                                    <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p>Ouvert les mercredis après-midi, deux samedis par mois et la moitié des vacances scolaires. C'est un service itinérant qui se déplace sur l'ensemble de la communauté de communes.</p>
+                                        <p>Un système de ramassage grâce à un minibus permet de récupérer et déposer les jeunes chez eux en cas d'impossibilité de déplacement.</p>
+                                        <p><strong>Horaires :</strong> Mer, Sam (2/mois) 14h-18h, vacances 10h-18h<br>
+                                        <strong>Adhésion :</strong> 15€/an</p>
+                                        <p><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
+                                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                        </div>
                                     </div>
-                                    <div id="culture-ados-content" class="sous-accordion-body">
-                                        <img src="jeunesse_page-009.png" alt="Culture Ados">
-                                        <p>Espace d'accueil pour les 10-18 ans qui propose toutes sortes d'animations physiques, culturelles, d'expression, techniques et scientifiques, mais également des sorties (paintball, patinoire, musée…).</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p>Ouvert les mercredis après-midi, deux samedis par mois et la moitié des vacances scolaires. C'est un service itinérant qui se déplace sur l'ensemble de la communauté de communes.</p>
-                                            <p>Un système de ramassage grâce à un minibus permet de récupérer et déposer les jeunes chez eux en cas d'impossibilité de déplacement.</p>
-                                            <p><strong>Horaires :</strong> Mer, Sam (2/mois) 14h-18h, vacances 10h-18h<br>
-                                            <strong>Adhésion :</strong> 15€/an</p>
-                                            <p><strong>📍 Local permanent :</strong> 1 rue de Bicètre, Bonny-sur-Loire</p>
-                                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                                            <div class="social-links">
-                                                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                                                <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-structure-culture-ados" class="print-checkbox" data-print-target="structure-culture-ados">
-                                            <label for="print-structure-culture-ados">Imprimer cette structure</label>
-                                        </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-structure-culture-ados" class="print-checkbox" data-print-target="structure-culture-ados">
+                                        <label for="print-structure-culture-ados">Imprimer cette structure</label>
                                     </div>
                                 </div>
-
-                                <!-- Maison Saint-Jean -->
-                                <div class="sous-accordion-wrapper structure-card" id="structure-maison-saint-jean">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-saint-jean')">
-                                        <span>Maison Saint-Jean (Briare)</span>
-                                        <span id="maison-saint-jean-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="maison-saint-jean-content" class="sous-accordion-body">
-                                        <img src="Capture_d_ecran_MSJ.png" alt="Maison Saint-Jean">
-                                        <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p>Activités manuelles, artistiques, sportives, sorties, mini-séjours (camps pendant l'été), création de projets.</p>
-                                            <p><strong>📍 49 Boulevard Buyser, Briare</strong></p>
-                                            <p>📞 <a href="tel:0238371664">02 38 37 16 64</a> / <a href="tel:0764754898">07 64 75 48 98</a></p>
-                                            <p>Ouvert les mercredis, un vendredi par mois et les vacances scolaires.</p>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-structure-maison-saint-jean" class="print-checkbox" data-print-target="structure-maison-saint-jean">
-                                            <label for="print-structure-maison-saint-jean">Imprimer cette structure</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Séjours pédagogiques -->
-                                <div class="sous-accordion-wrapper structure-card" id="structure-sejours">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('sejours-pedagogiques')">
-                                        <span>Séjours pédagogiques (Bee'Mobile)</span>
-                                        <span id="sejours-pedagogiques-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="sejours-pedagogiques-content" class="sous-accordion-body">
-                                        <img src="jeunesse_page-011.png" alt="Séjours pédagogiques">
-                                        <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
-                                            <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
-                                            <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
-                                            📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
-                                            <div class="social-links">
-                                                <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                                                <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-structure-sejours" class="print-checkbox" data-print-target="structure-sejours">
-                                            <label for="print-structure-sejours">Imprimer cette structure</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Maison des Adolescents -->
-                                <div class="sous-accordion-wrapper structure-card" id="structure-maison-ados">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-ados')">
-                                        <span>Maison des Adolescents (AMARA 45)</span>
-                                        <span id="maison-ados-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="maison-ados-content" class="sous-accordion-body">
-                                        <img src="Capture_d_ecran_amara45.png" alt="Maison des Adolescents">
-                                        <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
-                                            <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
-                                            <p><strong>Contact :</strong><br>
-                                            📞 <a href="tel:0785766475">07 85 76 64 75</a><br>
-                                            📧 <a href="mailto:mda45@amara45.fr">mda45@amara45.fr</a></p>
-                                            <div class="social-links">
-                                                <a href="https://facebook.com/maisondesados45" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-                                                <a href="https://instagram.com/maisondesados45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-structure-maison-ados" class="print-checkbox" data-print-target="structure-maison-ados">
-                                            <label for="print-structure-maison-ados">Imprimer cette structure</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Mission Locale -->
-                                <div class="sous-accordion-wrapper structure-card" id="structure-mission-locale">
-                                    <div class="sous-accordion-header" onclick="toggleSousAccordion('mission-locale')">
-                                        <span>Mission Locale de Gien</span>
-                                        <span id="mission-locale-icon" class="sous-accordion-icon">+</span>
-                                    </div>
-                                    <div id="mission-locale-content" class="sous-accordion-body">
-                                        <img src="Capture_d_ecran_mission_locale.png" alt="Mission Locale de Gien">
-                                        <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
-                                        <button class="read-more-btn">Lire la suite</button>
-                                        <div class="full-text">
-                                            <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
-                                            <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
-                                            <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
-                                            📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
-                                        </div>
-                                        <div class="lieu-print-row">
-                                            <input type="checkbox" id="print-structure-mission-locale" class="print-checkbox" data-print-target="structure-mission-locale">
-                                            <label for="print-structure-mission-locale">Imprimer cette structure</label>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
-                            <button class="read-more-btn">Lire la suite</button>
+
+                            <!-- Maison Saint-Jean -->
+                            <div class="sous-accordion-wrapper structure-card" id="structure-maison-saint-jean">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-saint-jean')">
+                                    <span>Maison Saint-Jean (Briare)</span>
+                                    <span id="maison-saint-jean-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="maison-saint-jean-content" class="sous-accordion-body">
+                                    <img src="Capture_d_ecran_MSJ.png" alt="Maison Saint-Jean">
+                                    <p>Située sur le boulevard Buyser, à proximité du musée des Émaux, la Maison Saint-Jean de Briare se veut comme un lieu d'accueil municipal pour les jeunes de la commune, de l'entrée en 6e et jusqu'à 17 ans.</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p>Activités manuelles, artistiques, sportives, sorties, mini-séjours (camps pendant l'été), création de projets.</p>
+                                        <p><strong>📍 49 Boulevard Buyser, Briare</strong></p>
+                                        <p>📞 <a href="tel:0238371664">02 38 37 16 64</a> / <a href="tel:0764754898">07 64 75 48 98</a></p>
+                                        <p>Ouvert les mercredis, un vendredi par mois et les vacances scolaires.</p>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-structure-maison-saint-jean" class="print-checkbox" data-print-target="structure-maison-saint-jean">
+                                        <label for="print-structure-maison-saint-jean">Imprimer cette structure</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Séjours pédagogiques -->
+                            <div class="sous-accordion-wrapper structure-card" id="structure-sejours">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('sejours-pedagogiques')">
+                                    <span>Séjours pédagogiques (Bee'Mobile)</span>
+                                    <span id="sejours-pedagogiques-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="sejours-pedagogiques-content" class="sous-accordion-body">
+                                    <img src="jeunesse_page-011.png" alt="Séjours pédagogiques">
+                                    <p>Colonie d'une semaine (du lundi au vendredi) en camping. À destination des collégiens et lycéens.</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p>Séjours pédagogiques avec une résidence d'artistes (auteur, dessinateur…), ateliers sportifs, sorties culturelles…</p>
+                                        <p>Prix en fonction de votre lieu d'habitation ou des revenus des parents.</p>
+                                        <p>📞 <a href="tel:0757401028">07 57 40 10 28</a><br>
+                                        📧 <a href="mailto:evsitinerant@laligue45.fr">evsitinerant@laligue45.fr</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/EVS-Itinérant-Berry-Loire-Puisaye-100077577510459" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                            <a href="https://instagram.com/evsligue45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-structure-sejours" class="print-checkbox" data-print-target="structure-sejours">
+                                        <label for="print-structure-sejours">Imprimer cette structure</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Maison des Adolescents -->
+                            <div class="sous-accordion-wrapper structure-card" id="structure-maison-ados">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('maison-ados')">
+                                    <span>Maison des Adolescents (AMARA 45)</span>
+                                    <span id="maison-ados-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="maison-ados-content" class="sous-accordion-body">
+                                    <img src="Capture_d_ecran_amara45.png" alt="Maison des Adolescents">
+                                    <p>Espace de <strong>soutien en santé mentale</strong>. Sa préoccupation : que vous alliez bien ! Ici, n'importe quel <strong>jeune de 11 à 25 ans</strong> peut venir parler de ce qui le préoccupe : angoisse, stress, petit ou gros souci… sans jugement.</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p>Nous pouvons aussi <strong>accueillir les proches</strong> (parents, autres membres de la famille, professionnels…) pour les aider à gérer la situation du jeune.</p>
+                                        <p>C'est un espace libre, gratuit, confidentiel, et anonyme si besoin.</p>
+                                        <p><strong>Contact :</strong><br>
+                                        📞 <a href="tel:0785766475">07 85 76 64 75</a><br>
+                                        📧 <a href="mailto:mda45@amara45.fr">mda45@amara45.fr</a></p>
+                                        <div class="social-links">
+                                            <a href="https://facebook.com/maisondesados45" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                                            <a href="https://instagram.com/maisondesados45" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-structure-maison-ados" class="print-checkbox" data-print-target="structure-maison-ados">
+                                        <label for="print-structure-maison-ados">Imprimer cette structure</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Mission Locale -->
+                            <div class="sous-accordion-wrapper structure-card" id="structure-mission-locale">
+                                <div class="sous-accordion-header" onclick="toggleSousAccordion('mission-locale')">
+                                    <span>Mission Locale de Gien</span>
+                                    <span id="mission-locale-icon" class="sous-accordion-icon">+</span>
+                                </div>
+                                <div id="mission-locale-content" class="sous-accordion-body">
+                                    <img src="Capture_d_ecran_mission_locale.png" alt="Mission Locale de Gien">
+                                    <p>La Mission Locale permet aux jeunes de 16 à 25 ans d'être écoutés, de bénéficier d'une aide personnalisée et de trouver des solutions pour avancer dans leur vie professionnelle (orientation, formation, emploi) et/ou dans leur vie personnelle (logement, santé, citoyenneté, mobilité...).</p>
+                                    <button class="read-more-btn">Lire la suite</button>
+                                    <div class="full-text">
+                                        <p>La Mission locale propose également aux employeurs un véritable appui dans leurs recrutements.</p>
+                                        <p><strong>📍 30 rue Paul Bert, Gien</strong></p>
+                                        <p>📞 <a href="tel:0238672562">02 38 67 25 62</a><br>
+                                        📧 <a href="mailto:mlgien@aijam.com">mlgien@aijam.com</a></p>
+                                    </div>
+                                    <div class="lieu-print-row">
+                                        <input type="checkbox" id="print-structure-mission-locale" class="print-checkbox" data-print-target="structure-mission-locale">
+                                        <label for="print-structure-mission-locale">Imprimer cette structure</label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="print-select-row">
                                 <label class="print-checkbox-wrapper">
                                     <input type="checkbox" class="print-checkbox" data-print-target="structures-loisirs">
