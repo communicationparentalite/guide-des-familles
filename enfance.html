@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Enfance (3-11 ans) - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
-        <!-- Open Graph -->
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Enfance (3-11 ans) - Guide des Familles Berry Loire Puisaye">
     <meta property="og:description" content="Écoles, accueils périscolaires, accueils de loisirs : le guide des 3-11 ans.">
@@ -13,11 +14,20 @@
     <meta property="og:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/enfance_page-000.png">
     <meta property="og:locale" content="fr_FR">
     <meta property="og:site_name" content="Guide des Familles Berry Loire Puisaye">
+
+    <!-- Feuilles de styles locales -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- Leaflet (carte des écoles) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
     <style>
+        /* ============================================================
+           COULEURS SPÉCIFIQUES À LA PAGE ENFANCE (VIOLET)
+           ============================================================ */
         .page-enfance {
             --primary-color: #686be7;
             --primary-light: #8B8DEF;
@@ -26,6 +36,9 @@
             --secondary-light: #8280E0;
         }
 
+        /* ============================================================
+           IMAGES DE CONTENU
+           ============================================================ */
         .img-contenu-400 {
             display: block;
             margin: 1rem auto;
@@ -42,6 +55,9 @@
             .img-contenu-400 { max-width: 280px; }
         }
 
+        /* ============================================================
+           CARTE LEAFLET
+           ============================================================ */
         #carte-ecoles {
             height: 480px;
             width: 100%;
@@ -53,6 +69,9 @@
             background: #e8e8e8;
         }
 
+        /* ============================================================
+           CARTES ÉCOLES (desktop)
+           ============================================================ */
         .ecole-card {
             background: white;
             border-radius: 10px;
@@ -102,6 +121,9 @@
         .ecole-card .ecole-toggle-icon { display: none; }
         .ecole-card .ecole-details { display: block; }
 
+        /* ============================================================
+           CARTES ÉCOLES (mobile : repliables)
+           ============================================================ */
         @media (max-width: 768px) {
             .ecole-card {
                 cursor: pointer;
@@ -148,6 +170,9 @@
             }
         }
 
+        /* ============================================================
+           GRILLES
+           ============================================================ */
         .accordion-card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -182,6 +207,9 @@
         .card a { color: var(--primary-color); text-decoration: none; }
         .card a:hover { text-decoration: underline; }
 
+        /* ============================================================
+           TOOLTIP LEAFLET
+           ============================================================ */
         .ecole-tooltip {
             font-family: 'Nunito', sans-serif;
             line-height: 1.5;
@@ -298,26 +326,10 @@
 </head>
 <body class="page-enfance">
 
-    <div class="print-header" style="display: none;">
-        <h1>Guide des Familles - Enfance</h1>
-        <p>Communauté de Communes Berry Loire Puisaye</p>
-        <p>Imprimé le <span id="print-date"></span></p>
-    </div>
+    <!-- ===== HEADER (injecté par script.js) ===== -->
+    <header class="header" id="siteHeader"></header>
 
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
-                    <h1><a href="index.html">Guide des Familles</a></h1>
-                </div>
-                <div class="header-info">
-                    <strong>Dernière mise à jour :</strong> <span class="header-date"></span>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
@@ -437,6 +449,7 @@
         </ul>
     </nav>
 
+    <!-- ===== MAIN ===== -->
     <main>
         <section class="section section-alt">
             <div class="container">
@@ -706,7 +719,8 @@
                             </div>
                         </div>
                     </div>
-                                        <!-- ===== 2. CLAS ===== -->
+
+                    <!-- ===== 2. CLAS ===== -->
                     <div class="accordion-item" id="clas">
                         <button class="accordion-header" aria-expanded="false">
                             <span>CLAS - Contrat Local d'Accompagnement à la Scolarité</span>
@@ -937,47 +951,16 @@
         </section>
     </main>
 
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
-            <img id="lightboxImg" class="lightbox-image" src="" alt="">
-        </div>
-    </div>
-
-       <!-- ===== FOOTER (injecté par script.js) ===== -->
+    <!-- ===== FOOTER (injecté par script.js) ===== -->
     <footer class="footer" id="siteFooter"></footer>
 
-    <div class="print-footer" style="display: none;">
-        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
-        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
-        <p>www.cc-berryloirepuisaye.fr</p>
-    </div>
-
-    <div class="print-float-btn" id="printFloatBtn">
-        <div class="print-hint">
-            <i class="fas fa-lightbulb"></i>
-            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
-        </div>
-        <button class="print-select-all" id="printSelectAll">
-            <i class="fas fa-check-square"></i>
-            <span>Tout sélectionner</span>
-            <span class="print-count" id="printCount" style="display: none;">0</span>
-        </button>
-        <button id="printBtn">
-            <i class="fas fa-print"></i>
-            <span class="print-label-long">Imprimer la sélection</span>
-            <span class="print-label-short">Imprimer</span>
-        </button>
-    </div>
-
-    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- ===== LEAFLET + SCRIPT UNIFIÉ ===== -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
+
+    <!-- ===== SCRIPT SPÉCIFIQUE : CARTE LEAFLET DES ÉCOLES ===== -->
     <script>
-        /* ============================================================
-           SCRIPT SPÉCIFIQUE : CARTE LEAFLET DES ÉCOLES
-           ============================================================ */
         (function() {
             const etablissementsData = [
                 { type: "college", commune: "Briare", nom: "Collège Albert Camus", adresse: "Rue du Port à Belleau, 45250 Briare", telephone: "02 38 37 02 83", email: "ce0450008p@ac-orleans-tours.fr", dispositifs: "SEGPA + ULIS", lat: 47.6378, lng: 2.7373 },
@@ -1009,7 +992,6 @@
             const mapEcolesEl = document.getElementById('carte-ecoles');
             if (mapEcolesEl && typeof L !== 'undefined') {
                 try {
-                    // ✅ Vue initiale centrée sur la CCBLP (sera ajustée par fitBounds)
                     const mapEcoles = L.map('carte-ecoles').setView([47.63, 2.79], 11);
                     window.__carteEcoles = mapEcoles;
 
@@ -1018,7 +1000,6 @@
                         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                     }).addTo(mapEcoles);
 
-                    // ✅ Variable pour stocker la couche EPCI (utilisée pour le cadrage)
                     let epciLayer = null;
                     window.__epciLayer = null;
 
@@ -1028,7 +1009,6 @@
                         .then(function(data) {
                             epciLayer = L.geoJSON(data, { style: styleEPCI, interactive: false }).addTo(mapEcoles);
                             window.__epciLayer = epciLayer;
-                            // ✅ Cadrer automatiquement la carte sur les limites de la CCBLP
                             mapEcoles.invalidateSize();
                             mapEcoles.fitBounds(epciLayer.getBounds(), { padding: [20, 20] });
                         })
@@ -1048,9 +1028,6 @@
                         "commune-rpi":  { couleur: "#ffffff", rayon: 5,  bordure: "#4A4DBD" }
                     };
 
-                    // ============================================================
-                    // ✅ STRUCTURES POUR LES LIGNES RPI SYNCHRONISÉES
-                    // ============================================================
                     const rpiGroupes = {};
                     etablissementsData.forEach(function(etab) {
                         if (etab.rpiId) {
@@ -1063,17 +1040,9 @@
                         rpiGroupes[c.rpiId].push(c);
                     });
 
-                    // Dictionnaire : markersByEtabId[etabId] = marker
-                    // Permet de retrouver le marqueur d'une école par son identifiant unique
                     const markersByEtabId = {};
-
-                    // Stockage des lignes RPI avec métadonnées pour pouvoir les redessiner
-                    // Structure : rpiLines[rpiId] = [ { ligne, etabId1, etabId2 } ]
                     const rpiLines = {};
 
-                    // ============================================================
-                    // ✅ CRÉATION DES MARQUEURS (avant les lignes, pour les avoir à disposition)
-                    // ============================================================
                     const markersByEtab = [];
                     const markersCommunes = [];
                     const allMarkers = [];
@@ -1133,10 +1102,6 @@
                         allMarkers.push(marker);
                     });
 
-                    // ============================================================
-                    // ✅ CRÉATION DES LIGNES RPI (après les marqueurs)
-                    // Chaque ligne stocke les IDs des deux marqueurs qu'elle relie
-                    // ============================================================
                     Object.keys(rpiGroupes).forEach(function(rpiId) {
                         const entites = rpiGroupes[rpiId];
                         const ecolesCentrales = entites.filter(function(e) { return e.type === "ecole" || e.type === "rpi"; });
@@ -1173,10 +1138,6 @@
                         }
                     });
 
-                    // ============================================================
-                    // ✅ FONCTION : redessiner toutes les lignes RPI
-                    // Appelée après chaque déplacement de marqueur par le géocodage
-                    // ============================================================
                     function redessinerLignesRPI() {
                         Object.keys(rpiLines).forEach(function(rpiId) {
                             rpiLines[rpiId].forEach(function(ligneInfo) {
@@ -1192,11 +1153,6 @@
                     }
                     window.__redessinerLignesRPI = redessinerLignesRPI;
 
-                    // ============================================================
-                    // ✅ GÉOCODAGE (réactivé)
-                    // À chaque déplacement de marqueur, on redessine les lignes RPI
-                    // pour qu'elles restent attachées aux bons points.
-                    // ============================================================
                     (function geocodage() {
                         const API_URL = 'https://api-adresse.data.gouv.fr/search/';
                         const cache = new Map();
@@ -1238,9 +1194,7 @@
                         let index = 0;
                         function traiterSuivant() {
                             if (index >= file.length) {
-                                // ✅ Fin du géocodage : redessiner une dernière fois les lignes
                                 redessinerLignesRPI();
-                                // ✅ Forcer le cadrage APRÈS que tout soit prêt
                                 setTimeout(function() {
                                     if (window.__epciLayer) {
                                         mapEcoles.invalidateSize();
@@ -1270,7 +1224,6 @@
                                     item.marker.setLatLng([coords.lat, coords.lng]);
                                     item.etab.lat = coords.lat;
                                     item.etab.lng = coords.lng;
-                                    // ✅ Redessiner les lignes RPI à chaque déplacement
                                     redessinerLignesRPI();
                                 }
                                 setTimeout(traiterSuivant, DELAI);
