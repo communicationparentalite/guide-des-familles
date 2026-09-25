@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Loisirs & Culture - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
-        <!-- Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Loisirs & Culture - Guide des Familles Berry Loire Puisaye">
-    <meta property="og:description" content="Bibliothèques, ludothèques, Micro-Folie, squares et city-stades du territoire.">
-    <meta property="og:url" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/loisirs.html">
-    <meta property="og:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/Loisirs1.png">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:site_name" content="Guide des Familles Berry Loire Puisaye">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Loisirs & Culture - Guide des Familles Berry Loire Puisaye">
+    <meta property="og:description" content="Bibliothèques, ludothèques, Micro-Folie, squares et city-stades du territoire.">
+    <meta property="og:url" content="https://communicationparentalite.github.io/guide-des-familles/loisirs.html">
+    <meta property="og:image" content="https://communicationparentalite.github.io/guide-des-familles/Loisirs1.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Guide des Familles Berry Loire Puisaye">
+
     <style>
         .page-loisirs {
             --primary-color: #b7a88e;
@@ -165,26 +167,10 @@
 </head>
 <body class="page-loisirs">
 
-    <div class="print-header" style="display: none;">
-        <h1>Guide des Familles - Loisirs & Culture</h1>
-        <p>Communauté de Communes Berry Loire Puisaye</p>
-        <p>Imprimé le <span id="print-date"></span></p>
-    </div>
+    <!-- ===== HEADER (injecté par script.js) ===== -->
+    <header class="header" id="siteHeader"></header>
 
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display='none'">
-                    <h1><a href="index.html">Guide des Familles</a></h1>
-                </div>
-                <div class="header-info">
-                    <strong>Dernière mise à jour :</strong> <span class="header-date"></span>
-                </div>
-            </div>
-        </div>
-    </header>
-
+    <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
         <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>
         <ul class="nav-list" id="navList">
@@ -304,6 +290,7 @@
         </ul>
     </nav>
 
+    <!-- ===== MAIN ===== -->
     <main>
         <section class="section">
             <div class="container">
@@ -861,41 +848,10 @@
         </section>
     </main>
 
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
-            <img id="lightboxImg" class="lightbox-image" src="" alt="">
-        </div>
-    </div>
-
-      <!-- ===== FOOTER (injecté par script.js) ===== -->
+    <!-- ===== FOOTER (injecté par script.js) ===== -->
     <footer class="footer" id="siteFooter"></footer>
 
-    <div class="print-footer" style="display: none;">
-        <p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>
-        <p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>
-        <p>www.cc-berryloirepuisaye.fr</p>
-    </div>
-
-    <div class="print-float-btn" id="printFloatBtn">
-        <div class="print-hint">
-            <i class="fas fa-lightbulb"></i>
-            <span>Ouvrez une section et cochez la case pour l'imprimer</span>
-        </div>
-        <button class="print-select-all" id="printSelectAll">
-            <i class="fas fa-check-square"></i>
-            <span>Tout sélectionner</span>
-            <span class="print-count" id="printCount" style="display: none;">0</span>
-        </button>
-        <button id="printBtn">
-            <i class="fas fa-print"></i>
-            <span class="print-label-long">Imprimer la sélection</span>
-            <span class="print-label-short">Imprimer</span>
-        </button>
-    </div>
-
-    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
-
+    <!-- ===== SCRIPT UNIFIÉ ===== -->
     <script src="script.js"></script>
 </body>
 </html>
