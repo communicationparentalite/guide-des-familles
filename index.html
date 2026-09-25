@@ -5,30 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Accueil - Guide des Familles Berry Loire Puisaye</title>
     <meta name="description" content="Guide des Familles de la Communauté de Communes Berry Loire Puisaye">
+    
     <!-- Open Graph -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Guide des Familles - Communauté de Communes Berry Loire Puisaye">
-<meta property="og:description" content="Le guide pratique pour les familles du territoire : petite enfance, enfance, jeunesse, parentalité, loisirs et accès aux droits.">
-<meta property="og:url" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/index.html">
-<meta property="og:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/couverture_page-000.png">
-<meta property="og:locale" content="fr_FR">
-<meta property="og:site_name" content="Guide des Familles Berry Loire Puisaye">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Guide des Familles - Communauté de Communes Berry Loire Puisaye">
+    <meta property="og:description" content="Le guide pratique pour les familles du territoire : petite enfance, enfance, jeunesse, parentalité, loisirs et accès aux droits.">
+    <meta property="og:url" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/index.html">
+    <meta property="og:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/couverture_page-000.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Guide des Familles Berry Loire Puisaye">
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Guide des Familles - Communauté de Communes Berry Loire Puisaye">
-<meta name="twitter:description" content="Le guide pratique pour les familles du territoire.">
-<meta name="twitter:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/couverture_page-000.png">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Guide des Familles - Communauté de Communes Berry Loire Puisaye">
+    <meta name="twitter:description" content="Le guide pratique pour les familles du territoire.">
+    <meta name="twitter:image" content="https://communicationparentalite.github.io/guide-des-familles-ccblp/couverture_page-000.png">
+
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="fonts.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
     <style>
         /* ============================================================
            CSS SPÉCIFIQUE À LA PAGE ACCUEIL
-           (le reste est dans styles.css)
            ============================================================ */
-
-        /* Couleurs de la page accueil */
         .page-accueil {
             --primary-color: #2E7D32;
             --primary-light: #66BB6A;
@@ -37,12 +37,12 @@
             --secondary-light: #4DB6AC;
         }
 
-        /* Header accueil : dégradé 5 couleurs */
-        .page-accueil .header {
+        /* Header accueil : dégradé 5 couleurs (injecté par script.js) */
+        .page-accueil #siteHeader.header {
             background: linear-gradient(135deg,
                 #2E7D32 0%,
                 #5be485 25%,
-                #f0bb1e 50%,
+                #f0bb1b 50%,
                 #ff66c4 75%,
                 #1f5692 100%
             );
@@ -52,7 +52,7 @@
             position: relative;
         }
 
-        .page-accueil .header-content {
+        .page-accueil #siteHeader .header-content {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -61,14 +61,14 @@
             position: relative;
         }
 
-        .page-accueil .header .logo {
+        .page-accueil #siteHeader .logo {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.2rem;
         }
 
-        .page-accueil .header .logo img {
+        .page-accueil #siteHeader .logo img {
             height: 70px;
             width: auto;
             display: block;
@@ -76,7 +76,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
         }
 
-        .page-accueil .header .logo h1 {
+        .page-accueil #siteHeader .logo h1 {
             color: white;
             margin-bottom: 0;
             font-size: 3.6rem;
@@ -85,12 +85,12 @@
             text-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        .page-accueil .header .logo h1 a {
+        .page-accueil #siteHeader .logo h1 a {
             color: white;
             text-decoration: none;
         }
 
-        .page-accueil .header-info {
+        .page-accueil #siteHeader .header-info {
             position: absolute;
             bottom: -0.2rem;
             right: 0;
@@ -291,9 +291,9 @@
 
         /* ===== RESPONSIVE SPÉCIFIQUE ACCUEIL ===== */
         @media (max-width: 768px) {
-            .page-accueil .header .logo img { height: 50px; }
-            .page-accueil .header .logo h1 { font-size: 2.6rem; }
-            .page-accueil .header-info { font-size: 0.5rem; bottom: -0.1rem; }
+            .page-accueil #siteHeader .logo img { height: 50px; }
+            .page-accueil #siteHeader .logo h1 { font-size: 2.6rem; }
+            .page-accueil #siteHeader .header-info { font-size: 0.5rem; bottom: -0.1rem; }
 
             .hero { min-height: 300px; }
             .hero.expanded { min-height: 700px; }
@@ -315,9 +315,9 @@
         }
 
         @media (max-width: 480px) {
-            .page-accueil .header .logo img { height: 40px; }
-            .page-accueil .header .logo h1 { font-size: 2.2rem; }
-            .page-accueil .header-info { font-size: 0.45rem; }
+            .page-accueil #siteHeader .logo img { height: 40px; }
+            .page-accueil #siteHeader .logo h1 { font-size: 2.2rem; }
+            .page-accueil #siteHeader .header-info { font-size: 0.45rem; }
 
             .hero { min-height: 250px; }
             .hero.expanded { min-height: 650px; }
@@ -334,21 +334,8 @@
 </head>
 <body class="page-accueil">
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo Communauté de Communes Berry Loire Puisaye"
-                         onerror="this.style.display='none'">
-                    <h1><a href="index.html">Guide des Familles</a></h1>
-                </div>
-                <div class="header-info">
-                    <strong>Dernière mise à jour :</strong> <span class="header-date"></span>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- ===== HEADER (injecté par script.js) ===== -->
+    <header class="header" id="siteHeader"></header>
 
     <!-- ===== NAV ===== -->
     <nav class="nav" id="mainNav">
@@ -600,18 +587,8 @@
         </section>
     </main>
 
-    <!-- ===== LIGHTBOX ===== -->
-    <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-            <button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
-            <img id="lightboxImg" class="lightbox-image" src="" alt="">
-        </div>
-    </div>
-
-       <!-- ===== FOOTER (injecté par script.js) ===== -->
+    <!-- ===== FOOTER (injecté par script.js) ===== -->
     <footer class="footer" id="siteFooter"></footer>
-    <!-- ===== SCROLL TOP ===== -->
-    <button class="scroll-top" id="scrollTop" title="Retour en haut" aria-label="Retour en haut">↑</button>
 
     <!-- ===== SCRIPT UNIFIÉ ===== -->
     <script src="script.js"></script>
