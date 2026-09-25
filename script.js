@@ -262,7 +262,7 @@
 
     /* ============================================================
        9. LIGHTBOX
-       ⚠️ La classe CSS d'ouverture est ".open" (et non ".active")
+       ⚠️ La classe CSS d'ouverture est ".active" (cohérent avec styles.css)
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
@@ -273,12 +273,12 @@
         window.openLightbox = function (src) {
             if (!src) return;
             lightboxImg.src = src;
-            lightbox.classList.add('open');
+            lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
         };
 
         function closeLightbox() {
-            lightbox.classList.remove('open');
+            lightbox.classList.remove('active');
             document.body.style.overflow = '';
         }
 
@@ -546,6 +546,9 @@
 
                             const parentGrid = target.closest('.accordion-card-grid');
                             if (parentGrid) parentGrid.classList.add('print-selected');
+
+                            const parentSousAccordion = target.closest('.sous-accordion-wrapper');
+                            if (parentSousAccordion) parentSousAccordion.classList.add('print-selected');
                         }
                     }
                 }
@@ -587,6 +590,7 @@
             document.querySelectorAll('.accordion-body').forEach(function (b) { b.classList.add('open'); });
             document.querySelectorAll('.full-text').forEach(function (ft) { ft.classList.add('visible'); });
             document.querySelectorAll('.sous-accordion-body').forEach(function (sab) { sab.classList.add('open'); });
+            document.querySelectorAll('.mairie-card').forEach(function (mc) { mc.classList.add('open'); });
             setTimeout(function () { window.print(); }, 200);
         });
 
