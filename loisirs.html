@@ -27,6 +27,22 @@
             --secondary-light: #C8BEA5;
         }
 
+        /* ============================================================
+           ✅ CORRECTIF : FORCER L'AFFICHAGE DES ICÔNES FONT AWESOME
+           ============================================================ */
+        .social-links a i,
+        .social-links a i::before,
+        .accordion-card .social-links a i,
+        .accordion-card .social-links a i::before {
+            font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", sans-serif !important;
+            font-style: normal !important;
+            font-weight: 400 !important;
+            display: inline-block !important;
+            font-variant: normal !important;
+            text-rendering: auto !important;
+            -webkit-font-smoothing: antialiased !important;
+        }
+
         .microfolie-grid {
             display: grid;
             grid-template-columns: 380px 1fr;
