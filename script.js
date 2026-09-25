@@ -57,7 +57,14 @@
         if (!nav) return;
 
         nav.innerHTML =
-            '<button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>' +
+            // ✅ Conteneur mobile : ☰ Menu + Recherche (visible uniquement en mobile)
+            '<div class="nav-mobile-top">' +
+                '<button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>' +
+                '<div class="nav-search">' +
+                    '<pagefind-modal-trigger></pagefind-modal-trigger>' +
+                '</div>' +
+            '</div>' +
+
             '<ul class="nav-list" id="navList">' +
 
                 '<li><a href="index.html" class="nav-link-accueil">Accueil</a></li>' +
