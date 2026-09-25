@@ -194,22 +194,18 @@
         const nav = document.getElementById('mainNav');
         if (!nav) return;
 
-        // Récupérer le nom du fichier courant (ex: "enfance.html")
         let currentPage = window.location.pathname.split('/').pop();
         if (currentPage === '' || currentPage === '/') {
             currentPage = 'index.html';
         }
-        // Supprimer une éventuelle ancre ou query string
         currentPage = currentPage.split('#')[0].split('?')[0];
 
-        // Accueil
         if (currentPage === 'index.html') {
             const accueil = nav.querySelector('.nav-link-accueil');
             if (accueil) accueil.classList.add('active');
             return;
         }
 
-        // Rubriques principales
         const rubriques = [
             { page: 'interlocuteurs.html', selector: '.nav-link-interlocuteurs' },
             { page: 'arrivee-enfant.html', selector: '.nav-link-arrivee-enfant' },
@@ -702,13 +698,15 @@
 
     /* ============================================================
        16. VIDÉO YOUTUBE
+       ✅ Utilisation de youtube-nocookie.com pour éviter les
+          problèmes de codec et de confidentialité
        ============================================================ */
     window.loadVideo = function (wrapperId, videoId, title) {
         const wrapper = document.getElementById(wrapperId);
         if (!wrapper) return;
         wrapper.classList.add('video-loaded');
         wrapper.innerHTML =
-            '<iframe src="https://www.youtube.com/embed/' + videoId +
+            '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId +
             '?rel=0&modestbranding=1&autoplay=1" ' +
             'title="' + title + '" ' +
             'frameborder="0" ' +
