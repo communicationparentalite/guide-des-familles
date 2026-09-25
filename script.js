@@ -45,6 +45,7 @@
                     '</div>' +
                 '</div>' +
             '</div>' +
+            '<pagefind-config bundle-path="/guide-des-familles-ccblp/pagefind/"></pagefind-config>' +
             '<pagefind-modal></pagefind-modal>';
     }
 
