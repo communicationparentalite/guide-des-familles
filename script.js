@@ -58,7 +58,6 @@
         if (!nav) return;
 
         nav.innerHTML =
-            // ✅ Conteneur mobile : ☰ Menu + Recherche (visible uniquement en mobile)
             '<div class="nav-mobile-top">' +
                 '<button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>' +
                 '<div class="nav-search">' +
@@ -183,7 +182,6 @@
 
             '</ul>';
 
-        // ✅ Détecter la page courante et ajouter la classe .active
         marquerPageActive();
     }
 
@@ -698,8 +696,7 @@
 
     /* ============================================================
        16. VIDÉO YOUTUBE
-       ✅ Utilisation de youtube-nocookie.com pour éviter les
-          problèmes de codec et de confidentialité
+       ✅ Ajout du paramètre "origin" pour éviter l'erreur 153
        ============================================================ */
     window.loadVideo = function (wrapperId, videoId, title) {
         const wrapper = document.getElementById(wrapperId);
@@ -707,7 +704,7 @@
         wrapper.classList.add('video-loaded');
         wrapper.innerHTML =
             '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId +
-            '?rel=0&modestbranding=1&autoplay=1" ' +
+            '?rel=0&modestbranding=1&autoplay=1&origin=' + encodeURIComponent(window.location.origin) + '" ' +
             'title="' + title + '" ' +
             'frameborder="0" ' +
             'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
@@ -857,10 +854,6 @@
 
     /* ============================================================
        21. AUTOMATISATION DE LA DATE D'IMPRESSION
-       ⚠️ La date "Dernière mise à jour" du header est injectée
-       par GitHub Actions (voir deploy.yml). On ne met à jour
-       ici QUE la date d'impression (#print-date), car elle
-       correspond à la date réelle de l'impression.
        ============================================================ */
     function initDates() {
         const printDateEl = document.getElementById('print-date');
@@ -875,7 +868,6 @@
        22. INITIALISATION
        ============================================================ */
     function init() {
-        // 1. Injection des éléments communs
         initHeader();
         initNav();
         initFooter();
@@ -884,7 +876,6 @@
         initScrollTopBtn();
         initPrintHeader();
 
-        // 2. Initialisation des comportements
         initNavigation();
         initScrollTop();
         initLightbox();
