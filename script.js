@@ -1,18 +1,32 @@
 /* ============================================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Script JS unifié - Septembre 2026
-   Version stable (sans Pagefind)
+   Inclut Pagefind (recherche interne)
    ============================================================ */
 
 (function () {
     'use strict';
 
     /* ============================================================
-       1. INJECTION DU HEADER COMMUN
+       1. INJECTION DU HEADER COMMUN + RECHERCHE PAGEFIND
        ============================================================ */
     function initHeader() {
         const header = document.getElementById('siteHeader');
         if (!header) return;
+
+        // ✅ NOUVEAU : Charger les ressources Pagefind (une seule fois)
+        if (!document.querySelector('link[href*="pagefind-component-ui.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'pagefind/pagefind-component-ui.css';
+            document.head.appendChild(link);
+        }
+        if (!document.querySelector('script[src*="pagefind-component-ui.js"]')) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'pagefind/pagefind-component-ui.js';
+            document.head.appendChild(script);
+        }
 
         header.innerHTML =
             '<div class="container">' +
@@ -22,10 +36,16 @@
                         '<h1><a href="index.html">Guide des Familles</a></h1>' +
                     '</div>' +
                     '<div class="header-info">' +
-                        '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
+                        '<div class="header-search">' +
+                            '<pagefind-modal-trigger></pagefind-modal-trigger>' +
+                        '</div>' +
+                        '<div class="header-date-info">' +
+                            '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
+                        '</div>' +
                     '</div>' +
                 '</div>' +
-            '</div>';
+            '</div>' +
+            '<pagefind-modal></pagefind-modal>';
     }
 
     /* ============================================================
@@ -87,6 +107,7 @@
         const btn = document.createElement('div');
         btn.className = 'print-float-btn';
         btn.id = 'printFloatBtn';
+        btn.setAttribute('data-pagefind-ignore', 'all');
         btn.innerHTML =
             '<div class="print-hint">' +
                 '<i class="fas fa-lightbulb"></i>' +
@@ -131,6 +152,7 @@
         const printHeader = document.createElement('div');
         printHeader.className = 'print-header';
         printHeader.style.display = 'none';
+        printHeader.setAttribute('data-pagefind-ignore', 'all');
         printHeader.innerHTML =
             '<h1>Guide des Familles - ' + pageTitle + '</h1>' +
             '<p>Communauté de Communes Berry Loire Puisaye</p>' +
@@ -140,6 +162,7 @@
         const printFooter = document.createElement('div');
         printFooter.className = 'print-footer';
         printFooter.style.display = 'none';
+        printFooter.setAttribute('data-pagefind-ignore', 'all');
         printFooter.innerHTML =
             '<p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>' +
             '<p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>' +
