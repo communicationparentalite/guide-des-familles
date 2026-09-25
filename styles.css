@@ -938,6 +938,7 @@ pagefind-modal-trigger input {
 /* --- Liens sites internet en badge uniforme --- */
 .accordion-body a[target="_blank"]:not(.social-links a),
 .sous-accordion-body a[target="_blank"]:not(.social-links a),
+.sub-section a[target="_blank"]:not(.social-links a),
 .accordion-card a[target="_blank"],
 .card a[target="_blank"]:not(.social-links a),
 .partner-content a[target="_blank"]:not(.social-links a) {
@@ -957,6 +958,7 @@ pagefind-modal-trigger input {
 
 .accordion-body a[target="_blank"]:not(.social-links a):hover,
 .sous-accordion-body a[target="_blank"]:not(.social-links a):hover,
+.sub-section a[target="_blank"]:not(.social-links a):hover,
 .accordion-card a[target="_blank"]:hover,
 .card a[target="_blank"]:not(.social-links a):hover,
 .partner-content a[target="_blank"]:not(.social-links a):hover {
@@ -1818,17 +1820,17 @@ pagefind-modal-trigger input {
         gap: 0.5rem;
     }
     .header-info {
-    position: static;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.5rem;
-    gap: 0.5rem;
-    margin-top: 0.4rem;
-    width: 100%;
-}
+        position: static;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 0.5rem;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+        width: 100%;
+    }
 
     /* ✅ Cacher la recherche du header en mobile (elle sera dans la nav) */
     .header-search {
