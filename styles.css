@@ -2,6 +2,7 @@
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Feuille de styles partagée - styles.css
    Version unifiée - Septembre 2026
+   Inclut Pagefind (recherche interne)
    ============================================================ */
 
 /* ============================================================
@@ -257,6 +258,10 @@ li { margin-bottom: 0.5rem; }
     position: absolute;
     bottom: -0.2rem;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
     font-size: 0.6rem;
     color: rgba(255, 255, 255, 0.7);
     text-align: right;
@@ -264,6 +269,39 @@ li { margin-bottom: 0.5rem; }
 
 .header-info strong {
     font-weight: 600;
+}
+
+/* ============================================================
+   ✅ RECHERCHE PAGEFIND — Bouton dans le header
+   ============================================================ */
+
+.header-search {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Personnalisation du bouton Pagefind (composant trigger) */
+pagefind-modal-trigger {
+    --pagefind-trigger-color: white;
+    --pagefind-trigger-bg: rgba(255, 255, 255, 0.2);
+    --pagefind-trigger-border: 1px solid rgba(255, 255, 255, 0.5);
+    --pagefind-trigger-radius: 20px;
+    --pagefind-trigger-padding: 0.3rem 0.9rem;
+    --pagefind-trigger-font-size: 0.75rem;
+    --pagefind-trigger-font-weight: 600;
+    --pagefind-trigger-hover-bg: rgba(255, 255, 255, 0.35);
+    --pagefind-trigger-color-hover: white;
+}
+
+/* Personnalisation de la modale Pagefind */
+pagefind-modal {
+    --pagefind-modal-bg: white;
+    --pagefind-modal-border-radius: 12px;
+    --pagefind-modal-box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --pagefind-result-title-color: var(--primary-dark);
+    --pagefind-result-highlight-bg: rgba(255, 235, 59, 0.5);
+    --pagefind-input-border-color: var(--primary-color);
 }
 
 /* ============================================================
@@ -1768,6 +1806,15 @@ li { margin-bottom: 0.5rem; }
         position: static;
         font-size: 0.5rem;
         text-align: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+    }
+
+    /* ✅ Ajustement Pagefind en mobile */
+    pagefind-modal-trigger {
+        --pagefind-trigger-font-size: 0.7rem;
+        --pagefind-trigger-padding: 0.25rem 0.7rem;
     }
 
     /* ===== MENU MOBILE : ACCORDÉON DANS LE FLUX ===== */
@@ -2132,6 +2179,11 @@ li { margin-bottom: 0.5rem; }
     .print-float-btn .print-select-all i {
         font-size: 0.9rem;
     }
+
+    pagefind-modal-trigger {
+        --pagefind-trigger-font-size: 0.65rem;
+        --pagefind-trigger-padding: 0.2rem 0.6rem;
+    }
 }
 
 /* ============================================================
@@ -2166,7 +2218,11 @@ li { margin-bottom: 0.5rem; }
     .video-thumb,
     .video-caption,
     .video-credit,
-    .calameo-wrapper {
+    .calameo-wrapper,
+    /* ✅ Pagefind : masquer le bouton et la modale à l'impression */
+    .header-search,
+    pagefind-modal-trigger,
+    pagefind-modal {
         display: none !important;
     }
 
