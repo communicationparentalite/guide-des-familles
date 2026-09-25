@@ -1,7 +1,7 @@
 /* ============================================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Script JS unifié - Septembre 2026
-   Inclut Pagefind (recherche interne)
+   Inclut Pagefind (recherche interne) + injection de la navigation
    ============================================================ */
 
 (function () {
@@ -14,7 +14,7 @@
         const header = document.getElementById('siteHeader');
         if (!header) return;
 
-        // ✅ NOUVEAU : Charger les ressources Pagefind (une seule fois)
+        // ✅ Charger les ressources Pagefind (une seule fois)
         if (!document.querySelector('link[href*="pagefind-component-ui.css"]')) {
             const link = document.createElement('link');
             link.rel = 'stylesheet';
@@ -50,7 +50,181 @@
     }
 
     /* ============================================================
-       2. INJECTION DU FOOTER COMMUN
+       2. INJECTION DE LA NAVIGATION COMMUNE
+       ============================================================ */
+    function initNav() {
+        const nav = document.getElementById('mainNav');
+        if (!nav) return;
+
+        nav.innerHTML =
+            '<button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false" aria-controls="navList">☰ Menu</button>' +
+            '<ul class="nav-list" id="navList">' +
+
+                '<li><a href="index.html" class="nav-link-accueil">Accueil</a></li>' +
+
+                '<li class="nav-dropdown dropdown-interlocuteurs">' +
+                    '<a href="interlocuteurs.html" class="nav-link-interlocuteurs">Interlocuteurs</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="interlocuteurs.html" class="nav-dropdown-main-link">Voir la page Interlocuteurs</a></li>' +
+                        '<li><a href="interlocuteurs.html#mairies">Mairies</a></li>' +
+                        '<li><a href="interlocuteurs.html#communaute-communes">Communauté de communes</a></li>' +
+                        '<li><a href="interlocuteurs.html#caf">CAF du Loiret</a></li>' +
+                        '<li><a href="interlocuteurs.html#msa">MSA Beauce Cœur de Loire</a></li>' +
+                        '<li><a href="interlocuteurs.html#ads">Agence Départementale des Solidarités</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-arrivee-enfant">' +
+                    '<a href="arrivee-enfant.html" class="nav-link-arrivee-enfant">Arrivée d\'un enfant</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="arrivee-enfant.html" class="nav-dropdown-main-link">Voir la page Arrivée d\'un enfant</a></li>' +
+                        '<li><a href="arrivee-enfant.html#demarches">Démarches avant l\'arrivée</a></li>' +
+                        '<li><a href="arrivee-enfant.html#accompagnement-perinatal">Accompagnement périnatal</a></li>' +
+                        '<li><a href="arrivee-enfant.html#mode-de-garde">Recherche d\'un mode de garde</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-petite-enfance">' +
+                    '<a href="petite-enfance.html" class="nav-link-petite-enfance">Petite enfance</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="petite-enfance.html" class="nav-dropdown-main-link">Voir la page Petite enfance</a></li>' +
+                        '<li><a href="petite-enfance.html#guichet-unique">Guichet Unique de la Petite Enfance (RPE)</a></li>' +
+                        '<li><a href="petite-enfance.html#accueil-collectif">Accueil collectif</a></li>' +
+                        '<li><a href="petite-enfance.html#mam">Maison d\'Assistantes Maternelles (MAM)</a></li>' +
+                        '<li><a href="petite-enfance.html#accueil-individuel">Accueil individuel avec le RPE</a></li>' +
+                        '<li><a href="petite-enfance.html#la-marelle">La Marelle - LAEP</a></li>' +
+                        '<li><a href="petite-enfance.html#pmi">PMI - Consultations et ateliers</a></li>' +
+                        '<li><a href="petite-enfance.html#bulle-musicale">Focus sur La Bulle Musicale</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-enfance">' +
+                    '<a href="enfance.html" class="nav-link-enfance">Enfance</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="enfance.html" class="nav-dropdown-main-link">Voir la page Enfance</a></li>' +
+                        '<li><a href="enfance.html#scolarite">Scolarité</a></li>' +
+                        '<li><a href="enfance.html#clas">CLAS</a></li>' +
+                        '<li><a href="enfance.html#accueils-loisirs">Accueils de loisirs</a></li>' +
+                        '<li><a href="enfance.html#accueils-periscolaires">Accueil périscolaire</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-jeunesse">' +
+                    '<a href="jeunesse.html" class="nav-link-jeunesse">Jeunesse</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="jeunesse.html" class="nav-dropdown-main-link">Voir la page Jeunesse</a></li>' +
+                        '<li><a href="jeunesse.html#colleges">Collèges</a></li>' +
+                        '<li><a href="jeunesse.html#ter">Focus sur le Territoire Éducatif Rural</a></li>' +
+                        '<li><a href="jeunesse.html#structures-loisirs">Structures d\'accueil et de loisirs</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-parentalite">' +
+                    '<a href="parentalite.html" class="nav-link-parentalite">Parentalité</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="parentalite.html" class="nav-dropdown-main-link">Voir la page Parentalité</a></li>' +
+                        '<li><a href="parentalite.html#aed">Aide Éducative à Domicile (AED)</a></li>' +
+                        '<li><a href="parentalite.html#sdaep">Service d\'Accompagnement Éducatif à la Parentalité (SDAEP)</a></li>' +
+                        '<li><a href="parentalite.html#allo-parents-crise">Allo, Parents en crise</a></li>' +
+                        '<li><a href="parentalite.html#a-domicile-45">A domicile 45</a></li>' +
+                        '<li><a href="parentalite.html#bee-mobile">Espace de vie sociale Bee\'Mobile</a></li>' +
+                        '<li><a href="parentalite.html#paf">Programme d\'Animations Familiales (PAF)</a></li>' +
+                        '<li><a href="parentalite.html#groupe-echanges">Groupe d\'échanges entre parents</a></li>' +
+                        '<li><a href="parentalite.html#nid-fleuri">Relais Parental "Le Nid fleuri"</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-loisirs">' +
+                    '<a href="loisirs.html" class="nav-link-loisirs">Loisirs</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="loisirs.html" class="nav-dropdown-main-link">Voir la page Loisirs</a></li>' +
+                        '<li><a href="loisirs.html#bibliotheques">Bibliothèques</a></li>' +
+                        '<li><a href="loisirs.html#saison-culturelle">Saison Culturelle</a></li>' +
+                        '<li><a href="loisirs.html#associations">Associations</a></li>' +
+                        '<li><a href="loisirs.html#ludotheques">Ludothèques</a></li>' +
+                        '<li><a href="loisirs.html#microfolie">Micro-Folie</a></li>' +
+                        '<li><a href="loisirs.html#tourisme">Office de Tourisme</a></li>' +
+                        '<li><a href="loisirs.html#patrimoine">Patrimoine</a></li>' +
+                        '<li><a href="loisirs.html#squares">Squares</a></li>' +
+                        '<li><a href="loisirs.html#city-skate">City-stades</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-vivre-ensemble">' +
+                    '<a href="vivre-ensemble.html" class="nav-link-vivre-ensemble">Vivre ensemble</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="vivre-ensemble.html" class="nav-dropdown-main-link">Voir la page Vivre ensemble</a></li>' +
+                        '<li><a href="vivre-ensemble.html#guidasso">Guid\'Asso</a></li>' +
+                        '<li><a href="vivre-ensemble.html#espace-initiatives">Espace Initiatives Habitants</a></li>' +
+                        '<li><a href="vivre-ensemble.html#permanence-numerique">Permanence numérique</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+                '<li class="nav-dropdown dropdown-acces-droits">' +
+                    '<a href="acces-droits.html" class="nav-link-acces-droits">Accès aux droits</a>' +
+                    '<ul class="nav-dropdown-menu">' +
+                        '<li><a href="acces-droits.html" class="nav-dropdown-main-link">Voir la page Accès aux droits</a></li>' +
+                        '<li><a href="acces-droits.html#franceservice">Réseau France Services</a></li>' +
+                        '<li><a href="acces-droits.html#ads">Agence Départementale des Solidarités (ADS)</a></li>' +
+                        '<li><a href="acces-droits.html#sis">Service d\'Intervention Sociale de la CAF</a></li>' +
+                        '<li><a href="acces-droits.html#msa">Adhérents MSA</a></li>' +
+                        '<li><a href="acces-droits.html#cidff">CIDFF</a></li>' +
+                        '<li><a href="acces-droits.html#prh45">Pôle Ressources Handicap 45 (PRH45)</a></li>' +
+                    '</ul>' +
+                '</li>' +
+
+            '</ul>';
+
+        // ✅ Détecter la page courante et ajouter la classe .active
+        marquerPageActive();
+    }
+
+    /* ============================================================
+       3. MARQUER LA PAGE COURANTE COMME ACTIVE
+       ============================================================ */
+    function marquerPageActive() {
+        const nav = document.getElementById('mainNav');
+        if (!nav) return;
+
+        // Récupérer le nom du fichier courant (ex: "enfance.html")
+        let currentPage = window.location.pathname.split('/').pop();
+        if (currentPage === '' || currentPage === '/') {
+            currentPage = 'index.html';
+        }
+        // Supprimer une éventuelle ancre ou query string
+        currentPage = currentPage.split('#')[0].split('?')[0];
+
+        // Accueil
+        if (currentPage === 'index.html') {
+            const accueil = nav.querySelector('.nav-link-accueil');
+            if (accueil) accueil.classList.add('active');
+            return;
+        }
+
+        // Rubriques principales
+        const rubriques = [
+            { page: 'interlocuteurs.html', selector: '.nav-link-interlocuteurs' },
+            { page: 'arrivee-enfant.html', selector: '.nav-link-arrivee-enfant' },
+            { page: 'petite-enfance.html', selector: '.nav-link-petite-enfance' },
+            { page: 'enfance.html', selector: '.nav-link-enfance' },
+            { page: 'jeunesse.html', selector: '.nav-link-jeunesse' },
+            { page: 'parentalite.html', selector: '.nav-link-parentalite' },
+            { page: 'loisirs.html', selector: '.nav-link-loisirs' },
+            { page: 'vivre-ensemble.html', selector: '.nav-link-vivre-ensemble' },
+            { page: 'acces-droits.html', selector: '.nav-link-acces-droits' }
+        ];
+
+        for (let i = 0; i < rubriques.length; i++) {
+            if (rubriques[i].page === currentPage) {
+                const link = nav.querySelector(rubriques[i].selector);
+                if (link) link.classList.add('active');
+                break;
+            }
+        }
+    }
+
+    /* ============================================================
+       4. INJECTION DU FOOTER COMMUN
        ============================================================ */
     function initFooter() {
         const footer = document.getElementById('siteFooter');
@@ -82,7 +256,7 @@
     }
 
     /* ============================================================
-       3. INJECTION DE LA LIGHTBOX
+       5. INJECTION DE LA LIGHTBOX
        ============================================================ */
     function initLightboxInjection() {
         if (document.getElementById('lightbox')) return;
@@ -99,7 +273,7 @@
     }
 
     /* ============================================================
-       4. INJECTION DU BOUTON D'IMPRESSION FLOTTANT
+       6. INJECTION DU BOUTON D'IMPRESSION FLOTTANT
        ============================================================ */
     function initPrintFloatBtn() {
         if (document.getElementById('printFloatBtn')) return;
@@ -128,7 +302,7 @@
     }
 
     /* ============================================================
-       5. INJECTION DU BOUTON SCROLL TOP
+       7. INJECTION DU BOUTON SCROLL TOP
        ============================================================ */
     function initScrollTopBtn() {
         if (document.getElementById('scrollTop')) return;
@@ -143,7 +317,7 @@
     }
 
     /* ============================================================
-       6. INJECTION DE L'EN-TÊTE ET DU PIED D'IMPRESSION
+       8. INJECTION DE L'EN-TÊTE ET DU PIED D'IMPRESSION
        ============================================================ */
     function initPrintHeader() {
         if (document.querySelector('.print-header')) return;
@@ -172,7 +346,7 @@
     }
 
     /* ============================================================
-       7. MENU MOBILE + SOUS-MENUS DÉROULANTS
+       9. MENU MOBILE + SOUS-MENUS DÉROULANTS
        ============================================================ */
     function initNavigation() {
         const menuToggle = document.getElementById('menuToggle');
@@ -270,7 +444,7 @@
     }
 
     /* ============================================================
-       8. BOUTON "RETOUR EN HAUT"
+       10. BOUTON "RETOUR EN HAUT"
        ============================================================ */
     function initScrollTop() {
         const scrollBtn = document.getElementById('scrollTop');
@@ -286,7 +460,7 @@
     }
 
     /* ============================================================
-       9. LIGHTBOX
+       11. LIGHTBOX
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
@@ -332,7 +506,7 @@
     }
 
     /* ============================================================
-       10. ACCORDÉON PRINCIPAL
+       12. ACCORDÉON PRINCIPAL
        ============================================================ */
     function toggleAccordion(header) {
         const isOpen = header.classList.contains('open');
@@ -371,7 +545,7 @@
     }
 
     /* ============================================================
-       11. SOUS-ACCORDÉONS
+       13. SOUS-ACCORDÉONS
        ============================================================ */
     window.toggleSubAccordion = function (id) {
         const content = document.getElementById(id + '-content');
@@ -393,7 +567,7 @@
     window.toggleSousAccordion = window.toggleSubAccordion;
 
     /* ============================================================
-       12. "LIRE LA SUITE"
+       14. "LIRE LA SUITE"
        ============================================================ */
     function initReadMore() {
         document.querySelectorAll('.read-more-btn').forEach(function (btn) {
@@ -448,7 +622,7 @@
     }
 
     /* ============================================================
-       13. OUVERTURE PAR ANCRE
+       15. OUVERTURE PAR ANCRE
        ============================================================ */
     function openAccordionItem(item) {
         if (!item) return;
@@ -519,7 +693,7 @@
     }
 
     /* ============================================================
-       14. VIDÉO YOUTUBE
+       16. VIDÉO YOUTUBE
        ============================================================ */
     window.loadVideo = function (wrapperId, videoId, title) {
         const wrapper = document.getElementById(wrapperId);
@@ -536,7 +710,7 @@
     };
 
     /* ============================================================
-       15. IMPRESSION SÉLECTIVE
+       17. IMPRESSION SÉLECTIVE
        ============================================================ */
     function initPrintSelective() {
         const printBtn = document.getElementById('printBtn');
@@ -622,7 +796,7 @@
     }
 
     /* ============================================================
-       16. CARTES ÉCOLES DÉPLIABLES (mobile)
+       18. CARTES ÉCOLES DÉPLIABLES (mobile)
        ============================================================ */
     function initCartesDepliables() {
         if (window.innerWidth > 768) return;
@@ -643,7 +817,7 @@
     }
 
     /* ============================================================
-       17. BOUTON HERO (page accueil)
+       19. BOUTON HERO (page accueil)
        ============================================================ */
     function initHeroToggle() {
         const heroFullText = document.querySelector('.hero .full-text');
@@ -662,7 +836,7 @@
     }
 
     /* ============================================================
-       18. CARTES MAIRIES REPLIABLES
+       20. CARTES MAIRIES REPLIABLES
        ============================================================ */
     function initMairiesDepliables() {
         document.querySelectorAll('.mairie-card-header').forEach(function (header) {
@@ -676,7 +850,7 @@
     }
 
     /* ============================================================
-       19. AUTOMATISATION DES DATES
+       21. AUTOMATISATION DES DATES
        ============================================================ */
     function initDates() {
         const dateElements = document.querySelectorAll('.header-date, #print-date');
@@ -692,11 +866,12 @@
     }
 
     /* ============================================================
-       20. INITIALISATION
+       22. INITIALISATION
        ============================================================ */
     function init() {
         // 1. Injection des éléments communs
         initHeader();
+        initNav();
         initFooter();
         initLightboxInjection();
         initPrintFloatBtn();
