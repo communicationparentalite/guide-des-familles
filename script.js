@@ -7,7 +7,147 @@
     'use strict';
 
     /* ============================================================
-       1. MENU MOBILE + SOUS-MENUS DÉROULANTS
+       1. INJECTION DU HEADER COMMUN
+       ============================================================ */
+    function initHeader() {
+        const header = document.getElementById('siteHeader');
+        if (!header) return;
+
+        header.innerHTML =
+            '<div class="container">' +
+                '<div class="header-content">' +
+                    '<div class="logo">' +
+                        '<img src="Logo_berryloirepuisaye-removebg-preview.png" alt="Logo" onerror="this.style.display=\'none\'">' +
+                        '<h1><a href="index.html">Guide des Familles</a></h1>' +
+                    '</div>' +
+                    '<div class="header-info">' +
+                        '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
+                    '</div>' +
+                '</div>' +
+            '</div>';
+    }
+
+    /* ============================================================
+       2. INJECTION DU FOOTER COMMUN
+       ============================================================ */
+    function initFooter() {
+        const footer = document.getElementById('siteFooter');
+        if (!footer) return;
+
+        footer.innerHTML =
+            '<div class="container">' +
+                '<div class="footer-content-accueil">' +
+                    '<div class="footer-section">' +
+                        '<h3>Communauté de Communes Berry Loire Puisaye</h3>' +
+                        '<p>42 rue des Prés Gris<br>45250 BRIARE</p>' +
+                        '<p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>' +
+                        '📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>' +
+                    '</div>' +
+                    '<div class="footer-section">' +
+                        '<h3>Liens utiles</h3>' +
+                        '<ul>' +
+                            '<li><a href="mentions-legales.html">Mentions légales</a></li>' +
+                            '<li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>' +
+                            '<li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>' +
+                            '<li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>' +
+                        '</ul>' +
+                    '</div>' +
+                '</div>' +
+                '<div class="footer-bottom">' +
+                    '<p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>' +
+                '</div>' +
+            '</div>';
+    }
+
+    /* ============================================================
+       3. INJECTION DE LA LIGHTBOX
+       ============================================================ */
+    function initLightboxInjection() {
+        if (document.getElementById('lightbox')) return;
+
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.id = 'lightbox';
+        lightbox.innerHTML =
+            '<div class="lightbox-content">' +
+                '<button class="lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>' +
+                '<img id="lightboxImg" class="lightbox-image" src="" alt="">' +
+            '</div>';
+        document.body.appendChild(lightbox);
+    }
+
+    /* ============================================================
+       4. INJECTION DU BOUTON D'IMPRESSION FLOTTANT
+       ============================================================ */
+    function initPrintFloatBtn() {
+        if (document.getElementById('printFloatBtn')) return;
+        if (!document.querySelector('.print-checkbox')) return;
+
+        const btn = document.createElement('div');
+        btn.className = 'print-float-btn';
+        btn.id = 'printFloatBtn';
+        btn.innerHTML =
+            '<div class="print-hint">' +
+                '<i class="fas fa-lightbulb"></i>' +
+                '<span>Ouvrez une section et cochez la case pour l\'imprimer</span>' +
+            '</div>' +
+            '<button class="print-select-all" id="printSelectAll">' +
+                '<i class="fas fa-check-square"></i>' +
+                '<span>Tout sélectionner</span>' +
+                '<span class="print-count" id="printCount" style="display: none;">0</span>' +
+            '</button>' +
+            '<button id="printBtn">' +
+                '<i class="fas fa-print"></i>' +
+                '<span class="print-label-long">Imprimer la sélection</span>' +
+                '<span class="print-label-short">Imprimer</span>' +
+            '</button>';
+        document.body.appendChild(btn);
+    }
+
+    /* ============================================================
+       5. INJECTION DU BOUTON SCROLL TOP
+       ============================================================ */
+    function initScrollTopBtn() {
+        if (document.getElementById('scrollTop')) return;
+
+        const btn = document.createElement('button');
+        btn.className = 'scroll-top';
+        btn.id = 'scrollTop';
+        btn.title = 'Retour en haut';
+        btn.setAttribute('aria-label', 'Retour en haut');
+        btn.textContent = '↑';
+        document.body.appendChild(btn);
+    }
+
+    /* ============================================================
+       6. INJECTION DE L'EN-TÊTE D'IMPRESSION
+       ============================================================ */
+    function initPrintHeader() {
+        if (document.querySelector('.print-header')) return;
+
+        const pageTitle = document.title.split(' - ')[0] || 'Guide des Familles';
+
+        const printHeader = document.createElement('div');
+        printHeader.className = 'print-header';
+        printHeader.style.display = 'none';
+        printHeader.innerHTML =
+            '<h1>Guide des Familles - ' + pageTitle + '</h1>' +
+            '<p>Communauté de Communes Berry Loire Puisaye</p>' +
+            '<p>Imprimé le <span id="print-date"></span></p>';
+        document.body.insertBefore(printHeader, document.body.firstChild);
+
+        const printFooter = document.createElement('div');
+        printFooter.className = 'print-footer';
+        printFooter.style.display = 'none';
+        printFooter.innerHTML =
+            '<p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>' +
+            '<p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>' +
+            '<p>www.cc-berryloirepuisaye.fr</p>';
+        document.body.appendChild(printFooter);
+    }
+
+    /* ============================================================
+       7. MENU MOBILE + SOUS-MENUS DÉROULANTS
        ============================================================ */
     function initNavigation() {
         const menuToggle = document.getElementById('menuToggle');
@@ -105,7 +245,7 @@
     }
 
     /* ============================================================
-       2. BOUTON "RETOUR EN HAUT"
+       8. BOUTON "RETOUR EN HAUT"
        ============================================================ */
     function initScrollTop() {
         const scrollBtn = document.getElementById('scrollTop');
@@ -121,7 +261,7 @@
     }
 
     /* ============================================================
-       3. LIGHTBOX
+       9. LIGHTBOX
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
@@ -167,7 +307,7 @@
     }
 
     /* ============================================================
-       4. ACCORDÉON PRINCIPAL
+       10. ACCORDÉON PRINCIPAL
        ============================================================ */
     function toggleAccordion(header) {
         const isOpen = header.classList.contains('open');
@@ -188,14 +328,14 @@
             header.setAttribute('aria-expanded', 'true');
             body.classList.add('open');
 
-           if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
-    setTimeout(function () {
-        window.__carteEcoles.invalidateSize();
-        if (window.__epciLayer) {
-            window.__carteEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
-        }
-    }, 350);
-}
+            if (window.__carteEcoles && header.parentElement.id === 'scolarite') {
+                setTimeout(function () {
+                    window.__carteEcoles.invalidateSize();
+                    if (window.__epciLayer) {
+                        window.__carteEcoles.fitBounds(window.__epciLayer.getBounds(), { padding: [20, 20] });
+                    }
+                }, 350);
+            }
         }
     }
 
@@ -206,7 +346,7 @@
     }
 
     /* ============================================================
-       5. SOUS-ACCORDÉONS
+       11. SOUS-ACCORDÉONS
        ============================================================ */
     window.toggleSubAccordion = function (id) {
         const content = document.getElementById(id + '-content');
@@ -228,14 +368,13 @@
     window.toggleSousAccordion = window.toggleSubAccordion;
 
     /* ============================================================
-       6. "LIRE LA SUITE"
+       12. "LIRE LA SUITE"
        ============================================================ */
     function initReadMore() {
         document.querySelectorAll('.read-more-btn').forEach(function (btn) {
             btn.addEventListener('click', function (e) {
                 e.stopPropagation();
 
-                // 1. Chercher le .full-text qui suit IMMÉDIATEMENT le bouton
                 let fullText = null;
                 let sibling = this.nextElementSibling;
                 while (sibling) {
@@ -246,7 +385,6 @@
                     sibling = sibling.nextElementSibling;
                 }
 
-                // 2. Fallback : chercher dans le conteneur parent
                 if (!fullText) {
                     const conteneurs = [
                         '.bulle-musicale',
@@ -273,12 +411,10 @@
 
                 if (!fullText) return;
 
-                // 3. Toggle
                 const isVisible = fullText.classList.contains('visible');
                 fullText.classList.toggle('visible');
                 this.textContent = isVisible ? 'Lire la suite' : 'Réduire';
 
-                // 4. Invalider la carte Leaflet si présente
                 if (!isVisible && window.__carteEcoles) {
                     setTimeout(function () { window.__carteEcoles.invalidateSize(); }, 350);
                 }
@@ -287,7 +423,7 @@
     }
 
     /* ============================================================
-       7. OUVERTURE PAR ANCRE
+       13. OUVERTURE PAR ANCRE
        ============================================================ */
     function openAccordionItem(item) {
         if (!item) return;
@@ -358,7 +494,7 @@
     }
 
     /* ============================================================
-       8. VIDÉO YOUTUBE
+       14. VIDÉO YOUTUBE
        ============================================================ */
     window.loadVideo = function (wrapperId, videoId, title) {
         const wrapper = document.getElementById(wrapperId);
@@ -375,7 +511,7 @@
     };
 
     /* ============================================================
-       9. IMPRESSION SÉLECTIVE
+       15. IMPRESSION SÉLECTIVE
        ============================================================ */
     function initPrintSelective() {
         const printBtn = document.getElementById('printBtn');
@@ -399,18 +535,14 @@
                     if (targetId) {
                         const target = document.getElementById(targetId);
                         if (target) {
-                            // 1. Marquer l'élément ciblé
                             target.classList.add('print-selected');
 
-                            // 2. Propager à l'accordéon parent (pour éviter que le CSS ne le masque)
                             const parentAccordion = target.closest('.accordion-item');
                             if (parentAccordion) parentAccordion.classList.add('print-selected');
 
-                            // 3. Propager au content-box parent
                             const parentContentBox = target.closest('.content-box');
                             if (parentContentBox) parentContentBox.classList.add('print-selected');
 
-                            // 4. Si c'est une carte dans une grille, propager aussi au .accordion-card-grid
                             const parentGrid = target.closest('.accordion-card-grid');
                             if (parentGrid) parentGrid.classList.add('print-selected');
                         }
@@ -461,7 +593,7 @@
     }
 
     /* ============================================================
-       10. CARTES ÉCOLES DÉPLIABLES (avec support impression)
+       16. CARTES ÉCOLES DÉPLIABLES
        ============================================================ */
     function initCartesDepliables() {
         if (window.innerWidth > 768) return;
@@ -482,7 +614,7 @@
     }
 
     /* ============================================================
-       11. BOUTON HERO (page accueil)
+       17. BOUTON HERO (page accueil)
        ============================================================ */
     function initHeroToggle() {
         const heroFullText = document.querySelector('.hero .full-text');
@@ -501,7 +633,7 @@
     }
 
     /* ============================================================
-       12. CARTES MAIRIES REPLIABLES
+       18. CARTES MAIRIES REPLIABLES
        ============================================================ */
     function initMairiesDepliables() {
         document.querySelectorAll('.mairie-card-header').forEach(function (header) {
@@ -515,7 +647,7 @@
     }
 
     /* ============================================================
-       13. AUTOMATISATION DES DATES DE MISE À JOUR
+       19. AUTOMATISATION DES DATES
        ============================================================ */
     function initDates() {
         const dateElements = document.querySelectorAll('.header-date, #print-date');
@@ -530,42 +662,19 @@
         });
     }
 
-       /* ============================================================
-       14. INJECTION DU FOOTER COMMUN
-       ============================================================ */
-    function initFooter() {
-        const footer = document.getElementById('siteFooter');
-        if (!footer) return;
-
-        footer.innerHTML =
-            '<div class="container">' +
-                '<div class="footer-content-accueil">' +
-                    '<div class="footer-section">' +
-                        '<h3>Communauté de Communes Berry Loire Puisaye</h3>' +
-                        '<p>42 rue des Prés Gris<br>45250 BRIARE</p>' +
-                        '<p>📞 <a href="tel:0238370384">02 38 37 03 84</a><br>' +
-                        '📧 <a href="mailto:contact@cc-berryloirepuisaye.fr">contact@cc-berryloirepuisaye.fr</a></p>' +
-                    '</div>' +
-                    '<div class="footer-section">' +
-                        '<h3>Liens utiles</h3>' +
-                        '<ul>' +
-                            '<li><a href="mentions-legales.html">Mentions légales</a></li>' +
-                            '<li><a href="https://www.cc-berryloirepuisaye.fr" target="_blank" rel="noopener">Site de la Communauté de Communes</a></li>' +
-                            '<li><a href="https://www.caf.fr" target="_blank" rel="noopener">CAF du Loiret</a></li>' +
-                            '<li><a href="https://www.service-public.fr" target="_blank" rel="noopener">Service Public</a></li>' +
-                        '</ul>' +
-                    '</div>' +
-                '</div>' +
-                '<div class="footer-bottom">' +
-                    '<p>&copy; 2026 Communauté de Communes Berry Loire Puisaye - Tous droits réservés</p>' +
-                '</div>' +
-            '</div>';
-    }
-
     /* ============================================================
-       15. INITIALISATION
+       20. INITIALISATION
        ============================================================ */
     function init() {
+        // 1. D'abord injecter les éléments communs
+        initHeader();
+        initFooter();
+        initLightboxInjection();
+        initPrintFloatBtn();
+        initScrollTopBtn();
+        initPrintHeader();
+
+        // 2. Ensuite initialiser les comportements
         initNavigation();
         initScrollTop();
         initLightbox();
@@ -576,7 +685,6 @@
         initCartesDepliables();
         initMairiesDepliables();
         initDates();
-        initFooter();
 
         setTimeout(openAccordionFromHash, 100);
         window.addEventListener('hashchange', openAccordionFromHash);
