@@ -120,7 +120,7 @@
     }
 
     /* ============================================================
-       6. INJECTION DE L'EN-TÊTE D'IMPRESSION
+       6. INJECTION DE L'EN-TÊTE ET DU PIED D'IMPRESSION
        ============================================================ */
     function initPrintHeader() {
         if (document.querySelector('.print-header')) return;
@@ -262,6 +262,7 @@
 
     /* ============================================================
        9. LIGHTBOX
+       ⚠️ La classe CSS d'ouverture est ".open" (et non ".active")
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
@@ -272,12 +273,12 @@
         window.openLightbox = function (src) {
             if (!src) return;
             lightboxImg.src = src;
-            lightbox.classList.add('active');
+            lightbox.classList.add('open');
             document.body.style.overflow = 'hidden';
         };
 
         function closeLightbox() {
-            lightbox.classList.remove('active');
+            lightbox.classList.remove('open');
             document.body.style.overflow = '';
         }
 
@@ -593,7 +594,7 @@
     }
 
     /* ============================================================
-       16. CARTES ÉCOLES DÉPLIABLES
+       16. CARTES ÉCOLES DÉPLIABLES (mobile)
        ============================================================ */
     function initCartesDepliables() {
         if (window.innerWidth > 768) return;
@@ -666,7 +667,7 @@
        20. INITIALISATION
        ============================================================ */
     function init() {
-        // 1. D'abord injecter les éléments communs
+        // 1. Injection des éléments communs
         initHeader();
         initFooter();
         initLightboxInjection();
@@ -674,7 +675,7 @@
         initScrollTopBtn();
         initPrintHeader();
 
-        // 2. Ensuite initialiser les comportements
+        // 2. Initialisation des comportements
         initNavigation();
         initScrollTop();
         initLightbox();
