@@ -40,7 +40,8 @@
                             '<pagefind-modal-trigger></pagefind-modal-trigger>' +
                         '</div>' +
                         '<div class="header-date-info">' +
-                            '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
+                            '<strong>Dernière mise à jour :</strong> ' +
+                            '<span class="header-date"><!-- LAST_UPDATED --></span>' +
                         '</div>' +
                     '</div>' +
                 '</div>' +
@@ -857,19 +858,19 @@
     }
 
     /* ============================================================
-       21. AUTOMATISATION DES DATES
+       21. AUTOMATISATION DE LA DATE D'IMPRESSION
+       ⚠️ La date "Dernière mise à jour" du header est injectée
+       par GitHub Actions (voir deploy.yml). On ne met à jour
+       ici QUE la date d'impression (#print-date), car elle
+       correspond à la date réelle de l'impression.
        ============================================================ */
     function initDates() {
-        const dateElements = document.querySelectorAll('.header-date, #print-date');
-        if (dateElements.length === 0) return;
+        const printDateEl = document.getElementById('print-date');
+        if (!printDateEl) return;
 
         const now = new Date();
         const options = { day: 'numeric', month: 'long', year: 'numeric' };
-        const formattedDate = now.toLocaleDateString('fr-FR', options);
-
-        dateElements.forEach(function (el) {
-            el.textContent = formattedDate;
-        });
+        printDateEl.textContent = now.toLocaleDateString('fr-FR', options);
     }
 
     /* ============================================================
