@@ -1,4 +1,3 @@
-<script>
         (function() {
             const etablissementsData = [
                 { type: "college", commune: "Briare", nom: "Collège Albert Camus", adresse: "Rue du Port à Belleau, 45250 Briare", telephone: "02 38 37 02 83", email: "ce0450008p@ac-orleans-tours.fr", dispositifs: "SEGPA + ULIS", lat: 47.6378, lng: 2.7373 },
@@ -276,4 +275,3 @@
                 }
             }
         })();
-    </script>
