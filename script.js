@@ -1,14 +1,14 @@
 /* ============================================================
    GUIDE DES FAMILLES - BERRY LOIRE PUISAYE
    Script JS unifié - Septembre 2026
-   Inclut Pagefind (recherche interne)
+   Version stable (sans Pagefind)
    ============================================================ */
 
 (function () {
     'use strict';
 
     /* ============================================================
-       1. INJECTION DU HEADER COMMUN + RECHERCHE PAGEFIND
+       1. INJECTION DU HEADER COMMUN
        ============================================================ */
     function initHeader() {
         const header = document.getElementById('siteHeader');
@@ -22,16 +22,10 @@
                         '<h1><a href="index.html">Guide des Familles</a></h1>' +
                     '</div>' +
                     '<div class="header-info">' +
-                        '<div class="header-search">' +
-                            '<pagefind-modal-trigger></pagefind-modal-trigger>' +
-                        '</div>' +
-                        '<div class="header-date-info">' +
-                            '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
-                        '</div>' +
+                        '<strong>Dernière mise à jour :</strong> <span class="header-date"></span>' +
                     '</div>' +
                 '</div>' +
-            '</div>' +
-            '<pagefind-modal></pagefind-modal>';
+            '</div>';
     }
 
     /* ============================================================
@@ -93,7 +87,6 @@
         const btn = document.createElement('div');
         btn.className = 'print-float-btn';
         btn.id = 'printFloatBtn';
-        btn.setAttribute('data-pagefind-ignore', 'all');
         btn.innerHTML =
             '<div class="print-hint">' +
                 '<i class="fas fa-lightbulb"></i>' +
@@ -138,7 +131,6 @@
         const printHeader = document.createElement('div');
         printHeader.className = 'print-header';
         printHeader.style.display = 'none';
-        printHeader.setAttribute('data-pagefind-ignore', 'all');
         printHeader.innerHTML =
             '<h1>Guide des Familles - ' + pageTitle + '</h1>' +
             '<p>Communauté de Communes Berry Loire Puisaye</p>' +
@@ -148,7 +140,6 @@
         const printFooter = document.createElement('div');
         printFooter.className = 'print-footer';
         printFooter.style.display = 'none';
-        printFooter.setAttribute('data-pagefind-ignore', 'all');
         printFooter.innerHTML =
             '<p>Guide des Familles - Communauté de Communes Berry Loire Puisaye</p>' +
             '<p>42 rue des Prés Gris, 45250 BRIARE - 02 38 37 03 84 - contact@cc-berryloirepuisaye.fr</p>' +
@@ -272,7 +263,6 @@
 
     /* ============================================================
        9. LIGHTBOX
-       ⚠️ La classe CSS d'ouverture est ".active" (cohérent avec styles.css)
        ============================================================ */
     function initLightbox() {
         const lightbox = document.getElementById('lightbox');
